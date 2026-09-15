@@ -14,7 +14,7 @@ with no PHP, no MySQL, and no server to patch.
 Claudio/
 ├── README.md          ← this file
 ├── .gitignore
-├── www/               ← WordPress export — NOT IN GIT, see "Restoring www/" below
+├── www/               ← WordPress export, PRUNED to 1.3 GB — NOT IN GIT, see below
 │   ├── y7c9a5a_db142477_ndh.sql   70 MB phpMyAdmin dump, all content lives here
 │   ├── wp-content/themes/ndhcpawp/  active theme (design reference)
 │   └── wp-content/uploads/          4.0 GB media
@@ -31,19 +31,20 @@ deployed and never modified.
 
 ### ⚠️ Restoring `www/`
 
-**`www/` is gitignored** — it's 4.5 GB of read-only source material and does not
-belong in version control. A fresh clone will not have it.
+**`www/` is gitignored** — read-only source material that doesn't belong in version
+control. A fresh clone will not have it.
 
 Check whether you have it:
 
 ```bash
 ls www/y7c9a5a_db142477_ndh.sql && du -sh www/
-# expect: ~70 MB dump, ~4.5 GB total
+# expect: ~67 MB dump, ~1.3 GB total (pruned — see §4)
 ```
 
 If that fails, obtain the original WordPress export (from the client, the hosting
-backup, or whoever ran the migration) and unpack it so the paths above resolve.
-It must contain at minimum:
+backup, or whoever ran the migration) and unpack it so the paths above resolve. A
+restored *full* export is 4.5 GB and works fine — it's a superset; prune it again
+only if you want the disk back. It must contain at minimum:
 
 | Path | Needed for |
 |---|---|
@@ -160,14 +161,37 @@ error-prone"); that condition was already met at signing time.
 
 ## 4. The source export
 
-| Item | Size | Disposition |
+**The export has been pruned to only what the finished site needs: 4.40 GB → 1.29 GB.**
+
+What remains:
+
+| Item | Size | Why kept |
 |---|---|---|
-| `wp-content/uploads` | 4.0 GB / 24,749 files | 20,252 are WP-generated thumbnails (1.38 GB) — discard. 4,497 originals (2.68 GB) include 15–20 MB unoptimized camera JPEGs |
-| `wp-includes` + `wp-admin` | 98 MB | Discard |
-| 26 plugins | 242 MB | Discard; 3 need functional replacements (Gravity Forms, Relevanssi, Redirection) |
-| Unused themes (`infinite`, `twentytwentyfive`) | 61 MB | Discard |
-| **Active theme `ndhcpawp`** | **1.1 MB / 48 PHP files** | **Design reference** |
-| SQL dump | 70 MB | All content; parse with `tools/wpdump.py` |
+| `y7c9a5a_db142477_ndh.sql` | 67 MB | All content; parse with `tools/wpdump.py` |
+| `wp-content/uploads` | 1.2 GB / 1,227 files | Every upload referenced anywhere in the site |
+| `wp-content/themes/ndhcpawp` | 1.1 MB / 48 PHP files | Design reference |
+| `.htaccess`, `nginx.conf` | 50 KB | Server-config reference |
+
+What was deleted (3.11 GB), and why it was safe:
+
+| Removed | Size |
+|---|---|
+| Unreferenced uploads + all WP-generated thumbnails (23,523 files) | 2.81 GB |
+| `wp-content/plugins` (26 plugins) | 242 MB |
+| `uploads/ithemes-security` (security logs) | 119 MB |
+| `wp-includes`, `wp-admin`, WP core root PHP | 98 MB |
+| Unused themes `infinite`, `twentytwentyfive` | 61 MB |
+| `wp-content/wordfence`, `maintenance`, cache configs | 19 MB |
+| `wp-config.php` | — deleted on security grounds: live DB credentials and auth salts |
+
+Thumbnails are derived files and are never used — media is always re-encoded from
+originals (see §8). Three plugins still need *functional* replacements, but their
+code is not needed to build them: Gravity Forms → §10, Relevanssi → Pagefind,
+Redirection → `_redirects`.
+
+**`tools/uploads-manifest.txt`** lists the 1,227 kept paths. It is the record of
+what survived; regenerate it with the reference scan if the export is ever
+restored in full (see below).
 
 Site identity: `https://www.prosperityllc.com`, "Prosperity Partners", tagline
 "Accounting, Tax, & Sage Intacct Solutions". Permalinks `/%postname%/`.
@@ -450,8 +474,17 @@ reconstruct content from the live site if the export is merely missing locally.
 
 **`sips` and `cwebp` and `ffmpeg` are available; ImageMagick and PIL are not.**
 
-**Uploads contain 15–20 MB camera JPEGs** (`ndh.2024.party-*.jpg` etc.). Always
-re-encode; never copy originals into `site/`.
+**Uploads contain 15–20 MB camera JPEGs.** Always re-encode; never copy originals
+into `site/`.
+
+**When reference-scanning uploads, two things produce false "referenced" hits** —
+both cost ~600 MB–2 GB of needlessly kept files if you miss them:
+- A post's `guid` column holds an attachment's *own* URL. Scanning it marks every
+  attachment as referenced by itself.
+- Serialised PHP is full of string-length prefixes (`s:150:"…"`). A loose
+  "any 2–6 digit number is an attachment ID" scan collides with them constantly.
+  Extract IDs only from bare-integer meta values and from `s:N:"digits"` inside
+  serialised arrays.
 
 ---
 
