@@ -1,0 +1,492 @@
+# Prosperity Partners — WordPress → static site migration
+
+Migrating `prosperityllc.com` (WordPress, 4.5 GB export) to a static, buildable site
+with no PHP, no MySQL, and no server to patch.
+
+**Status:** homepage complete and verified. Everything else outstanding.
+**Last updated:** 2026-09-16
+
+---
+
+## 1. Folder layout
+
+```
+Claudio/
+├── README.md          ← this file
+├── .gitignore
+├── www/               ← WordPress export — NOT IN GIT, see "Restoring www/" below
+│   ├── y7c9a5a_db142477_ndh.sql   70 MB phpMyAdmin dump, all content lives here
+│   ├── wp-content/themes/ndhcpawp/  active theme (design reference)
+│   └── wp-content/uploads/          4.0 GB media
+├── site/              ← the new static site (the deliverable)
+│   ├── index.html
+│   └── assets/{css,js,img,video}
+├── tools/
+│   └── wpdump.py      ← streaming SQL-dump parser (see §14)
+└── .claude/launch.json  preview server config
+```
+
+`www/` is the source of truth for content and a reference for design. It is never
+deployed and never modified.
+
+### ⚠️ Restoring `www/`
+
+**`www/` is gitignored** — it's 4.5 GB of read-only source material and does not
+belong in version control. A fresh clone will not have it.
+
+Check whether you have it:
+
+```bash
+ls www/y7c9a5a_db142477_ndh.sql && du -sh www/
+# expect: ~70 MB dump, ~4.5 GB total
+```
+
+If that fails, obtain the original WordPress export (from the client, the hosting
+backup, or whoever ran the migration) and unpack it so the paths above resolve.
+It must contain at minimum:
+
+| Path | Needed for |
+|---|---|
+| `www/y7c9a5a_db142477_ndh.sql` | **All content.** Every extraction script reads this |
+| `www/wp-content/themes/ndhcpawp/` | Design reference — exact colours, spacing, template logic |
+| `www/wp-content/uploads/` | Original media to re-encode into `site/assets/` |
+
+Verify a restored export parses correctly:
+
+```bash
+cd www && python3 -c "
+import sys; sys.path.insert(0,'../tools')
+from wpdump import iter_rows
+from collections import Counter
+c=Counter()
+for t,cols,v in iter_rows('y7c9a5a_db142477_ndh.sql', tables={'ynrh_posts'}):
+    r=dict(zip(cols,v))
+    if r['post_status']=='publish': c[r['post_type']]+=1
+print(dict(c))
+"
+# expect: personnel 200, post 104, page 45, portfolio 18, location 11
+```
+
+**Without `www/` you can still** run the preview server, edit `site/`, and do any
+CSS/markup work. **You cannot** extract content (phase A), check a design detail
+against the original theme, or process media — i.e. most of §9.
+
+---
+
+## 2. Quick start
+
+```bash
+python3 -m http.server 8788 --directory /Users/chanh/Desktop/Claudio/Claudio/site
+```
+
+Then open `http://localhost:8788`. In Claude Code the `site` launch config does the
+same thing via the Browser pane.
+
+To query site content without standing up MySQL (there is no `mysql` binary on this
+machine — don't try to import the dump):
+
+```bash
+cd /Users/chanh/Desktop/Claudio/Claudio/www
+python3 -c "
+import sys; sys.path.insert(0,'../tools')
+from wpdump import iter_rows
+for t,c,v in iter_rows('y7c9a5a_db142477_ndh.sql', tables={'ynrh_posts'}):
+    r=dict(zip(c,v))
+    if r['post_type']=='page' and r['post_status']=='publish':
+        print(r['ID'], r['post_name'], r['post_title'])
+"
+```
+
+---
+
+## 3. Stack decisions
+
+| Layer | Choice |
+|---|---|
+| Generator | **Eleventy, full-site** |
+| Hosting | Cloudflare Pages (git integration, atomic deploys, PR previews) |
+| CMS | Decap CMS at `/admin`, GitHub OAuth via a Cloudflare Worker |
+| Forms | Cloudflare Pages Function → Turnstile verify → SMTP relay (Resend) |
+| Search | Pagefind (replaces Relevanssi) |
+| Edge | Cloudflare CDN/WAF; Pro plan ($25/mo) |
+
+### Eleventy over Astro
+
+Astro genuinely wins on two points here — content collections with schema
+validation (real value across 200 personnel records) and a more ergonomic image
+component. It loses on the project's own stated constraint of "boring and proven":
+Eleventy is 2018-era with no client runtime by design; Astro shipped v1→v5 in about
+three years, and Next.js was already rejected partly for framework churn. The one
+thing Astro islands would buy — the team directory filter — is ~100 lines of vanilla
+JS over server-rendered cards, which is what the existing theme already does.
+
+`eleventy-img` covers the image pipeline. The lost schema validation should be
+replaced with ~30 lines of validation in the `_data` layer that throws on a bad
+facet value.
+
+### Full-site, not "Eleventy only for /blog/"
+
+The original migration plan scoped the build to `/blog/` and had static pages
+hand-authored with no build step. That doesn't survive the actual URL count:
+
+| Type | Count | Bucket in original plan |
+|---|---|---|
+| `page` | 45 | hand-authored |
+| `post` | 104 | `/blog/`, Eleventy |
+| **`personnel`** | **200** | **none** |
+| `portfolio` | 18 | none |
+| `location` | 11 | none |
+| **Total** | **378** | |
+
+229 of 378 URLs are data-driven detail pages — one record each, one template.
+Nobody hand-authors 200 staff bios. The original plan documented full-site Eleventy
+as its own fallback ("if duplicated header/footer across many static files becomes
+error-prone"); that condition was already met at signing time.
+
+### Other deviations from the original plan
+
+1. **Pages are not Markdown.** The plan said "strip theme HTML → clean Markdown".
+   Page content carries layout semantics (`content_block_columns`) that Markdown
+   cannot express — flatten it and every multi-column layout is lost. Pages need
+   structured frontmatter with a block array. Markdown is correct for the 104 posts
+   and 200 personnel bios.
+2. **Decap must cover `personnel`, not just posts.** At a 200-person firm, staff
+   churn is the highest-frequency content change on the site. If editors can't add a
+   person without a developer, the CMS solved the wrong problem.
+3. **9 forms, not 1.** See §10 — this turned out cheap, but the plan assumed a
+   single contact form.
+
+---
+
+## 4. The source export
+
+| Item | Size | Disposition |
+|---|---|---|
+| `wp-content/uploads` | 4.0 GB / 24,749 files | 20,252 are WP-generated thumbnails (1.38 GB) — discard. 4,497 originals (2.68 GB) include 15–20 MB unoptimized camera JPEGs |
+| `wp-includes` + `wp-admin` | 98 MB | Discard |
+| 26 plugins | 242 MB | Discard; 3 need functional replacements (Gravity Forms, Relevanssi, Redirection) |
+| Unused themes (`infinite`, `twentytwentyfive`) | 61 MB | Discard |
+| **Active theme `ndhcpawp`** | **1.1 MB / 48 PHP files** | **Design reference** |
+| SQL dump | 70 MB | All content; parse with `tools/wpdump.py` |
+
+Site identity: `https://www.prosperityllc.com`, "Prosperity Partners", tagline
+"Accounting, Tax, & Sage Intacct Solutions". Permalinks `/%postname%/`.
+DB table prefix `ynrh_`. MariaDB 11.4.3 dump from phpMyAdmin 5.2.3.
+
+Legal entities (appear in the footer disclaimer, keep verbatim): NDH Advisors LLC
+dba Prosperity Partners; NDH CPA LLP dba Prosperity Partners CPA.
+
+---
+
+## 5. Content inventory
+
+**378 public URLs.** Total content HTML across the entire site: **542 KB.**
+
+| Type | Published | Body HTML | Notes |
+|---|---|---|---|
+| `page` | 45 (+9 draft, +2 private) | 104 KB in 96 ACF blocks | See §6 |
+| `post` | 104 | 62 KB (avg 612 chars) | Categories: Culture (id 1), What's New (id 85) |
+| `personnel` | 200 | 362 KB (avg 1,854 chars) | 3 facet fields each |
+| `portfolio` | 18 | 9 KB | |
+| `location` | 11 | 5 KB | |
+| `attachment` | 1,659 | — | 1,047 jpg · 520 png · 66 pdf · 10 svg · 7 mp4 · 6 xlsx |
+
+**Page templates** — 38 of 47 pages share one generic renderer:
+
+| Template | Pages |
+|---|---|
+| `default` (generic content blocks) | 38 |
+| `pages/services.php` | 4 |
+| `pages/sage.php` | 2 |
+| `pages/team.php` | 1 |
+| `pages/home.php` | 1 ✅ done |
+| `pages/portal.php` | 1 |
+
+**Menus:** Main (21 items, 2 levels deep), Mobile (22), Footer (8), Social (1),
+Sage (0, unused).
+
+**Taxonomies in use:** `category` (2), `post_tag` (18), `portfolio_tag` (23),
+`portfolio_category` (4), `personnel_category` (4). The rest are plugin noise.
+
+---
+
+## 6. Data model
+
+### Pages — ACF flexible content
+
+Page `post_content` is empty (71 characters across all 45 pages). Everything is in
+`postmeta` as an ACF flexible-content repeater:
+
+```
+content_blocks                              = <count>
+content_blocks_<i>_block_name               admin label only — NOT a block type
+content_blocks_<i>_content_block_columns    the actual layout discriminator
+content_blocks_<i>_content_block_content1..5  raw WYSIWYG HTML
+content_blocks_<i>_content_block_id         anchor id
+content_blocks_<i>_content_block_class      extra CSS classes
+```
+
+`block_name` looks like 40 distinct block types ("Why partner boxes row 1") but it's
+a human label in the admin. **There is one block type.** The real variation is
+`content_block_columns`, 96 blocks total:
+
+| Layout | Count | Renders as |
+|---|---|---|
+| `one` | 104 | single column of `content1` |
+| `two` | 34 | `content1` / `content2` |
+| `sidebar` | 26 | main + sidebar (`content_block_sidebar_title`) |
+| `carousel` | 10 | slick carousel, sub-repeater `content_block_carousel_*` |
+| `three` | 7 | content1–3 |
+| `tiles` | 6 | sub-repeater `content_block_tiles_<n>_content_block_tile_{type,page,category}` |
+| `five` | 6 | content1–5 |
+| `twoimage` | 5 | `content_block_image` + `content_block_image_side` |
+| `four` | 4 | content1–4 |
+
+(Counts exceed 96 because column values repeat across block indexes.)
+
+Carousel config lives in `content_block_carousel_{autoplay,infinite,adaptiveHeight,slides_show,slides_scroll}`.
+Team blocks use `content_block_team_members_<n>_content_block_team_member` (a post ID).
+
+Page-level meta: `page_banner_{image,title,description}`, `remove_cta`,
+`service_page_excerpt`, `page_background_graphic`.
+
+### Personnel
+
+201 records each carry: `personnel_title`, `personnel_first_name`,
+`personnel_last_name`, `personnel_certifications`, `personnel_specializations`,
+`personnel_location` (11 distinct offices). ACF field keys needed to resolve the
+select-option labels: title = `field_6679cee8fa574`, specializations =
+`field_6695315a92f52`.
+
+The team directory filters on title / specialization / location via CSS classes on
+each card plus `data-term` attributes. See `www/wp-content/themes/ndhcpawp/pages/team/filters.php`
+and the team-filter block in `assets/js/g.min.js`.
+
+### Global options (ACF options page, `ynrh_options` rows prefixed `options_`)
+
+`site_logo_white`, `site_logo_black` (both SVG), `footer_copyright`,
+`footer_disclaimer`, `cta_content`, `cta_form` (= Gravity Form id 3),
+`page_banner_graphic`, `footer_locations` (10 office entries).
+
+### Footer widgets
+
+| Slot | Contents |
+|---|---|
+| `footer-widgets-1` | text: phone/fax/email · custom_html: **accessiBe** third-party script |
+| `footer-widgets-2` | nav menu "Site Menu" |
+| `footer-widgets-3` | recent posts (4) |
+| `footer-widgets-4` | nav menu "Follow Us" (LinkedIn only) |
+
+---
+
+## 7. Design system
+
+Extracted from the theme's compiled CSS — these are exact values, not eyeballed.
+
+```css
+--blue:       #02518a   /* primary; also the mobile drawer background */
+--blue-dark:  #023c70
+--blue-deep:  #143b62   /* values section */
+--sky:        #22a8de   /* hover / accent */
+--green:      #4aad52   /* "What's New!" flag */
+--orange:     #ff5d05
+--grey-text:  #6d6e70   /* nav links */
+--grey-light: #f1f1f1
+```
+
+Font: **Urbanist** (Google Fonts), weights 200/400/700. Headings 700; large display
+text uses 200.
+
+Container `max-width: 80em`, 4% side padding below 1320px.
+Nav breakpoint **1080px** (desktop bar ↔ drawer). Other breakpoints: 1600, 1320,
+1152, 1024, 960, 900, 840, 768, 640, 560, 480.
+
+Card shadow: `0 12px 32px rgba(2,81,138,.2), 0 3px 6px rgba(2,81,138,.1)`.
+
+---
+
+## 8. What's built
+
+`site/` — plain hand-authored HTML/CSS/JS, zero build step. It drops into Eleventy
+unchanged later (`.html` passes through untouched).
+
+| File | Contents |
+|---|---|
+| `index.html` | Full homepage: header, hero, intro + featured post, 6 values, achievements, Culture ×3, What's New ×3, CTA form, footer (10 locations, disclaimer, copyright) |
+| `assets/css/style.css` | ~620 lines, custom-property palette, responsive to 375px |
+| `assets/js/main.js` | ~130 lines, no dependencies — drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback |
+| `assets/img/`, `assets/video/` | 10 MB total, referenced files only |
+
+Media processing applied (repeat this for every other page):
+- Hero video 19 MB → **7.9 MB** (`ffmpeg`, audio track dropped — it plays muted, 1280×720, CRF 27, `+faststart`)
+- Post thumbnails resized to 800px, WebP + JPEG fallback via `<picture>`
+- Value icons 512px → 288px PNG
+- Logos copied as-is (SVG, 8 KB)
+
+Everything on the page — hero copy, intro text, all six values, achievements
+callout, three latest posts per category, footer addresses, disclaimer — was
+extracted from the SQL dump by script. Nothing was retyped.
+
+### Homepage stubs left in place
+
+- Contact form posts to `/api/contact`; Turnstile div has `data-sitekey="TURNSTILE_SITE_KEY"`
+- Search submits to `/search/?q=` — wire to Pagefind
+- Post links use `/blog/<slug>/`; the old site used `/<slug>/` (redirects needed)
+- accessiBe widget omitted pending a decision
+
+---
+
+## 9. Remaining work
+
+Estimates are Claude token budgets, based on the homepage actually costing ~130k
+including the plan review.
+
+| # | Phase | Tokens | Unlocks |
+|---|---|---|---|
+| A | Extraction pipeline: all types → data files; media reference-scan + re-encode | 60–90k | all 378 URLs' content |
+| B | Eleventy scaffold; port `site/` chrome into Nunjucks layouts/includes | 50–70k | shared header/footer |
+| C | Generic content-block renderer (9 column layouts) | 80–120k | **38 pages at once** |
+| D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | 120–160k | 8 pages + team directory |
+| E | 4 content-type templates + archives, pagination, RSS, 404, search page | 120–160k | 333 URLs |
+| F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | 100–200k | |
+| G | Forms: 1 component + 1 Worker (see §10) | 50–70k | all 9 forms |
+| H | Pagefind + 65 redirects + sitemap | 40–60k | SEO continuity |
+| I | Decap CMS + OAuth Worker + Cloudflare Pages setup | 80–120k | editors + deploy |
+| | **Total** | **700k – 1.05M** | ≈ 6–10 sessions |
+
+Dependencies: A → B → C → {D, E} → F. G, H, I are independent and can run anytime
+after B.
+
+**Calendar time is not set by the token budget.** Realistically 2–4 weeks, gated by:
+human content sign-off across 378 URLs; Resend domain verification (DNS
+propagation); and the open decisions in §11.
+
+---
+
+## 10. Forms — audited, simpler than expected
+
+9 forms, 3,782 stored entries (historical — export to CSV for the archive, they do
+not migrate).
+
+| id | Active | Fields | Title |
+|---|---|---|---|
+| 1 | ✅ | 7 (1 conditional) | Contact Form |
+| 2 | ❌ | 5 | Accounting Tech Contact Form |
+| 3 | ✅ | 5 | CTA Form ← the site-wide CTA |
+| 4–9 | ✅ | 5 each | CTA Partnerships, Controllership Services, Fractional CFO, Accounting Discovery, Family Office Services, Accounting & Bookkeeping Services |
+
+**No page breaks anywhere. One conditional rule in total.** Forms 3–9 are the
+identical 5-field shape: name, email, phone, textarea, captcha. Form 1 adds a radio
+and a text field.
+
+So this is **one form component parameterised by form id + recipient**, plus one
+Cloudflare Pages Function. Not nine integrations. Form 2 is inactive — drop it.
+
+Captcha fields become Cloudflare Turnstile. The Worker verifies the Turnstile token,
+then relays over **SMTP** (not a vendor REST API) so the provider is swappable by
+changing credentials.
+
+---
+
+## 11. Open decisions — needs client input
+
+1. **9 draft pages.** Seven form a coherent unpublished Valuation Services line:
+   `/valuation-services/`, `/financial-reporting/`,
+   `/income-estate-and-gift-valuations/`, `/intellectual-property-valuation/`,
+   `/marital-dispute-valuations/`, `/mergers-and-acquisitions-valuations/`,
+   `/shareholder-dispute-valuations/`. Ship, or drop?
+   ⚠️ **`/valuation-services/` is linked from the Mobile Menu but the page is a
+   draft — it's a broken link on the live site today.**
+2. **Page 6449 "Payment (old page backup)"** has slug `/` — it would collide with
+   the site root. Almost certainly delete.
+3. **2 private pages.** `/accounting-technology/` ("Accounting Software - Sage
+   Intacct", 6 blocks, 3.1 KB, uses `sage.php`) is substantial but private.
+   Publish or drop? `/accounting-technologyold/` is presumably dead.
+4. **accessiBe** — third-party accessibility overlay in footer widget 1. Keep the
+   vendor, or drop it?
+5. **Greenhouse careers embed** (`boards.greenhouse.io/embed/job_board/js?for=ndhcpa`)
+   on the Careers page — note it still uses the old `ndhcpa` board slug.
+6. **Redirect conflicts.** `/client-portal/` is both a published page (id 5400) and
+   a redirect source. There are also multi-hop chains
+   (`/client-portal-login/` → `/client-portal/` → `/client-portal-login/client-portal/`
+   → `/client-portal-login/uploading-files-to-your-client-portal/`). Cloudflare
+   `_redirects` resolves one hop — these must be **flattened to their final
+   destination**, and the page-vs-redirect conflict resolved.
+7. **Front page slug.** The homepage is `/homepage-main/` in WordPress. It must
+   serve at `/`, and `/homepage-main/` should 301 → `/`. The Footer menu currently
+   links "Home" → `/homepage-main/`.
+8. **Stale footer data.** An old text widget references a **Philadelphia** office
+   that no longer appears in `footer_locations`. Confirm it's closed.
+9. **Post URL structure.** `/blog/<slug>/` (plan) vs `/<slug>/` (current live). The
+   latter preserves existing SEO with no redirects; the former is tidier. Decide
+   before phase E — it determines 104 redirect rules.
+
+---
+
+## 12. Gotchas — read before continuing
+
+**Verify UI with real clicks, not scripted ones.** A scripted `element.click()`
+does not move focus; a real tap does. The mobile submenu bug in §13 passed a
+scripted test and failed for actual users.
+
+**Don't let desktop hover rules reach the mobile drawer.** `:focus-within` rules
+carry higher specificity than a `.is-open` state class and will silently win. All
+desktop nav interaction is now behind `@media (min-width: 1081px)`.
+
+**CSS Grid track sizing, when a child spans all columns:**
+- An `fr` track takes free space *before* an intrinsic track can grow into it —
+  a `minmax(0, max-content)` label track collapses to its longest word.
+- `justify-content: start` shrinks tracks to content, so a `grid-column: 1/-1`
+  child inherits that narrow width rather than the container's.
+- A content-sized track plus a spanning child is circular: the child's width feeds
+  back into the track, so sibling rows resolve differently.
+- Conclusion used in the nav: `grid-template-columns: 1fr auto`.
+
+**`www/` is gitignored and won't exist in a fresh clone.** Before starting any
+content or media work, confirm it's present — see "Restoring `www/`" in §1. Don't
+reconstruct content from the live site if the export is merely missing locally.
+
+**No MySQL on this machine.** Don't try to import the dump — use `tools/wpdump.py`.
+
+**`sips` and `cwebp` and `ffmpeg` are available; ImageMagick and PIL are not.**
+
+**Uploads contain 15–20 MB camera JPEGs** (`ndh.2024.party-*.jpg` etc.). Always
+re-encode; never copy originals into `site/`.
+
+---
+
+## 13. Fixed so far
+
+| Bug | Cause |
+|---|---|
+| Hero text off-centre | Reveal animation's `transform: none` cancelled the centring `translate(-50%,-50%)`; switched to flex centring |
+| Hero text invisible on load | Depended on an IntersectionObserver callback; above-the-fold elements now reveal synchronously, plus a `pageshow` pass for bfcache restores |
+| Contact form first/last name misaligned | `.field + .field` margin leaked into the side-by-side row; scoped to direct children of the form |
+| Mobile Services/Company dropdowns wouldn't open, label vanished | `:focus-within` rules outranked `.is-open`, and painted the label `--blue` on a `--blue` drawer |
+| Nav arrow tap target 24px | Now 44px, with negative margins so rows don't stretch |
+| Nav arrows misaligned / wrapping | See Grid notes in §12 |
+
+---
+
+## 14. Tooling — `tools/wpdump.py`
+
+Streaming parser for the phpMyAdmin dump. Handles multi-row extended INSERTs and
+MySQL string escaping without loading 70 MB into memory.
+
+```python
+from wpdump import iter_rows
+
+# yields (table_name, [column names], [values])
+for table, cols, vals in iter_rows(path, tables={"ynrh_posts", "ynrh_postmeta"}):
+    row = dict(zip(cols, vals))
+```
+
+Pass `tables=` to skip everything else — it makes a full pass in seconds rather
+than minutes. Running it as a script prints post-type/status counts and attachment
+mime types.
+
+Note that ACF option values and widget settings are PHP-serialised strings; the
+parser returns them raw. `footer_locations`-style repeaters are flat numbered meta
+keys (`options_footer_locations_0_footer_location`) and can be read without
+unserialising. Widget blobs (`widget_text`, `widget_nav_menu`) do need a PHP
+unserialiser or careful regex.
