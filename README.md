@@ -77,7 +77,7 @@ against the original theme, or process media — i.e. most of §9.
 ## 2. Quick start
 
 ```bash
-python3 -m http.server 8788 --directory /Users/chanh/Desktop/Claudio/Claudio/site
+python3 -m http.server 8788 --directory site
 ```
 
 Then open `http://localhost:8788`. In Claude Code the `site` launch config does the
@@ -87,7 +87,7 @@ To query site content without standing up MySQL (there is no `mysql` binary on t
 machine — don't try to import the dump):
 
 ```bash
-cd /Users/chanh/Desktop/Claudio/Claudio/www
+cd www
 python3 -c "
 import sys; sys.path.insert(0,'../tools')
 from wpdump import iter_rows
