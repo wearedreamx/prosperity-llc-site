@@ -64,6 +64,29 @@ module.exports = function (eleventyConfig) {
 	// each folder's <type>.11tydata.js, so `collections.personnel` etc. already
 	// exist. These derived collections replicate what the old flat
 	// data/*.json + site/_data/*.js wrappers used to filter/sort in memory.
+	// /meet-the-team/ order must match the live site: a pinned leadership block
+	// first, then everyone else by last name. The theme does this with two
+	// queries (pages/team.php); the pinned ids live in an ACF repeater, mirrored
+	// into data/team-pinned.json. Sorting on last_name (carried in each record's
+	// frontmatter, straight from personnel_last_name) rather than splitting the
+	// display name, which breaks on compound and multi-word surnames.
+	eleventyConfig.addCollection("teamOrder", (api) => {
+		const pinnedSlugs = require("./data/team-pinned.json").slugs;
+		const people = api.getFilteredByTag("personnel");
+		const bySlug = new Map(people.map((p) => [p.data.slug, p]));
+		const pinned = pinnedSlugs.map((s) => bySlug.get(s)).filter(Boolean);
+		// Compare the two fields separately rather than joining them with a
+		// separator: localeCompare ignores control characters, so a "\u0000" join
+		// runs the fields together and sorts Bassett, Sarah before Bass, Moshe.
+		const cmp = (a, b) =>
+			(a.data.last_name || "").localeCompare(b.data.last_name || "") ||
+			(a.data.name || "").localeCompare(b.data.name || "");
+		const rest = people
+			.filter((p) => !pinnedSlugs.includes(p.data.slug))
+			.sort(cmp);
+		return [...pinned, ...rest];
+	});
+
 	eleventyConfig.addCollection("culturePosts", (api) =>
 		api.getFilteredByTag("posts")
 			.filter((p) => p.data.category_name === "Culture")

@@ -2,6 +2,7 @@
 {
   "slug": "jacob-eminger",
   "name": "Jacob Eminger",
+  "last_name": "Eminger",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Chicago",

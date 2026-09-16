@@ -2,6 +2,7 @@
 {
   "slug": "colleen-callahan",
   "name": "Colleen Callahan",
+  "last_name": "Callahan",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Chicago",

@@ -2,6 +2,7 @@
 {
   "slug": "sandeep-guha",
   "name": "Sandeep Guha",
+  "last_name": "Guha",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

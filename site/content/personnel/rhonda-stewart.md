@@ -2,6 +2,7 @@
 {
   "slug": "rhonda-stewart",
   "name": "Rhonda Stewart",
+  "last_name": "Stewart",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Houston",

@@ -2,6 +2,7 @@
 {
   "slug": "joey-mainello",
   "name": "Joey Mainello",
+  "last_name": "Mainello",
   "certifications": "",
   "job_title": "Senior Manager",
   "location_name": "Washington DC – Transaction Advisory",

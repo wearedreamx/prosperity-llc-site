@@ -2,6 +2,7 @@
 {
   "slug": "brandon-kagerbauer",
   "name": "Brandon Kagerbauer",
+  "last_name": "Kagerbauer",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Chicago",

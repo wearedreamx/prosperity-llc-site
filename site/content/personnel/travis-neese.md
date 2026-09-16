@@ -2,6 +2,7 @@
 {
   "slug": "travis-neese",
   "name": "Travis Neese",
+  "last_name": "Neese",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Chicago",

@@ -2,6 +2,7 @@
 {
   "slug": "gary-parikh",
   "name": "Gary Parikh",
+  "last_name": "Parikh",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Houston",

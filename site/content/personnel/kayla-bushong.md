@@ -2,6 +2,7 @@
 {
   "slug": "kayla-bushong",
   "name": "Kayla Bushong",
+  "last_name": "Bushong",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

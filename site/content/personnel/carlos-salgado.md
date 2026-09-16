@@ -2,6 +2,7 @@
 {
   "slug": "carlos-salgado",
   "name": "Carlos Salgado",
+  "last_name": "Salgado",
   "certifications": "cpa, cva",
   "job_title": "Manager",
   "location_name": "Chicago",

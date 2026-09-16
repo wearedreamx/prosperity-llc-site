@@ -2,6 +2,7 @@
 {
   "slug": "jonathan-yuen",
   "name": "Jonathan Yuen",
+  "last_name": "Yuen",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "New York City",

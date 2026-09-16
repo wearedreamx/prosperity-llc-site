@@ -2,6 +2,7 @@
 {
   "slug": "alexi-smith",
   "name": "Alexi Smith",
+  "last_name": "Smith",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

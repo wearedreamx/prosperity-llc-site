@@ -2,6 +2,7 @@
 {
   "slug": "amjad-ali",
   "name": "Amjad Ali",
+  "last_name": "Ali",
   "certifications": "ea",
   "job_title": "Associate",
   "location_name": "Houston",

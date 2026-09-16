@@ -2,6 +2,7 @@
 {
   "slug": "jacqueline-lamas",
   "name": "Jacqueline Lamas",
+  "last_name": "Lamas",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Chicago",

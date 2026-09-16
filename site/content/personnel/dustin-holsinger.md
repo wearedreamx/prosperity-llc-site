@@ -2,6 +2,7 @@
 {
   "slug": "dustin-holsinger",
   "name": "Dustin Holsinger",
+  "last_name": "Holsinger",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Chicago",

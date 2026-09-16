@@ -2,6 +2,7 @@
 {
   "slug": "patricia-krout",
   "name": "Patricia Krout",
+  "last_name": "Krout",
   "certifications": "cpa, mst",
   "job_title": "Partner",
   "location_name": "Santa Barbara",

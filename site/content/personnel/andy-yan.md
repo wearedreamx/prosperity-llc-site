@@ -2,6 +2,7 @@
 {
   "slug": "andy-yan",
   "name": "Andy Yan",
+  "last_name": "Yan",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "New York City",

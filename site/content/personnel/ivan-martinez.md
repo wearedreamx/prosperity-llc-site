@@ -2,6 +2,7 @@
 {
   "slug": "ivan-martinez",
   "name": "Ivan Martinez",
+  "last_name": "Martinez",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

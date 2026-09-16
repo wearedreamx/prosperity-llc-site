@@ -2,6 +2,7 @@
 {
   "slug": "owen-byrne",
   "name": "Owen Byrne",
+  "last_name": "Byrne",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "New York City",

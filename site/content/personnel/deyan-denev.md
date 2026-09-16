@@ -2,6 +2,7 @@
 {
   "slug": "deyan-denev",
   "name": "Deyan Denev",
+  "last_name": "Denev",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Chicago",

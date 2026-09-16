@@ -2,6 +2,7 @@
 {
   "slug": "eric-swerdlow",
   "name": "Eric Swerdlow",
+  "last_name": "Swerdlow",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "New York City",

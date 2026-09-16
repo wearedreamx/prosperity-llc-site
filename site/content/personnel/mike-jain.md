@@ -2,6 +2,7 @@
 {
   "slug": "mike-jain",
   "name": "Mike Jain",
+  "last_name": "Jain",
   "certifications": "",
   "job_title": "Partner",
   "location_name": "Houston",

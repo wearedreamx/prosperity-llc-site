@@ -2,6 +2,7 @@
 {
   "slug": "lilly-hu",
   "name": "Lilly Hu",
+  "last_name": "Hu",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "New York City",

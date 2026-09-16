@@ -2,6 +2,7 @@
 {
   "slug": "jared-frankel",
   "name": "Jared Frankel",
+  "last_name": "Frankel",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",

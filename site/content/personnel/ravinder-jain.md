@@ -2,6 +2,7 @@
 {
   "slug": "ravinder-jain",
   "name": "Ravinder Jain",
+  "last_name": "Jain",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Houston",

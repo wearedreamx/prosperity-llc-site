@@ -2,6 +2,7 @@
 {
   "slug": "jessica-attig",
   "name": "Jessica Attig",
+  "last_name": "Attig",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Burlington",

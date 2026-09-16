@@ -2,6 +2,7 @@
 {
   "slug": "nabila-paules-kiami",
   "name": "Nabila Paules-Kiami",
+  "last_name": "Paules-Kiami",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Detroit",

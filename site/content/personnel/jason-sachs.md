@@ -2,6 +2,7 @@
 {
   "slug": "jason-sachs",
   "name": "Jason Sachs",
+  "last_name": "Sachs",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Chicago",

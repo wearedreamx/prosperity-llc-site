@@ -2,6 +2,7 @@
 {
   "slug": "brittany-smith",
   "name": "Brittany Smith",
+  "last_name": "Smith",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Chicago",

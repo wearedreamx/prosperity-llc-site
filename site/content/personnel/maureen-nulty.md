@@ -2,6 +2,7 @@
 {
   "slug": "maureen-nulty",
   "name": "Maureen Nulty",
+  "last_name": "Nulty",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Detroit",

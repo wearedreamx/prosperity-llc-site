@@ -2,6 +2,7 @@
 {
   "slug": "ryan-goodfellow",
   "name": "Ryan Goodfellow",
+  "last_name": "Goodfellow",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Detroit",

@@ -23,7 +23,7 @@ layout: base.njk
 			{% if person.data.job_title %}<h3 class="single-personnel-title">{{ person.data.job_title }}</h3>{% endif %}
 			{% if person.data.location_name %}<h4 class="single-personnel-location"><a href="{{ person.data.location_url }}" class="single-personnel-location-link">{{ person.data.location_name }}</a></h4>{% endif %}
 			<div class="single-personnel-content content">
-				{% if person.data.linkedin_url %}<p><a href="{{ person.data.linkedin_url }}" target="_blank" rel="noopener"><img src="/assets/img/linkedin.svg" alt="LinkedIn" width="24" height="24"></a></p>{% endif %}
+				{% if person.data.linkedin_url %}<p><a href="{{ person.data.linkedin_url }}" target="_blank" rel="noopener"><img src="/assets/img/linkedin.png" alt="LinkedIn" width="24" height="24"></a></p>{% endif %}
 				{{ person.content | safe }}
 			</div>
 		</div>

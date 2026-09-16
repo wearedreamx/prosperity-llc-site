@@ -2,6 +2,7 @@
 {
   "slug": "mahendra-joshi",
   "name": "Mahendra Joshi",
+  "last_name": "Joshi",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Mumbai",

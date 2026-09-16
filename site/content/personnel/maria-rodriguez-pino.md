@@ -2,6 +2,7 @@
 {
   "slug": "maria-rodriguez-pino",
   "name": "Maria Rodriguez Pino",
+  "last_name": "Rodriguez Pino",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Houston",

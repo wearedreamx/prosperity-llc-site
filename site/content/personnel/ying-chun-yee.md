@@ -2,6 +2,7 @@
 {
   "slug": "ying-chun-yee",
   "name": "Ying Chun Yee",
+  "last_name": "Yee",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "New York City",

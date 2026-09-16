@@ -2,6 +2,7 @@
 {
   "slug": "adam-strach",
   "name": "Adam Strach",
+  "last_name": "Strach",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Washington DC – Transaction Advisory",

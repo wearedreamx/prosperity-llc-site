@@ -2,6 +2,7 @@
 {
   "slug": "harry-cendrowski",
   "name": "Harry Cendrowski",
+  "last_name": "Cendrowski",
   "certifications": "cpa, cva",
   "job_title": "Partner",
   "location_name": "Detroit",

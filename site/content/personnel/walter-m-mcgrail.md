@@ -2,6 +2,7 @@
 {
   "slug": "walter-m-mcgrail",
   "name": "Walter M. McGrail",
+  "last_name": "McGrail",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Detroit",

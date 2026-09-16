@@ -2,6 +2,7 @@
 {
   "slug": "kathleen-kustra",
   "name": "Kathleen Kustra",
+  "last_name": "Kustra",
   "certifications": "ea",
   "job_title": "Director",
   "location_name": "Chicago",

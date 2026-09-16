@@ -2,6 +2,7 @@
 {
   "slug": "priya-desai",
   "name": "Priya Desai",
+  "last_name": "Desai",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Mumbai",

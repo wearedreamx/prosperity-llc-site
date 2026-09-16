@@ -2,6 +2,7 @@
 {
   "slug": "evan-landmann",
   "name": "Evan Landmann",
+  "last_name": "Landmann",
   "certifications": "cpa, ea",
   "job_title": "Manager",
   "location_name": "Chicago",

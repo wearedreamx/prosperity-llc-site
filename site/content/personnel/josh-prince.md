@@ -2,6 +2,7 @@
 {
   "slug": "josh-prince",
   "name": "Josh Prince",
+  "last_name": "Prince",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Chicago",
@@ -14,7 +15,7 @@
 }
 ---
 <p><a href="mailto:jprince@prosperityllc.com">jprince@prosperityllc.com</a></p>
-<p><a href="https://www.linkedin.com/in/joshua-prince-cpa/" target="_blank" rel="noopener"><img width="216" height="35" decoding="async" class="alignnone wp-image-5555 size-full" src="/wp-content/uploads/2019/05/find-me-LinkedIn-01.svg" alt=""></a></p>
+<p><a href="https://www.linkedin.com/in/joshua-prince-cpa/" target="_blank" rel="noopener"><img width="216" height="35" decoding="async" class="alignnone wp-image-5555 size-full" src="/assets/img/ui/find-me-linkedin-01.svg" alt=""></a></p>
 <p>Joshua Prince is a Tax Partner at Prosperity Partners. He is an experienced advisor providing sophisticated tax consulting and compliance services to mid-sized businesses, their owners, and high-net-worth individuals. Josh joined Prosperity Partners in January 2024 after spending six years at a large local firm, where he was promoted to Partner in 2023. He previously worked at RSM and PwC, working in their respective Private Client Service groups.</p>
 <p>With more than 13 years of experience, Josh helps clients formulate tax planning strategies for their personal and business needs. He helps clients stay current on tax developments and trends, optimizes tax strategies, and minimizes tax liabilities. Josh is a well-rounded tax professional who advises on a variety of tax issues, including entity selection, partnership and S-corporation taxation, tax planning and projections, foreign reporting, state and local considerations, government tax audits, and federal tax credits. He also has wide industry experience having advised clients in real estate, professional and consulting services, and family offices.</p>
 <p>Josh focuses on understanding his clients’ unique needs and challenges. Rather than taking a one-size-fits-all approach, he tailors a solution to fit the client’s specific circumstances.</p>

@@ -2,6 +2,7 @@
 {
   "slug": "heather-macgarvey",
   "name": "Heather MacGarvey",
+  "last_name": "MacGarvey",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Washington DC – Transaction Advisory",

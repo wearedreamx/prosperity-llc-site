@@ -2,6 +2,7 @@
 {
   "slug": "john-rovegno",
   "name": "John Rovegno",
+  "last_name": "Rovegno",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "New York City",

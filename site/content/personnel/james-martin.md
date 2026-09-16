@@ -2,6 +2,7 @@
 {
   "slug": "james-martin",
   "name": "James Martin",
+  "last_name": "Martin",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Detroit",

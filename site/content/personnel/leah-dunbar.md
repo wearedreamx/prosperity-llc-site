@@ -2,6 +2,7 @@
 {
   "slug": "leah-dunbar",
   "name": "Leah Dunbar",
+  "last_name": "Dunbar",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Santa Barbara",

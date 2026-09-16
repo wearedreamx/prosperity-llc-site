@@ -2,6 +2,7 @@
 {
   "slug": "coby-haim",
   "name": "Coby Haim",
+  "last_name": "Haim",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Iselin",

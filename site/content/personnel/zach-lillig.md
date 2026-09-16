@@ -2,6 +2,7 @@
 {
   "slug": "zach-lillig",
   "name": "Zach Lillig",
+  "last_name": "Lillig",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Chicago",

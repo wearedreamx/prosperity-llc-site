@@ -2,6 +2,7 @@
 {
   "slug": "bryan-limoge",
   "name": "Bryan Limoge",
+  "last_name": "Limoge",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Burlington",

@@ -2,6 +2,7 @@
 {
   "slug": "mansi-goud",
   "name": "Mansi Goud",
+  "last_name": "Goud",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

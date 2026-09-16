@@ -2,6 +2,7 @@
 {
   "slug": "howard-rosenburg",
   "name": "Howard Rosenberg",
+  "last_name": "Rosenburg",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "New York City",

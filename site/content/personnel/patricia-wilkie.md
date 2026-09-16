@@ -2,6 +2,7 @@
 {
   "slug": "patricia-wilkie",
   "name": "Patricia Wilkie",
+  "last_name": "Wilkie",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Santa Barbara",

@@ -2,6 +2,7 @@
 {
   "slug": "megan-nolan",
   "name": "Megan Nolan",
+  "last_name": "Nolan",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Chicago",

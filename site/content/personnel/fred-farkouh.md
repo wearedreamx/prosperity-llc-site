@@ -2,6 +2,7 @@
 {
   "slug": "fred-farkouh",
   "name": "Fred Farkouh",
+  "last_name": "Farkouh",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "New York City",

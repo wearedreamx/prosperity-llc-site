@@ -2,6 +2,7 @@
 {
   "slug": "karen-maddaloni",
   "name": "Karen Maddaloni",
+  "last_name": "Maddaloni",
   "certifications": "",
   "job_title": "Director",
   "location_name": "New York City",

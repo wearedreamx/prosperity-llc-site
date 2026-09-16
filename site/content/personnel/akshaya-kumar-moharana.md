@@ -2,6 +2,7 @@
 {
   "slug": "akshaya-kumar-moharana",
   "name": "Akshaya Kumar Moharana",
+  "last_name": "Moharana",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Mumbai",

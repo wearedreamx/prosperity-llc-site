@@ -2,6 +2,7 @@
 {
   "slug": "tanvi-bhanushali",
   "name": "Tanvi Bhanushali",
+  "last_name": "Bhanushali",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Houston",

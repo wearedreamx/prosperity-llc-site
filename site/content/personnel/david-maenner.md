@@ -2,6 +2,7 @@
 {
   "slug": "david-maenner",
   "name": "David Maenner",
+  "last_name": "Maenner",
   "certifications": "",
   "job_title": "Partner",
   "location_name": "Chicago",

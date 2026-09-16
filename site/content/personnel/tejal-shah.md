@@ -2,6 +2,7 @@
 {
   "slug": "tejal-shah",
   "name": "Tejal Shah",
+  "last_name": "Shah",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

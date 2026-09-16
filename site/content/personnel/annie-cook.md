@@ -2,6 +2,7 @@
 {
   "slug": "annie-cook",
   "name": "Annie Cook",
+  "last_name": "Cook",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Kansas City",

@@ -2,6 +2,7 @@
 {
   "slug": "kavita-kharat",
   "name": "Kavita Kharat",
+  "last_name": "Kharat",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Mumbai",

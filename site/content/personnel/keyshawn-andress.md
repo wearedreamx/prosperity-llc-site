@@ -2,6 +2,7 @@
 {
   "slug": "keyshawn-andress",
   "name": "Keyshawn Andress",
+  "last_name": "Andress",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

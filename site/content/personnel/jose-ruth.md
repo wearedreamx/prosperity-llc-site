@@ -2,6 +2,7 @@
 {
   "slug": "jose-ruth",
   "name": "Jose Ruth",
+  "last_name": "Ruth",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Chicago",

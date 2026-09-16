@@ -2,6 +2,7 @@
 {
   "slug": "scout-precourt",
   "name": "Scout Precourt",
+  "last_name": "Precourt",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Burlington",

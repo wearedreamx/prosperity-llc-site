@@ -2,6 +2,7 @@
 {
   "slug": "braden-harsy",
   "name": "Braden Harsy",
+  "last_name": "Harsy",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Chicago",

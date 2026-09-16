@@ -2,6 +2,7 @@
 {
   "slug": "rangoli-sen",
   "name": "Rangoli Sen",
+  "last_name": "Sen",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Iselin",

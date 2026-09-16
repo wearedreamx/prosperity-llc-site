@@ -2,6 +2,7 @@
 {
   "slug": "danielle-azzollini",
   "name": "Danielle Azzollini",
+  "last_name": "Azzollini",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

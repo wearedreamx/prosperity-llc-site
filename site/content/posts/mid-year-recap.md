@@ -14,5 +14,5 @@
 ---
 <p>It has been an incredible year so far with so many changes and so much growth! We are excited for all things ahead!</p>
 		<div class="rve-embed-responsive rve-embed-responsive-16by9">
-			<iframe loading="lazy" class="rve-embed-responsive-item" src="about:blank" allowfullscreen="" data-rocket-lazyload="fitvidscompatible" data-lazy-src="/wp-content/uploads/2024/06/NDH-2024-Year-End-Recap.mp4"></iframe><noscript><iframe class="rve-embed-responsive-item" src="/wp-content/uploads/2024/06/NDH-2024-Year-End-Recap.mp4" allowfullscreen></iframe></noscript>
+			<iframe loading="lazy" class="rve-embed-responsive-item" src="about:blank" allowfullscreen="" data-rocket-lazyload="fitvidscompatible" data-lazy-src="/assets/video/ndh-2024-year-end-recap.mp4"></iframe><noscript><iframe class="rve-embed-responsive-item" src="/assets/video/ndh-2024-year-end-recap.mp4" allowfullscreen></iframe></noscript>
 		</div>

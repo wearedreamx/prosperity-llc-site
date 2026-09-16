@@ -2,6 +2,7 @@
 {
   "slug": "jayna-sheth",
   "name": "Jayna Sheth",
+  "last_name": "Sheth",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

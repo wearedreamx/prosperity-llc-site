@@ -2,6 +2,7 @@
 {
   "slug": "matthew-segel",
   "name": "Matthew Segel",
+  "last_name": "Segel",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Burlington",

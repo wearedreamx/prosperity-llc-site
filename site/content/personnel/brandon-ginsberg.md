@@ -2,6 +2,7 @@
 {
   "slug": "brandon-ginsberg",
   "name": "Brandon Ginsberg",
+  "last_name": "Ginsberg",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "New York City",

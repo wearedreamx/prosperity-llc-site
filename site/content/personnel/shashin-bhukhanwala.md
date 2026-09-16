@@ -2,6 +2,7 @@
 {
   "slug": "shashin-bhukhanwala",
   "name": "Shashin Bhukhanwala",
+  "last_name": "Bhukhanwala",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Mumbai",

@@ -2,6 +2,7 @@
 {
   "slug": "lileosa-tan",
   "name": "Lileosa Tan",
+  "last_name": "Tan",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",

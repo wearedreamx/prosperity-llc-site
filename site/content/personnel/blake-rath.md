@@ -2,6 +2,7 @@
 {
   "slug": "blake-rath",
   "name": "Blake Rath",
+  "last_name": "Rath",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",

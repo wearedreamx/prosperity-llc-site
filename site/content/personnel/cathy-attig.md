@@ -2,6 +2,7 @@
 {
   "slug": "cathy-attig",
   "name": "Cathy Attig",
+  "last_name": "Attig",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Burlington",

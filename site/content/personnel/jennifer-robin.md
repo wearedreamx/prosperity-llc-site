@@ -2,6 +2,7 @@
 {
   "slug": "jennifer-robin",
   "name": "Jennifer Robin",
+  "last_name": "Robin",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Santa Barbara",

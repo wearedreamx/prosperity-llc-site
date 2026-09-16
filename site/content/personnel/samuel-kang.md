@@ -2,6 +2,7 @@
 {
   "slug": "samuel-kang",
   "name": "Samuel Kang",
+  "last_name": "Kang",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "New York City",

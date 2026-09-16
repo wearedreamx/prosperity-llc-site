@@ -2,6 +2,7 @@
 {
   "slug": "cheryl-chambers",
   "name": "Cheryl Chambers",
+  "last_name": "Chambers",
   "certifications": "ea",
   "job_title": "Manager",
   "location_name": "Burlington",

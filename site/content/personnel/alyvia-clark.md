@@ -2,6 +2,7 @@
 {
   "slug": "alyvia-clark",
   "name": "Alyvia Clark",
+  "last_name": "Clark",
   "certifications": "cpa, mba",
   "job_title": "Senior Manager",
   "location_name": "Chicago",

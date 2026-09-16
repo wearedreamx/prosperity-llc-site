@@ -2,6 +2,7 @@
 {
   "slug": "sony-dubey",
   "name": "Sony Dubey",
+  "last_name": "Dubey",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

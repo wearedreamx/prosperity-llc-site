@@ -2,6 +2,7 @@
 {
   "slug": "brock-lock",
   "name": "Brock Lock",
+  "last_name": "Lock",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

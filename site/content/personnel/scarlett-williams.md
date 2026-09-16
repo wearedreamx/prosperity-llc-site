@@ -2,6 +2,7 @@
 {
   "slug": "scarlett-williams",
   "name": "Scarlett Williams",
+  "last_name": "Williams",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Detroit",

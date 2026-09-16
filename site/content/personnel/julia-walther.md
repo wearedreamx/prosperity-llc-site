@@ -2,6 +2,7 @@
 {
   "slug": "julia-walther",
   "name": "Julia Walther",
+  "last_name": "Walther",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Santa Barbara",

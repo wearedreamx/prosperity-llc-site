@@ -2,6 +2,7 @@
 {
   "slug": "fern-nunes-cubelo",
   "name": "Fern Nunes-Cubelo",
+  "last_name": "Nunes-Cubelo",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Iselin",

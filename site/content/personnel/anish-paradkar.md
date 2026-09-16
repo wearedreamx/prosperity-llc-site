@@ -2,6 +2,7 @@
 {
   "slug": "anish-paradkar",
   "name": "Anish Paradkar",
+  "last_name": "Paradkar",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

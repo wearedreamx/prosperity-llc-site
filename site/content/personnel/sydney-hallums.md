@@ -2,6 +2,7 @@
 {
   "slug": "sydney-hallums",
   "name": "Sydney Hallums",
+  "last_name": "Hallums",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Burlington",

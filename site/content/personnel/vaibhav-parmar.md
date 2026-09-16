@@ -2,6 +2,7 @@
 {
   "slug": "vaibhav-parmar",
   "name": "Vaibhav Parmar",
+  "last_name": "Parmar",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

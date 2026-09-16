@@ -2,6 +2,7 @@
 {
   "slug": "joey-cuda",
   "name": "Joey Cuda",
+  "last_name": "Cuda",
   "certifications": "cpa",
   "job_title": "Director",
   "location_name": "Washington DC – Transaction Advisory",

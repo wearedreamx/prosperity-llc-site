@@ -2,6 +2,7 @@
 {
   "slug": "govind-domal",
   "name": "Govind Domal",
+  "last_name": "Domal",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

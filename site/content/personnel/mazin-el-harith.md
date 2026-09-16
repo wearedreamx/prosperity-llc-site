@@ -2,6 +2,7 @@
 {
   "slug": "mazin-el-harith",
   "name": "Mazin El Harith",
+  "last_name": "El Harith",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Chicago",

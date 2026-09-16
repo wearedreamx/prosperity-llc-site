@@ -2,6 +2,7 @@
 {
   "slug": "michelle-cantrell",
   "name": "Michelle Cantrell",
+  "last_name": "Cantrell",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Kansas City",

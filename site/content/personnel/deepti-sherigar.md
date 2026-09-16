@@ -2,6 +2,7 @@
 {
   "slug": "deepti-sherigar",
   "name": "Deepti Sherigar",
+  "last_name": "Sherigar",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

@@ -2,6 +2,7 @@
 {
   "slug": "michelle-glass",
   "name": "Michelle Glass",
+  "last_name": "Glass",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Detroit",

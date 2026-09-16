@@ -2,6 +2,7 @@
 {
   "slug": "tyler-mcintyre",
   "name": "Tyler McIntyre",
+  "last_name": "McIntyre",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

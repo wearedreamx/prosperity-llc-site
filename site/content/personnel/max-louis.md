@@ -2,6 +2,7 @@
 {
   "slug": "max-louis",
   "name": "Max Louis",
+  "last_name": "Louis",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "New York City",

@@ -2,6 +2,7 @@
 {
   "slug": "blake-foster",
   "name": "Blake Foster",
+  "last_name": "Foster",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

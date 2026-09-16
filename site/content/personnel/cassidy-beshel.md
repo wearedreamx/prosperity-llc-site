@@ -2,6 +2,7 @@
 {
   "slug": "cassidy-beshel",
   "name": "Cassidy Beshel",
+  "last_name": "Beshel",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

@@ -1,0 +1,10 @@
+{
+  "_comment": "Leadership pinned to the top of /meet-the-team/, in order. Mirrors the ACF 'team_members' repeater on WordPress page 1907 (team_members_<n>_team_member), which the theme's pages/team.php renders before the alphabetical grid. Everyone else follows, sorted by last name then full name, matching that template's 'meta_key: personnel_last_name, orderby: meta_value title, order: ASC'.",
+  "slugs": [
+    "jeremy-dubow",
+    "josh-harris",
+    "jeff-thomas",
+    "mike-jain",
+    "david-larson"
+  ]
+}

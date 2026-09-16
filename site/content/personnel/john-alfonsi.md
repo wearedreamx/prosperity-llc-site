@@ -2,6 +2,7 @@
 {
   "slug": "john-alfonsi",
   "name": "John Alfonsi",
+  "last_name": "Alfonsi",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Detroit",

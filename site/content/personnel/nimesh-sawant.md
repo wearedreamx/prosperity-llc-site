@@ -2,6 +2,7 @@
 {
   "slug": "nimesh-sawant",
   "name": "Nimesh Sawant",
+  "last_name": "Sawant",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

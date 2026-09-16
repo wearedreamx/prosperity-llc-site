@@ -2,6 +2,7 @@
 {
   "slug": "david-larson",
   "name": "David Larson",
+  "last_name": "Larson",
   "certifications": "cpa, mst",
   "job_title": "Partner",
   "location_name": "Santa Barbara",

@@ -2,6 +2,7 @@
 {
   "slug": "roland-diobe",
   "name": "Roland Diobe",
+  "last_name": "Diobe",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Houston",

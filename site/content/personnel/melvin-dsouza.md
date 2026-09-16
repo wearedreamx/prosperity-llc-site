@@ -2,6 +2,7 @@
 {
   "slug": "melvin-dsouza",
   "name": "Melvin Dsouza",
+  "last_name": "Dsouza",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

@@ -2,6 +2,7 @@
 {
   "slug": "catherine-raker",
   "name": "Catherine Raker",
+  "last_name": "Raker",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Detroit",

@@ -2,6 +2,7 @@
 {
   "slug": "christine-maurer",
   "name": "Christine Maurer",
+  "last_name": "Maurer",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

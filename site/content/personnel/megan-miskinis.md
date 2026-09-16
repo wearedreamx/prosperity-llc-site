@@ -2,6 +2,7 @@
 {
   "slug": "megan-miskinis",
   "name": "Megan Miskinis",
+  "last_name": "Miskinis",
   "certifications": "cpa",
   "job_title": "Senior Manager",
   "location_name": "Chicago",

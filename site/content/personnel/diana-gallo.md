@@ -2,6 +2,7 @@
 {
   "slug": "diana-gallo",
   "name": "Diana Gallo",
+  "last_name": "Gallo",
   "certifications": "cpa",
   "job_title": "Senior Manager",
   "location_name": "Iselin",

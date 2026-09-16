@@ -2,6 +2,7 @@
 {
   "slug": "vinit-gala",
   "name": "Vinit Gala",
+  "last_name": "Gala",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

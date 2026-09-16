@@ -2,6 +2,7 @@
 {
   "slug": "ann-simon",
   "name": "Ann Simon",
+  "last_name": "Simon",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Santa Barbara",

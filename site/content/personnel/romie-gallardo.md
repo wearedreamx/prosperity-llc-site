@@ -2,6 +2,7 @@
 {
   "slug": "romie-gallardo",
   "name": "Romie Gallardo",
+  "last_name": "Gallardo",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Santa Barbara",

@@ -2,6 +2,7 @@
 {
   "slug": "sara-agin",
   "name": "Sara Agin",
+  "last_name": "Agin",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

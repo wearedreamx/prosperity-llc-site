@@ -2,6 +2,7 @@
 {
   "slug": "myriam-neesan",
   "name": "Myriam Neesan",
+  "last_name": "Neesan",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Chicago",

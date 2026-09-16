@@ -2,6 +2,7 @@
 {
   "slug": "amisha-margaj",
   "name": "Amisha Margaj",
+  "last_name": "Margaj",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

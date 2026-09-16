@@ -2,6 +2,7 @@
 {
   "slug": "mark-benesiewicz",
   "name": "Mark Benesiewicz",
+  "last_name": "Benesiewicz",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Chicago",

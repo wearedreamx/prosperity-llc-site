@@ -2,6 +2,7 @@
 {
   "slug": "john-walton",
   "name": "John Walton",
+  "last_name": "Walton",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "New York City",

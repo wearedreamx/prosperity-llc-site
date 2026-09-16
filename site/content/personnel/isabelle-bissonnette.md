@@ -2,6 +2,7 @@
 {
   "slug": "isabelle-bissonnette",
   "name": "Isabelle Bissonnette",
+  "last_name": "Bissonnette",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

@@ -2,6 +2,7 @@
 {
   "slug": "nitin-chandra",
   "name": "Nitin Chandra",
+  "last_name": "Chandra",
   "certifications": "",
   "job_title": "Partner",
   "location_name": "Houston",

@@ -2,6 +2,7 @@
 {
   "slug": "beth-dezon-gaillard",
   "name": "Beth Dezon-Gaillard",
+  "last_name": "Dezon-Gaillard",
   "certifications": "cpa",
   "job_title": "Senior Manager",
   "location_name": "Burlington",

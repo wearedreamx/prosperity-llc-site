@@ -2,6 +2,7 @@
 {
   "slug": "mahendra-gorule",
   "name": "Mahendra Gorule",
+  "last_name": "Gorule",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

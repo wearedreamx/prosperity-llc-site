@@ -2,6 +2,7 @@
 {
   "slug": "alok-birla",
   "name": "Alok Birla",
+  "last_name": "Birla",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Chicago",

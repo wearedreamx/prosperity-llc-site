@@ -2,6 +2,7 @@
 {
   "slug": "chirag-solanki",
   "name": "Chirag Solanki",
+  "last_name": "Solanki",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

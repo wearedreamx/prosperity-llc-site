@@ -2,6 +2,7 @@
 {
   "slug": "samantha-gordon",
   "name": "Samantha Gordon",
+  "last_name": "Gordon",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Chicago",

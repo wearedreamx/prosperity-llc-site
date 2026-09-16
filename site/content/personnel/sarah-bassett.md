@@ -2,6 +2,7 @@
 {
   "slug": "sarah-bassett",
   "name": "Sarah Bassett",
+  "last_name": "Bassett",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Detroit",

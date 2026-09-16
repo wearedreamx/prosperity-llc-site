@@ -2,6 +2,7 @@
 {
   "slug": "susan-wilson",
   "name": "Susan Wilson",
+  "last_name": "Wilson",
   "certifications": "cpa",
   "job_title": "Senior Manager",
   "location_name": "Kansas City",

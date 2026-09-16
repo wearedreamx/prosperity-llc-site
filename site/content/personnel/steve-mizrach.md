@@ -2,6 +2,7 @@
 {
   "slug": "steve-mizrach",
   "name": "Steve Mizrach",
+  "last_name": "Mizrach",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Iselin",

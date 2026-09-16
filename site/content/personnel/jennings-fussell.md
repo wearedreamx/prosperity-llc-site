@@ -2,6 +2,7 @@
 {
   "slug": "jennings-fussell",
   "name": "Jennings Fussell",
+  "last_name": "Fussell",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

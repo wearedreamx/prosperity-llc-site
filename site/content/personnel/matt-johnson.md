@@ -2,6 +2,7 @@
 {
   "slug": "matt-johnson",
   "name": "Matt Johnson",
+  "last_name": "Johnson",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Burlington",

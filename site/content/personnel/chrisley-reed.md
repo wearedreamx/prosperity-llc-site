@@ -2,6 +2,7 @@
 {
   "slug": "chrisley-reed",
   "name": "Chrisley Reed",
+  "last_name": "Reed",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Santa Barbara",

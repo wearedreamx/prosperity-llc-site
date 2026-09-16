@@ -2,6 +2,7 @@
 {
   "slug": "lisa-pallen",
   "name": "Lisa Pallen",
+  "last_name": "Pallen",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Chicago",

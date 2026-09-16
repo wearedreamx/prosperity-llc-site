@@ -2,6 +2,7 @@
 {
   "slug": "stephen-smith",
   "name": "Stephen Smith",
+  "last_name": "Smith",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Santa Barbara",

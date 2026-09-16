@@ -2,6 +2,7 @@
 {
   "slug": "lee-ann-start",
   "name": "Lee Ann Start",
+  "last_name": "Start",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Burlington",

@@ -2,6 +2,7 @@
 {
   "slug": "kitti-varga",
   "name": "Kitti Varga",
+  "last_name": "Varga",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Detroit",

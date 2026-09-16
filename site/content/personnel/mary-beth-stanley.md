@@ -2,6 +2,7 @@
 {
   "slug": "mary-beth-stanley",
   "name": "Mary Beth Stanley",
+  "last_name": "Stanley",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Burlington",

@@ -2,6 +2,7 @@
 {
   "slug": "hitesh-jaiswal",
   "name": "Hitesh Jaiswal",
+  "last_name": "Jaiswal",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

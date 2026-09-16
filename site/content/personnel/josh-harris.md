@@ -2,6 +2,7 @@
 {
   "slug": "josh-harris",
   "name": "Josh Harris",
+  "last_name": "Harris",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Chicago",

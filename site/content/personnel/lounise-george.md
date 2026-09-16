@@ -2,6 +2,7 @@
 {
   "slug": "lounise-george",
   "name": "Lounise George",
+  "last_name": "George",
   "certifications": "ea",
   "job_title": "Manager",
   "location_name": "New York City",

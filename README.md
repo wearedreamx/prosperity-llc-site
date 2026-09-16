@@ -22,7 +22,11 @@ prosperity-llc-site/
 │   ├── global.json      footer locations/disclaimer/copyright, site name/tagline — the one
 │   │                     "singleton" data file; consumed via site/_data/global.js
 │   ├── media-manifest.json   every /wp-content/uploads/ path referenced anywhere
-│   └── missing-media.md      human-readable summary of what's missing — see §9.1
+│   ├── media-map.json        recovered asset -> original upload it came from
+│   ├── attachment-ids.json   cached _wp_attached_file lookup (derived; rebuildable)
+│   ├── sourced-media/        4 files downloaded from the live site — not in the export
+│   ├── team-pinned.json      leadership pinned to the top of /meet-the-team/
+│   └── missing-media.md      how the media gap was closed — see §9.1
 ├── site/              ← the new static site (the deliverable), an Eleventy source dir
 │   ├── index.njk        homepage (stays at the root — relies on Eleventy's implicit path→URL convention)
 │   ├── pages/            everything else with an explicit permalink (page, personnel, location, post, culture, whats-new, meet-the-team)
@@ -33,10 +37,18 @@ prosperity-llc-site/
 │   │   └── pages/<file-stem>.md     43 files — NOT Decap-ready (see §6a), developer-edited for now
 │   ├── _includes/       shared layout + components (base, header, footer, content-blocks, cta, contact-form)
 │   ├── _data/           global.js only — everything else is now an Eleventy collection, see §6a
-│   └── assets/{css,js,img,video,icons}
-│       └── img/uploads/<type>/<slug>[-<n>].<ext>   where real media lands once sourced — see §9.1
+│   └── assets/
+│       ├── css/ js/ icons/       stylesheet, scripts, favicons
+│       ├── video/ docs/          hero + recovered video, the one linked PDF
+│       └── img/
+│           ├── uploads/<type>/<slug>[-<n>].<ext>   per-record media (§6a)
+│           ├── people/ services/ books/ awards/    referenced from page body HTML
+│           ├── payment/ diagrams/ photos/ ui/      (was /wp-content/uploads/, see data/missing-media.md)
+│           ├── values/ posts/                      homepage art
+│           └── logo.svg, logo-white.svg, linkedin.png
 ├── tools/
 │   ├── wpdump.py       ← streaming SQL-dump parser (see §14) — PRIMARY extraction path when www/ is present
+│   ├── recover-media.py ← re-encodes referenced uploads from www/ into site/assets/ — see data/missing-media.md
 │   └── extract.py      ← fallback extraction from a live-site crawl, for machines without www/ — see §9.1;
 │                          one-shot bulk import, not the ongoing content-editing path (that's Decap, once wired)
 ├── eleventy.config.js  ← Eleventy config: passthrough copy, date filters, injectContactForm, collections
@@ -162,9 +174,9 @@ hand-authored with no build step. That doesn't survive the actual URL count:
 | `page` | 45 | hand-authored |
 | `post` | 104 | `/blog/`, Eleventy |
 | **`personnel`** | **200** | **none** |
-| `portfolio` | 18 | none |
+| ~~`portfolio`~~ | ~~18~~ | theme demo content, excluded — see §5 |
 | `location` | 11 | none |
-| **Total** | **378** | |
+| **Total** | **360** | |
 
 229 of 378 URLs are data-driven detail pages — one record each, one template.
 Nobody hand-authors 200 staff bios. The original plan documented full-site Eleventy
@@ -238,9 +250,17 @@ dba Prosperity Partners; NDH CPA LLP dba Prosperity Partners CPA.
 | `page` | 45 (+9 draft, +2 private) | 104 KB in 96 ACF blocks | See §6 |
 | `post` | 104 | 62 KB (avg 612 chars) | Categories: Culture (id 1), What's New (id 85) |
 | `personnel` | 200 | 362 KB (avg 1,854 chars) | 3 facet fields each |
-| `portfolio` | 18 | 9 KB | |
+| ~~`portfolio`~~ | ~~18~~ | — | **Theme demo content — not migrated, see below** |
 | `location` | 11 | 5 KB | |
 | `attachment` | 1,659 | — | 1,047 jpg · 520 png · 66 pdf · 10 svg · 7 mp4 · 6 xlsx |
+
+**`portfolio` is not real content.** All 18 records share one identical 492-byte
+placeholder body, are dated May 2016 (theme install), and are titled after layout
+styles (`Full Image Style`, `Video With Vertical Info`, `Project Half Box Style`).
+They appear nowhere in the 380-page crawl and `/portfolio/` and
+`/portfolio/<slug>/` both return **404** on the live site — the post type was
+never publicly routed. They are excluded from the migration, which drops the real
+URL count from 378 to **360**.
 
 **Page templates** — 38 of 47 pages share one generic renderer:
 

@@ -2,6 +2,7 @@
 {
   "slug": "lisa-fernandez",
   "name": "Lisa Fernandez",
+  "last_name": "Fernandez",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Santa Barbara",

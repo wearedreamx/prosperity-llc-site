@@ -2,6 +2,7 @@
 {
   "slug": "joseph-gottlieb",
   "name": "Joseph Gottlieb",
+  "last_name": "Gottlieb",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Chicago",

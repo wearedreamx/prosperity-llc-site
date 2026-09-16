@@ -2,6 +2,7 @@
 {
   "slug": "rajni-jain",
   "name": "Rajni Jain",
+  "last_name": "Jain",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Houston",

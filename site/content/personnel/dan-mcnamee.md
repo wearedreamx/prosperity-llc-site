@@ -2,6 +2,7 @@
 {
   "slug": "dan-mcnamee",
   "name": "Dan McNamee",
+  "last_name": "McNamee",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Chicago",

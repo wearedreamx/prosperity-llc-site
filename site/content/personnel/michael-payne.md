@@ -2,6 +2,7 @@
 {
   "slug": "michael-payne",
   "name": "Michael Payne",
+  "last_name": "Payne",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "New York City",

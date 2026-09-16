@@ -2,6 +2,7 @@
 {
   "slug": "shannon-richards",
   "name": "Shannon Richards",
+  "last_name": "Richards",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "New York City",

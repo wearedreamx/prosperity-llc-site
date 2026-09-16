@@ -2,6 +2,7 @@
 {
   "slug": "tristan-smith",
   "name": "Tristan Smith",
+  "last_name": "Smith",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

@@ -2,6 +2,7 @@
 {
   "slug": "rebekah-carr",
   "name": "Rebekah Carr",
+  "last_name": "Carr",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Chicago",

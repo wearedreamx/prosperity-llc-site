@@ -2,6 +2,7 @@
 {
   "slug": "morgan-mccarty",
   "name": "Morgan McCarty",
+  "last_name": "McCarty",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

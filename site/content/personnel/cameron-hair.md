@@ -2,6 +2,7 @@
 {
   "slug": "cameron-hair",
   "name": "Cameron Hair",
+  "last_name": "Hair",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Washington DC – Transaction Advisory",

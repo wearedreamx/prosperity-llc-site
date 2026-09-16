@@ -2,6 +2,7 @@
 {
   "slug": "hubert-tian",
   "name": "Hubert Tian",
+  "last_name": "Hubert Tian",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

@@ -2,6 +2,7 @@
 {
   "slug": "siu-tsang",
   "name": "Siu Tsang",
+  "last_name": "Tsang",
   "certifications": "",
   "job_title": "Senior Manager",
   "location_name": "Houston",

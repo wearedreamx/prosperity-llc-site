@@ -2,6 +2,7 @@
 {
   "slug": "loise-kyalo",
   "name": "Loise Kyalo",
+  "last_name": "Kyalo",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",

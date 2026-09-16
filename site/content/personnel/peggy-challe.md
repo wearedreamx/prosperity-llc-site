@@ -2,6 +2,7 @@
 {
   "slug": "peggy-challe",
   "name": "Peggy Challe",
+  "last_name": "Challe",
   "certifications": "",
   "job_title": "Director",
   "location_name": "New York City",

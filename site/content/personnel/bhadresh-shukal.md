@@ -2,6 +2,7 @@
 {
   "slug": "bhadresh-shukal",
   "name": "Bhadresh Shukal",
+  "last_name": "Shukal",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Mumbai",

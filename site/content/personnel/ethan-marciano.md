@@ -2,6 +2,7 @@
 {
   "slug": "ethan-marciano",
   "name": "Ethan Marciano",
+  "last_name": "Marciano",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Washington DC – Transaction Advisory",

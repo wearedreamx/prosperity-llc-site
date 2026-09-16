@@ -2,6 +2,7 @@
 {
   "slug": "andrew-blusiewicz",
   "name": "Andrew Blusiewicz",
+  "last_name": "Blusiewicz",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

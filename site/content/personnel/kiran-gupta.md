@@ -2,6 +2,7 @@
 {
   "slug": "kiran-gupta",
   "name": "Kiran Gupta",
+  "last_name": "Gupta",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

@@ -2,6 +2,7 @@
 {
   "slug": "jessica-tuquero",
   "name": "Jessica Tuquero",
+  "last_name": "Tuquero",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

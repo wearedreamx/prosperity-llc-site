@@ -2,6 +2,7 @@
 {
   "slug": "richard-lemanski",
   "name": "Richard Lemanski",
+  "last_name": "Lemanski",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",

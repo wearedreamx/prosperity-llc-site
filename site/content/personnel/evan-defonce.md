@@ -2,6 +2,7 @@
 {
   "slug": "evan-defonce",
   "name": "Evan DeFonce",
+  "last_name": "DeFonce",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

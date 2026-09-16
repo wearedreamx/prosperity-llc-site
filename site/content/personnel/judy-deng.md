@@ -2,6 +2,7 @@
 {
   "slug": "judy-deng",
   "name": "Judy Deng",
+  "last_name": "Deng",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

@@ -2,6 +2,7 @@
 {
   "slug": "joseph-belcher",
   "name": "Joseph Belcher",
+  "last_name": "Belcher",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Washington DC – Tax",

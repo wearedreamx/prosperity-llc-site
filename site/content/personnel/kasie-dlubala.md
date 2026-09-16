@@ -2,6 +2,7 @@
 {
   "slug": "kasie-dlubala",
   "name": "Kasie Dlubala",
+  "last_name": "Dlubala",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Chicago",

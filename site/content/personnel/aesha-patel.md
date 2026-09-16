@@ -2,6 +2,7 @@
 {
   "slug": "aesha-patel",
   "name": "Aesha Patel",
+  "last_name": "Patel",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Houston",

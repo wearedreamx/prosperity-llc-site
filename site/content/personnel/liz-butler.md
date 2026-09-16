@@ -2,6 +2,7 @@
 {
   "slug": "liz-butler",
   "name": "Liz Butler",
+  "last_name": "Butler",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Washington DC – Transaction Advisory",

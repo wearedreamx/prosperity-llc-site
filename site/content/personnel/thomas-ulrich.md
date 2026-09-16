@@ -2,6 +2,7 @@
 {
   "slug": "thomas-ulrich",
   "name": "Thomas Ulrich",
+  "last_name": "Ulrich",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

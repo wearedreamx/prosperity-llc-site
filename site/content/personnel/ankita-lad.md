@@ -2,6 +2,7 @@
 {
   "slug": "ankita-lad",
   "name": "Ankita Lad",
+  "last_name": "Lad",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

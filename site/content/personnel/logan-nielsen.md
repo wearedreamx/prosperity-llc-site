@@ -2,6 +2,7 @@
 {
   "slug": "logan-nielsen",
   "name": "Logan Nielsen",
+  "last_name": "Nielsen",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "Chicago",

@@ -2,6 +2,7 @@
 {
   "slug": "rohnish-santosh-shinde",
   "name": "Rohnish Santosh Shinde",
+  "last_name": "Shinde",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

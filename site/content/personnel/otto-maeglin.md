@@ -2,6 +2,7 @@
 {
   "slug": "otto-maeglin",
   "name": "Otto Maeglin",
+  "last_name": "Maeglin",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

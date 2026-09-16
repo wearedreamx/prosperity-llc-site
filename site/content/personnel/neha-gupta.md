@@ -2,6 +2,7 @@
 {
   "slug": "neha-gupta",
   "name": "Neha Gupta",
+  "last_name": "Gupta",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

@@ -2,6 +2,7 @@
 {
   "slug": "catherine-lauber",
   "name": "Catherine Lauber",
+  "last_name": "Lauber",
   "certifications": "cpa",
   "job_title": "Senior Manager",
   "location_name": "Santa Barbara",

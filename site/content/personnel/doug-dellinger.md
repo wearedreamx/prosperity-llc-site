@@ -2,6 +2,7 @@
 {
   "slug": "doug-dellinger",
   "name": "Doug Dellinger",
+  "last_name": "Dellinger",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Chicago",

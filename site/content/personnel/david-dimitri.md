@@ -2,6 +2,7 @@
 {
   "slug": "david-dimitri",
   "name": "David Dimitri",
+  "last_name": "Dimitri",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

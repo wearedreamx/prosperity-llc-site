@@ -2,6 +2,7 @@
 {
   "slug": "daniel-moore",
   "name": "Daniel Moore",
+  "last_name": "Moore",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

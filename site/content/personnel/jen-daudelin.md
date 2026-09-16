@@ -2,6 +2,7 @@
 {
   "slug": "jen-daudelin",
   "name": "Jen Daudelin",
+  "last_name": "Daudelin",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Burlington",

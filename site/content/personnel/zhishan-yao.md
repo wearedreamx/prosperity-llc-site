@@ -2,6 +2,7 @@
 {
   "slug": "zhishan-yao",
   "name": "Zhishan Yao",
+  "last_name": "Yao",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",

@@ -2,6 +2,7 @@
 {
   "slug": "anthony-fontana",
   "name": "Anthony Fontana",
+  "last_name": "Fontana",
   "certifications": "cpa",
   "job_title": "Senior Manager",
   "location_name": "Chicago",

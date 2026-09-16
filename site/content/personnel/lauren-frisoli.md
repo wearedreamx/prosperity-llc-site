@@ -2,6 +2,7 @@
 {
   "slug": "lauren-frisoli",
   "name": "Lauren Frisoli",
+  "last_name": "Frisoli",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Iselin",

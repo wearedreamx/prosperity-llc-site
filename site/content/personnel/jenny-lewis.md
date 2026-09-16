@@ -2,6 +2,7 @@
 {
   "slug": "jenny-lewis",
   "name": "Jenny Lewis",
+  "last_name": "Lewis",
   "certifications": "cpa",
   "job_title": "Director",
   "location_name": "Washington DC – Transaction Advisory",

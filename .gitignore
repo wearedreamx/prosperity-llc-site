@@ -44,3 +44,11 @@ _site/
 *.log
 tmp/
 scratch/
+
+# Root-owned leftovers from an npm run under sudo; removing them needs sudo, so
+# they are ignored rather than deleted here.
+*.root-owned.trash/
+
+# Derived cache: _wp_attached_file lookups, rebuilt from the SQL dump by
+# tools/recover-media.py in about 90 seconds.
+/data/attachment-ids.json

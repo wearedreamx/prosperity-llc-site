@@ -2,6 +2,7 @@
 {
   "slug": "brian-hill",
   "name": "Brian Hill",
+  "last_name": "Hill",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "New York City",

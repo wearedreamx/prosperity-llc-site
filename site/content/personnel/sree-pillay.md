@@ -2,6 +2,7 @@
 {
   "slug": "sree-pillay",
   "name": "Sree Pillay",
+  "last_name": "Pillay",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Houston",

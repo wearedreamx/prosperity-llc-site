@@ -2,6 +2,7 @@
 {
   "slug": "adam-vanderwiel",
   "name": "Adam Vanderwiel",
+  "last_name": "Vanderwiel",
   "certifications": "cpa",
   "job_title": "Senior Manager",
   "location_name": "Chicago",

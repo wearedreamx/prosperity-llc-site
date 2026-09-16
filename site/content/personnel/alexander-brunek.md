@@ -2,6 +2,7 @@
 {
   "slug": "alexander-brunek",
   "name": "Alexander Brunek",
+  "last_name": "Brunek",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Santa Barbara",

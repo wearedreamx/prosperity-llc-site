@@ -2,6 +2,7 @@
 {
   "slug": "cathy-kim",
   "name": "Cathy Kim",
+  "last_name": "Kim",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

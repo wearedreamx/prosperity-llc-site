@@ -2,6 +2,7 @@
 {
   "slug": "steven-ip",
   "name": "Steven Ip",
+  "last_name": "Ip",
   "certifications": "cpa",
   "job_title": "Manager",
   "location_name": "New York City",

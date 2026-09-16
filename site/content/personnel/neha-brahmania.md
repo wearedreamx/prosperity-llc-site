@@ -2,6 +2,7 @@
 {
   "slug": "neha-brahmania",
   "name": "Neha Brahmania",
+  "last_name": "Brahmania",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Mumbai",

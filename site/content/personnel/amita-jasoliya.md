@@ -2,6 +2,7 @@
 {
   "slug": "amita-jasoliya",
   "name": "Amita Jasoliya",
+  "last_name": "Jasoliya",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Mumbai",

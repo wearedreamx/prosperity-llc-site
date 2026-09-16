@@ -2,6 +2,7 @@
 {
   "slug": "kelly-mcguiness",
   "name": "Kelly McGuiness",
+  "last_name": "McGuiness",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "Chicago",

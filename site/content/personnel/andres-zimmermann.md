@@ -2,6 +2,7 @@
 {
   "slug": "andres-zimmermann",
   "name": "Andres Zimmermann",
+  "last_name": "Zimmermann",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",

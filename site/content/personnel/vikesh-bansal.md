@@ -2,6 +2,7 @@
 {
   "slug": "vikesh-bansal",
   "name": "Vikesh Bansal",
+  "last_name": "Bansal",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Washington DC – Tax",

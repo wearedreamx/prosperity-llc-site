@@ -2,6 +2,7 @@
 {
   "slug": "jacob-petit",
   "name": "Jacob Petit",
+  "last_name": "Petit",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",

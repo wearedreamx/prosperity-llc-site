@@ -2,6 +2,7 @@
 {
   "slug": "ella-midenjak",
   "name": "Ella Midenjak",
+  "last_name": "Midenjak",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Burlington",

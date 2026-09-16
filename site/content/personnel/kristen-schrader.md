@@ -2,6 +2,7 @@
 {
   "slug": "kristen-schrader",
   "name": "Kristen Schrader",
+  "last_name": "Schrader",
   "certifications": "",
   "job_title": "Director",
   "location_name": "Chicago",

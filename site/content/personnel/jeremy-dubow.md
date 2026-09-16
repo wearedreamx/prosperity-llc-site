@@ -2,6 +2,7 @@
 {
   "slug": "jeremy-dubow",
   "name": "Jeremy Dubow",
+  "last_name": "Dubow",
   "certifications": "cpa, mst",
   "job_title": "Chief Executive Officer",
   "location_name": "Chicago",

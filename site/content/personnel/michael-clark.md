@@ -2,6 +2,7 @@
 {
   "slug": "michael-clark",
   "name": "Michael Clark",
+  "last_name": "Clark",
   "certifications": "cpa",
   "job_title": "Associate",
   "location_name": "Chicago",

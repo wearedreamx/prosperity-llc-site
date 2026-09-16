@@ -2,6 +2,7 @@
 {
   "slug": "sela-hocker",
   "name": "Sela Hocker",
+  "last_name": "Hocker",
   "certifications": "",
   "job_title": "Associate",
   "location_name": "Chicago",
