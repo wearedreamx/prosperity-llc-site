@@ -21,11 +21,9 @@ node_modules/
 # ---------------------------------------------------------------------------
 # The WordPress export. NEVER commit this.
 #
-# It is read-only source material: the phpMyAdmin SQL dump that every
-# content-extraction script reads, and the active theme kept as a design
-# reference. Nothing in it is edited or deployed. Its media was recovered into
-# site/assets/ and committed, so the uploads tree is gone (README §4) — what
-# remains is 68 MB.
+# The export has since been deleted entirely (README §4) — everything needed was
+# extracted first, and the theme's PHP and CSS live in reference/theme/. This
+# rule stays so that a restored export is never committed by accident.
 #
 # Keeping it out of git is a security requirement, not a size one. The dump
 # holds ynrh_users (account emails and password hashes), ynrh_gf_entry and
@@ -34,7 +32,7 @@ node_modules/
 # ynrh_itsec_opaque_tokens. This repo deploys to Cloudflare Pages through a
 # GitHub integration; committing the dump would publish all of that.
 #
-# Missing on your machine? See "Restoring www/" in README.md §1.
+# Restoring it (rarely needed): see README.md §1.
 # ---------------------------------------------------------------------------
 www/
 /reconstructed-site

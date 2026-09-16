@@ -14,11 +14,9 @@ with no PHP, no MySQL, and no server to patch.
 prosperity-llc-site/
 ├── README.md          ← this file
 ├── .gitignore
-├── www/               ← WordPress export, REDUCED to 68 MB — NOT IN GIT, see below
-│   ├── y7c9a5a_db142477_ndh.sql   67 MB phpMyAdmin dump, all content lives here
-│   └── wp-content/themes/ndhcpawp/  active theme (design reference)
-│       (wp-content/uploads/ was deleted once every referenced file had been
-│        recovered into site/assets/ and committed — see §4)
+├── reference/theme/   ← the original theme's PHP + CSS, kept as a design
+│                       reference after the WordPress export was deleted (§4).
+│                       Never deployed, never read at build time.
 ├── data/              ← site-wide (not per-record) data + media-recovery bookkeeping
 │   ├── global.json      footer locations/disclaimer/copyright, site name/tagline — the one
 │   │                     "singleton" data file; consumed via site/_data/global.js
@@ -66,51 +64,26 @@ renders publicly. Both are meant to run once to populate `site/content/*.md` —
 content edits after that go through Decap CMS (once wired, §9 Phase I) or by hand, not
 by re-running the extractor over already-edited files.
 
-### ⚠️ Restoring `www/`
+### The WordPress export is gone
 
-**`www/` is gitignored** — read-only source material that doesn't belong in version
-control. A fresh clone will not have it.
+`www/` no longer exists. Everything the site needs was extracted from it first —
+all content, all media, the personnel facets, and the pages that were only in the
+database — and the theme's PHP and CSS were copied to `reference/theme/`. See §4
+for what was taken and when.
 
-Check whether you have it:
+You do not need it to build, run, or edit the site. `npm start` works from a
+fresh clone.
 
-```bash
-ls www/y7c9a5a_db142477_ndh.sql && du -sh www/
-# expect: ~67 MB dump, ~68 MB total (uploads removed — see §4)
-```
+You would only need to restore it to:
 
-If that fails, obtain the original WordPress export (from the client, the hosting
-backup, or whoever ran the migration) and unpack it so the paths above resolve. A
-restored *full* export is 4.5 GB and works fine — it's a superset; prune it again
-only if you want the disk back. It must contain at minimum:
+- re-encode media from the untouched originals (everything referenced is already
+  re-encoded under `site/assets/`, so this is a quality question, not a broken one)
+- read a database table nothing has needed yet
 
-| Path | Needed for |
-|---|---|
-| `www/y7c9a5a_db142477_ndh.sql` | **All content.** Every extraction script reads this |
-| `www/wp-content/themes/ndhcpawp/` | Design reference — exact colours, spacing, template logic |
-| `www/wp-content/uploads/` | Only if media must be re-encoded from originals again — every *referenced* file is already recovered and committed under `site/assets/` |
-
-Verify a restored export parses correctly:
-
-```bash
-cd www && python3 -c "
-import sys; sys.path.insert(0,'../tools')
-from wpdump import iter_rows
-from collections import Counter
-c=Counter()
-for t,cols,v in iter_rows('y7c9a5a_db142477_ndh.sql', tables={'ynrh_posts'}):
-    r=dict(zip(cols,v))
-    if r['post_status']=='publish': c[r['post_type']]+=1
-print(dict(c))
-"
-# expect: personnel 200, post 104, page 45, portfolio 18, location 11
-```
-
-**Without `www/` you can still** run the preview server, edit `site/`, and do any
-CSS/markup work. **You cannot** extract content via `wpdump.py` (fall back to
-`tools/extract.py` against a live-site crawl instead, see §9.1), check a design
-detail against the original theme, or process media — i.e. most of §9.
-
----
+To restore, obtain the original 4.5 GB WordPress export from the client, the
+hosting backup, or whoever ran the migration, and unpack it at `www/`. It stays
+gitignored — the dump holds account password hashes and 3,782 form submissions
+with client PII, and this repo deploys to Cloudflare Pages via GitHub.
 
 ## 2. Quick start
 
@@ -201,23 +174,28 @@ error-prone"); that condition was already met at signing time.
 
 ## 4. The source export
 
-**The export has been reduced to only what the project still needs: 4.40 GB → 68 MB**,
-in two passes — pruned to 1.29 GB during extraction, then cut to 68 MB once the
-media recovery finished.
+**The export has been deleted: 4.40 GB → 0**, in three passes — pruned to
+1.29 GB during extraction, cut to 68 MB once the media recovery finished, then
+removed entirely once the last things only it held had been extracted.
 
-What remains:
+What was taken out before it went:
 
-| Item | Size | Why kept |
-|---|---|---|
-| `y7c9a5a_db142477_ndh.sql` | 67 MB | All content; parse with `tools/wpdump.py`. Still the only source for §11's open decisions |
-| `wp-content/themes/ndhcpawp` | 1.1 MB / 48 PHP files | Design reference; §9.2's styling QA and the Phase D templates both need it |
-| `.htaccess`, `nginx.conf` | 50 KB | Server-config reference |
+| Taken from the dump | Where it lives now |
+|---|---|
+| Personnel, posts, locations, pages | `site/content/*/*.md` |
+| The 13 pages only in the database (8 draft, 2 private, 3 published) | `site/content/pages/`, gated by `status` |
+| Personnel facet data (title, service line) | each personnel record's frontmatter |
+| Team ordering — pinned leadership, per-location pins | `data/team-pinned.json` |
+| Media: which original backs each asset | `data/media-map.json` |
+| Theme PHP + CSS | `reference/theme/` |
 
-`wp-content/uploads` (1.2 GB) was deleted **after** all 821 referenced assets were
-recovered, re-encoded into `site/assets/`, verified (0 broken of 2,822 references
-in the built site) and committed to git. It is no longer the only copy of
-anything the site serves. Restore the full export only if media must be
-re-encoded from originals — see §1.
+`wp-content/uploads` (1.2 GB) went first, once all referenced assets were
+recovered, re-encoded into `site/assets/`, verified and committed. The dump and
+theme followed once the table above was complete and a build with `www/` moved
+aside produced 372 pages with 0 broken asset references.
+
+`portfolio` (18 records) was deliberately not migrated — theme demo content, see
+§5. Restore the export only for the narrow reasons in §1.
 
 What was deleted (3.11 GB), and why it was safe:
 
