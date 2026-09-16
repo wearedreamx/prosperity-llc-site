@@ -14,10 +14,11 @@ with no PHP, no MySQL, and no server to patch.
 prosperity-llc-site/
 ├── README.md          ← this file
 ├── .gitignore
-├── www/               ← WordPress export, PRUNED to 1.3 GB — NOT IN GIT, see below
-│   ├── y7c9a5a_db142477_ndh.sql   70 MB phpMyAdmin dump, all content lives here
-│   ├── wp-content/themes/ndhcpawp/  active theme (design reference)
-│   └── wp-content/uploads/          4.0 GB media
+├── www/               ← WordPress export, REDUCED to 68 MB — NOT IN GIT, see below
+│   ├── y7c9a5a_db142477_ndh.sql   67 MB phpMyAdmin dump, all content lives here
+│   └── wp-content/themes/ndhcpawp/  active theme (design reference)
+│       (wp-content/uploads/ was deleted once every referenced file had been
+│        recovered into site/assets/ and committed — see §4)
 ├── data/              ← site-wide (not per-record) data + media-recovery bookkeeping
 │   ├── global.json      footer locations/disclaimer/copyright, site name/tagline — the one
 │   │                     "singleton" data file; consumed via site/_data/global.js
@@ -74,7 +75,7 @@ Check whether you have it:
 
 ```bash
 ls www/y7c9a5a_db142477_ndh.sql && du -sh www/
-# expect: ~67 MB dump, ~1.3 GB total (pruned — see §4)
+# expect: ~67 MB dump, ~68 MB total (uploads removed — see §4)
 ```
 
 If that fails, obtain the original WordPress export (from the client, the hosting
@@ -86,7 +87,7 @@ only if you want the disk back. It must contain at minimum:
 |---|---|
 | `www/y7c9a5a_db142477_ndh.sql` | **All content.** Every extraction script reads this |
 | `www/wp-content/themes/ndhcpawp/` | Design reference — exact colours, spacing, template logic |
-| `www/wp-content/uploads/` | Original media to re-encode into `site/assets/` |
+| `www/wp-content/uploads/` | Only if media must be re-encoded from originals again — every *referenced* file is already recovered and committed under `site/assets/` |
 
 Verify a restored export parses correctly:
 
@@ -200,16 +201,23 @@ error-prone"); that condition was already met at signing time.
 
 ## 4. The source export
 
-**The export has been pruned to only what the finished site needs: 4.40 GB → 1.29 GB.**
+**The export has been reduced to only what the project still needs: 4.40 GB → 68 MB**,
+in two passes — pruned to 1.29 GB during extraction, then cut to 68 MB once the
+media recovery finished.
 
 What remains:
 
 | Item | Size | Why kept |
 |---|---|---|
-| `y7c9a5a_db142477_ndh.sql` | 67 MB | All content; parse with `tools/wpdump.py` |
-| `wp-content/uploads` | 1.2 GB / 1,227 files | Every upload referenced anywhere in the site |
-| `wp-content/themes/ndhcpawp` | 1.1 MB / 48 PHP files | Design reference |
+| `y7c9a5a_db142477_ndh.sql` | 67 MB | All content; parse with `tools/wpdump.py`. Still the only source for §11's open decisions |
+| `wp-content/themes/ndhcpawp` | 1.1 MB / 48 PHP files | Design reference; §9.2's styling QA and the Phase D templates both need it |
 | `.htaccess`, `nginx.conf` | 50 KB | Server-config reference |
+
+`wp-content/uploads` (1.2 GB) was deleted **after** all 821 referenced assets were
+recovered, re-encoded into `site/assets/`, verified (0 broken of 2,822 references
+in the built site) and committed to git. It is no longer the only copy of
+anything the site serves. Restore the full export only if media must be
+re-encoded from originals — see §1.
 
 What was deleted (3.11 GB), and why it was safe:
 

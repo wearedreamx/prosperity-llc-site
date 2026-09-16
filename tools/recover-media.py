@@ -207,7 +207,11 @@ def encode(src, dst, cap):
 def main():
     dry = "--dry-run" in sys.argv
     if not os.path.isdir(UPLOADS):
-        sys.exit("www/wp-content/uploads not found -- see README §1 'Restoring www/'")
+        sys.exit(
+            "www/wp-content/uploads not found.\n"
+            "It was deleted on purpose once every referenced asset had been recovered\n"
+            "into site/assets/ and committed, so this script should not need to run\n"
+            "again. Restore the export (README §1) only to re-encode from originals.")
 
     manifest = json.load(open(MANIFEST))
     index, chrome = page_index(manifest, attachment_ids())

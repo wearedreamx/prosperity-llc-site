@@ -44,7 +44,10 @@ Re-encode: longest side capped at 800 (personnel) / 1200 (posts) / 1600 (pages),
 JPEG q80, video via ffmpeg at CRF 27 with the audio track dropped. Nothing is
 enlarged and nothing is written larger than its source. 163.8 MB → 149.2 MB across 819 files.
 
-Re-run any time with:
+**The source has since been deleted.** `www/wp-content/uploads/` (1.2 GB) was
+removed once the recovered assets were verified and committed — they are no
+longer the only copy of anything (README §4). Re-running the script now exits
+with a pointer to the restore instructions; it should not need to run again:
 
 ```bash
 python3 tools/recover-media.py            # --dry-run to preview
