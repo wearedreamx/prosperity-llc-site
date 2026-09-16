@@ -8,6 +8,14 @@ eleventyComputed:
   title: "{{ location.data.name }} - Prosperity Partners"
 layout: base.njk
 ---
+{%- if location.data.banner_image %}
+<section class="page-banner">
+	<div class="page-banner-content">
+		<div class="page-banner-container container"></div>
+	</div>
+	<figure class="page-banner-figure"><img src="{{ location.data.banner_image }}" alt="" class="page-banner-image"></figure>
+</section>
+{%- endif %}
 <section class="single-location-container">
 	<div class="container">
 		<div class="single-location-top">
@@ -19,23 +27,26 @@ layout: base.njk
 				{{ location.content | safe }}
 			</div>
 		</div>
+		{%- set team = collections.personnelByLocation[location.data.slug] %}
+		{%- if team %}
+		{% set hideFacet = "Location" %}{% include "team-filters.njk" %}
 		<div class="team-container">
-			{% for person in collections.personnel %}
-				{% if person.data.location_name == location.data.name %}
-				<article class="team-member">
-					<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
-						<figure class="team-member-figure">
-							{% if person.data.photo %}<img width="550" height="500" src="{{ person.data.photo }}" alt="" class="team-member-img">{% endif %}
-						</figure>
-						<div class="team-member-content">
-							<h3 class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="team-member-certs">{{ person.data.certifications }}</span>{% endif %}</h3>
-							<h5 class="team-member-title">{{ person.data.job_title }}</h5>
-							<p class="team-member-location">{{ person.data.location_name }}</p>
-						</div>
-					</a>
-				</article>
-				{% endif %}
-			{% endfor %}
+			{%- for person in team %}
+			{#- the filter matches on these term classes; `active` is what makes the
+			    card visible at all, since .team-member is opacity:0 by default -#}
+			<article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}">
+				<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
+					<figure class="team-member-figure">
+						{% if person.data.photo %}<img width="550" height="500" src="{{ person.data.photo }}" alt="" class="team-member-img">{% endif %}
+					</figure>
+					<div class="team-member-content">
+						<h3 class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="team-member-certs">{{ person.data.certifications }}</span>{% endif %}</h3>
+						<h5 class="team-member-title">{{ person.data.job_title }}</h5>
+					</div>
+				</a>
+			</article>
+			{%- endfor %}
 		</div>
+		{%- endif %}
 	</div>
 </section>

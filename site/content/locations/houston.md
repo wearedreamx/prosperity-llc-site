@@ -3,6 +3,7 @@
   "slug": "houston",
   "name": "Houston",
   "address_html": "77 Sugar Creek Center Blvd<br>\nSuite 410<br>\nSugar Land, TX 77478<br>\n(281) 242-2420",
+  "banner_image": "/assets/img/uploads/locations/houston.jpg",
   "date_modified": "2024-07-26T15:21:12+00:00"
 }
 ---

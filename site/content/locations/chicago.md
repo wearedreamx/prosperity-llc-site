@@ -3,6 +3,7 @@
   "slug": "chicago",
   "name": "Chicago",
   "address_html": "225 W Washington Street <br>\nSuite 2600<br>\nChicago, IL 60606<br>\n(312) 461-0514",
+  "banner_image": "/assets/img/uploads/locations/chicago.jpg",
   "date_modified": "2025-02-20T14:44:58+00:00"
 }
 ---

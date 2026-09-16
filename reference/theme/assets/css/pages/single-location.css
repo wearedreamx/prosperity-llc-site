@@ -1,0 +1,1 @@
+.single-location-container{padding:4em 0}.single-location-top{display:grid;grid-gap:2em;grid-template-columns:15em 1fr;margin-bottom:3em}@media (max-width:768px){.single-location-top{grid-template-columns:1fr}}.single-location-title{font-size:2em;font-weight:400}.single-location-address{line-height:1.5}

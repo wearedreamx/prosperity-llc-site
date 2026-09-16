@@ -140,4 +140,103 @@
 			});
 		});
 	});
+
+	/* ---- Team directory 3-facet filter ---------------------------------- */
+	// Ported from the theme's jQuery handler in assets/js/g.min.js. Each card
+	// carries its terms as classes (title facet, location slug, service lines);
+	// a card stays visible only while its class list contains EVERY selected
+	// term. The two-step opacity/display change is what the theme's CSS
+	// animates: .active fades in, .disabled removes from flow 500ms later.
+	var filterRoot = document.querySelector(".team-filters-container");
+	if (filterRoot) {
+		var members = Array.prototype.slice.call(document.querySelectorAll(".team-member"));
+		var timers = new WeakMap();
+
+		function classTerms(el) {
+			return el.className.split(/\s+/);
+		}
+
+		function applyFilter() {
+			var selected = [];
+			filterRoot.querySelectorAll(".team-filter-link.active").forEach(function (link) {
+				var term = link.getAttribute("data-term");
+				if (term && term !== "all") selected.push(term);
+			});
+			members.forEach(function (card) {
+				var terms = classTerms(card);
+				var shown = selected.every(function (t) { return terms.indexOf(t) !== -1; });
+				clearTimeout(timers.get(card));
+				if (shown) {
+					card.classList.remove("disabled");
+					timers.set(card, setTimeout(function () { card.classList.add("active"); }, 20));
+				} else {
+					card.classList.remove("active");
+					timers.set(card, setTimeout(function () { card.classList.add("disabled"); }, 500));
+				}
+			});
+		}
+
+		filterRoot.querySelectorAll(".team-filter-dropdown").forEach(function (dropdown) {
+			dropdown.querySelectorAll(".team-filter-link").forEach(function (link) {
+				link.addEventListener("click", function () {
+					dropdown.querySelectorAll(".team-filter-link").forEach(function (sib) {
+						sib.classList.remove("active");
+					});
+					link.classList.add("active");
+					var header = dropdown.parentNode.querySelector(".team-filter-header");
+					if (header) header.textContent = link.textContent;
+					dropdown.classList.remove("active");
+					applyFilter();
+				});
+			});
+		});
+
+		// Hover opens the dropdown, as in the theme. Click and Enter/Space are
+		// added so the filter is usable by keyboard and on touch, where there
+		// is no hover at all.
+		filterRoot.querySelectorAll(".team-filter").forEach(function (filter) {
+			var dropdown = filter.querySelector(".team-filter-dropdown");
+			var header = filter.querySelector(".team-filter-header");
+			if (!dropdown || !header) return;
+			function open(state) {
+				dropdown.classList.toggle("active", state);
+				header.setAttribute("aria-expanded", state ? "true" : "false");
+			}
+			filter.addEventListener("mouseover", function () { open(true); });
+			filter.addEventListener("mouseout", function () { open(false); });
+			header.addEventListener("click", function () {
+				open(!dropdown.classList.contains("active"));
+			});
+			header.addEventListener("keydown", function (e) {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					open(!dropdown.classList.contains("active"));
+				}
+			});
+		});
+
+		function resetFilter() {
+			filterRoot.querySelectorAll(".team-filter-dropdown").forEach(function (dropdown) {
+				dropdown.querySelectorAll(".team-filter-link").forEach(function (link) {
+					link.classList.toggle("active", link.getAttribute("data-term") === "all");
+				});
+				var header = dropdown.parentNode.querySelector(".team-filter-header");
+				var label = dropdown.parentNode.getAttribute("data-label");
+				if (header && label) header.textContent = label;
+			});
+			members.forEach(function (card) {
+				clearTimeout(timers.get(card));
+				card.classList.remove("disabled");
+				card.classList.add("active");
+			});
+		}
+
+		var reset = filterRoot.querySelector(".team-filter-reset");
+		if (reset) {
+			reset.addEventListener("click", resetFilter);
+			reset.addEventListener("keydown", function (e) {
+				if (e.key === "Enter" || e.key === " ") { e.preventDefault(); resetFilter(); }
+			});
+		}
+	}
 })();

@@ -13,9 +13,12 @@ permalink: "/meet-the-team/"
 </section>
 <section class="single-post-container">
 	<div class="container">
+		{% include "team-filters.njk" %}
 		<div class="team-container">
 			{% for person in collections.teamOrder %}
-			<article class="team-member">
+			{#- term classes the filter matches on: title facet, location slug, service lines -#}
+			{%- set locSlug = person.data.location_url | replace("/location/", "") | replace("/", "") -%}
+			<article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% if locSlug %} {{ locSlug }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}">
 				<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
 					<figure class="team-member-figure">
 						{% if person.data.photo %}<img width="550" height="500" src="{{ person.data.photo }}" alt="" class="team-member-img">{% endif %}

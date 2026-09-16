@@ -1,10 +1,47 @@
 {
-  "_comment": "Leadership pinned to the top of /meet-the-team/, in order. Mirrors the ACF 'team_members' repeater on WordPress page 1907 (team_members_<n>_team_member), which the theme's pages/team.php renders before the alphabetical grid. Everyone else follows, sorted by last name then full name, matching that template's 'meta_key: personnel_last_name, orderby: meta_value title, order: ASC'.",
+  "_comment": "Leadership pinned to the top of /meet-the-team/, in order. Mirrors the ACF 'team_members' repeater on WordPress page 1907 (team_members_<n>_team_member), which the theme's pages/team.php renders before the alphabetical grid. Everyone else follows, sorted by last name then full name, matching that template's 'meta_key: personnel_last_name, orderby: meta_value title, order: ASC'. byLocation mirrors the same repeater on each location record, used by the location detail pages.",
   "slugs": [
     "jeremy-dubow",
     "josh-harris",
     "jeff-thomas",
     "mike-jain",
     "david-larson"
-  ]
+  ],
+  "byLocation": {
+    "burlington": [
+      "cathy-attig",
+      "matt-johnson"
+    ],
+    "chicago": [
+      "jeremy-dubow",
+      "josh-harris",
+      "jeff-thomas"
+    ],
+    "detroit": [
+      "john-alfonsi",
+      "harry-cendrowski",
+      "walter-m-mcgrail",
+      "maureen-nulty"
+    ],
+    "houston": [
+      "mike-jain",
+      "rajni-jain",
+      "nitin-chandra"
+    ],
+    "iselin": [
+      "coby-haim",
+      "steve-mizrach"
+    ],
+    "new-york-city": [
+      "fred-farkouh",
+      "eric-swerdlow",
+      "andy-yan"
+    ],
+    "santa-barbara": [
+      "david-larson",
+      "patricia-krout",
+      "chrisley-reed",
+      "stephen-smith"
+    ]
+  }
 }

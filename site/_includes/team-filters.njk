@@ -1,0 +1,27 @@
+{#
+  3-facet filter for the team directory. Mirrors the theme's
+  pages/team/filters.php: each .team-filter-link carries a data-term, and a card
+  is shown when its class list contains every selected term. Terms come from
+  data/team-filters.json; the matching classes are emitted on each card below.
+#}
+<div class="team-filters-container">
+	<ul class="team-filters">
+		{% for facet in teamFilters %}{% if facet.label != hideFacet %}
+		<li class="team-filter" data-label="{{ facet.label }}">
+			<div class="team-filter-header" role="button" tabindex="0" aria-expanded="false" aria-haspopup="true">{{ facet.label }}</div>
+			<ul class="team-filter-dropdown">
+				<li class="team-filter-link active" data-term="all">All</li>
+				{% for t in facet.terms %}<li class="team-filter-link" data-term="{{ t.term }}">{{ t.label }}</li>{% endfor %}
+			</ul>
+		</li>
+		{% endif %}{% endfor %}
+		<li class="team-filter"><span class="team-filter-reset" role="button" tabindex="0">Reset</span></li>
+	</ul>
+	<div class="team-search">
+		<form role="search" method="get" class="searchform" action="/search/">
+			<label class="screen-reader-text team-search-label" for="team-s">Search for:</label>
+			<input class="team-search-input" placeholder="Search members" type="text" name="q" id="team-s">
+			<input class="team-search-button" type="submit" value="Search">
+		</form>
+	</div>
+</div>

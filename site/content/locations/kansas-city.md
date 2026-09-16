@@ -3,6 +3,7 @@
   "slug": "kansas-city",
   "name": "Kansas City",
   "address_html": "11300 Tomahawk Creek Pkwy<br>\nSuite 310<br>\nLeawood, KS 66211<br>\n(913) 647-9750",
+  "banner_image": "/assets/img/uploads/locations/kansas-city.jpg",
   "date_modified": "2024-07-26T15:20:58+00:00"
 }
 ---

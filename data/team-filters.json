@@ -1,0 +1,43 @@
+{
+  "_comment": "Options for the /meet-the-team/ 3-facet filter. Title and Service Line mirror the ACF select choices (field_6679cee8fa574 and field_6695315a92f52); Location mirrors the hardcoded list in the theme's pages/team/filters.php. Order matches the theme. Each term matches a class on the team-member card.",
+  "facets": [
+    {
+      "label": "Title",
+      "terms": [
+        { "term": "ceo", "label": "Chief Executive Officer" },
+        { "term": "partners", "label": "Partners" },
+        { "term": "directors", "label": "Directors" },
+        { "term": "senior-manager", "label": "Senior Manager" },
+        { "term": "managers", "label": "Managers" },
+        { "term": "associates", "label": "Associates" }
+      ]
+    },
+    {
+      "label": "Service Line",
+      "terms": [
+        { "term": "tax-services", "label": "Tax Services" },
+        { "term": "accounting-services", "label": "Accounting Services" },
+        { "term": "family-office", "label": "Family Office" },
+        { "term": "valuation-services", "label": "Valuation Services" },
+        { "term": "operations", "label": "Operations" },
+        { "term": "transaction-advisory", "label": "Transaction Advisory" }
+      ]
+    },
+    {
+      "label": "Location",
+      "terms": [
+        { "term": "burlington", "label": "Burlington" },
+        { "term": "chicago", "label": "Chicago" },
+        { "term": "detroit", "label": "Detroit" },
+        { "term": "houston", "label": "Houston" },
+        { "term": "iselin", "label": "Iselin" },
+        { "term": "kansas-city", "label": "Kansas City" },
+        { "term": "new-york-city", "label": "New York City" },
+        { "term": "mumbai", "label": "Mumbai" },
+        { "term": "santa-barbara", "label": "Santa Barbara" },
+        { "term": "washington-dc", "label": "Washington DC - TAX" },
+        { "term": "washington-dc-transaction-advisory", "label": "Washington DC - Transaction Advisory" }
+      ]
+    }
+  ]
+}

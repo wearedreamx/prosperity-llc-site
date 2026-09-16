@@ -3,6 +3,7 @@
   "slug": "detroit",
   "name": "Detroit",
   "address_html": "4111 Andover Road<br>\nWest Third Floor<br>\nBloomfield Hills, MI 48302<br>\n(866) 717-1607",
+  "banner_image": "/assets/img/uploads/locations/detroit.jpg",
   "date_modified": "2025-10-01T12:52:03+00:00"
 }
 ---

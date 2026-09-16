@@ -3,6 +3,7 @@
   "slug": "washington-dc-transaction-advisory",
   "name": "Washington DC – Transaction Advisory",
   "address_html": "1900 Gallows Road<br>\nSuite 200 <br>\nVienna, VA 22182",
+  "banner_image": "/assets/img/uploads/locations/washington-dc-transaction-advisory.jpg",
   "date_modified": "2026-03-09T16:01:45+00:00"
 }
 ---
