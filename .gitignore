@@ -6,6 +6,18 @@ _site/
 # Dependencies
 node_modules/
 
+# Video is never versioned. These are large binaries that bloat the repo and
+# every clone permanently, and git stores each re-encode as a whole new blob.
+# Video is served from the origin site instead — reference it with an absolute
+# https:// URL to the live media (see the hero <source> in site/index.njk).
+# Poster frames are images and stay in the repo.
+*.mp4
+*.webm
+*.mov
+*.m4v
+*.avi
+*.ogv
+
 # ---------------------------------------------------------------------------
 # The WordPress export. NEVER commit this.
 #
