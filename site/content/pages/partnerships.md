@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Partnership Opportunities",
   "banner_description_html": "<p>Prosperity is actively seeking to acquire or merge with leading tax and accounting firms, creating partnerships that solve vital challenges facing the industry and unlock growth.</p>",
-  "banner_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20800'%3E%3C/svg%3E",
+  "banner_image": "/assets/img/uploads/pages/partnerships.jpg",
   "date_modified": "2026-05-13T19:41:45+00:00",
   "blocks": [
     {

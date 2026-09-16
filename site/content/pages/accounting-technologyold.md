@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Enterprise Accounting Software",
   "banner_description_html": "Cloud Accounting Software from Sage Intacct Transform Your Business Operations and Enable Growth",
-  "banner_image": "",
+  "banner_image": "/assets/img/uploads/pages/accounting-technologyold.jpg",
   "date_modified": "2024-06-27T20:40:20+00:00",
   "blocks": [
     {

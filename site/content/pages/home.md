@@ -8,7 +8,7 @@
   "meta_description": "We advise businesses on taxes, back-office accounting and Sage Intacct cloud accounting software.",
   "banner_title": "",
   "banner_description_html": "",
-  "banner_image": "",
+  "banner_image": "/assets/img/uploads/pages/home.jpg",
   "date_modified": "2026-04-16T12:55:55+00:00",
   "blocks": [
     {

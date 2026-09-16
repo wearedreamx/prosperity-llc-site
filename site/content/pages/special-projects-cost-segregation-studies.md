@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Cost Segregation Studies",
   "banner_description_html": "",
-  "banner_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20775'%3E%3C/svg%3E",
+  "banner_image": "/assets/img/uploads/pages/special-projects-cost-segregation-studies.jpg",
   "date_modified": "2024-11-26T17:10:40+00:00",
   "blocks": [
     {

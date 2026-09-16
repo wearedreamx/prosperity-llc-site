@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Dispute Advisory Services",
   "banner_description_html": "",
-  "banner_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20800'%3E%3C/svg%3E",
+  "banner_image": "/assets/img/uploads/pages/special-projects-dispute-advisory.jpg",
   "date_modified": "2025-02-25T21:34:34+00:00",
   "blocks": [
     {

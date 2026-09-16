@@ -8,7 +8,7 @@
   "meta_description": "Explore the wide range of financial services offered by Prosperity LLC, including tax, accounting, and advisory services tailored to your needs.",
   "banner_title": "Services",
   "banner_description_html": "",
-  "banner_image": "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%20775'%3E%3C/svg%3E",
+  "banner_image": "/assets/img/uploads/pages/services.jpg",
   "date_modified": "2026-01-26T19:10:55+00:00",
   "blocks": [
     {

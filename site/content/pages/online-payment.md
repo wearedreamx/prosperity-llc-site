@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Online Payments",
   "banner_description_html": "<h5>Simple. Secure.</h5>",
-  "banner_image": "",
+  "banner_image": "/assets/img/uploads/pages/online-payment.jpg",
   "date_modified": "2025-12-04T17:25:10+00:00",
   "blocks": [
     {
