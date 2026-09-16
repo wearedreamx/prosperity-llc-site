@@ -9,8 +9,10 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/siu-tsang.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "senior-manager",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-04-03T18:41:32+00:00"
 }
 ---

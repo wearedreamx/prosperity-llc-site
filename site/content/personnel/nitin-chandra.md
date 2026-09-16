@@ -9,8 +9,10 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/nitin-chandra.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2024-08-21T14:29:28+00:00"
 }
 ---

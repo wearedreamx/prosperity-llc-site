@@ -9,8 +9,10 @@
   "location_url": "/location/detroit/",
   "photo": "/assets/img/uploads/personnel/michelle-glass.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2024-12-09T15:59:57+00:00"
 }
 ---

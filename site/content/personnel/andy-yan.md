@@ -9,8 +9,10 @@
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/uploads/personnel/andy-yan.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-03-10T19:30:45+00:00"
 }
 ---

@@ -3,6 +3,7 @@
   "slug": "uploading-files-to-your-client-portal",
   "path": "/client-portal/uploading-files-to-your-client-portal/",
   "page_type": "page",
+  "status": "publish",
   "title": "Uploading Files to Your Client Portal - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Uploading Files to Your Client Portal",

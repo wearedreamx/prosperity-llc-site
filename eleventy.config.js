@@ -103,8 +103,13 @@ module.exports = function (eleventyConfig) {
 			.slice(0, 4)
 	);
 	const GENERIC_PAGE_TYPES = new Set(["page", "page-services", "page-portal"]);
+	// Draft and private pages are extracted so the WordPress export can be
+	// retired, but they must not ship until §11's open decisions are made.
 	eleventyConfig.addCollection("genericPages", (api) =>
-		api.getFilteredByTag("pages").filter((p) => GENERIC_PAGE_TYPES.has(p.data.page_type))
+		api
+			.getFilteredByTag("pages")
+			.filter((p) => GENERIC_PAGE_TYPES.has(p.data.page_type))
+			.filter((p) => (p.data.status || "publish") === "publish")
 	);
 
 	return {

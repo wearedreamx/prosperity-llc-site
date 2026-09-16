@@ -3,6 +3,7 @@
   "slug": "forensic-accounting",
   "path": "/special-projects/forensic-accounting/",
   "page_type": "page",
+  "status": "publish",
   "title": "Forensic Accounting Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Forensic Accounting Services",

@@ -9,8 +9,10 @@
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/uploads/personnel/govind-domal.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services"
+  ],
   "date_modified": "2026-02-06T15:35:37+00:00"
 }
 ---

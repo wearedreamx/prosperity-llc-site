@@ -9,7 +9,7 @@
   "location_url": "/location/washington-dc/",
   "photo": "/assets/img/uploads/personnel/loise-kyalo.jpg",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2025-01-21T17:45:12+00:00"
 }

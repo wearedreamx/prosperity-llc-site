@@ -9,8 +9,10 @@
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/uploads/personnel/shashin-bhukhanwala.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2025-08-27T18:11:35+00:00"
 }
 ---

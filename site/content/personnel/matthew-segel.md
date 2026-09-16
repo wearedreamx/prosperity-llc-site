@@ -9,8 +9,10 @@
   "location_url": "/location/burlington/",
   "photo": "/assets/img/uploads/personnel/matthew-segel.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2025-07-17T14:41:26+00:00"
 }
 ---

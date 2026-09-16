@@ -9,8 +9,10 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/maria-rodriguez-pino.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2024-08-27T17:36:28+00:00"
 }
 ---

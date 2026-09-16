@@ -9,8 +9,11 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/alyvia-clark.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "senior-manager",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2026-04-03T18:38:43+00:00"
 }
 ---

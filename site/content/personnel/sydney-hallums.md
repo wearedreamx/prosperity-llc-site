@@ -9,8 +9,10 @@
   "location_url": "/location/burlington/",
   "photo": "/assets/img/uploads/personnel/sydney-hallums.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2025-07-29T13:28:20+00:00"
 }
 ---

@@ -9,8 +9,11 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/jose-ruth.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2025-03-24T13:52:12+00:00"
 }
 ---

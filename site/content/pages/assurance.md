@@ -3,6 +3,7 @@
   "slug": "assurance",
   "path": "/assurance/",
   "page_type": "page",
+  "status": "publish",
   "title": "Assurance - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Assurance",

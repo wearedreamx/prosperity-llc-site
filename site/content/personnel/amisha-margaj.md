@@ -9,8 +9,10 @@
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/uploads/personnel/amisha-margaj.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-02-03T16:16:11+00:00"
 }
 ---

@@ -3,6 +3,7 @@
   "slug": "state-and-local-taxes",
   "path": "/tax-services/state-and-local-taxes/",
   "page_type": "page",
+  "status": "publish",
   "title": "State and Local Tax - Prosperity Partners",
   "meta_description": "",
   "banner_title": "State and Local Tax",

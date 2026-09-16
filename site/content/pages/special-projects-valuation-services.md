@@ -3,6 +3,7 @@
   "slug": "valuation-services",
   "path": "/special-projects/valuation-services/",
   "page_type": "page",
+  "status": "publish",
   "title": "Valuation Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Valuation Services",

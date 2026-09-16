@@ -9,8 +9,10 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/jennifer-robin.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-08-04T13:31:31+00:00"
 }
 ---

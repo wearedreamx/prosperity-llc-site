@@ -9,8 +9,10 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/alexander-brunek.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2025-01-28T14:10:44+00:00"
 }
 ---

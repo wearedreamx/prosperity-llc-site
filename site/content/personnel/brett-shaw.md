@@ -9,8 +9,10 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/brett-shaw.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services"
+  ],
   "date_modified": "2026-08-17T14:19:53+00:00"
 }
 ---

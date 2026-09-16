@@ -9,8 +9,10 @@
   "location_url": "/location/burlington/",
   "photo": "/assets/img/uploads/personnel/cathy-attig.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2025-07-17T15:19:27+00:00"
 }
 ---

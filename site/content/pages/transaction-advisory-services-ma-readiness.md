@@ -3,6 +3,7 @@
   "slug": "ma-readiness",
   "path": "/transaction-advisory-services/ma-readiness/",
   "page_type": "page",
+  "status": "publish",
   "title": "M&A Readiness - Prosperity Partners",
   "meta_description": "",
   "banner_title": "M&A Readiness",

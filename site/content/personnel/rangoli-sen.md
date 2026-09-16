@@ -9,8 +9,10 @@
   "location_url": "/location/iselin/",
   "photo": "/assets/img/uploads/personnel/rangoli-sen.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-06-16T13:16:12+00:00"
 }
 ---

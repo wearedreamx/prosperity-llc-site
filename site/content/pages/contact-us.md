@@ -3,6 +3,7 @@
   "slug": "contact-us",
   "path": "/contact-us/",
   "page_type": "page",
+  "status": "publish",
   "title": "Contact Us - Prosperity Partners",
   "meta_description": "Get in touch with Prosperity LLC for personalized financial solutions.",
   "banner_title": "How Can We Help You?",

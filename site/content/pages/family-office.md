@@ -3,6 +3,7 @@
   "slug": "family-office",
   "path": "/family-office/",
   "page_type": "page",
+  "status": "publish",
   "title": "Family Office Services - Prosperity Partners",
   "meta_description": "Discover tailored family office services from Prosperity LLC. We provide wealth management, estate planning, and financial oversight for families.",
   "banner_title": "Family Office Services",

@@ -9,8 +9,10 @@
   "location_url": "/location/iselin/",
   "photo": "/assets/img/uploads/personnel/coby-haim.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-06-01T12:50:02+00:00"
 }
 ---

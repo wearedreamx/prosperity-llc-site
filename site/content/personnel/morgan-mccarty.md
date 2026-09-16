@@ -9,8 +9,10 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/morgan-mccarty.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2026-07-29T15:16:33+00:00"
 }
 ---

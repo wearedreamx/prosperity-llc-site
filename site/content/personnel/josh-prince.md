@@ -9,8 +9,10 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/josh-prince.jpg",
   "linkedin_url": "https://www.linkedin.com/in/joshua-prince-cpa/",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2024-09-03T14:15:04+00:00"
 }
 ---

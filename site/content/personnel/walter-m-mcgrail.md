@@ -9,7 +9,7 @@
   "location_url": "/location/detroit/",
   "photo": "/assets/img/uploads/personnel/walter-m-mcgrail.jpg",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "partners",
   "facet_specializations": [],
   "date_modified": "2024-12-09T16:01:49+00:00"
 }

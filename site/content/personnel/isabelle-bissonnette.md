@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/uploads/personnel/isabelle-bissonnette.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "transaction-advisory"
+  ],
   "date_modified": "2026-02-02T17:38:00+00:00"
 }
 ---

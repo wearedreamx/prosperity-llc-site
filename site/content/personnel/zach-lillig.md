@@ -9,8 +9,11 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/zach-lillig.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2026-04-03T18:44:12+00:00"
 }
 ---

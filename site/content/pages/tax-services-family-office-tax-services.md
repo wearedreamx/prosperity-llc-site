@@ -3,6 +3,7 @@
   "slug": "family-office-tax-services",
   "path": "/tax-services/family-office-tax-services/",
   "page_type": "page",
+  "status": "publish",
   "title": "Family Office Tax Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Family Office Tax Services",

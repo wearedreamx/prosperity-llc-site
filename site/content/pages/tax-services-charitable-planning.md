@@ -3,6 +3,7 @@
   "slug": "charitable-planning",
   "path": "/tax-services/charitable-planning/",
   "page_type": "page",
+  "status": "publish",
   "title": "Charitable Planning - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Charitable Planning",

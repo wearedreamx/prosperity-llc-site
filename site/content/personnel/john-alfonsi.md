@@ -9,8 +9,10 @@
   "location_url": "/location/detroit/",
   "photo": "/assets/img/uploads/personnel/john-alfonsi.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "valuation-services"
+  ],
   "date_modified": "2025-02-03T20:54:55+00:00"
 }
 ---

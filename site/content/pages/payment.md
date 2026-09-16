@@ -3,6 +3,7 @@
   "slug": "payment",
   "path": "/payment/",
   "page_type": "page",
+  "status": "publish",
   "title": "Secure Payment Options - Prosperity Partners",
   "meta_description": "Easily make payments online through Prosperity LLC's secure payment portal.",
   "banner_title": "Online Payments",

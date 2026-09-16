@@ -9,7 +9,7 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/carlos-salgado.jpg",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "managers",
   "facet_specializations": [],
   "date_modified": "2026-01-27T20:01:49+00:00"
 }

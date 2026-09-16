@@ -9,8 +9,10 @@
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/uploads/personnel/owen-byrne.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-03-11T12:28:31+00:00"
 }
 ---

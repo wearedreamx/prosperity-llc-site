@@ -9,8 +9,10 @@
   "location_url": "/location/burlington/",
   "photo": "/assets/img/uploads/personnel/ella-midenjak.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2025-07-17T14:40:49+00:00"
 }
 ---

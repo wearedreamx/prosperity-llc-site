@@ -9,8 +9,10 @@
   "location_url": "/location/detroit/",
   "photo": "/assets/img/uploads/personnel/james-martin.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "directors",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-04-03T18:42:36+00:00"
 }
 ---

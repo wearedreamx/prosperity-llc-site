@@ -9,8 +9,10 @@
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/uploads/personnel/mahendra-gorule.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-02-05T17:41:51+00:00"
 }
 ---

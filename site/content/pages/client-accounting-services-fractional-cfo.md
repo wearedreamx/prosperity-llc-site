@@ -3,6 +3,7 @@
   "slug": "fractional-cfo",
   "path": "/client-accounting-services/fractional-cfo/",
   "page_type": "page",
+  "status": "publish",
   "title": "Fractional CFO - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Fractional CFO",

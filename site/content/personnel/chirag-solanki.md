@@ -9,8 +9,10 @@
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/uploads/personnel/chirag-solanki.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2025-08-26T13:35:48+00:00"
 }
 ---

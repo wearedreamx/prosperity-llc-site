@@ -9,8 +9,10 @@
   "location_url": "/location/iselin/",
   "photo": "/assets/img/uploads/personnel/fern-nunes-cubelo.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services"
+  ],
   "date_modified": "2026-06-01T12:50:09+00:00"
 }
 ---

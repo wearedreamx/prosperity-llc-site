@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/uploads/personnel/thomas-ulrich.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "transaction-advisory"
+  ],
   "date_modified": "2026-01-28T16:58:35+00:00"
 }
 ---

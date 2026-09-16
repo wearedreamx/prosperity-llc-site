@@ -3,6 +3,7 @@
   "slug": "special-projects",
   "path": "/special-projects/",
   "page_type": "page-services",
+  "status": "publish",
   "title": "Special Projects - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Special Projects",

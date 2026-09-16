@@ -9,8 +9,12 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/rajni-jain.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services",
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2024-08-21T14:30:00+00:00"
 }
 ---

@@ -3,6 +3,7 @@
   "slug": "client-accounting-services",
   "path": "/client-accounting-services/",
   "page_type": "page-services",
+  "status": "publish",
   "title": "Client Accounting Services - Prosperity Partners",
   "meta_description": "Streamline your finances with Prosperity LLC's client accounting services, including bookkeeping, payroll, and financial reporting.",
   "banner_title": "Client Accounting Services",

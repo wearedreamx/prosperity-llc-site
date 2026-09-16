@@ -9,8 +9,10 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/ann-simon.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2024-08-05T17:24:59+00:00"
 }
 ---

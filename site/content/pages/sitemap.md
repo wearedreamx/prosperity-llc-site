@@ -3,6 +3,7 @@
   "slug": "sitemap",
   "path": "/sitemap/",
   "page_type": "page",
+  "status": "publish",
   "title": "Sitemap - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Sitemap",

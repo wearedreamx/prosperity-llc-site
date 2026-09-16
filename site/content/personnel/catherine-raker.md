@@ -9,8 +9,10 @@
   "location_url": "/location/detroit/",
   "photo": "/assets/img/uploads/personnel/catherine-raker.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2024-12-09T19:57:40+00:00"
 }
 ---

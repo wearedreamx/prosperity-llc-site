@@ -9,7 +9,7 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/keyshawn-andress.jpg",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2025-04-08T14:47:10+00:00"
 }

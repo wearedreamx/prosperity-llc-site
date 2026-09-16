@@ -9,8 +9,10 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/tanvi-bhanushali.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-01-05T17:03:34+00:00"
 }
 ---

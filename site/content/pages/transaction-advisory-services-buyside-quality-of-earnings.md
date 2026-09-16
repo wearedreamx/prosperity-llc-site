@@ -3,6 +3,7 @@
   "slug": "buyside-quality-of-earnings",
   "path": "/transaction-advisory-services/buyside-quality-of-earnings/",
   "page_type": "page",
+  "status": "publish",
   "title": "Buy-Side Quality of Earnings - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Buy-Side Quality of Earnings",

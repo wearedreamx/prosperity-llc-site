@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/uploads/personnel/evan-defonce.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "transaction-advisory"
+  ],
   "date_modified": "2026-07-20T15:22:53+00:00"
 }
 ---

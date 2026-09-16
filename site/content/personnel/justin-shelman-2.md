@@ -9,8 +9,11 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/justin-shelman-2.jpg",
   "linkedin_url": "https://www.linkedin.com/in/justinshelmancpa/",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services",
+    "family-office"
+  ],
   "date_modified": "2024-09-03T17:42:50+00:00"
 }
 ---

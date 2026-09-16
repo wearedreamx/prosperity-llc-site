@@ -9,8 +9,11 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/romie-gallardo.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "family-office",
+    "operations"
+  ],
   "date_modified": "2024-07-29T19:52:41+00:00"
 }
 ---

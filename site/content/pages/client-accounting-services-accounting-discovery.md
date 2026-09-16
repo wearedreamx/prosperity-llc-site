@@ -3,6 +3,7 @@
   "slug": "accounting-discovery",
   "path": "/client-accounting-services/accounting-discovery/",
   "page_type": "page",
+  "status": "publish",
   "title": "Accounting Discovery - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Accounting Discovery",

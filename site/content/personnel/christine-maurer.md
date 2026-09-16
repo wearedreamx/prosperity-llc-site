@@ -9,8 +9,11 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/christine-maurer.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2024-08-05T17:34:32+00:00"
 }
 ---

@@ -9,8 +9,10 @@
   "location_url": "/location/detroit/",
   "photo": "/assets/img/uploads/personnel/nabila-paules-kiami.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2024-12-09T16:00:34+00:00"
 }
 ---

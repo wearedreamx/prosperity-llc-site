@@ -3,6 +3,7 @@
   "slug": "business-taxes",
   "path": "/tax-services/business-taxes/",
   "page_type": "page",
+  "status": "publish",
   "title": "Business Tax - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Business Tax",

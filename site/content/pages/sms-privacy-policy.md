@@ -3,6 +3,7 @@
   "slug": "sms-privacy-policy",
   "path": "/sms-privacy-policy/",
   "page_type": "page",
+  "status": "publish",
   "title": "SMS Privacy Policy - Prosperity Partners",
   "meta_description": "",
   "banner_title": "SMS Privacy Policy",

@@ -3,6 +3,7 @@
   "slug": "stock-option-planning",
   "path": "/tax-services/stock-option-planning/",
   "page_type": "page",
+  "status": "publish",
   "title": "Stock Option Planning - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Stock Option Planning & Executive Compensation",

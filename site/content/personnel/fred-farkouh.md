@@ -9,8 +9,10 @@
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/uploads/personnel/fred-farkouh.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-03-10T12:58:26+00:00"
 }
 ---

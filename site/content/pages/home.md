@@ -3,6 +3,7 @@
   "slug": "home",
   "path": "/",
   "page_type": "home",
+  "status": "publish",
   "title": "Prosperity Partners LLC",
   "meta_description": "We advise businesses on taxes, back-office accounting and Sage Intacct cloud accounting software.",
   "banner_title": "",

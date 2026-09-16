@@ -9,8 +9,10 @@
   "location_url": "/location/burlington/",
   "photo": "/assets/img/uploads/personnel/beth-dezon-gaillard.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "senior-manager",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-04-03T18:39:15+00:00"
 }
 ---

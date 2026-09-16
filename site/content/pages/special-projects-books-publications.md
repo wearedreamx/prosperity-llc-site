@@ -3,6 +3,7 @@
   "slug": "books-publications",
   "path": "/special-projects/books-publications/",
   "page_type": "page",
+  "status": "publish",
   "title": "Books & Publications - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Making An Impact Through Thought Leadership",

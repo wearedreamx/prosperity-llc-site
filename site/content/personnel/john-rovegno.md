@@ -9,8 +9,10 @@
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/uploads/personnel/john-rovegno.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-03-11T12:32:36+00:00"
 }
 ---

@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/uploads/personnel/heather-macgarvey.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2026-07-01T18:22:46+00:00"
 }
 ---

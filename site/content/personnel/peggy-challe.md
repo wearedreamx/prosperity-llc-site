@@ -9,8 +9,10 @@
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/uploads/personnel/peggy-challe.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "directors",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2026-03-11T12:38:45+00:00"
 }
 ---

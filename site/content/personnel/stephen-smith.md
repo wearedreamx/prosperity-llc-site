@@ -9,8 +9,11 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/stephen-smith.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2024-07-29T19:50:53+00:00"
 }
 ---

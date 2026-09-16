@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/uploads/personnel/jenny-lewis.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "directors",
+  "facet_specializations": [
+    "transaction-advisory"
+  ],
   "date_modified": "2026-02-03T18:26:21+00:00"
 }
 ---

@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc/",
   "photo": "",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-01-26T17:46:51+00:00"
 }
 ---

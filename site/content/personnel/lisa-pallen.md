@@ -9,8 +9,10 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/lisa-pallen.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "directors",
+  "facet_specializations": [
+    "accounting-services"
+  ],
   "date_modified": "2024-09-03T17:47:46+00:00"
 }
 ---

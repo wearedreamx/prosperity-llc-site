@@ -9,8 +9,10 @@
   "location_url": "/location/kansas-city/",
   "photo": "/assets/img/uploads/personnel/annie-cook.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2024-07-29T19:29:53+00:00"
 }
 ---

@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc/",
   "photo": "/assets/img/uploads/personnel/mike-mckee.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "directors",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-08-21T15:59:39+00:00"
 }
 ---

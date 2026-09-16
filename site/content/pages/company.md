@@ -3,6 +3,7 @@
   "slug": "company",
   "path": "/company/",
   "page_type": "page",
+  "status": "publish",
   "title": "About Us - Prosperity Partners",
   "meta_description": "Learn about Prosperity LLC, our mission, values, and the financial services we offer",
   "banner_title": "About Our Company",

@@ -3,6 +3,7 @@
   "slug": "international-tax",
   "path": "/tax-services/international-tax/",
   "page_type": "page",
+  "status": "publish",
   "title": "International Tax & Expatriate Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "International Tax & Expatriate Services",

@@ -9,8 +9,11 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/lisa-fernandez.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2024-07-30T15:13:36+00:00"
 }
 ---

@@ -3,6 +3,7 @@
   "slug": "services",
   "path": "/services/",
   "page_type": "page-services",
+  "status": "publish",
   "title": "Our Financial Services - Prosperity Partners",
   "meta_description": "Explore the wide range of financial services offered by Prosperity LLC, including tax, accounting, and advisory services tailored to your needs.",
   "banner_title": "Services",

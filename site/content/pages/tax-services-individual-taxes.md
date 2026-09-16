@@ -3,6 +3,7 @@
   "slug": "individual-taxes",
   "path": "/tax-services/individual-taxes/",
   "page_type": "page",
+  "status": "publish",
   "title": "Individual Tax - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Individual Tax",

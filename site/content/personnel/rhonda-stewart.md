@@ -9,8 +9,10 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/rhonda-stewart.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2024-08-21T14:31:11+00:00"
 }
 ---

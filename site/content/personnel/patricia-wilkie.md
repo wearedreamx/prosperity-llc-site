@@ -9,8 +9,11 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/patricia-wilkie.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2024-09-03T14:24:47+00:00"
 }
 ---

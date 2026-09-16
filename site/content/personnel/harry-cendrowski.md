@@ -9,7 +9,7 @@
   "location_url": "/location/detroit/",
   "photo": "/assets/img/uploads/personnel/harry-cendrowski.jpg",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "partners",
   "facet_specializations": [],
   "date_modified": "2025-02-05T19:42:18+00:00"
 }

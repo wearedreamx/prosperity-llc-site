@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc/",
   "photo": "/assets/img/uploads/personnel/jared-frankel.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2024-12-02T14:54:09+00:00"
 }
 ---

@@ -3,6 +3,7 @@
   "slug": "transaction-advisory-services",
   "path": "/tax-services/transaction-advisory-services/",
   "page_type": "page",
+  "status": "publish",
   "title": "Transaction Advisory Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Transaction Advisory Services",

@@ -9,8 +9,10 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/samantha-gordon.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "accounting-services"
+  ],
   "date_modified": "2024-08-05T17:39:17+00:00"
 }
 ---

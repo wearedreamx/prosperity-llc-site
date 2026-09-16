@@ -9,8 +9,10 @@
   "location_url": "/location/iselin/",
   "photo": "/assets/img/uploads/personnel/diana-gallo.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "senior-manager",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-06-01T12:49:53+00:00"
 }
 ---

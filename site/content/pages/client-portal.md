@@ -3,6 +3,7 @@
   "slug": "client-portal",
   "path": "/client-portal/",
   "page_type": "page-portal",
+  "status": "publish",
   "title": "Client Portal - Prosperity Partners",
   "meta_description": "Access your account information securely through the Prosperity LLC client portal.",
   "banner_title": "Client Portal",

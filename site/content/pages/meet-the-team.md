@@ -3,6 +3,7 @@
   "slug": "meet-the-team",
   "path": "/meet-the-team/",
   "page_type": "page-team",
+  "status": "publish",
   "title": "Meet Our Expert Team",
   "meta_description": "Meet the professionals committed to providing personalized financial services.",
   "banner_title": "Meet The Team",

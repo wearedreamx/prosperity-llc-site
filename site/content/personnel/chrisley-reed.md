@@ -9,8 +9,11 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/chrisley-reed.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2024-09-05T12:45:33+00:00"
 }
 ---

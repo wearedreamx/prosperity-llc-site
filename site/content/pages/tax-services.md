@@ -3,6 +3,7 @@
   "slug": "tax-services",
   "path": "/tax-services/",
   "page_type": "page-services",
+  "status": "publish",
   "title": "Tax Services - Prosperity Partners",
   "meta_description": "Explore our expert tax services at Prosperity LLC, including tax planning, compliance, and advisory for individuals and businesses.",
   "banner_title": "Tax Services",

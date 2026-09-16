@@ -9,8 +9,12 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/ravinder-jain.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services",
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2024-10-23T15:08:56+00:00"
 }
 ---

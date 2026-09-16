@@ -3,6 +3,7 @@
   "slug": "sellside-quality-of-earnings",
   "path": "/transaction-advisory-services/sellside-quality-of-earnings/",
   "page_type": "page",
+  "status": "publish",
   "title": "Sell-Side Quality of Earnings - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Sell-Side Quality of Earnings",

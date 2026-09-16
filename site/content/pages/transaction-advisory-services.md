@@ -3,6 +3,7 @@
   "slug": "transaction-advisory-services",
   "path": "/transaction-advisory-services/",
   "page_type": "page",
+  "status": "publish",
   "title": "Transaction Advisory Services - Prosperity Partners",
   "meta_description": "Discover tailored transaction advisory services from Prosperity LLC. We are experienced lower-middle market M&A advisors, making M&A easier for buyers and sellers.",
   "banner_title": "Transaction Advisory Services",

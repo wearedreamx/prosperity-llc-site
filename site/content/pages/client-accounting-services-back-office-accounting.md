@@ -3,6 +3,7 @@
   "slug": "back-office-accounting",
   "path": "/client-accounting-services/back-office-accounting/",
   "page_type": "page",
+  "status": "publish",
   "title": "Accounting & Bookkeeping Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Accounting & Bookkeeping Services",

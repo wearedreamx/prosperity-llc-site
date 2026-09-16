@@ -9,8 +9,10 @@
   "location_url": "/location/washington-dc/",
   "photo": "/assets/img/uploads/personnel/zhishan-yao.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2024-12-02T19:20:41+00:00"
 }
 ---

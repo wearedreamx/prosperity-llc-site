@@ -9,8 +9,12 @@
   "location_url": "/location/kansas-city/",
   "photo": "/assets/img/uploads/personnel/susan-wilson.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "senior-manager",
+  "facet_specializations": [
+    "tax-services",
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2026-04-03T18:42:11+00:00"
 }
 ---

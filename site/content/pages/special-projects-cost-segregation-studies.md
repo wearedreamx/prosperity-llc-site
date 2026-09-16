@@ -3,6 +3,7 @@
   "slug": "cost-segregation-studies",
   "path": "/special-projects/cost-segregation-studies/",
   "page_type": "page",
+  "status": "publish",
   "title": "Cost Segregation Studies - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Cost Segregation Studies",

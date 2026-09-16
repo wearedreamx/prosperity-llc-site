@@ -9,8 +9,10 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/kristen-schrader.jpg",
   "linkedin_url": "https://www.linkedin.com/in/kristen-schrader/",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "directors",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2024-08-09T17:24:32+00:00"
 }
 ---

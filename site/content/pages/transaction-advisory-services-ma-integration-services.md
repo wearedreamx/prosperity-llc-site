@@ -3,6 +3,7 @@
   "slug": "ma-integration-services",
   "path": "/transaction-advisory-services/ma-integration-services/",
   "page_type": "page",
+  "status": "publish",
   "title": "M&A Integration Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "M&A Integration Services",

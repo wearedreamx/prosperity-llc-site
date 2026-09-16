@@ -9,8 +9,10 @@
   "location_url": "/location/chicago/",
   "photo": "",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "accounting-services"
+  ],
   "date_modified": "2026-07-01T18:23:30+00:00"
 }
 ---

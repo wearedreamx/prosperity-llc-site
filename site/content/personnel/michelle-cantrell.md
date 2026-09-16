@@ -9,8 +9,10 @@
   "location_url": "/location/kansas-city/",
   "photo": "/assets/img/uploads/personnel/michelle-cantrell.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "operations"
+  ],
   "date_modified": "2025-07-08T16:13:35+00:00"
 }
 ---

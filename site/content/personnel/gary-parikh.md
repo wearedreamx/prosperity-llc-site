@@ -9,8 +9,11 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/gary-parikh.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "managers",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2025-07-07T16:53:48+00:00"
 }
 ---

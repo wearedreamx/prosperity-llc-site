@@ -9,8 +9,10 @@
   "location_url": "/location/iselin/",
   "photo": "",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2026-06-01T12:49:46+00:00"
 }
 ---

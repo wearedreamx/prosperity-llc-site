@@ -9,7 +9,7 @@
   "location_url": "/location/detroit/",
   "photo": "/assets/img/uploads/personnel/sarah-bassett.jpg",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2025-07-16T15:12:28+00:00"
 }

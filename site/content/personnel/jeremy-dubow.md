@@ -9,8 +9,13 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/jeremy-dubow.jpg",
   "linkedin_url": "https://www.linkedin.com/in/jeremydubow/",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "ceo",
+  "facet_specializations": [
+    "tax-services",
+    "accounting-services",
+    "family-office",
+    "valuation-services"
+  ],
   "date_modified": "2026-06-01T19:08:46+00:00"
 }
 ---

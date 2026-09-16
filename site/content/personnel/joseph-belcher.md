@@ -9,7 +9,7 @@
   "location_url": "/location/washington-dc/",
   "photo": "/assets/img/uploads/personnel/joseph-belcher.jpg",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "managers",
   "facet_specializations": [],
   "date_modified": "2025-01-21T18:02:40+00:00"
 }

@@ -3,6 +3,7 @@
   "slug": "partnerships",
   "path": "/partnerships/",
   "page_type": "page",
+  "status": "publish",
   "title": "Partnerships - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Partnership Opportunities",

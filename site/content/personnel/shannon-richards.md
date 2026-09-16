@@ -9,8 +9,11 @@
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/uploads/personnel/shannon-richards.png",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2026-03-12T15:05:43+00:00"
 }
 ---

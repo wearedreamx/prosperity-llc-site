@@ -9,7 +9,7 @@
   "location_url": "/location/chicago/",
   "photo": "",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2024-09-30T17:55:06+00:00"
 }

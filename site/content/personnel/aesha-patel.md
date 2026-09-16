@@ -9,8 +9,11 @@
   "location_url": "/location/houston/",
   "photo": "/assets/img/uploads/personnel/aesha-patel.jpg",
   "linkedin_url": "",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "associates",
+  "facet_specializations": [
+    "accounting-services",
+    "family-office"
+  ],
   "date_modified": "2024-08-21T14:14:10+00:00"
 }
 ---

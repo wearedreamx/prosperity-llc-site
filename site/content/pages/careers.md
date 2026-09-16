@@ -3,6 +3,7 @@
   "slug": "careers",
   "path": "/careers/",
   "page_type": "page",
+  "status": "publish",
   "title": "Careers - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Careers",

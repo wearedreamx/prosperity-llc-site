@@ -9,8 +9,10 @@
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/uploads/personnel/patricia-krout.jpg",
   "linkedin_url": "https://www.linkedin.com/in/patricia-krout-b43b87a/",
-  "facet_title": "",
-  "facet_specializations": [],
+  "facet_title": "partners",
+  "facet_specializations": [
+    "tax-services"
+  ],
   "date_modified": "2024-08-12T14:24:21+00:00"
 }
 ---

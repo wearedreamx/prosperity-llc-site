@@ -9,7 +9,7 @@
   "location_url": "/location/chicago/",
   "photo": "/assets/img/uploads/personnel/alexi-smith.jpg",
   "linkedin_url": "",
-  "facet_title": "",
+  "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2024-10-01T14:44:06+00:00"
 }

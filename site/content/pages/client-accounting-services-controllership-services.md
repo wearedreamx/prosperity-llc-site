@@ -3,6 +3,7 @@
   "slug": "controllership-services",
   "path": "/client-accounting-services/controllership-services/",
   "page_type": "page",
+  "status": "publish",
   "title": "Controllership Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Controllership Services",

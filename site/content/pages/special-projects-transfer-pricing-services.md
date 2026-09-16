@@ -3,6 +3,7 @@
   "slug": "transfer-pricing-services",
   "path": "/special-projects/transfer-pricing-services/",
   "page_type": "page",
+  "status": "publish",
   "title": "Transfer Pricing Services - Prosperity Partners",
   "meta_description": "",
   "banner_title": "Transfer Pricing Services",
