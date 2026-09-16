@@ -3,9 +3,9 @@
 			<div class="site-footer__columns">
 				<div class="site-footer__column">
 					<address class="contact-details">
-						Phone : <a href="tel:+13124610514">(312) 461-0514</a><br>
+						Phone : <a href="tel:{{ global.phone_tel }}">{{ global.phone }}</a><br>
 						Fax : (833) 527-9321<br>
-						Email: <a href="mailto:info@prosperityllc.com">info@prosperityllc.com</a>
+						Email: <a href="mailto:{{ global.email }}">{{ global.email }}</a>
 					</address>
 				</div>
 				<nav class="site-footer__column" aria-labelledby="footer-site-menu">
@@ -24,8 +24,8 @@
 				<nav class="site-footer__column" aria-labelledby="footer-recent-posts">
 					<h3 class="site-footer__heading" id="footer-recent-posts">Recent Posts</h3>
 					<ul class="footer-menu">
-						{% for post in recentPosts %}
-						<li><a href="/{{ post.slug }}/">{{ post.title }}</a></li>
+						{% for post in collections.recentPosts %}
+						<li><a href="{{ post.data.category_url }}{{ post.data.slug }}/">{{ post.data.title }}</a></li>
 						{% endfor %}
 					</ul>
 				</nav>
@@ -41,57 +41,22 @@
 		<div class="locations">
 			<div class="container">
 				<ul class="locations__grid">
+					{% for location in global.footer_locations %}
 					<li class="location">
-						<h3 class="location__title"><a href="/location/burlington/">Burlington</a></h3>
-						<address>41 Rye Circle<br>PO Box 2166<br>South Burlington, VT 05407<br><a href="tel:+18023830399">(802) 383-0399</a></address>
+						<h3 class="location__title"><a href="{{ location.url }}">{{ location.name }}</a>{% if location.non_attest %}*{% endif %}</h3>
+						<address>{{ location.address_html | safe }}{% if location.tel %}<br><a href="tel:{{ location.tel }}">{{ location.phone }}</a>{% endif %}</address>
 					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/chicago/">Chicago</a></h3>
-						<address>225 W Washington Street<br>Suite 2600<br>Chicago, IL 60606<br><a href="tel:+13124610514">(312) 461-0514</a></address>
-					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/detroit/">Detroit</a></h3>
-						<address>4111 Andover Road<br>West Third Floor<br>Bloomfield Hills, MI 48302<br><a href="tel:+18667171607">(866) 717-1607</a></address>
-					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/houston/">Houston</a>*</h3>
-						<address>77 Sugar Creek Center Blvd<br>Suite 410<br>Sugar Land, TX 77478<br><a href="tel:+12812422420">(281) 242-2420</a></address>
-					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/iselin/">Iselin</a></h3>
-						<address>555 US Highway 1<br>Iselin, NJ 08830</address>
-					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/kansas-city/">Kansas City</a>*</h3>
-						<address>11300 Tomahawk Creek Pkwy<br>Suite 310<br>Leawood, KS 66211<br><a href="tel:+19136479750">(913) 647-9750</a></address>
-					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/new-york-city/">New York City</a></h3>
-						<address>575 Madison Avenue<br>Floor 14<br>New York, NY 10022</address>
-					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/santa-barbara/">Santa Barbara</a></h3>
-						<address>200 E. Carrillo St<br>Suite 300<br>Santa Barbara, CA 93101<br><a href="tel:+18059629175">(805) 962-9175</a></address>
-					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/washington-dc/">Washington DC - Tax</a>*</h3>
-						<address>6000 Executive Blvd<br>Suite 520<br>Rockville, MD 20852<br><a href="tel:+13018814244">(301) 881-4244</a></address>
-					</li>
-					<li class="location">
-						<h3 class="location__title"><a href="/location/washington-dc-transaction-advisory/">Washington DC – Transaction Advisory</a>*</h3>
-						<address>1900 Gallows Road<br>Suite 200<br>Vienna, VA 22182</address>
-					</li>
+					{% endfor %}
 				</ul>
 			</div>
 		</div>
 
 		<div class="container disclaimer">
-			<p><strong>Firm Structure Disclosure</strong><br>Prosperity Partners operates through separate legal entities. <strong>NDH Advisors LLC</strong>, doing business as <strong>Prosperity Partners</strong>, provides tax, accounting, and advisory services. <strong>NDH CPA LLP</strong>, doing business as <strong>Prosperity Partners CPA</strong>, is a licensed public accounting firm that provides attest services, including audits and reviews.</p>
-			<p>Prosperity Partners is a trade name of NDH Advisors LLC. NDH Advisors LLC is a Delaware limited liability company.</p>
+			{{ global.footer_disclaimer_html | safe }}
 			<p>*Indicates location as NDH Advisors office providing non-attest services only.</p>
 		</div>
 
 		<div class="copyright">
-			<p>© {{ currentYear }} Prosperity Partners. All Rights Reserved. Designed by <a href="https://www.wearedreamx.com/" target="_blank" rel="noopener">DREAM X</a> | <a href="/sitemap/">Sitemap</a></p>
+			{{ global.footer_copyright_html | replace("©", "© " + currentYear) | safe }}
 		</div>
 	</footer>

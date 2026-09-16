@@ -1,0 +1,41 @@
+---
+pagination:
+  data: collections.locations
+  size: 1
+  alias: location
+permalink: "/location/{{ location.data.slug }}/"
+eleventyComputed:
+  title: "{{ location.data.name }} - Prosperity Partners"
+layout: base.njk
+---
+<section class="single-location-container">
+	<div class="container">
+		<div class="single-location-top">
+			<div class="single-location-address">
+				<h1 class="single-location-title">{{ location.data.name }}</h1>
+				<address>{{ location.data.address_html | safe }}</address>
+			</div>
+			<div class="single-location-content content">
+				{{ location.content | safe }}
+			</div>
+		</div>
+		<div class="team-container">
+			{% for person in collections.personnel %}
+				{% if person.data.location_name == location.data.name %}
+				<article class="team-member">
+					<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
+						<figure class="team-member-figure">
+							{% if person.data.photo %}<img width="550" height="500" src="{{ person.data.photo }}" alt="" class="team-member-img">{% endif %}
+						</figure>
+						<div class="team-member-content">
+							<h3 class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="team-member-certs">{{ person.data.certifications }}</span>{% endif %}</h3>
+							<h5 class="team-member-title">{{ person.data.job_title }}</h5>
+							<p class="team-member-location">{{ person.data.location_name }}</p>
+						</div>
+					</a>
+				</article>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</section>

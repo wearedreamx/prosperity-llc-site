@@ -4,11 +4,13 @@
   "version": "0.0.0",
   "description": "Prosperity Partners static site (Eleventy)",
   "scripts": {
-    "build": "eleventy",
-    "start": "eleventy --serve",
+    "clean": "rm -rf _site",
+    "build": "npm run clean && eleventy",
+    "start": "npm run clean && (sleep 1.5 && ./tools/open-chrome-tab.sh &) ; eleventy --serve",
     "debug": "DEBUG=Eleventy* eleventy"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "pagefind": "^1.3.0"
   }
 }

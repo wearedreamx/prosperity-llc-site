@@ -18,19 +18,28 @@ prosperity-llc-site/
 │   ├── y7c9a5a_db142477_ndh.sql   70 MB phpMyAdmin dump, all content lives here
 │   ├── wp-content/themes/ndhcpawp/  active theme (design reference)
 │   └── wp-content/uploads/          4.0 GB media
-├── data/              ← extracted content, checked in, consumed by Eleventy's _data layer
-│   ├── pages.json, personnel.json, locations.json, posts.json, global.json
+├── data/              ← site-wide (not per-record) data + media-recovery bookkeeping
+│   ├── global.json      footer locations/disclaimer/copyright, site name/tagline — the one
+│   │                     "singleton" data file; consumed via site/_data/global.js
 │   ├── media-manifest.json   every /wp-content/uploads/ path referenced anywhere
 │   └── missing-media.md      human-readable summary of what's missing — see §9.1
-├── site/              ← the new static site (the deliverable), now an Eleventy source dir
-│   ├── *.njk           top-level templates (index, page, personnel, location, post, ...)
+├── site/              ← the new static site (the deliverable), an Eleventy source dir
+│   ├── index.njk        homepage (stays at the root — relies on Eleventy's implicit path→URL convention)
+│   ├── pages/            everything else with an explicit permalink (page, personnel, location, post, culture, whats-new, meet-the-team)
+│   ├── content/          ← one Markdown+JSON-frontmatter file per content record — see §6a
+│   │   ├── personnel/<slug>.md     198 files — Decap-CMS-ready
+│   │   ├── posts/<slug>.md         104 files — Decap-CMS-ready
+│   │   ├── locations/<slug>.md      11 files — Decap-CMS-ready
+│   │   └── pages/<file-stem>.md     43 files — NOT Decap-ready (see §6a), developer-edited for now
 │   ├── _includes/       shared layout + components (base, header, footer, content-blocks, cta, contact-form)
-│   ├── _data/           thin JS wrappers that expose data/*.json to templates
-│   └── assets/{css,js,img,video}
+│   ├── _data/           global.js only — everything else is now an Eleventy collection, see §6a
+│   └── assets/{css,js,img,video,icons}
+│       └── img/uploads/<type>/<slug>[-<n>].<ext>   where real media lands once sourced — see §9.1
 ├── tools/
 │   ├── wpdump.py       ← streaming SQL-dump parser (see §14) — PRIMARY extraction path when www/ is present
-│   └── extract.py      ← fallback extraction from a live-site crawl, for machines without www/ — see §9.1
-├── eleventy.config.js  ← Eleventy config: passthrough copy, date filters, injectContactForm
+│   └── extract.py      ← fallback extraction from a live-site crawl, for machines without www/ — see §9.1;
+│                          one-shot bulk import, not the ongoing content-editing path (that's Decap, once wired)
+├── eleventy.config.js  ← Eleventy config: passthrough copy, date filters, injectContactForm, collections
 ├── package.json        ← npm start (dev server), npm run build
 └── .claude/launch.json  preview server config (npm start, port 8080)
 ```
@@ -40,8 +49,9 @@ deployed and never modified. `tools/wpdump.py` + `www/` is the primary, authorit
 extraction path — use it whenever `www/` is available on your machine. `tools/extract.py`
 is a fallback for machines that only have a crawl of the live site (no SQL export);
 it cannot see draft/private content or raw ACF field data, only what the live site
-renders publicly. Both write to the same `data/*.json` files, so the rest of the
-build (Eleventy templates) doesn't care which one produced them.
+renders publicly. Both are meant to run once to populate `site/content/*.md` — ongoing
+content edits after that go through Decap CMS (once wired, §9 Phase I) or by hand, not
+by re-running the extractor over already-edited files.
 
 ### ⚠️ Restoring `www/`
 
@@ -320,6 +330,60 @@ and the team-filter block in `assets/js/g.min.js`.
 
 ---
 
+## 6a. Content model on the new site — `site/content/`
+
+The above describes the *original WordPress* data model — kept for reference since
+it explains where each field came from. The new site does not mirror that structure
+directly; content lives as one Markdown file per record under
+`site/content/<type>/<slug>.md`, each with JSON frontmatter (`---json` delimiter,
+parsed by gray-matter — already a transitive Eleventy dependency, no new package)
+plus a body (rendered HTML, used for the record's main prose):
+
+| Folder | Files | Frontmatter fields | Body |
+|---|---|---|---|
+| `personnel/` | 198 | `slug`, `name`, `certifications`, `job_title`, `location_name`, `location_url`, `photo`, `linkedin_url`, `facet_title`, `facet_specializations`, `date_modified` | bio HTML |
+| `posts/` | 104 | `slug`, `title`, `published`, `date_modified`, `category_name`, `category_url`, `images[]` | post HTML |
+| `locations/` | 11 | `slug`, `name`, `address_html`, `date_modified` | description HTML |
+| `pages/` | 43 | `slug`, `path`, `page_type`, `title`, `meta_description`, `banner_title`, `banner_description_html`, `banner_image`, `date_modified`, `blocks[]` | *(empty — everything lives in `blocks[]`)* |
+
+Each folder has a `<type>.11tydata.js` directory-data file (`tags`, `permalink: false`,
+`templateEngineOverride: false`) so Eleventy auto-populates `collections.personnel`,
+`collections.posts`, `collections.locations`, `collections.pages` — no manual data
+loading. A few derived collections (`culturePosts`, `whatsNewPosts`, `recentPosts`,
+`genericPages` — filtered/sorted views over the base collections) are defined in
+`eleventy.config.js`. Templates access frontmatter via `.data.<field>` and body HTML
+via `.content` (both standard Eleventy collection-item properties).
+
+`date_modified` comes from Yoast's `article:modified_time` meta tag where present,
+falling back to the JSON-LD block's `dateModified` or `datePublished` (covers 356 of
+380 crawled pages — the rest have no date signal anywhere in the crawl). Not
+currently rendered anywhere, but available for a future "last updated" UI or a
+staleness-flagging script once editors are making ongoing changes through Decap.
+
+**Personnel, posts, and locations are Decap-CMS-ready as-is** — a `folder` collection
+per type, `format: json`, standard widgets (string/text/image/markdown) map cleanly
+onto their flat frontmatter. **Pages are not.** A page's `blocks[]` is an array of
+arbitrary per-layout HTML (see §6's `content_block_columns` discussion) — none of
+Decap's standard widgets can edit that structure; only its raw object/code widget
+could, which isn't a real editorial experience. Pages stay developer-edited until a
+custom Decap widget for content-block editing exists — that's separate, larger scope
+(§9 Phase I), not something solved by moving pages into individual files.
+
+Images are remapped from WordPress's flat, date-bucketed
+`wp-content/uploads/YYYY/MM/name.ext` scheme to
+`site/assets/img/uploads/<type>/<slug>[-<n>].<ext>` — grouped by the record that owns
+them (multi-image posts get `-1`, `-2`, etc., in original order). This is where real
+media lands once sourced (§9.1); re-encoding to WebP (§8) just adds a sibling file at
+the same basename, no further remapping needed.
+
+`tools/extract.py` produces this structure from a live-site crawl (fallback path,
+§9.1); `tools/wpdump.py` + `www/` remains the primary path when available, though it
+does not yet itself write `site/content/*.md` — see §14. Either way, extraction is a
+one-shot bulk import; it is not meant to be re-run against already-edited content —
+ongoing edits go through Decap (once wired) or by hand.
+
+---
+
 ## 7. Design system
 
 Extracted from the theme's compiled CSS — these are exact values, not eyeballed.
@@ -349,23 +413,27 @@ Card shadow: `0 12px 32px rgba(2,81,138,.2), 0 3px 6px rgba(2,81,138,.1)`.
 ## 8. What's built
 
 `site/` is now an Eleventy source directory (Nunjucks templates + `_includes` +
-`_data`), not static HTML. Content comes from `data/*.json`, produced by either
-`tools/wpdump.py` (primary, needs `www/`) or `tools/extract.py` (fallback, needs
-only a live-site crawl — see §9.1).
+`_data` + `content`), not static HTML. Content comes from `site/content/*/*.md`
+(§6a), produced by either `tools/wpdump.py` (primary, needs `www/`) or
+`tools/extract.py` (fallback, needs only a live-site crawl — see §9.1). Site-wide
+data (footer locations, disclaimer, copyright) comes from `data/global.json` via
+`site/_data/global.js` — the one "singleton" data file left; everything else is a
+native Eleventy collection.
 
 | File/dir | Contents |
 |---|---|
 | `site/_includes/base.njk` | Shared `<head>`, doctype, header/footer wrapper |
-| `site/_includes/header.njk`, `footer.njk` | Nav, footer columns, locations, disclaimer, copyright (dynamic year) |
+| `site/_includes/header.njk`, `footer.njk` | Nav, footer columns/locations/disclaimer/copyright — all pulled from `global` data, not hardcoded (dynamic year too) |
 | `site/_includes/content-blocks.njk` | Generic ACF-layout renderer — walks a page's `blocks[]` and renders each by `layout` (`one`/`two`/`sidebar`/`tiles`/`carousel`/etc., see §6) |
 | `site/_includes/cta.njk`, `contact-form.njk` | Shared CTA section + the contact-form component itself, parameterized by `formVariant` (`standard` 5-field vs `contact` — adds the referral-source radio, see §10) |
 | `site/index.njk` | Homepage — hero, intro, values, achievements, Culture/What's New (hand-picked, pre-optimized images under `assets/img/posts/` — see §9.1 for why this isn't data-driven), CTA |
-| `site/page.njk` | Generic + services + portal pages, paginated over `data/pages.json` |
-| `site/personnel.njk`, `location.njk`, `post.njk` | One page per personnel/location/post record |
-| `site/culture.njk`, `whats-new.njk`, `meet-the-team.njk` | Archive/directory listing pages |
-| `eleventy.config.js` | Passthrough copy, `longDate`/`isoDate` filters, `injectContactForm` (swaps a Gravity-Forms-widget marker for the real component) |
+| `site/pages/page.njk` | Generic + services + portal pages, paginated over `collections.genericPages` |
+| `site/pages/personnel.njk`, `location.njk`, `post.njk` | One page per personnel/location/post record, paginated over `collections.personnel`/`locations`/`posts` |
+| `site/pages/culture.njk`, `whats-new.njk`, `meet-the-team.njk` | Archive/directory listing pages, over `collections.culturePosts`/`whatsNewPosts`/`personnel` |
+| `eleventy.config.js` | Passthrough copy, `longDate`/`isoDate` filters, `injectContactForm` (swaps a Gravity-Forms-widget marker for the real component), the derived collections listed in §6a |
 | `assets/css/style.css` | Palette + homepage styles (original, verified) plus a second pass added for page-banner/content-block/personnel/location/team-grid — **not yet verified, see §9.2** |
 | `assets/js/main.js` | Drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback, contact-form "Other" field toggle |
+| `assets/icons/` | Favicons/manifest/browserconfig — source tidied into one folder, passthrough-copied back to the served root so no URL changed |
 
 Media processing applied to the homepage's hand-picked images only (repeat for
 everything else once real media is sourced, see §9.1):
@@ -377,8 +445,8 @@ everything else once real media is sourced, see §9.1):
 ### Stubs left in place
 
 - Contact form posts to `/api/contact`; Turnstile div has `data-sitekey="TURNSTILE_SITE_KEY"`
-- Search submits to `/search/?q=` — wire to Pagefind
-- Post/page permalinks are `/<slug>/` at root (matches the live site's actual permalinks — confirmed via crawl, no `/blog/` prefix; see open decision §11.9)
+- Search submits to `/search/?q=` — wire to Pagefind (package added to `package.json`, build step + UI not yet wired)
+- Page permalinks are `/<slug>/` at root, matching the live site's actual permalinks (confirmed via crawl). Post permalinks are `/culture/<slug>/` / `/whats-new/<slug>/` — moved off the flat root to sit under their existing category pages; still needs the 104 redirect rules from the old flat URLs (§9 Phase H, open decision §11.9)
 - accessiBe widget omitted pending a decision
 
 ---
@@ -398,7 +466,7 @@ including the plan review.
 | F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | outstanding | 100–200k | |
 | G | Forms: 1 component + 1 Worker (see §10) | component done (2 variants, standard + contact); Worker outstanding | 50–70k | all 9 forms |
 | H | Pagefind + 65 redirects + sitemap | outstanding | 40–60k | SEO continuity |
-| I | Decap CMS + OAuth Worker + Cloudflare Pages setup | outstanding | 80–120k | editors + deploy |
+| I | Decap CMS + OAuth Worker + Cloudflare Pages setup | content model ready for personnel/posts/locations (§6a); pages need a custom block-editing widget first; Decap config/OAuth Worker itself outstanding | 80–120k | editors + deploy |
 | | **Total** | | **700k – 1.05M** | ≈ 6–10 sessions |
 
 Dependencies: A → B → C → {D, E} → F. G, H, I are independent and can run anytime
@@ -428,7 +496,7 @@ missing-forever asset problem.
 backup/whoever ran the migration (§1), or (2) re-crawl the live site for the
 binary files at the same paths (the crawl only captured rendered HTML+text, not
 images). Either way, until the real files land, every non-homepage `<img>` tag
-sourced from `data/*.json` will 404.
+sourced from `site/content/*/*.md` will 404.
 
 The homepage is unaffected — its images are hand-picked, already re-encoded,
 and committed under `site/assets/img/`, independent of this gap.
@@ -442,7 +510,7 @@ captured per-page in the live-site crawl, not from a single authoritative
 stylesheet. Coverage is uneven: some pages look right, some are close but off
 on spacing/color, and some layouts (bespoke ones especially, see Phase D above)
 haven't been checked against the live site at all. **Treat everything under
-`site/page.njk`, `personnel.njk`, `location.njk`, `culture.njk`, `whats-new.njk`,
+`site/pages/page.njk`, `personnel.njk`, `location.njk`, `culture.njk`, `whats-new.njk`,
 and `meet-the-team.njk` as scaffolding, not verified output** — a page-by-page
 visual QA pass (Phase F) against the live site is still required before any of
 this ships.
@@ -503,9 +571,13 @@ changing credentials.
    links "Home" → `/homepage-main/`.
 8. **Stale footer data.** An old text widget references a **Philadelphia** office
    that no longer appears in `footer_locations`. Confirm it's closed.
-9. **Post URL structure.** `/blog/<slug>/` (plan) vs `/<slug>/` (current live). The
-   latter preserves existing SEO with no redirects; the former is tidier. Decide
-   before phase E — it determines 104 redirect rules.
+9. ~~**Post URL structure.**~~ **Decided:** posts moved from flat `/<slug>/` to
+   `/culture/<slug>/` and `/whats-new/<slug>/` — organizes 104 posts under their
+   existing category landing pages (`/culture/`, `/whats-new/` already exist, no
+   404 risk) without inventing a third `/blog/` concept the nav/menus don't have.
+   Still needs 104 redirect rules from the old flat URLs (`_redirects`, §9 Phase H)
+   since those were the live site's actual URLs — see the "Post/page permalinks"
+   line in §8's stub list.
 
 ---
 

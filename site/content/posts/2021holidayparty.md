@@ -1,0 +1,47 @@
+---json
+{
+  "slug": "2021holidayparty",
+  "title": "2021 Holiday Party",
+  "published": "2021-12-15T21:25:46+00:00",
+  "date_modified": "2024-08-05T20:29:15+00:00",
+  "category_name": "Culture",
+  "category_url": "/culture/",
+  "images": [
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%202048%201536'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-2.jpeg",
+    "/assets/img/uploads/posts/2021holidayparty-3.jpeg",
+    "/assets/img/uploads/posts/2021holidayparty-4.jpeg",
+    "/assets/img/uploads/posts/2021holidayparty-5.jpeg",
+    "/assets/img/uploads/posts/2021holidayparty-6.jpeg",
+    "/assets/img/uploads/posts/2021holidayparty-7.jpeg",
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20695%20540'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-9.png",
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20693%20533'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-11.png",
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20695%20536'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-13.png",
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20688%20539'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-15.png",
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201798%201779'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-17.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-18.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-19.jpg",
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%201798'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-21.jpg",
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%201843'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-23.jpg",
+    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%202048%201152'%3E%3C/svg%3E",
+    "/assets/img/uploads/posts/2021holidayparty-25.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-26.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-27.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-28.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-29.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-30.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-31.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-32.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-33.jpg",
+    "/assets/img/uploads/posts/2021holidayparty-34.jpg"
+  ]
+}
+---
+<p>The NDH team ended the year on this high note: being able to come together and celebrate the holidays! Our year end holiday party included amazing city views from the VU Rooftop, our NDH awards, a white elephant gift exchange, cookie decorating and an ugly sweater competition! Oh and a round of stab Frosty’s balls, which Adam lost resulting in him performing our billing themed rap!</p>

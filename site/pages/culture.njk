@@ -1,0 +1,42 @@
+---
+pagination:
+  data: collections.culturePosts
+  size: 9
+  alias: pagePosts
+permalink: "{{ '/culture/' if pagination.pageNumber == 0 else '/culture/page/' + (pagination.pageNumber + 1) + '/' }}"
+title: "Culture - Prosperity Partners"
+layout: base.njk
+---
+<section class="page-banner">
+	<div class="page-banner-content">
+		<div class="page-banner-container container">
+			<h2 class="page-banner-title">Culture</h2>
+		</div>
+	</div>
+</section>
+<section class="posts">
+	<div class="container">
+		<div class="posts__grid">
+			{% for post in pagePosts %}
+			<article class="card">
+				<a class="card__link" href="{{ post.data.category_url }}{{ post.data.slug }}/">
+					{% if post.data.images.length %}
+					<figure class="card__figure">
+						<img src="{{ post.data.images[0] }}" alt="{{ post.data.title }}" loading="lazy">
+					</figure>
+					{% endif %}
+					<div class="card__body">
+						{% if post.data.published %}<time class="card__date" datetime="{{ post.data.published | isoDate }}">{{ post.data.published | longDate }}</time>{% endif %}
+						<h3 class="card__title">{{ post.data.title }}</h3>
+						<p class="card__excerpt"><span class="card__more">Read More</span></p>
+					</div>
+				</a>
+			</article>
+			{% endfor %}
+		</div>
+		<nav class="pagination" aria-label="Culture pagination">
+			{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">&larr; Newer</a>{% endif %}
+			{% if pagination.href.next %}<a href="{{ pagination.href.next }}">Older &rarr;</a>{% endif %}
+		</nav>
+	</div>
+</section>

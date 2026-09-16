@@ -1,8 +1,8 @@
 """
 Fallback content extraction: turn reconstructed-site/site-crawl-prosperity.json
 (a live-site crawl: path, title, metaDesc, headings, images, bodyText, rendered
-html, visual, keyboardA11y, links per page) into structured per-content-type
-data files.
+html, visual, keyboardA11y, links per page) into one Markdown-with-frontmatter
+file per content record, under site/content/<type>/<slug>.md.
 
 This is a fallback for machines without the WordPress export (see "Restoring
 www/" in README.md §1) — tools/wpdump.py + the SQL dump remains the primary,
@@ -13,7 +13,45 @@ from the original plan is recoverable from class names even without postmeta,
 but this path cannot see draft/private pages or raw ACF field data — only what
 the live site actually renders publicly.
 
-Output: data/personnel.json, data/locations.json, data/posts.json, data/pages.json,
+Output shape is one file per record (site/content/personnel/<slug>.md,
+posts/<slug>.md, locations/<slug>.md, pages/<slug>.md) rather than one big
+JSON array per type — this is what makes personnel/posts/locations
+Decap-CMS-editable later (Decap points a collection at a folder glob, one file
+per entry; it has no way to patch one record inside a shared array).
+`site/content/` (not a repo-root content/) so Eleventy only needs one `dir.input`
+root and discovers these as native collections with zero extra config.
+
+**Pages are the exception.** A page's `blocks[]` is an array of arbitrary
+per-layout HTML (see README §6) — Decap's standard widgets (text/image/markdown)
+can't edit that structure; only its raw code/object widget could, which isn't a
+real editorial experience. Converting pages to individual files here still
+helps (smaller diffs, one file per URL instead of one 848KB array), but treat
+`content/pages/*.md` as developer-edited, not CMS-ready, until a custom Decap
+widget for content-block editing exists — that's separate, larger scope (see
+README §9 Phase I), not something this conversion solves by itself.
+
+Frontmatter is JSON (gray-matter's `---json` engine, already a transitive
+Eleventy dependency — no new package), not YAML, because body HTML routinely
+contains characters (colons, quotes, curly braces) that are painful to
+hand-escape into YAML but trivial to serialize correctly with json.dumps.
+Decap CMS also supports `format: json` per collection, so this doesn't block
+CMS wiring later.
+
+Global site-wide options (footer locations, disclaimer, site name — not a
+per-record collection, there's exactly one of these) still go to
+data/global.json, consumed via site/_data/global.js. The old flat
+data/personnel.json, posts.json, locations.json, pages.json are retired by
+this rewrite.
+
+Image paths are remapped from WordPress's flat wp-content/uploads/YYYY/MM/
+scheme to site/assets/img/uploads/<type>/<slug>[-<n>].<ext> — grouped by the
+content record that owns them, so real media (once sourced, see
+data/missing-media.md) has an obvious home instead of thousands of files in
+one flat folder. Re-encoding to WebP (README §8) just adds a sibling file at
+the same basename with a different extension — this scheme already supports
+that, no further remapping needed at that stage.
+
+Output: site/content/personnel/*.md, posts/*.md, locations/*.md, pages/*.md,
 data/global.json, data/media-manifest.json
 """
 import json
@@ -23,9 +61,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CRAWL_PATH = ROOT / "reconstructed-site" / "site-crawl-prosperity.json"
+CONTENT_DIR = ROOT / "site" / "content"
 DATA_DIR = ROOT / "data"
 
 SITE_ORIGIN = "https://www.prosperityllc.com"
+UPLOADS_PREFIX = "/wp-content/uploads/"
+NEW_UPLOADS_ROOT = "/assets/img/uploads"
 
 
 def load_pages():
@@ -63,6 +104,44 @@ def rel_url(url):
 
 def rewrite_upload_urls(html):
     return html.replace(SITE_ORIGIN, "")
+
+
+MODIFIED_TIME_RE = re.compile(r'property="article:modified_time" content="([^"]+)"')
+JSONLD_MODIFIED_RE = re.compile(r'"dateModified":"([^"]+)"')
+JSONLD_PUBLISHED_RE = re.compile(r'"datePublished":"([^"]+)"')
+
+
+def extract_modified(html):
+    """WordPress/Yoast stamps article:modified_time on most content (253 of
+    380 crawled pages), but not all — personnel/location pages sometimes
+    only carry the Yoast JSON-LD block instead, which has dateModified
+    and/or datePublished. Falling back through both covers 356 of 380 pages;
+    the remaining 24 have no date signal anywhere in the crawl, so
+    date_modified is left empty for those rather than guessed. This is the
+    one reliable "last updated" signal available, so every record gets it —
+    lets a future CMS-editing workflow (or a human skimming the repo) tell
+    what's stale without diffing HTML by eye."""
+    m = MODIFIED_TIME_RE.search(html)
+    if m:
+        return m.group(1)
+    m = JSONLD_MODIFIED_RE.search(html)
+    if m:
+        return m.group(1)
+    m = JSONLD_PUBLISHED_RE.search(html)
+    return m.group(1) if m else ""
+
+
+def remap_upload_path(path, record_type, slug, index=None):
+    """Rewrite a /wp-content/uploads/YYYY/MM/name.ext path (WordPress's flat,
+    date-bucketed scheme) to /assets/img/uploads/<type>/<slug>[-<n>].<ext> —
+    grouped by the record that owns it. Non-uploads paths (data: URIs, other
+    absolute URLs) pass through unchanged."""
+    if not path or UPLOADS_PREFIX not in path:
+        return path
+    ext = path.rsplit(".", 1)[-1].lower() if "." in path.rsplit("/", 1)[-1] else "jpg"
+    if index is None:
+        return f"{NEW_UPLOADS_ROOT}/{record_type}/{slug}.{ext}"
+    return f"{NEW_UPLOADS_ROOT}/{record_type}/{slug}-{index}.{ext}"
 
 
 GFORM_WRAPPER_RE = re.compile(
@@ -113,6 +192,12 @@ def classify(path, html):
     return "other"
 
 
+def write_markdown(path, frontmatter, body=""):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fm_json = json.dumps(frontmatter, indent=2, ensure_ascii=False)
+    path.write_text(f"---json\n{fm_json}\n---\n{body}\n")
+
+
 # ---------------------------------------------------------------------------
 # Personnel
 # ---------------------------------------------------------------------------
@@ -155,7 +240,8 @@ def extract_personnel(path, p):
     figure_m = re.search(r'<figure class="single-post-figure">.*?</figure>', section, re.S)
     figure_html = figure_m.group(0) if figure_m else ""
     photo_m = re.search(r'src="([^"]+\.(?:jpe?g|png))"', figure_html)
-    photo_url = rel_url(photo_m.group(1)) if photo_m else ""
+    photo_orig = rel_url(photo_m.group(1)) if photo_m else ""
+    photo = remap_upload_path(photo_orig, "personnel", slug)
 
     linkedin_m = re.search(
         r'<p><a href="(https://www\.linkedin\.com/[^"]+)"[^>]*><img[^>]*linkedin', section, re.I
@@ -180,19 +266,20 @@ def extract_personnel(path, p):
     facet_title = facets_m.group(1).strip() if facets_m else ""
     facet_specs = facets_m.group(3).split() if facets_m else []
 
-    return {
+    frontmatter = {
         "slug": slug,
         "name": name,
         "certifications": certs,
         "job_title": title,
         "location_name": location_name,
         "location_url": location_url,
-        "photo_url": photo_url,
+        "photo": photo,
         "linkedin_url": linkedin_url,
         "facet_title": facet_title,
         "facet_specializations": facet_specs,
-        "body_html": rewrite_upload_urls(body_html),
+        "date_modified": extract_modified(html),
     }
+    return slug, frontmatter, rewrite_upload_urls(body_html)
 
 
 # ---------------------------------------------------------------------------
@@ -220,12 +307,13 @@ def extract_location(path, p):
     )
     description_html = desc_m.group(1).strip() if desc_m else ""
 
-    return {
+    frontmatter = {
         "slug": slug,
         "name": name,
         "address_html": address_html,
-        "description_html": description_html,
+        "date_modified": extract_modified(html),
     }
+    return slug, frontmatter, description_html
 
 
 # ---------------------------------------------------------------------------
@@ -281,15 +369,21 @@ def extract_post(path, p):
             seen.add(url)
             images.append(url)
 
-    return {
+    remapped_images = [
+        remap_upload_path(img, "posts", slug, index=i)
+        for i, img in enumerate(images, start=1)
+    ]
+
+    frontmatter = {
         "slug": slug,
         "title": title,
         "published": published,
+        "date_modified": extract_modified(html),
         "category_name": category_name,
         "category_url": category_url,
-        "body_html": rewrite_upload_urls(body_html),
-        "images": [rewrite_upload_urls(i) for i in images],
+        "images": remapped_images,
     }
+    return slug, frontmatter, rewrite_upload_urls(body_html)
 
 
 # ---------------------------------------------------------------------------
@@ -317,6 +411,14 @@ def top_level_sections(body_html):
 def extract_page(path, p, page_type):
     html = p["html"]
     slug = path.strip("/").split("/")[-1] or "home"
+    # Two pages can share a trailing slug at different paths — e.g.
+    # /tax-services/transaction-advisory-services/ vs
+    # /transaction-advisory-services/ (a real, documented duplicate-content
+    # issue, see README §11 open decisions, not something this script should
+    # silently resolve by dropping one). The filename must be derived from the
+    # full path, not just the trailing segment, or the second write clobbers
+    # the first.
+    file_stem = path.strip("/").replace("/", "-") or "home"
     body = strip_style_blocks(main_html(html))
     sections = top_level_sections(body)
 
@@ -346,7 +448,8 @@ def extract_page(path, p, page_type):
                 banner_desc_html = d_m.group(1).strip()
             img_m = re.search(r'<figure class="page-banner-figure">.*?src="([^"]+)"', sec, re.S)
             if img_m:
-                banner_image = rewrite_upload_urls(rel_url(img_m.group(1)))
+                banner_image_orig = rel_url(img_m.group(1))
+                banner_image = remap_upload_path(banner_image_orig, "pages", file_stem)
             continue
 
         if "content-block" in cls and "content-block-testimonials" not in cls:
@@ -366,12 +469,18 @@ def extract_page(path, p, page_type):
         # Anything else (services-grid, testimonials carousel, tiles, team grid,
         # portal login form, etc.) is kept as an opaque block tagged by its class,
         # since decomposing every bespoke template is Phase C/D work, not extraction.
+        block_layout = "raw:" + (cls.split()[0] if cls else "section")
+        # raw:cta is rendered entirely by site/_includes/cta.njk (never reads
+        # this block's html) — it's just a marker. Storing its HTML would only
+        # bloat the file with dead Gravity Forms markup/JS (~14KB per page,
+        # WordPress-only, no backend in the new site — see README §10).
+        block_html = "" if block_layout == "raw:cta" else rewrite_upload_urls(sec.strip())
         blocks.append({
-            "layout": "raw:" + (cls.split()[0] if cls else "section"),
-            "html": rewrite_upload_urls(sec.strip()),
+            "layout": block_layout,
+            "html": block_html,
         })
 
-    return {
+    frontmatter = {
         "slug": slug,
         "path": path,
         "page_type": page_type,
@@ -380,12 +489,18 @@ def extract_page(path, p, page_type):
         "banner_title": banner_title,
         "banner_description_html": rewrite_upload_urls(banner_desc_html),
         "banner_image": banner_image,
+        "date_modified": extract_modified(html),
         "blocks": blocks,
     }
+    return file_stem, frontmatter, ""
 
 
 # ---------------------------------------------------------------------------
-# Global (footer/nav/site identity) — pulled once from the homepage
+# Global (footer/nav/site identity) — pulled once from the homepage.
+# Stays a single JSON file (not a per-record collection): there's exactly one
+# of these, so Decap would model it as a "file" collection, not a "folder"
+# collection — data/global.json + site/_data/global.js is the right shape
+# either way.
 # ---------------------------------------------------------------------------
 
 def extract_global(home_page):
@@ -397,20 +512,50 @@ def extract_global(home_page):
     tagline_m = re.search(r'"description":"([^"]+)","potentialAction"', html)
     tagline = unescape(tagline_m.group(1)) if tagline_m else ""
 
+    # Offices marked "*Indicates location as NDH Advisors office providing
+    # non-attest services only" in the footer disclaimer — stable business
+    # fact (which entity holds the license), not something a re-crawl updates.
+    NON_ATTEST_URLS = {
+        "/location/houston/",
+        "/location/kansas-city/",
+        "/location/washington-dc/",
+        "/location/washington-dc-transaction-advisory/",
+    }
+
     locations = []
     for loc_m in re.finditer(
         r'<div class="footer-location"><h3 class="footer-location-title"><a href="([^"]+)"[^>]*>(.*?)</a></h3>'
         r'<address class="footer-location-address">(.*?)</address></div>',
         html, re.S,
     ):
+        url = rel_url(loc_m.group(1))
+        address_html = loc_m.group(3).strip()
+        # The trailing <br>-separated line is a phone number on most offices
+        # (Iselin, New York City have none) — split it out as its own `tel`
+        # (digits, for the href) and `phone` (display text) pair so the
+        # template can render it as a proper tel: link, matching the original
+        # hand-authored footer's structure (street/suite/city lines as plain
+        # text, phone as the address's last, linked line).
+        phone_m = re.search(r'<br>\s*(\(?\d{3}\)?[\s-]?\d{3}[\s-]\d{4})\s*$', address_html)
+        if phone_m:
+            phone_display = phone_m.group(1)
+            digits = re.sub(r"\D", "", phone_display)
+            tel = f"+1{digits}"
+            address_html = address_html[:phone_m.start()]
+        else:
+            phone_display = ""
+            tel = ""
         locations.append({
-            "url": rel_url(loc_m.group(1)),
+            "url": url,
             "name": unescape(loc_m.group(2)).strip(),
-            "address_html": loc_m.group(3).strip(),
+            "address_html": address_html,
+            "phone": phone_display,
+            "tel": tel,
+            "non_attest": url in NON_ATTEST_URLS,
         })
 
     disclaimer_m = re.search(
-        r'<div class="footer-disclaimer-content"><p>(.*?)</div>', html, re.S
+        r'<div class="footer-disclaimer-content">(.*?)</div>', html, re.S
     )
     disclaimer_html = disclaimer_m.group(1).strip() if disclaimer_m else ""
 
@@ -418,8 +563,21 @@ def extract_global(home_page):
         r'<div class="footer-copyright-content">(.*?)</div>', html, re.S
     )
     copyright_html = copyright_m.group(1).strip() if copyright_m else ""
+    # The live site's footer credits "Active Web Group" — confirmed stale;
+    # the site's actual designer/credit is DREAM X (wearedreamx.com). Fix at
+    # extraction time so a future re-crawl doesn't silently reintroduce the
+    # wrong agency name.
+    copyright_html = copyright_html.replace(
+        '<a href="https://www.activewebgroup.com/" target="_blank" rel="noopener">Active Web Group</a>',
+        '<a href="https://www.wearedreamx.com/" target="_blank" rel="noopener">DREAM X</a>',
+    )
+    # Strip the crawl-time year so the template can inject the *current* year
+    # (currentYear global data, computed at build time) instead of baking in
+    # whatever year happened to be live when this crawl ran.
+    copyright_html = re.sub(r"©\s*\d{4}", "©", copyright_html, count=1)
 
     phone_m = re.search(r'Phone : <a href="tel:([^"]+)">([^<]+)</a>', html)
+    phone_tel = phone_m.group(1) if phone_m else ""
     phone = phone_m.group(2) if phone_m else ""
 
     email_m = re.search(r'Email: <a href="mailto:([^"]+)">', html)
@@ -429,6 +587,7 @@ def extract_global(home_page):
         "site_name": site_name,
         "tagline": tagline,
         "phone": phone,
+        "phone_tel": phone_tel,
         "email": email,
         "footer_locations": locations,
         "footer_disclaimer_html": disclaimer_html,
@@ -457,6 +616,13 @@ def collect_media(pages):
     return {path: sorted(pset) for path, pset in sorted(refs.items())}
 
 
+def clear_dir(path):
+    if not path.exists():
+        return
+    for child in path.glob("*.md"):
+        child.unlink()
+
+
 def main():
     pages = load_pages()
     by_type = {}
@@ -468,35 +634,57 @@ def main():
     for t, items in sorted(by_type.items(), key=lambda kv: -len(kv[1])):
         print(f"  {t:16s} {len(items)}")
 
-    personnel = [extract_personnel(p["path"], p) for p in by_type.get("personnel", [])]
-    locations = [extract_location(p["path"], p) for p in by_type.get("location", [])]
-    posts = [extract_post(p["path"], p) for p in by_type.get("post", [])]
+    personnel_dir = CONTENT_DIR / "personnel"
+    locations_dir = CONTENT_DIR / "locations"
+    posts_dir = CONTENT_DIR / "posts"
+    pages_dir = CONTENT_DIR / "pages"
+    for d in (personnel_dir, locations_dir, posts_dir, pages_dir):
+        clear_dir(d)
 
-    pages_out = []
+    personnel_count = 0
+    for p in by_type.get("personnel", []):
+        slug, frontmatter, body = extract_personnel(p["path"], p)
+        write_markdown(personnel_dir / f"{slug}.md", frontmatter, body)
+        personnel_count += 1
+
+    locations_count = 0
+    for p in by_type.get("location", []):
+        slug, frontmatter, body = extract_location(p["path"], p)
+        write_markdown(locations_dir / f"{slug}.md", frontmatter, body)
+        locations_count += 1
+
+    posts_count = 0
+    for p in by_type.get("post", []):
+        slug, frontmatter, body = extract_post(p["path"], p)
+        write_markdown(posts_dir / f"{slug}.md", frontmatter, body)
+        posts_count += 1
+
+    pages_count = 0
     for t in ("page", "page-services", "page-team", "page-portal"):
         for p in by_type.get(t, []):
-            pages_out.append(extract_page(p["path"], p, t))
+            file_stem, frontmatter, body = extract_page(p["path"], p, t)
+            write_markdown(pages_dir / f"{file_stem}.md", frontmatter, body)
+            pages_count += 1
     home_pages = by_type.get("home", [])
     for p in home_pages:
-        pages_out.append(extract_page(p["path"], p, "home"))
+        file_stem, frontmatter, body = extract_page(p["path"], p, "home")
+        write_markdown(pages_dir / f"{file_stem}.md", frontmatter, body)
+        pages_count += 1
 
     global_data = extract_global(home_pages[0]) if home_pages else {}
     media_manifest = collect_media(pages)
 
     DATA_DIR.mkdir(exist_ok=True)
-    (DATA_DIR / "personnel.json").write_text(json.dumps(personnel, indent=2, ensure_ascii=False))
-    (DATA_DIR / "locations.json").write_text(json.dumps(locations, indent=2, ensure_ascii=False))
-    (DATA_DIR / "posts.json").write_text(json.dumps(posts, indent=2, ensure_ascii=False))
-    (DATA_DIR / "pages.json").write_text(json.dumps(pages_out, indent=2, ensure_ascii=False))
     (DATA_DIR / "global.json").write_text(json.dumps(global_data, indent=2, ensure_ascii=False))
     (DATA_DIR / "media-manifest.json").write_text(json.dumps(media_manifest, indent=2, ensure_ascii=False))
 
     print()
-    print(f"personnel.json: {len(personnel)} records")
-    print(f"locations.json: {len(locations)} records")
-    print(f"posts.json: {len(posts)} records")
-    print(f"pages.json: {len(pages_out)} records")
-    print(f"media-manifest.json: {len(media_manifest)} distinct upload paths")
+    print(f"content/personnel/*.md: {personnel_count} files")
+    print(f"content/locations/*.md: {locations_count} files")
+    print(f"content/posts/*.md: {posts_count} files")
+    print(f"content/pages/*.md: {pages_count} files")
+    print(f"data/global.json: written")
+    print(f"data/media-manifest.json: {len(media_manifest)} distinct upload paths")
 
 
 if __name__ == "__main__":
