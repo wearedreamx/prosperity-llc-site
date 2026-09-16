@@ -3,7 +3,7 @@
 Migrating `prosperityllc.com` (WordPress, 4.5 GB export) to a static, buildable site
 with no PHP, no MySQL, and no server to patch.
 
-**Status:** homepage complete and verified. Everything else outstanding.
+**Status:** Eleventy scaffold in place — homepage, generic content-block pages, personnel/location/post templates all rendering from real content. Styling on the newly scaffolded pages is inconsistent (see §8) and media is largely broken (see §9.1) — this is scaffolding, not a finished site.
 **Last updated:** 2026-09-16
 
 ---
@@ -11,23 +11,37 @@ with no PHP, no MySQL, and no server to patch.
 ## 1. Folder layout
 
 ```
-Claudio/
+prosperity-llc-site/
 ├── README.md          ← this file
 ├── .gitignore
 ├── www/               ← WordPress export, PRUNED to 1.3 GB — NOT IN GIT, see below
 │   ├── y7c9a5a_db142477_ndh.sql   70 MB phpMyAdmin dump, all content lives here
 │   ├── wp-content/themes/ndhcpawp/  active theme (design reference)
 │   └── wp-content/uploads/          4.0 GB media
-├── site/              ← the new static site (the deliverable)
-│   ├── index.html
+├── data/              ← extracted content, checked in, consumed by Eleventy's _data layer
+│   ├── pages.json, personnel.json, locations.json, posts.json, global.json
+│   ├── media-manifest.json   every /wp-content/uploads/ path referenced anywhere
+│   └── missing-media.md      human-readable summary of what's missing — see §9.1
+├── site/              ← the new static site (the deliverable), now an Eleventy source dir
+│   ├── *.njk           top-level templates (index, page, personnel, location, post, ...)
+│   ├── _includes/       shared layout + components (base, header, footer, content-blocks, cta, contact-form)
+│   ├── _data/           thin JS wrappers that expose data/*.json to templates
 │   └── assets/{css,js,img,video}
 ├── tools/
-│   └── wpdump.py      ← streaming SQL-dump parser (see §14)
-└── .claude/launch.json  preview server config
+│   ├── wpdump.py       ← streaming SQL-dump parser (see §14) — PRIMARY extraction path when www/ is present
+│   └── extract.py      ← fallback extraction from a live-site crawl, for machines without www/ — see §9.1
+├── eleventy.config.js  ← Eleventy config: passthrough copy, date filters, injectContactForm
+├── package.json        ← npm start (dev server), npm run build
+└── .claude/launch.json  preview server config (npm start, port 8080)
 ```
 
 `www/` is the source of truth for content and a reference for design. It is never
-deployed and never modified.
+deployed and never modified. `tools/wpdump.py` + `www/` is the primary, authoritative
+extraction path — use it whenever `www/` is available on your machine. `tools/extract.py`
+is a fallback for machines that only have a crawl of the live site (no SQL export);
+it cannot see draft/private content or raw ACF field data, only what the live site
+renders publicly. Both write to the same `data/*.json` files, so the rest of the
+build (Eleventy templates) doesn't care which one produced them.
 
 ### ⚠️ Restoring `www/`
 
@@ -69,19 +83,22 @@ print(dict(c))
 ```
 
 **Without `www/` you can still** run the preview server, edit `site/`, and do any
-CSS/markup work. **You cannot** extract content (phase A), check a design detail
-against the original theme, or process media — i.e. most of §9.
+CSS/markup work. **You cannot** extract content via `wpdump.py` (fall back to
+`tools/extract.py` against a live-site crawl instead, see §9.1), check a design
+detail against the original theme, or process media — i.e. most of §9.
 
 ---
 
 ## 2. Quick start
 
 ```bash
-python3 -m http.server 8788 --directory site
+npm install    # once, or whenever package.json changes
+npm start      # Eleventy dev server with live reload
 ```
 
-Then open `http://localhost:8788`. In Claude Code the `site` launch config does the
-same thing via the Browser pane.
+Then open `http://localhost:8080`. In Claude Code the `site` launch config does the
+same thing via the Browser pane. `npm run build` produces a static `_site/` (gitignored)
+for deploy.
 
 To query site content without standing up MySQL (there is no `mysql` binary on this
 machine — don't try to import the dump):
@@ -331,31 +348,37 @@ Card shadow: `0 12px 32px rgba(2,81,138,.2), 0 3px 6px rgba(2,81,138,.1)`.
 
 ## 8. What's built
 
-`site/` — plain hand-authored HTML/CSS/JS, zero build step. It drops into Eleventy
-unchanged later (`.html` passes through untouched).
+`site/` is now an Eleventy source directory (Nunjucks templates + `_includes` +
+`_data`), not static HTML. Content comes from `data/*.json`, produced by either
+`tools/wpdump.py` (primary, needs `www/`) or `tools/extract.py` (fallback, needs
+only a live-site crawl — see §9.1).
 
-| File | Contents |
+| File/dir | Contents |
 |---|---|
-| `index.html` | Full homepage: header, hero, intro + featured post, 6 values, achievements, Culture ×3, What's New ×3, CTA form, footer (10 locations, disclaimer, copyright) |
-| `assets/css/style.css` | ~620 lines, custom-property palette, responsive to 375px |
-| `assets/js/main.js` | ~130 lines, no dependencies — drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback |
-| `assets/img/`, `assets/video/` | 10 MB total, referenced files only |
+| `site/_includes/base.njk` | Shared `<head>`, doctype, header/footer wrapper |
+| `site/_includes/header.njk`, `footer.njk` | Nav, footer columns, locations, disclaimer, copyright (dynamic year) |
+| `site/_includes/content-blocks.njk` | Generic ACF-layout renderer — walks a page's `blocks[]` and renders each by `layout` (`one`/`two`/`sidebar`/`tiles`/`carousel`/etc., see §6) |
+| `site/_includes/cta.njk`, `contact-form.njk` | Shared CTA section + the contact-form component itself, parameterized by `formVariant` (`standard` 5-field vs `contact` — adds the referral-source radio, see §10) |
+| `site/index.njk` | Homepage — hero, intro, values, achievements, Culture/What's New (hand-picked, pre-optimized images under `assets/img/posts/` — see §9.1 for why this isn't data-driven), CTA |
+| `site/page.njk` | Generic + services + portal pages, paginated over `data/pages.json` |
+| `site/personnel.njk`, `location.njk`, `post.njk` | One page per personnel/location/post record |
+| `site/culture.njk`, `whats-new.njk`, `meet-the-team.njk` | Archive/directory listing pages |
+| `eleventy.config.js` | Passthrough copy, `longDate`/`isoDate` filters, `injectContactForm` (swaps a Gravity-Forms-widget marker for the real component) |
+| `assets/css/style.css` | Palette + homepage styles (original, verified) plus a second pass added for page-banner/content-block/personnel/location/team-grid — **not yet verified, see §9.2** |
+| `assets/js/main.js` | Drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback, contact-form "Other" field toggle |
 
-Media processing applied (repeat this for every other page):
+Media processing applied to the homepage's hand-picked images only (repeat for
+everything else once real media is sourced, see §9.1):
 - Hero video 19 MB → **7.9 MB** (`ffmpeg`, audio track dropped — it plays muted, 1280×720, CRF 27, `+faststart`)
 - Post thumbnails resized to 800px, WebP + JPEG fallback via `<picture>`
 - Value icons 512px → 288px PNG
 - Logos copied as-is (SVG, 8 KB)
 
-Everything on the page — hero copy, intro text, all six values, achievements
-callout, three latest posts per category, footer addresses, disclaimer — was
-extracted from the SQL dump by script. Nothing was retyped.
-
-### Homepage stubs left in place
+### Stubs left in place
 
 - Contact form posts to `/api/contact`; Turnstile div has `data-sitekey="TURNSTILE_SITE_KEY"`
 - Search submits to `/search/?q=` — wire to Pagefind
-- Post links use `/blog/<slug>/`; the old site used `/<slug>/` (redirects needed)
+- Post/page permalinks are `/<slug>/` at root (matches the live site's actual permalinks — confirmed via crawl, no `/blog/` prefix; see open decision §11.9)
 - accessiBe widget omitted pending a decision
 
 ---
@@ -365,25 +388,64 @@ extracted from the SQL dump by script. Nothing was retyped.
 Estimates are Claude token budgets, based on the homepage actually costing ~130k
 including the plan review.
 
-| # | Phase | Tokens | Unlocks |
-|---|---|---|---|
-| A | Extraction pipeline: all types → data files; media reference-scan + re-encode | 60–90k | all 378 URLs' content |
-| B | Eleventy scaffold; port `site/` chrome into Nunjucks layouts/includes | 50–70k | shared header/footer |
-| C | Generic content-block renderer (9 column layouts) | 80–120k | **38 pages at once** |
-| D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | 120–160k | 8 pages + team directory |
-| E | 4 content-type templates + archives, pagination, RSS, 404, search page | 120–160k | 333 URLs |
-| F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | 100–200k | |
-| G | Forms: 1 component + 1 Worker (see §10) | 50–70k | all 9 forms |
-| H | Pagefind + 65 redirects + sitemap | 40–60k | SEO continuity |
-| I | Decap CMS + OAuth Worker + Cloudflare Pages setup | 80–120k | editors + deploy |
-| | **Total** | **700k – 1.05M** | ≈ 6–10 sessions |
+| # | Phase | Status | Tokens | Unlocks |
+|---|---|---|---|---|
+| A | Extraction pipeline: all types → data files; media reference-scan + re-encode | ✅ content extracted; ⚠️ media re-encode blocked, see §9.1 | 60–90k | all 378 URLs' content |
+| B | Eleventy scaffold; port `site/` chrome into Nunjucks layouts/includes | ✅ done | 50–70k | shared header/footer |
+| C | Generic content-block renderer (9 column layouts) | ✅ done, ⚠️ styling unverified, see §9.2 | 80–120k | **38 pages at once** |
+| D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | partial — services/portal render via the generic renderer; sage and the 3-facet team filter still outstanding | 120–160k | 8 pages + team directory |
+| E | 4 content-type templates + archives, pagination, RSS, 404, search page | partial — personnel/location/post templates + Culture/What's New archives done; RSS, 404, search page outstanding | 120–160k | 333 URLs |
+| F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | outstanding | 100–200k | |
+| G | Forms: 1 component + 1 Worker (see §10) | component done (2 variants, standard + contact); Worker outstanding | 50–70k | all 9 forms |
+| H | Pagefind + 65 redirects + sitemap | outstanding | 40–60k | SEO continuity |
+| I | Decap CMS + OAuth Worker + Cloudflare Pages setup | outstanding | 80–120k | editors + deploy |
+| | **Total** | | **700k – 1.05M** | ≈ 6–10 sessions |
 
 Dependencies: A → B → C → {D, E} → F. G, H, I are independent and can run anytime
 after B.
 
 **Calendar time is not set by the token budget.** Realistically 2–4 weeks, gated by:
 human content sign-off across 378 URLs; Resend domain verification (DNS
-propagation); and the open decisions in §11.
+propagation); the missing-media recovery in §9.1; and the open decisions in §11.
+
+### 9.1 Missing media — blocks the rest of Phase A
+
+**823 of 823** `/wp-content/uploads/...` paths referenced across the extracted
+content (personnel photos, event photos, award/press logos, a couple of PDFs,
+office banner images — full breakdown and per-page reference list in
+`data/missing-media.md` / `data/media-manifest.json`) resolve to nothing when
+`tools/extract.py`'s fallback path was used, because that path only had a
+live-site *crawl* (HTML only, no binary assets) to work from, not the actual
+`www/wp-content/uploads/` files.
+
+**If you have `www/` on your machine**, this isn't a real gap — re-run extraction
+with `tools/wpdump.py` against the SQL dump and the real files are right there
+under `www/wp-content/uploads/`, ready for the same re-encode pipeline already
+proven on the homepage (§8). This is a per-machine availability problem, not a
+missing-forever asset problem.
+
+**If you don't have `www/`**, options are: (1) get it from the client/hosting
+backup/whoever ran the migration (§1), or (2) re-crawl the live site for the
+binary files at the same paths (the crawl only captured rendered HTML+text, not
+images). Either way, until the real files land, every non-homepage `<img>` tag
+sourced from `data/*.json` will 404.
+
+The homepage is unaffected — its images are hand-picked, already re-encoded,
+and committed under `site/assets/img/`, independent of this gap.
+
+### 9.2 Styling gaps on newly scaffolded pages — needs a full pass
+
+The CSS added for personnel/location/team-grid/content-block/services/portal
+pages (`site/assets/css/style.css`, added on top of the original
+homepage-only stylesheet) was reconstructed from inline `<style>` fragments
+captured per-page in the live-site crawl, not from a single authoritative
+stylesheet. Coverage is uneven: some pages look right, some are close but off
+on spacing/color, and some layouts (bespoke ones especially, see Phase D above)
+haven't been checked against the live site at all. **Treat everything under
+`site/page.njk`, `personnel.njk`, `location.njk`, `culture.njk`, `whats-new.njk`,
+and `meet-the-team.njk` as scaffolding, not verified output** — a page-by-page
+visual QA pass (Phase F) against the live site is still required before any of
+this ships.
 
 ---
 

@@ -1,0 +1,31 @@
+---
+pagination:
+  data: personnel
+  size: 1
+  alias: person
+permalink: "/personnel/{{ person.slug }}/"
+eleventyComputed:
+  title: "{{ person.name }} - Prosperity Partners"
+layout: base.njk
+---
+<section class="page-banner">
+	<div class="page-banner-content">
+		<div class="page-banner-container container">
+			<h2 class="page-banner-title"><a class="page-banner-title-link" href="/meet-the-team/">Meet the Team</a></h2>
+		</div>
+	</div>
+</section>
+<section class="single-post-container">
+	<div class="single-post-content-container container">
+		{% if person.photo_url %}<figure class="single-post-figure"><img width="550" height="500" src="{{ person.photo_url }}" alt="" class="single-post-image"></figure>{% endif %}
+		<div class="single-post-content">
+			<h1 class="single-personnel-name">{{ person.name }}{% if person.certifications %}<span class="single-personnel-certs">{{ person.certifications }}</span>{% endif %}</h1>
+			{% if person.job_title %}<h3 class="single-personnel-title">{{ person.job_title }}</h3>{% endif %}
+			{% if person.location_name %}<h4 class="single-personnel-location"><a href="{{ person.location_url }}" class="single-personnel-location-link">{{ person.location_name }}</a></h4>{% endif %}
+			<div class="single-personnel-content content">
+				{% if person.linkedin_url %}<p><a href="{{ person.linkedin_url }}" target="_blank" rel="noopener"><img src="/assets/img/linkedin.svg" alt="LinkedIn" width="24" height="24"></a></p>{% endif %}
+				{{ person.body_html | safe }}
+			</div>
+		</div>
+	</div>
+</section>

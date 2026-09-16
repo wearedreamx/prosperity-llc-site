@@ -1,0 +1,29 @@
+---
+pagination:
+  data: postsList
+  size: 1
+  alias: post
+permalink: "/{{ post.slug }}/"
+eleventyComputed:
+  title: "{{ post.title }} - Prosperity Partners"
+layout: base.njk
+---
+<section class="page-banner">
+	<div class="page-banner-content">
+		<div class="page-banner-container container">
+			<h2 class="page-banner-title"><a class="page-banner-title-link" href="{{ post.category_url }}">{{ post.category_name }}</a></h2>
+		</div>
+	</div>
+</section>
+<section class="single-post-container">
+	<div class="single-post-content-container container">
+		{% if post.images.length %}<figure class="single-post-figure"><img src="{{ post.images[0] }}" alt="" class="single-post-image"></figure>{% endif %}
+		<div class="single-post-content">
+			{% if post.published %}<h5 class="single-post-meta">{{ post.published | longDate }}</h5>{% endif %}
+			<h1 class="single-post-title">{{ post.title }}</h1>
+			<div class="content">
+				{{ post.body_html | safe }}
+			</div>
+		</div>
+	</div>
+</section>

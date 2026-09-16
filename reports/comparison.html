@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Top Accounting Firms in the US</title>
+<style>
+  :root {
+    --ink: #1a1f1e;
+    --muted: #667070;
+    --border: #e5e7ea;
+    --accent: #0d5f4f;
+    --accent-light: #12896f;
+    --bg: #fbfbfa;
+    --card: #ffffff;
+    --shadow: 0 1px 2px rgba(20, 30, 28, 0.04), 0 6px 20px rgba(20, 30, 28, 0.05);
+    --shadow-hover: 0 4px 10px rgba(20, 30, 28, 0.06), 0 14px 32px rgba(20, 30, 28, 0.09);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(135deg, #0d3d33 0%, #0d5f4f 55%, #12896f 100%);
+    color: #fff;
+    padding: 64px 24px 52px;
+  }
+  .hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.14);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    margin: 0 0 10px;
+  }
+  .subtitle {
+    color: rgba(255,255,255,0.82);
+    font-size: 15.5px;
+    margin: 0;
+    max-width: 620px;
+  }
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 44px 24px 100px;
+  }
+  section {
+    margin-bottom: 48px;
+  }
+  h2 {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  h2::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-light);
+    flex-shrink: 0;
+  }
+  .tier-desc {
+    color: var(--muted);
+    font-size: 14px;
+    margin: 12px 0 20px;
+  }
+  ul.firm-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  ul.firm-list li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 15px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  }
+  ul.firm-list li:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+    border-color: #d3ded9;
+  }
+  ul.firm-list a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  ul.firm-list a:hover {
+    text-decoration: underline;
+  }
+  @media (max-width: 520px) {
+    ul.firm-list { grid-template-columns: 1fr; }
+  }
+  .notes-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .notes-list li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .notes-list li:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+  .notes-list .firm-name {
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0 0 8px;
+  }
+  .notes-list .observation {
+    font-size: 14px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .notes-list li.general-note {
+    border-left-color: var(--muted);
+    background: #f7f8f7;
+  }
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  .pros-cons > div {
+    font-size: 14px;
+  }
+  .pros-cons h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 7px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .pros-cons .good h4 { color: #1f7a4d; }
+  .pros-cons .bad h4 { color: #b0341f; }
+  .pros-cons ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .pros-cons li {
+    border: none;
+    border-left: none;
+    padding: 0;
+    margin-bottom: 5px;
+    box-shadow: none;
+  }
+  .pros-cons li:hover { transform: none; box-shadow: none; }
+  @media (max-width: 560px) {
+    .pros-cons { grid-template-columns: 1fr; }
+  }
+  .blend-pick {
+    border: 1px solid #dcb94a;
+    border-left: 3px solid #c9a227;
+    background: linear-gradient(180deg, #fdf9ee 0%, #fefcf5 100%);
+  }
+  .blend-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #d6b13a, #c9a227);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .jump-btn {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 4px 12px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .jump-btn:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+  .current-state {
+    border: 1px solid #a9c3d8;
+    border-left: 3px solid #1a4a6e;
+    background: linear-gradient(180deg, #f2f7fb 0%, #f8fbfd 100%);
+  }
+  .current-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #235d87, #1a4a6e);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .audit-link-box {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    font-size: 13px;
+  }
+  .audit-link-box a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .audit-link-box a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<script>
+  if (sessionStorage.getItem('pwOK') !== 'yes') document.body.classList.add('pw-locked');
+</script>
+<style>
+  body.pw-locked > *:not(#pw-gate) { display: none !important; }
+  #pw-gate { display: none; }
+  body.pw-locked #pw-gate { display: flex; }
+  #pw-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    align-items: center; justify-content: center;
+    background: #f4f5f7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  #pw-gate .box {
+    background: #fff; border: 1px solid #e2e2e6; border-radius: 10px;
+    padding: 32px 28px; width: 280px; text-align: center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  }
+  #pw-gate h2 { margin: 0 0 16px; font-size: 16px; color: #1a1a1a; }
+  #pw-gate input {
+    width: 100%; padding: 8px 10px; font-size: 14px;
+    border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;
+  }
+  #pw-gate button {
+    margin-top: 10px; width: 100%; padding: 8px 10px; font-size: 14px;
+    border: none; border-radius: 6px; background: #0d5f4f; color: #fff; cursor: pointer;
+  }
+  #pw-gate .err { color: #b00020; font-size: 13px; margin-top: 8px; display: none; }
+</style>
+<div id="pw-gate">
+  <div class="box">
+    <h2>Dream X - Protected page</h2>
+    <input type="password" id="pw-input" placeholder="Password" autofocus>
+    <button id="pw-submit">Enter</button>
+    <div class="err" id="pw-err">Incorrect password.</div>
+  </div>
+</div>
+<script>
+  (function () {
+    var HASH = 'de5ce22f45faef858163e2d85865cbc7bb19c2ba8b8bf38bea5b6669a774f75c';
+    async function sha256Hex(text) {
+      var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+      return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    }
+    async function tryUnlock() {
+      var val = document.getElementById('pw-input').value;
+      var hex = await sha256Hex(val);
+      if (hex === HASH) {
+        sessionStorage.setItem('pwOK', 'yes');
+        document.body.classList.remove('pw-locked');
+      } else {
+        document.getElementById('pw-err').style.display = 'block';
+      }
+    }
+    document.getElementById('pw-submit').addEventListener('click', tryUnlock);
+    document.getElementById('pw-input').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') tryUnlock();
+    });
+  })();
+</script>
+<div class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Reference Guide</span>
+    <h1>Top Accounting Firms in the US</h1>
+    <p class="subtitle">A quick reference of the largest and fastest-growing accounting/professional-services firms, grouped by tier.</p>
+  </div>
+</div>
+<main>
+  <section>
+    <h2>The Big Four</h2>
+    <p class="tier-desc">The four largest professional services firms globally. Audit &amp; assurance is their historical core and regulatory anchor — public companies are generally required to have financial statements audited by an independent firm — but consulting/advisory now makes up the largest share of revenue at most of them.</p>
+    <ul class="firm-list">
+      <li><a href="https://www.deloitte.com/us/en.html" target="_blank" rel="noopener">Deloitte</a> <a href="#note-deloitte" class="jump-btn">Notes ↓</a></li>
+      <li><a href="https://www.pwc.com/us/en.html" target="_blank" rel="noopener">PwC</a> <a href="#note-pwc" class="jump-btn">Notes ↓</a></li>
+      <li><a href="https://www.ey.com/en_us" target="_blank" rel="noopener">EY</a> <a href="#note-ey" class="jump-btn">Notes ↓</a></li>
+      <li><a href="https://kpmg.com/us/en/home.html" target="_blank" rel="noopener">KPMG</a> <a href="#note-kpmg" class="jump-btn">Notes ↓</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Next Tier — Large National Firms</h2>
+    <p class="tier-desc">Still huge, national/global reach, sometimes grouped with the Big Four as the "Big Six."</p>
+    <ul class="firm-list">
+      <li><a href="https://rsmus.com/" target="_blank" rel="noopener">RSM US</a> <a href="#note-rsm" class="jump-btn">Notes ↓</a></li>
+      <li><a href="https://www.bdo.com/" target="_blank" rel="noopener">BDO USA</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Large National Firms</h2>
+    <ul class="firm-list">
+      <li><a href="https://www.grantthornton.com/" target="_blank" rel="noopener">Grant Thornton</a> <a href="#note-grant-thornton" class="jump-btn">Notes ↓</a></li>
+      <li><a href="https://www.bakertilly.com/" target="_blank" rel="noopener">Baker Tilly</a></li>
+      <li><a href="https://www.cbiz.com/" target="_blank" rel="noopener">CBIZ (merged with Marcum)</a> <a href="#note-cbiz" class="jump-btn">Notes ↓</a></li>
+      <li><a href="https://www.claconnect.com/" target="_blank" rel="noopener">CliftonLarsonAllen (CLA)</a></li>
+      <li><a href="https://www.crowe.com/" target="_blank" rel="noopener">Crowe</a></li>
+      <li><a href="https://www.mossadams.com/" target="_blank" rel="noopener">Moss Adams</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>PE-Backed Consolidators / Roll-Up Firms</h2>
+    <p class="tier-desc">Mid-market firms growing aggressively through private-equity-backed M&amp;A, rolling up smaller regional practices. This is the most directly comparable tier to Prosperity Partners.</p>
+    <ul class="firm-list">
+      <li><a href="https://citrincooperman.com/" target="_blank" rel="noopener">Citrin Cooperman</a> <a href="#note-citrin" class="jump-btn">Notes ↓</a></li>
+      <li><a href="https://www.cbh.com/" target="_blank" rel="noopener">Cherry Bekaert</a></li>
+      <li><a href="https://www.aprio.com/" target="_blank" rel="noopener">Aprio</a> <a href="#note-aprio" class="jump-btn">Notes ↓</a></li>
+      <li><a href="https://www.withum.com/" target="_blank" rel="noopener">Withum</a></li>
+      <li><a href="https://www.prosperitypartnersllc.com/" target="_blank" rel="noopener">Prosperity Partners</a> <a href="#note-prosperity" class="jump-btn">Notes ↓</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Design Observations</h2>
+    <p class="tier-desc">Manual notes on each firm's site design, gathered while researching modernization direction. Not automated — recorded by eye. Split into what worked and what didn't per firm; firms marked <span class="blend-badge" style="vertical-align:1px;">Blend Candidate</span> are the strongest reference points for Prosperity's own style — closest to the target look with the fewest liabilities to avoid inheriting.</p>
+    <ul class="notes-list">
+      <li id="note-pwc">
+        <p class="firm-name">PwC</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>Simple, disciplined color palette with a single clear accent color</li><li>Subtle, clean animations</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>Too square/rigid overall — could use softer geometric shapes as separators</li><li>Animations could be smoother and more dynamic</li></ul>
+          </div>
+        </div>
+      </li>
+      <li id="note-ey">
+        <p class="firm-name">EY</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>Clean, slightly darker theme (dark grey as a main color)</li><li>Good asset quality; lightly animated, clean overall</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>Imagery feels generic — stock-photo quality</li><li>Same squarish, stacked template as PwC, just with larger assets</li></ul>
+          </div>
+        </div>
+      </li>
+      <li id="note-kpmg">
+        <p class="firm-name">KPMG</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>None noted — weakest of the four</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>Poor-quality stock assets — flat color blocks with shapes rather than real imagery</li><li>Layout feels disjointed/all over the place</li><li>Animations are stiff, not smooth</li><li>Body text runs a bit too small</li></ul>
+          </div>
+        </div>
+      </li>
+      <li id="note-deloitte" class="blend-pick">
+        <span class="blend-badge">Blend Candidate</span>
+        <p class="firm-name">Deloitte</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>Large, spaced-out assets — not content-dense</li><li>Only one of the four using rounded shapes instead of straight/square assets</li><li>Only one with autoplaying video; animations are smooth</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>Palette uses too many colors</li><li>Leans on brand name/status rather than explaining what they actually do — a luxury Prosperity doesn't have and shouldn't copy</li></ul>
+          </div>
+        </div>
+      </li>
+      <li class="general-note">
+        <p class="firm-name">General note — category style</p>
+        <p class="observation">The Big Four's shared look (squarish/stacked blocks, restrained palette, stock imagery of professionals, subtle scroll animation) is a recognizable, near-universal style sometimes called "corporate minimalism" or the "Big Four house style" — common across large B2B/professional-services firms aiming to look safe and enterprise-credible rather than distinctive. Notably, this is different from the more colorful, animation/tech-heavy style used by firms like Salesforce, Deloitte Digital, or Accenture — that more vibrant "tech-forward" look is a deliberate departure from the plain corporate-minimalist default, not the same category. Worth deciding early whether Prosperity should blend into the safe/credible corporate-minimalist convention, or deliberately depart from it the way those tech-forward firms did.</p>
+      </li>
+      <li id="note-cbiz" class="blend-pick">
+        <span class="blend-badge">Blend Candidate</span>
+        <p class="firm-name">CBIZ</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>Closest style match to Prosperity's current site, but meaningfully more polished</li><li>More dynamic, smoother animations; better blending between sections</li><li>Rounded corners instead of hard edges</li><li>Larger assets, big hero banners done well</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>No real liabilities noted — the strongest direct benchmark found so far</li></ul>
+          </div>
+        </div>
+      </li>
+      <li id="note-grant-thornton">
+        <p class="firm-name">Grant Thornton</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>Uniform, purple-leaning color theme, reminiscent of Deloitte</li><li>Everything below the hero is clean, with very smooth animations</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>Very large hero right off the bat, but low-quality, uninformative footage — a higher-quality clip would've worked better</li><li>Oversized hero actively hinders navigation — extremely frustrating</li></ul>
+          </div>
+        </div>
+      </li>
+      <li id="note-rsm">
+        <p class="firm-name">RSM US</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>Fairly condensed but readable</li><li>Very good, inviting use of color</li><li>Very responsive site</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>Squarish, stacked, "imbricked" (overlapping/shingled) design — same category convention again</li><li>Animations are serviceable but unimpressive</li><li>Imagery used mainly for its color value — doesn't carry much informational weight on its own</li></ul>
+          </div>
+        </div>
+      </li>
+      <li id="note-aprio" class="blend-pick">
+        <span class="blend-badge">Blend Candidate</span>
+        <p class="firm-name">Aprio</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>Same disciplined-palette approach as PwC — simple palette with a distinct orange accent color</li><li>Terminal/monospace-style font — minimalist but effective, and gives it a bit of a distinct identity versus the Big Four sameness</li><li>Lightly animated and clean</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>No real liabilities noted yet</li></ul>
+          </div>
+        </div>
+      </li>
+      <li id="note-citrin">
+        <p class="firm-name">Citrin Cooperman</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul><li>Good use of color</li></ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul><li>Compact, with barely any imagery/assets</li><li>Uses click-to-reveal panels instead of a vertical stacked layout to surface more content — feels a bit dated</li><li>Barely any animation — feels stiff</li><li>Too text-dense — poor spacing and asset-to-text ratio, content feels condensed rather than given room to breathe</li></ul>
+          </div>
+        </div>
+      </li>
+      <li id="note-prosperity" class="current-state">
+        <span class="current-badge">Current State — Prosperity Partners</span>
+        <p class="firm-name">Prosperity Partners (Prosperityllc.com)</p>
+        <div class="pros-cons">
+          <div class="good">
+            <h4>Good</h4>
+            <ul>
+              <li>Clean and professional overall, serviceable — not broken, just not polished/slick</li>
+              <li>Disciplined color palette (white, one primary blue, one lighter accent blue) — this part isn't the problem</li>
+              <li>Culture section uses real staff photography, not generic stock images — an authentic strength worth keeping</li>
+              <li>Footer lists all 10 physical offices — a real trust signal showing genuine scale</li>
+            </ul>
+          </div>
+          <div class="bad">
+            <h4>Bad</h4>
+            <ul>
+              <li>Flat type scale — 176 of ~225 text elements on the homepage are exactly 16px, with almost no size variation to create visual hierarchy</li>
+              <li>Unresolved square/circle mismatch: every button is a hard 0px-radius rectangle, while the values-section icons are 100%-radius circles — nothing in between, no consistent "rounded" language tying the two together</li>
+              <li>No real icon system — 0 of 15 homepage media elements are true icons; the only icon-like elements are raster PNGs, not a cohesive set</li>
+              <li>Zero real motion design — no CSS animations anywhere on the homepage, only generic inherited hover transitions</li>
+              <li>Achievement badges are visually inconsistent — four awards, four different ad-hoc graphic treatments (ribbon badges, a certificate image, a black card), reading like the KPMG "flat shapes standing in for real design" issue</li>
+              <li>Values section uses an alternating left/right zigzag icon-timeline layout — a distinctly ~2016–2019-era pattern, a dated tell on its own separate from the icons themselves</li>
+              <li>"What's New" card grid mixes real staff photos with scanned certificates/logos — inconsistent image treatment within the same grid</li>
+              <li>Full contact form (name/email/phone/message + visible reCAPTCHA) embedded directly on the homepage, rather than a clean CTA button linking to a dedicated contact page — reads as a small local-business template convention rather than an enterprise-credible firm, and clutters the page's ending instead of closing on a confident final CTA</li>
+            </ul>
+          </div>
+        </div>
+        <div class="audit-link-box">
+          Full technical audit (content, SEO, accessibility, and structural findings beyond visual style): <a href="audit.html" target="_blank" rel="noopener">Prosperity Partners — Website Audit →</a>
+        </div>
+      </li>
+    </ul>
+  </section>
+</main>
+</body>
+</html>

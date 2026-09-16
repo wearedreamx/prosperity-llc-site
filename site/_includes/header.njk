@@ -1,0 +1,62 @@
+	<header class="site-header" id="top">
+		<div class="container site-header__inner">
+			<a class="site-logo" href="/" aria-label="Prosperity Partners — home">
+				<img src="/assets/img/logo.svg" alt="Prosperity Partners" width="209" height="100">
+			</a>
+
+			<nav class="site-nav" id="site-nav" aria-label="Main">
+				<button class="site-nav__close" type="button" data-nav-close aria-label="Close menu"></button>
+				<ul class="menu">
+					<li class="menu__item menu__item--has-children">
+						<a href="/services/">Services</a>
+						<button class="menu__toggle" type="button" aria-expanded="false" aria-label="Toggle Services submenu"></button>
+						<ul class="submenu">
+							<li><a href="/client-accounting-services/">Client Accounting Services</a></li>
+							<li><a href="/tax-services/">Tax Services</a></li>
+							<li><a href="/family-office/">Family Office Services</a></li>
+							<li><a href="/special-projects/">Special Projects</a></li>
+							<li><a href="/assurance/">Assurance</a></li>
+							<li class="menu__item--has-children">
+								<a href="/transaction-advisory-services/">Transaction Advisory Services</a>
+								<button class="menu__toggle" type="button" aria-expanded="false" aria-label="Toggle Transaction Advisory submenu"></button>
+								<ul class="submenu">
+									<li><a href="/transaction-advisory-services/">Transaction Advisory Tax Services</a></li>
+									<li><a href="/transaction-advisory-services/sellside-quality-of-earnings/">Sell-Side Quality of Earnings</a></li>
+									<li><a href="/transaction-advisory-services/buyside-quality-of-earnings/">Buy-Side Quality of Earnings</a></li>
+									<li><a href="/transaction-advisory-services/ma-readiness/">M&amp;A Readiness</a></li>
+									<li><a href="/transaction-advisory-services/ma-integration-services/">M&amp;A Integration Services</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li class="menu__item menu__item--has-children">
+						<a href="/company/">Company</a>
+						<button class="menu__toggle" type="button" aria-expanded="false" aria-label="Toggle Company submenu"></button>
+						<ul class="submenu">
+							<li><a href="/meet-the-team/">Meet The Team</a></li>
+							<li><a href="/careers/">Careers</a></li>
+							<li><a href="/culture/">Culture</a></li>
+							<li><a href="/whats-new/">What's New</a></li>
+						</ul>
+					</li>
+					<li class="menu__item"><a href="/partnerships/">Partnerships</a></li>
+					<li class="menu__item"><a href="/contact-us/">Contact</a></li>
+					<li class="menu__item"><a href="/payment/">Payment</a></li>
+					<li class="menu__item"><a href="/client-portal/">Client Portal</a></li>
+				</ul>
+			</nav>
+
+			<div class="site-search">
+				<button class="site-search__button" type="button" aria-expanded="false" aria-controls="site-search-form" aria-label="Search"></button>
+				<form class="site-search__form" id="site-search-form" role="search" action="/search/" method="get">
+					<label class="visually-hidden" for="site-search-input">Search for</label>
+					<input id="site-search-input" type="search" name="q" placeholder="Search…">
+					<button type="submit">Go</button>
+				</form>
+			</div>
+
+			<button class="hamburger" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+				<span></span>
+			</button>
+		</div>
+	</header>

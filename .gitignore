@@ -7,7 +7,13 @@
 #
 # If this folder is missing on your machine, see "Restoring www/" in README.md.
 # ---------------------------------------------------------------------------
+
+# Exports
 www/
+/reconstructed-site
+
+# Visual Studio
+.vs
 
 # macOS
 .DS_Store

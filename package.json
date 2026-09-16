@@ -1,0 +1,14 @@
+{
+  "name": "prosperity-llc-site",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Prosperity Partners static site (Eleventy)",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

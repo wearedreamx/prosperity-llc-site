@@ -1,0 +1,33 @@
+---
+title: "Meet the Team - Prosperity Partners"
+canonicalUrl: "https://www.prosperityllc.com/meet-the-team/"
+layout: base.njk
+permalink: "/meet-the-team/"
+---
+<section class="page-banner">
+	<div class="page-banner-content">
+		<div class="page-banner-container container">
+			<h2 class="page-banner-title">Meet the Team</h2>
+		</div>
+	</div>
+</section>
+<section class="single-post-container">
+	<div class="container">
+		<div class="team-container">
+			{% for person in personnel %}
+			<article class="team-member">
+				<a href="/personnel/{{ person.slug }}/" class="team-member-link">
+					<figure class="team-member-figure">
+						{% if person.photo_url %}<img width="550" height="500" src="{{ person.photo_url }}" alt="" class="team-member-img">{% endif %}
+					</figure>
+					<div class="team-member-content">
+						<h3 class="team-member-name">{{ person.name }}{% if person.certifications %}<span class="team-member-certs">{{ person.certifications }}</span>{% endif %}</h3>
+						<h5 class="team-member-title">{{ person.job_title }}</h5>
+						<p class="team-member-location">{{ person.location_name }}</p>
+					</div>
+				</a>
+			</article>
+			{% endfor %}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,60 @@
+{
+  "site_name": "Prosperity Partners",
+  "tagline": "Accounting, Tax, & Sage Intacct Solutions",
+  "phone": "(312) 461-0514",
+  "email": "info@prosperityllc.com",
+  "footer_locations": [
+    {
+      "url": "/location/burlington/",
+      "name": "Burlington",
+      "address_html": "41 Rye Circle<br>\nPO Box 2166<br>\nSouth Burlington, VT 05407<br>\n(802) 383-0399"
+    },
+    {
+      "url": "/location/chicago/",
+      "name": "Chicago",
+      "address_html": "225 W Washington Street <br>\nSuite 2600<br>\nChicago, IL 60606<br>\n(312) 461-0514"
+    },
+    {
+      "url": "/location/detroit/",
+      "name": "Detroit",
+      "address_html": "4111 Andover Road<br>\nWest Third Floor<br>\nBloomfield Hills, MI 48302<br>\n(866) 717-1607"
+    },
+    {
+      "url": "/location/houston/",
+      "name": "Houston",
+      "address_html": "77 Sugar Creek Center Blvd<br>\nSuite 410<br>\nSugar Land, TX 77478<br>\n(281) 242-2420"
+    },
+    {
+      "url": "/location/iselin/",
+      "name": "Iselin",
+      "address_html": "555 US Highway 1<br>\nIselin, NJ  08830"
+    },
+    {
+      "url": "/location/kansas-city/",
+      "name": "Kansas City",
+      "address_html": "11300 Tomahawk Creek Pkwy<br>\nSuite 310<br>\nLeawood, KS 66211<br>\n(913) 647-9750"
+    },
+    {
+      "url": "/location/new-york-city/",
+      "name": "New York City",
+      "address_html": "575 Madison Avenue<br>\nFloor 14<br>\nNew York, NY 10022"
+    },
+    {
+      "url": "/location/santa-barbara/",
+      "name": "Santa Barbara",
+      "address_html": "200 E. Carrillo St<br>\nSuite 300<br>\nSanta Barbara, CA  93101<br>\n(805) 962-9175"
+    },
+    {
+      "url": "/location/washington-dc/",
+      "name": "Washington DC – Tax",
+      "address_html": "6000 Executive Blvd<br>\nSuite 520<br>\nRockville, MD 20852<br>\n(301) 881-4244"
+    },
+    {
+      "url": "/location/washington-dc-transaction-advisory/",
+      "name": "Washington DC – Transaction Advisory",
+      "address_html": "1900 Gallows Road<br>\nSuite 200 <br>\nVienna, VA 22182"
+    }
+  ],
+  "footer_disclaimer_html": "<strong>Firm Structure Disclosure</strong><br>\nProsperity Partners operates through separate legal entities.&nbsp;<strong>NDH Advisors LLC</strong>, doing business as&nbsp;<strong>Prosperity Partners</strong>, provides tax, accounting, and advisory services.&nbsp;<strong>NDH CPA LLP</strong>, doing business as&nbsp;<strong>Prosperity Partners CPA</strong>, is a licensed public accounting firm that provides attest services, including audits and reviews.</p>\n<p>Prosperity Partners is a trade name of NDH Advisors LLC. NDH Advisors LLC is a Delaware limited liability company.</p>",
+  "footer_copyright_html": "<p style=\"text-align: center;\">© 2026 Prosperity Partners. All Rights Reserved. Designed by <a href=\"https://www.activewebgroup.com/\" target=\"_blank\" rel=\"noopener\">Active Web Group</a> | <a href=\"/sitemap/\">Sitemap</a></p>"
+}

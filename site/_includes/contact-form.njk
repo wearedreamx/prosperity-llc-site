@@ -1,0 +1,44 @@
+<form class="contact-form" action="/api/contact" method="post" novalidate>
+	<h3 class="visually-hidden">Contact us</h3>
+	<div class="contact-form__row">
+		<div class="field">
+			<label class="visually-hidden" for="cf-first">First name</label>
+			<input id="cf-first" name="first_name" type="text" autocomplete="given-name" placeholder="First name*" required>
+		</div>
+		<div class="field">
+			<label class="visually-hidden" for="cf-last">Last name</label>
+			<input id="cf-last" name="last_name" type="text" autocomplete="family-name" placeholder="Last name*" required>
+		</div>
+	</div>
+	<div class="field">
+		<label class="visually-hidden" for="cf-email">Email address</label>
+		<input id="cf-email" name="email" type="email" autocomplete="email" placeholder="Email address*" required>
+	</div>
+	<div class="field">
+		<label class="visually-hidden" for="cf-phone">Phone number</label>
+		<input id="cf-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone number">
+	</div>
+	<div class="field">
+		<label class="visually-hidden" for="cf-message">Message</label>
+		<textarea id="cf-message" name="message" rows="4" placeholder="Message*" required></textarea>
+	</div>
+	{% if formVariant == "contact" %}
+	<fieldset class="field field--radio-group">
+		<legend>How did you hear about us?<span class="field__required">*</span></legend>
+		<div class="field__radio-row">
+			<label><input type="radio" name="referral_source" value="Social Media" required> Social Media</label>
+			<label><input type="radio" name="referral_source" value="Peer Referral" required> Peer Referral</label>
+			<label><input type="radio" name="referral_source" value="Google/ Search Engine" required> Google/ Search Engine</label>
+			<label><input type="radio" name="referral_source" value="Other" required data-toggle-other> Other</label>
+		</div>
+		<div class="field field--other" hidden data-other-field>
+			<label class="visually-hidden" for="cf-referral-other">Other</label>
+			<input id="cf-referral-other" name="referral_source_other" type="text" placeholder="Please specify*">
+		</div>
+	</fieldset>
+	{% endif %}
+	<div class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY" data-theme="light"></div>
+	<p class="contact-form__footer">
+		<button class="button button--ghost" type="submit">Send Message</button>
+	</p>
+</form>

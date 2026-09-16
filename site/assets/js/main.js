@@ -122,4 +122,22 @@
 			if (p && p.catch) p.catch(function () { hero.load(); });
 		}
 	}
+
+	/* ---- Contact form "How did you hear about us?" other field ------------ */
+	// Only the site-wide Contact Form (contact-form.njk's "contact" variant)
+	// has this radio group; reveal the free-text field only when its "Other"
+	// option is selected, and require it only in that state.
+	document.querySelectorAll(".field--radio-group").forEach(function (group) {
+		var otherRadio = group.querySelector("[data-toggle-other]");
+		var otherField = group.querySelector("[data-other-field]");
+		if (!otherRadio || !otherField) return;
+		var otherInput = otherField.querySelector("input");
+		group.querySelectorAll('input[type="radio"]').forEach(function (radio) {
+			radio.addEventListener("change", function () {
+				var show = otherRadio.checked;
+				otherField.hidden = !show;
+				if (otherInput) otherInput.required = show;
+			});
+		});
+	});
 })();
