@@ -766,6 +766,21 @@ input, textarea { font: inherit; }
 	width: 70%; height: 100%;
 	z-index: 0;
 }
+/* Decorative overlay every banner carries on the live site (theme's
+   .page-banner-figure:after, background-image swapped for the site-wide
+   graphic at the ACF `page_banner_graphic` option — verified identical
+   across /tax-services/, /company/, /assurance/, /careers/, /meet-the-team/).
+   It was missing entirely: only the photo layer was ported. */
+.page-banner-figure:after {
+	content: "";
+	position: absolute; top: 0; left: 0;
+	width: 100%; height: 100%;
+	z-index: 1;
+	background-image: url("/assets/img/bg-banner-swoop.svg");
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 @media (max-width: 768px) { .page-banner-figure { display: none; } }
 .page-banner-image {
 	display: block;
