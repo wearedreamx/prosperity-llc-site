@@ -1,33 +1,31 @@
-# ---------------------------------------------------------------------------
-# The WordPress export — 4.5 GB, deliberately NOT in version control.
-#
-# It is read-only source material: the SQL dump every content-extraction script
-# reads, the active theme used as a design reference, and the original media.
-# Nothing in it is ever edited or deployed.
-#
-# If this folder is missing on your machine, see "Restoring www/" in README.md.
-# ---------------------------------------------------------------------------
-
-# Exports
-www/
-/reconstructed-site
-
-# Visual Studio
-.vs
-
-# macOS
-.DS_Store
-._*
-
-# Python (tools/wpdump.py)
-__pycache__/
-*.py[cod]
-
-# Node / Eleventy (from phase B onward)
-node_modules/
+# Build output
 _site/
 .cache/
 .eleventy-cache/
+
+# Dependencies
+node_modules/
+
+# ---------------------------------------------------------------------------
+# The WordPress export. NEVER commit this.
+#
+# It is read-only source material: the phpMyAdmin SQL dump that every
+# content-extraction script reads, and the active theme kept as a design
+# reference. Nothing in it is edited or deployed. Its media was recovered into
+# site/assets/ and committed, so the uploads tree is gone (README §4) — what
+# remains is 68 MB.
+#
+# Keeping it out of git is a security requirement, not a size one. The dump
+# holds ynrh_users (account emails and password hashes), ynrh_gf_entry and
+# ynrh_wpforms_entries (3,782 historical form submissions — client names,
+# emails, phone numbers and message bodies), ynrh_gf_rest_api_keys and
+# ynrh_itsec_opaque_tokens. This repo deploys to Cloudflare Pages through a
+# GitHub integration; committing the dump would publish all of that.
+#
+# Missing on your machine? See "Restoring www/" in README.md §1.
+# ---------------------------------------------------------------------------
+www/
+/reconstructed-site
 
 # Secrets — Turnstile keys, Resend SMTP credentials, OAuth client secrets.
 # These belong in Cloudflare Worker secrets, never in the repo.
@@ -36,19 +34,28 @@ _site/
 !.env.example
 .dev.vars
 
-# Claude Code local state — per-developer permission grants, not shared config.
-# .claude/launch.json IS tracked: it's the shared preview-server definition.
+# Derived, rebuildable artifacts
+#   attachment-ids.json: _wp_attached_file lookups, rebuilt from the SQL dump
+#   by tools/recover-media.py in about 90 seconds.
+/data/attachment-ids.json
+__pycache__/
+*.py[cod]
+
+# Root-owned leftovers from an npm run under sudo. Deleting them needs sudo,
+# so they are ignored here rather than removed.
+*.root-owned.trash/
+
+# Local editor and tool state
+#   .claude/launch.json IS tracked: it is the shared preview-server definition.
+#   Only the per-developer permission grants are ignored.
 .claude/settings.local.json
+.vs
+
+# macOS
+.DS_Store
+._*
 
 # Scratch
 *.log
 tmp/
 scratch/
-
-# Root-owned leftovers from an npm run under sudo; removing them needs sudo, so
-# they are ignored rather than deleted here.
-*.root-owned.trash/
-
-# Derived cache: _wp_attached_file lookups, rebuilt from the SQL dump by
-# tools/recover-media.py in about 90 seconds.
-/data/attachment-ids.json
