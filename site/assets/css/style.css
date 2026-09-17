@@ -881,7 +881,7 @@ input, textarea, select { font: inherit; }
 
 .content-block-sidebar-member + .content-block-sidebar-member { margin-top: 2em; }
 
-.big-number { font-size: 3em; font-weight: 700; color: var(--blue); }
+.big-number { font-size: 3em; font-weight: 700; color: var(--white); }
 
 /* --------------------------------------------------------------------------
    Single personnel page
