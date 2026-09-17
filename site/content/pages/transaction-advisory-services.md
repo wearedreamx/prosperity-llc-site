@@ -12,10 +12,6 @@
   "date_modified": "2026-03-20T15:58:04+00:00",
   "blocks": [
     {
-      "layout": "five",
-      "html": "<div class=\"content-block-content content\"></div>"
-    },
-    {
       "layout": "one",
       "html": "<div class=\"content-block-content content\"><p style=\"font-size: 25px;\">We are experienced lower-middle market M&amp;A advisors, making M&amp;A easier for buyers and sellers. Our Transaction Advisory Services include:</p>\n</div>"
     },
