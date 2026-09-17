@@ -622,6 +622,13 @@ input, textarea, select { font: inherit; }
 .content-block-content .post-date { font-size: 1.125em; }
 .content-block-content .post-title { margin-top: 0; font-size: 1.375em; }
 .content-block-content .post-excerpt { margin-top: 1em; line-height: 1.5; }
+/* Same issue as .page-banner above: the ported .content rules colour links
+   --blue, which on this section's blue background is invisible (e.g. the FAQ
+   "learn more" link on /payment/ and /online-payment/). Excludes .post-link,
+   which sits on the white .post-content card above, not directly on blue. */
+.content-block-blue .content a:not(.button):not(.post-link):is(:link, :visited) { color: var(--white); }
+.content-block-blue .content a:not(.button):not(.post-link):is(:hover, :focus, :active) { color: var(--sky); }
+
 .content-block-content .post-read-more::after {
 	content: "";
 	display: inline-block;
