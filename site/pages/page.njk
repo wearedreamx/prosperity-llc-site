@@ -22,3 +22,97 @@ layout: base.njk
 
 {% set blocks = pageItem.data.blocks %}
 {% include "content-blocks.njk" %}
+
+{%- if pageItem.data.slug == "careers" %}
+{#
+  Greenhouse job board. The page's own content block carries only an empty
+  <div id="grnhse_app"></div> (see site/content/pages/careers.md) — the loader
+  script below is what fills it, and it was dropped during extraction because
+  the theme emitted it from the footer rather than the block, gated on the
+  Careers page id (reference/theme/parts/footer/conditionals.php:61).
+
+  Do NOT replace this with the <iframe> found in the crawled careers.html. That
+  iframe is the loader's *output*: its src carries a signed, expiring
+  `validityToken` and a one-time measured `height`, so pasting it renders today
+  and silently breaks later.
+
+  `for=ndhcpa` is the whole configuration — no API key, no token to manage. The
+  slug is pre-rebrand (NDH Advisors → Prosperity Partners; the board was never
+  renamed, see README §11.5) but it is the same value the live site uses today.
+
+  The markup comes before the script on purpose — see the note in the script.
+#}
+<div class="content-block-container container content-block-container-one">
+	<div class="content-block-content content">
+		<div class="grnhse-loading" id="grnhse-loading" role="status">
+			<div class="grnhse-spinner" aria-hidden="true"></div>
+			<p>Loading open positions…</p>
+		</div>
+		{#- Shown when the board can't load, and the only content a no-JS visitor
+		    gets. Deliberately not phrased as an error: it reads as a normal route
+		    to the listings, which is all a candidate needs it to be. -#}
+		<div id="grnhse-fallback" hidden>
+			<p><a class="button button--solid button--blue" href="https://job-boards.greenhouse.io/ndhcpa" target="_blank" rel="noopener">View our open positions</a></p>
+			<p>Or <a href="/contact-us/">get in touch</a> and we'll point you to the right role.</p>
+		</div>
+		<noscript>
+			<p><a class="button button--solid button--blue" href="https://job-boards.greenhouse.io/ndhcpa" target="_blank" rel="noopener">View our open positions</a></p>
+			<p>Or <a href="/contact-us/">get in touch</a> and we'll point you to the right role.</p>
+		</noscript>
+	</div>
+</div>
+<script>
+	/*
+	 * Drives the board's three states: loading, loaded, unavailable.
+	 *
+	 * This script sits *after* the markup above because it resolves those
+	 * elements immediately. Running it first made every lookup null, the guard
+	 * below returned silently, and nothing ever cleared the spinner — it span
+	 * forever regardless of whether the board loaded. Keep the order.
+	 *
+	 * Three exits, so no single duration has to be right for every case:
+	 *   - poll finds the iframe  → loaded, clears the spinner the moment it lands
+	 *   - loader errors          → unavailable, immediately (blocked host, DNS
+	 *                              failure, 404 on a retired embed domain)
+	 *   - timeout                → unavailable, backstop for the case that emits
+	 *                              no error: script loads fine but never injects
+	 *                              an iframe (renamed board, changed contract)
+	 *
+	 * Injecting the loader instead of writing a static <script> tag is what makes
+	 * the error path possible. Without it the only exit is the timeout, so a
+	 * failure that's already known in milliseconds still shows a spinner for the
+	 * full duration — while any duration short enough to feel responsive would
+	 * also cut off a slow-but-working load.
+	 */
+	(function () {
+		var POLL_MS = 200;
+		var TIMEOUT_MS = 5000;
+		var app = document.getElementById("grnhse_app");
+		var loading = document.getElementById("grnhse-loading");
+		var fallback = document.getElementById("grnhse-fallback");
+		if (!app || !loading || !fallback) return;
+
+		var settled = false;
+		function settle(loaded) {
+			if (settled) return;
+			settled = true;
+			clearInterval(poll);
+			loading.hidden = true;
+			fallback.hidden = loaded;
+		}
+
+		var waited = 0;
+		var poll = setInterval(function () {
+			waited += POLL_MS;
+			if (app.querySelector("iframe")) settle(true);
+			else if (waited >= TIMEOUT_MS) settle(false);
+		}, POLL_MS);
+
+		var loader = document.createElement("script");
+		loader.src = "https://boards.greenhouse.io/embed/job_board/js?for=ndhcpa";
+		loader.async = true;
+		loader.onerror = function () { settle(false); };
+		document.head.appendChild(loader);
+	})();
+</script>
+{%- endif %}
