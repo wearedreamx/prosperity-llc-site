@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
-  "photo": "/assets/img/uploads/personnel/isabelle-bissonnette.png",
+  "photo": "/assets/img/uploads/personnel/isabelle-bissonnette.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

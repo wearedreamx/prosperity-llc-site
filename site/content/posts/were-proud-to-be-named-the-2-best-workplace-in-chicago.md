@@ -8,7 +8,7 @@
   "category_url": "/whats-new/",
   "images": [
     "/assets/img/uploads/posts/were-proud-to-be-named-the-2-best-workplace-in-chicago-1.jpg",
-    "/assets/img/uploads/posts/were-proud-to-be-named-the-2-best-workplace-in-chicago-2.png"
+    "/assets/img/uploads/posts/were-proud-to-be-named-the-2-best-workplace-in-chicago-2.jpg"
   ]
 }
 ---

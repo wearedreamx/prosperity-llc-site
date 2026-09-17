@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/sandeep-guha.png",
+  "photo": "/assets/img/uploads/personnel/sandeep-guha.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

@@ -11,7 +11,7 @@
     "/assets/img/uploads/posts/the-admin-awards-2.jpg",
     "/assets/img/uploads/posts/the-admin-awards-3.jpg",
     "/assets/img/uploads/posts/the-admin-awards-4.jpg",
-    "/assets/img/uploads/posts/the-admin-awards-5.png"
+    "/assets/img/uploads/posts/the-admin-awards-5.jpg"
   ]
 }
 ---

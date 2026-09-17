@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/mahendra-gorule.png",
+  "photo": "/assets/img/uploads/personnel/mahendra-gorule.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

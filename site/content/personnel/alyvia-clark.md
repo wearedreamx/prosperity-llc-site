@@ -7,7 +7,7 @@
   "job_title": "Senior Manager",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/alyvia-clark.png",
+  "photo": "/assets/img/uploads/personnel/alyvia-clark.jpg",
   "linkedin_url": "",
   "facet_title": "senior-manager",
   "facet_specializations": [

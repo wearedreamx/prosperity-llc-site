@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/david-ramirez.png",
+  "photo": "/assets/img/uploads/personnel/david-ramirez.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [
