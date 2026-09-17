@@ -112,8 +112,14 @@
 	/* ---- Hero video ------------------------------------------------------- */
 	// Autoplay is a hint, not a guarantee (data-saver, low-power mode). If the
 	// browser declined, leave the poster showing rather than a frozen frame.
+	//
+	// .hero__video is an <img> of the poster frame whenever the hero video has
+	// no CDN URL to point at (README §9.3), and an <img> has no play/pause — so
+	// this has to check the element type, not just that something matched.
+	// Without the check it threw "hero.play is not a function" on every
+	// homepage load and aborted everything below it in this file.
 	var hero = document.querySelector(".hero__video");
-	if (hero) {
+	if (hero && hero.tagName === "VIDEO") {
 		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 			hero.removeAttribute("autoplay");
 			hero.pause();
