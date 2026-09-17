@@ -1038,6 +1038,13 @@ input, textarea { font: inherit; }
 .team-member-certs,
 .single-personnel-certs { margin-left: 0; }
 
+/* /sitemap/ is generated from the collections rather than authored, so it has no
+   ported rules of its own; .content supplies the prose styling and this only
+   indents the nested level so the page hierarchy reads. */
+.sitemap-list { padding-left: 1.25em; }
+.sitemap-list ul { padding-left: 1.5em; margin-top: 0.375em; }
+.sitemap-list li + li { margin-top: 0.375em; }
+
 /* /partnerships/ testimonials. The imported block was Slick's rendered output
    with no Slick to drive it: a 4466px track translated -638px inside an
    overflow:hidden box, so all 14 slides (6 unique, 8 cloned) sat off-screen and

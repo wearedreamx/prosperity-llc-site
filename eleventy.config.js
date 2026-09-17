@@ -207,14 +207,49 @@ module.exports = function (eleventyConfig) {
 	// items, so it is the generic template with an empty nav. Its two pages are
 	// private and stay unpublished until §11.3 is decided.
 	const GENERIC_PAGE_TYPES = new Set(["page", "page-services", "page-portal", "page-sage"]);
+	// Pages whose own template renders them, because their content is generated
+	// rather than authored: the homepage, the team directory, and the sitemap.
+	// The first two are already outside GENERIC_PAGE_TYPES by page_type; listing
+	// all three here is what actually states the rule.
+	const BESPOKE_PAGES = new Set(["home", "meet-the-team", "sitemap"]);
 	// Draft and private pages are kept in the repo so nothing is lost, but they
 	// must not ship until §11's open decisions are made.
 	eleventyConfig.addCollection("genericPages", (api) =>
 		api
 			.getFilteredByTag("pages")
 			.filter((p) => GENERIC_PAGE_TYPES.has(p.data.page_type))
+			.filter((p) => !BESPOKE_PAGES.has(p.data.slug))
 			.filter((p) => (p.data.status || "publish") === "publish")
 	);
+
+	// /sitemap/ is linked from the footer on every page and was rendering as a
+	// bare banner with no links: the old site built that list with a CMS plugin,
+	// so the import captured no content for it. Derived from the collections
+	// instead, nested by path depth the way the live page nests it.
+	eleventyConfig.addCollection("sitemapPages", (api) => {
+		const pages = api
+			.getFilteredByTag("pages")
+			.filter((p) => (p.data.status || "publish") === "publish")
+			.filter((p) => GENERIC_PAGE_TYPES.has(p.data.page_type) || BESPOKE_PAGES.has(p.data.slug))
+			.filter((p) => p.data.path && p.data.path !== "/")
+			.map((p) => ({
+				url: p.data.path,
+				title: p.data.banner_title || p.data.title,
+				depth: p.data.path.replace(/^\/|\/$/g, "").split("/").length,
+			}))
+			.sort((a, b) => a.url.localeCompare(b.url));
+		// Attach each child to its parent by path prefix; anything whose parent
+		// is not itself a published page stays top level rather than vanishing.
+		const byUrl = new Map(pages.map((p) => [p.url, { ...p, children: [] }]));
+		const top = [];
+		for (const p of pages) {
+			const parentUrl = p.url.replace(/[^/]+\/$/, "");
+			const parent = p.depth > 1 && byUrl.get(parentUrl);
+			if (parent) parent.children.push(byUrl.get(p.url));
+			else top.push(byUrl.get(p.url));
+		}
+		return top;
+	});
 
 	// Pagefind builds its index by reading the *output* HTML, so it has to run
 	// after Eleventy writes _site. Doing it here rather than only as a postbuild
