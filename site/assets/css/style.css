@@ -117,9 +117,15 @@ input, textarea, select { font: inherit; }
    imported page bodies carry the previous site's own shape (`blue solid button`,
    `white ghost button`), which nothing here defined, so those buttons rendered
    as bare uppercase links on /careers/ and the two /client-portal/ pages.
-   Aliased rather than duplicated so the two can never drift apart. */
-.button--solid,
-.button.solid {
+
+   They are NOT the same style, which is why the two are no longer aliased. The
+   arrow below belongs to the hand-written homepage button; the imported shape
+   has none on the live site — checked against the Log In button on
+   /client-portal/, where the blue background applies and background-image is
+   `none`. Aliasing them put an arrow, and 3.25em of padding for it, on every
+   imported solid button. */
+.button.solid { line-height: 3; }
+.button--solid {
 	line-height: 3;
 	padding-right: 3.25em;
 	background-repeat: no-repeat;
@@ -889,12 +895,15 @@ input, textarea, select { font: inherit; }
 	height: 2.5em;
 	line-height: 2.5;
 	padding: 0 0.375em;
-	border: 1px solid var(--grey-light);
+	/* live uses #ccc here, the same border every other input on the site has;
+	   --grey-light (#f1f1f1) was too faint to read as a field edge */
+	border: 1px solid var(--grey-border);
 	border-radius: 2px;
 	background-color: var(--white);
 }
 .client-portal-field:focus { border-color: var(--grey-text); }
-.client-portal-button { width: 100%; }
+/* The submit sizes to its label on live (127px), not to the field width. */
+.client-portal-button { width: auto; }
 
 /* --------------------------------------------------------------------------
    Search results (/search/)
