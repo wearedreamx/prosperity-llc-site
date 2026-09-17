@@ -780,6 +780,13 @@ input, textarea { font: inherit; }
 	position: relative;
 	background: linear-gradient(to right, var(--blue-dark) 0%, var(--blue) 100%);
 }
+/* Banner copy sits in a .content wrapper, and the ported .content rules colour
+   links --blue — which on this gradient is invisible. These must stay ahead of
+   them in specificity terms by being more specific, not by ordering. */
+.page-banner .content a:not(.button):is(:link, :visited) { color: var(--white); }
+.page-banner .content a:not(.button):is(:hover, :focus, :active) { color: var(--sky); }
+.page-banner a:not(.button):is(:link, :visited) { color: var(--white); }
+.page-banner a:not(.button):is(:hover, :focus, :active) { color: var(--sky); }
 
 .page-banner-content {
 	position: relative;
