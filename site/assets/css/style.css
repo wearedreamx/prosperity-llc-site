@@ -857,6 +857,7 @@ input, textarea, select { font: inherit; }
 /* --------------------------------------------------------------------------
    Single personnel page
    -------------------------------------------------------------------------- */
+.single-post-container { padding: 4em 0; }
 .single-post-content-container { display: grid; grid-gap: 3em; grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 900px) { .single-post-content-container { grid-template-columns: 1fr; } }
 /* The figures column: one grid child holding every image, so the two-column
@@ -864,7 +865,7 @@ input, textarea, select { font: inherit; }
 .single-post-figures { order: 2; display: grid; gap: 1em; align-content: start; }
 .single-post-content { order: 1; }
 @media (max-width: 900px) { .single-post-figures { order: 1; } .single-post-content { order: 2; } }
-.single-post-image { display: block; width: 100%; aspect-ratio: 550 / 500; object-fit: cover; border-radius: 4px; }
+.single-post-image { display: block; width: 100%; aspect-ratio: 550 / 500; object-fit: cover; }
 
 /* --------------------------------------------------------------------------
    Single location page + team grid

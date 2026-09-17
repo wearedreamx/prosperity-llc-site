@@ -21,7 +21,9 @@ layout: base.njk
 <section class="single-post-container">
 	<div class="single-post-content-container container">
 		{#- Same placeholder as the directory cards — see team-card.njk. -#}
-		<figure class="single-post-figure"><img width="550" height="500" src="{{ person.data.photo or '/assets/img/ui/team-placeholder.svg' }}" alt="" class="single-post-image" data-pagefind-meta="image[src]"></figure>
+		<div class="single-post-figures">
+			<figure class="single-post-figure"><img width="550" height="500" src="{{ person.data.photo or '/assets/img/ui/team-placeholder.svg' }}" alt="" class="single-post-image" data-pagefind-meta="image[src]"></figure>
+		</div>
 		<div class="single-post-content">
 			<h1 class="single-personnel-name">{{ person.data.name }}{% if person.data.certifications %}<span class="visually-hidden">, </span><span class="single-personnel-certs">{{ person.data.certifications }}</span>{% endif %}</h1>
 			{%- if person.data.job_title %}<p class="single-personnel-title">{{ person.data.job_title }}</p>{% endif %}
