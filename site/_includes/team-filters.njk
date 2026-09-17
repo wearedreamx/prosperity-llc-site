@@ -25,6 +25,22 @@
 		{% endif %}{% endfor %}
 		<li class="team-filter"><button class="team-filter-reset" type="button">Reset</button></li>
 	</ul>
+	{%- if hideFacet == "Location" %}
+	{#- Jump to another office. Shown only on location pages: /meet-the-team/ has
+	    a Location facet instead, and the live site makes the same distinction.
+	    The port never rendered this control at all, which is why its CSS looked
+	    dead. Live wires it with an inline onchange handler; main.js does it
+	    instead, so no inline script is needed. -#}
+	<div class="team-locations">
+		<label class="visually-hidden" for="team-locations-select">Go to another office</label>
+		<select class="team-locations-select" id="team-locations-select" data-location-jump>
+			<option value="">Locations</option>
+			{%- for loc in collections.locations | sortByName %}
+			<option class="team-locations-option" value="/location/{{ loc.data.slug }}/">{{ loc.data.name }}</option>
+			{%- endfor %}
+		</select>
+	</div>
+	{%- endif %}
 	<div class="team-search">
 		{#- Filters the cards on this page by name rather than submitting to
 		    /search/: the theme scoped this box to personnel with a hidden

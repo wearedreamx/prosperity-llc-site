@@ -147,6 +147,15 @@
 		});
 	});
 
+	/* ---- Location pages: jump to another office --------------------------- */
+	// The live site does this with an inline onchange attribute; keeping it here
+	// means no inline script, so the CSP in site/_headers stays meaningful.
+	document.querySelectorAll("[data-location-jump]").forEach(function (select) {
+		select.addEventListener("change", function () {
+			if (select.value) window.location.href = select.value;
+		});
+	});
+
 	/* ---- Team directory 3-facet filter ---------------------------------- */
 	// Ported from the theme's jQuery handler in assets/js/g.min.js. Each card
 	// carries its terms as classes (title facet, location slug, service lines);

@@ -80,6 +80,13 @@ module.exports = function (eleventyConfig) {
 		(blocks || []).map((b) => b.html || "").join(" ")
 	);
 
+	// Locations in display-name order, which is how the live site lists them in
+	// the office jump menu; the collection itself is in filename order, and that
+	// puts "Washington DC – Transaction Advisory" ahead of "Washington DC – Tax".
+	eleventyConfig.addFilter("sortByName", (records) =>
+		[...(records || [])].sort((a, b) => (a.data.name || "").localeCompare(b.data.name || ""))
+	);
+
 	// Nunjucks' own `slice` is Jinja's — it splits a list into N chunks — so
 	// "the newest three" needs its own filter rather than slice(3)|first.
 	eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
