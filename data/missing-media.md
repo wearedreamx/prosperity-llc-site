@@ -5,7 +5,31 @@ Everything the built site references now resolves: a link-check over a full
 check over `site/content/` finds none either — including the draft and private
 pages that do not build.
 
-The only gap left is video.
+The only *media* gap left is video. One content gap surfaced alongside it —
+two post records, below.
+
+## Two post records the import dropped
+
+The homepage used to hardcode six post cards. Two pointed at URLs with no record
+behind them, which is where the site's only two broken internal links came from:
+
+| Missing record | Its imported art (still in the repo) |
+|---|---|
+| `/culture/santa-barbara-summer-outing-at-dodger-stadium/` | `assets/img/posts/santa-barbara-dodger-game.{jpg,webp}` |
+| `/whats-new/proud-to-be-named-a-2026-best-place-to-work-in-chicago/` | `assets/img/posts/best-places-to-work-2026.{jpg,webp}` |
+
+The images came across and the records did not, so this is the same silent-drop
+pattern as the seven photo-less personnel records below. Both posts are still on
+the live site; recovering them means adding two files under
+`site/content/posts/`. Nothing links to them now — the homepage grids read the
+newest three from each category instead of a hardcoded list — so this is a
+content recovery task, not a broken page.
+
+Five other pre-optimized homepage images (`fastest-growing-firms-2026`,
+`chicago-summer-soiree`, `chicago-day-of-service`, `crains-notable-leader-2026`,
+`lightyear-partnership`) belong to records that *do* exist. They are now unused
+by the card grids, which use each record's own `images[0]`; the featured card at
+the top of the homepage still uses `fastest-growing-firms-2026`.
 
 ## Video — needs a CDN base URL
 

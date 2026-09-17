@@ -29,7 +29,11 @@ prosperity-llc-site/
 │   │   ├── posts/<slug>.md         104 files — Decap-CMS-ready
 │   │   ├── locations/<slug>.md      11 files — Decap-CMS-ready
 │   │   └── pages/<file-stem>.md     43 files — NOT Decap-ready (see §6a), developer-edited for now
-│   ├── _includes/       shared layout + components (base, header, footer, content-blocks, cta, contact-form, team-filters)
+│   ├── _redirects       Cloudflare Pages redirects → copied to the deploy root
+│   ├── _headers         Cloudflare Pages response headers (CSP etc.) → deploy root
+│   ├── robots.txt       → deploy root
+│   ├── _includes/       shared layout + components (base, header, footer, content-blocks,
+│   │                     cta, contact-form, team-filters, post-card, team-card, post-archive)
 │   ├── _data/           global.js only — everything else is now an Eleventy collection, see §6a
 │   └── assets/
 │       ├── css/ js/ icons/       stylesheet, scripts, favicons
@@ -188,7 +192,7 @@ Advisors LLC dba Prosperity Partners; NDH CPA LLP dba Prosperity Partners CPA.
 
 | Type | Published | Body HTML | Notes |
 |---|---|---|---|
-| `page` | 45 (+9 draft, +2 private) | 104 KB in 96 blocks | See §6 |
+| `page` | 45 (+8 draft, +2 private) | 143 blocks | See §6 |
 | `post` | 104 | 62 KB (avg 612 chars) | Categories: Culture, What's New |
 | `personnel` | 200 | 362 KB (avg 1,854 chars) | 3 facet fields each |
 | `location` | 11 | 5 KB | |
@@ -218,17 +222,29 @@ A page's body is `blocks[]` in its frontmatter (§6a). Each block carries a
 
 | Layout | Count | Renders as |
 |---|---|---|
-| `one` | 104 | single column |
-| `two` | 34 | two equal columns |
+| `one` | 46 | single column |
+| `raw:cta` | 29 | the shared CTA component (see below) |
 | `sidebar` | 26 | main + sidebar |
-| `carousel` | 10 | horizontal carousel |
-| `three` | 7 | three equal columns |
-| `tiles` | 6 | card grid linking to pages/categories |
-| `five` | 6 | five equal columns |
-| `twoimage` | 5 | image beside text, side configurable |
+| `two` | 10 | two equal columns |
+| `twoimage-20` | 5 | image beside text, in an extra outer wrapper |
 | `four` | 4 | four equal columns |
+| `raw:services-grid` | 4 | verbatim — the services card grid |
+| `raw:services-team` | 3 | verbatim — the "group leader" block |
+| `three` | 3 | three equal columns |
+| `five` | 2 | five equal columns |
+| `tiles` | 2 | card grid linking to pages/categories |
+| `raw:home-*` | 6 | verbatim — the homepage sections (see §8 note) |
+| `raw:team` | 1 | verbatim — the team directory placeholder |
+| `raw:content-container`, `raw:content-block` | 2 | verbatim |
 
-(Counts exceed 96 because layout values repeat across blocks.)
+143 blocks across the 55 page records (layout values repeat across blocks).
+
+`site/_includes/content-blocks.njk` has three arms, not one per layout: every
+column layout resolves to the same container with a layout-suffixed class and
+the CSS sizes the grid, `twoimage-20` adds an outer wrapper, and `raw:*` is
+emitted with no container at all. **There is no `carousel` layout in the
+content** — the one carousel on the site was frozen Slick output in
+`partnerships.md` and is now a static grid (§13).
 
 A `raw:` prefix means the block is emitted verbatim with no container — used by
 the hand-built homepage and team page sections, and by `raw:cta`, which renders
@@ -296,14 +312,27 @@ Taken from the previous site's compiled CSS — exact values, not eyeballed.
 --orange:     #ff5d05
 --grey-text:  #6d6e70   /* nav links */
 --grey-light: #f1f1f1
+--grey-mid:   #666
+--grey-dark:  #333      /* filter hover text */
+--grey-border:#ccc      /* filter + input borders */
+--grey-muted: #999      /* filter placeholder / resting label */
+--red-invalid:#f6474e   /* the only error colour the previous site used */
 ```
+
+The last four were already in the ported stylesheet as raw hex; naming them
+means every colour in `style.css` now resolves through a token. The only raw
+hex left is the `:root` block itself and the vendor-prefixed gradient fallbacks,
+which exist for engines that predate `var()`.
 
 Font: **Urbanist** (Google Fonts), weights 200/400/700. Headings 700; large display
 text uses 200.
 
 Container `max-width: 80em`, 4% side padding below 1320px.
-Nav breakpoint **1080px** (desktop bar ↔ drawer). Other breakpoints: 1600, 1320,
-1152, 1024, 960, 900, 840, 768, 640, 560, 480.
+Nav breakpoint **1080px** (desktop bar ↔ drawer). Other breakpoints, as actually
+declared: 1600, 1320, 1280, 1152, 1024, 960, 900, 840, 768, 720, 640, 600, 560,
+500, 480. The ported rules use `(max-width:768px)` and the hand-written ones
+`(max-width: 768px)`; the whitespace is the seam between the two, not a
+different condition.
 
 Card shadow: `0 12px 32px rgba(2,81,138,.2), 0 3px 6px rgba(2,81,138,.1)`.
 
@@ -320,9 +349,11 @@ native Eleventy collection.
 | File/dir | Contents |
 |---|---|
 | `site/_includes/base.njk` | Shared `<head>`, doctype, header/footer wrapper |
-| `site/_includes/header.njk`, `footer.njk` | Nav, footer columns/locations/disclaimer/copyright — all pulled from `global` data, not hardcoded (dynamic year too) |
+| `site/_includes/header.njk`, `footer.njk` | Nav + footer. The footer's contact details, locations, disclaimer, copyright, fax, LinkedIn URL and non-attest note all come from `global` data (dynamic year too); the header's 21-item main nav and the footer's 8-item Site Menu are deliberately hardcoded markup |
 | `site/_includes/content-blocks.njk` | Generic block renderer — walks a page's `blocks[]` and renders each by `layout` (`one`/`two`/`sidebar`/`tiles`/`carousel`/etc., see §6) |
-| `site/_includes/cta.njk`, `contact-form.njk` | Shared CTA section + the contact-form component itself, parameterized by `formVariant` (`standard` 5-field vs `contact` — adds the referral-source radio, see §10) |
+| `site/_includes/cta.njk`, `contact-form.njk` | Shared CTA section + the contact-form component itself, parameterized by `formVariant` (`standard` 5-field vs `contact` — adds the referral-source radio, see §10) and by `idPrefix`, so a page carrying both an embedded form and the CTA form does not emit duplicate element ids |
+| `site/_includes/post-card.njk`, `team-card.njk` | The post card (homepage + both archives) and the personnel card (team directory + location pages), each previously duplicated per call site |
+| `site/_includes/post-archive.njk` | Body shared by `/culture/` and `/whats-new/`, which were byte-identical templates apart from six values |
 | `site/index.njk` | Homepage — hero, intro, values, achievements, Culture/What's New (hand-picked, pre-optimized images under `assets/img/posts/`), CTA |
 | `site/pages/page.njk` | Generic + services + portal pages, paginated over `collections.genericPages` |
 | `site/pages/personnel.njk`, `location.njk`, `post.njk` | One page per personnel/location/post record, paginated over `collections.personnel`/`locations`/`posts` |
@@ -342,7 +373,12 @@ applies to anything added later):
 
 ### Stubs left in place
 
-- Contact form posts to `/api/contact`; Turnstile div has `data-sitekey="TURNSTILE_SITE_KEY"`
+- Contact form posts to `/api/contact`, which has no Pages Function behind it
+  yet (§9 Phase G) — submissions 404 until the Worker ships
+- Turnstile: `turnstile_site_key` in `data/global.json` still holds the
+  placeholder `TURNSTILE_SITE_KEY`, and `base.njk` deliberately withholds the
+  widget script while it does (a placeholder key renders a visible error widget
+  rather than a challenge). Setting a real key switches both on
 - Page permalinks are `/<slug>/` at root, matching the live site's URLs. Post permalinks are `/culture/<slug>/` / `/whats-new/<slug>/` — moved off the flat root to sit under their existing category pages; still needs the 104 redirect rules from the old flat URLs (§9 Phase H, open decision §11.9)
 - accessiBe accessibility overlay omitted pending a decision (§11.4)
 
@@ -359,10 +395,10 @@ including the plan review.
 | B | Eleventy scaffold; site chrome into Nunjucks layouts/includes | ✅ done | 50–70k | shared header/footer |
 | C | Generic content-block renderer (9 column layouts) | ✅ done, ⚠️ styling unverified, see §9.2 | 80–120k | **38 pages at once** |
 | D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | partial — services/portal render via the generic renderer; sage and the 3-facet team filter still outstanding | 120–160k | 8 pages + team directory |
-| E | 4 content-type templates + archives, pagination, RSS, 404, search page | partial — personnel/location/post templates, Culture/What's New archives and the search page done; RSS and 404 outstanding | 120–160k | 333 URLs |
+| E | 4 content-type templates + archives, pagination, RSS, 404, search page | partial — personnel/location/post templates, Culture/What's New archives and the search page done, each with canonical + derived description; RSS and 404 outstanding | 120–160k | 333 URLs |
 | F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | outstanding | 100–200k | |
 | G | Forms: 1 component + 1 Worker (see §10) | component done (2 variants, standard + contact); Worker outstanding | 50–70k | all 9 forms |
-| H | Pagefind + 65 redirects + sitemap | Pagefind done (§15); redirects + sitemap outstanding | 40–60k | SEO continuity |
+| H | Pagefind + redirects + sitemap | Pagefind done (§15); the 104 post redirects and `_headers`/`robots.txt` are in place; `sitemap.xml` and the page-level redirects in §11.6/§11.7 outstanding | 40–60k | SEO continuity |
 | I | Decap CMS + OAuth Worker + Cloudflare Pages setup | content model ready for personnel/posts/locations (§6a); pages need a custom block-editing widget first; Decap config/OAuth Worker itself outstanding | 80–120k | editors + deploy |
 | | **Total** | | **700k – 1.05M** | ≈ 6–10 sessions |
 
@@ -395,19 +431,28 @@ no other change. See `data/missing-media.md`.
 
 Video is a separate gap; see §9.3.
 
-### 9.2 Styling gaps on newly scaffolded pages — needs a full pass
+### 9.2 Styling gaps on newly scaffolded pages — narrowed
 
-The CSS added for personnel/location/team-grid/content-block/services/portal
-pages (`site/assets/css/style.css`, added on top of the original
-homepage-only stylesheet) was reconstructed from per-page inline `<style>`
-fragments rather than from a single authoritative stylesheet. Coverage is
-uneven: some pages look right, some are close but off
-on spacing/color, and some layouts (bespoke ones especially, see Phase D above)
-haven't been checked against the live site at all. **Treat everything under
-`site/pages/page.njk`, `personnel.njk`, `location.njk`, `culture.njk`, `whats-new.njk`,
-and `meet-the-team.njk` as scaffolding, not verified output** — a page-by-page
-visual QA pass (Phase F) against the live site is still required before any of
-this ships.
+The CSS for personnel/location/team-grid/content-block/services/portal pages was
+first reconstructed from per-page inline `<style>` fragments rather than from a
+single authoritative stylesheet, which is why coverage was uneven. The
+authoritative rules were later ported verbatim from the previous site's own
+stylesheets and appended at the end of `site/assets/css/style.css`, where they
+win over the reconstruction — see the banner comment above them.
+
+Both copies then coexisted: **180 declarations across 65 selectors** in the
+reconstruction were fully shadowed by the port and have been deleted, verified
+by resolving every selector/property pair at 21 viewport widths before and after
+(zero computed-value differences). No selector is now declared in both regions.
+Colours in the port resolve through the `:root` tokens rather than repeating raw
+hex, and three dead selectors went with it (`.team-locations`,
+`.team-locations-select`, `.content-block+style+.services-grid`).
+
+**What is still outstanding is the visual comparison itself.** The layouts under
+`site/pages/page.njk`, `personnel.njk`, `location.njk`, `culture.njk`,
+`whats-new.njk` and `meet-the-team.njk` have not been checked page-by-page
+against the live site; Phase F below is still required before any of this ships.
+The bespoke pages in Phase D are the least verified.
 
 ### 9.3 Video — needs a CDN base URL
 
@@ -461,7 +506,7 @@ changing credentials.
 
 ## 11. Open decisions — needs client input
 
-1. **9 draft pages.** Their images are now in the repo, so this is purely an
+1. **8 draft pages.** Their images are now in the repo, so this is purely an
    editorial call. Seven form a coherent unpublished Valuation Services line:
    `/valuation-services/`, `/financial-reporting/`,
    `/income-estate-and-gift-valuations/`, `/intellectual-property-valuation/`,
@@ -469,8 +514,8 @@ changing credentials.
    `/shareholder-dispute-valuations/`. Ship, or drop?
    ⚠️ **`/valuation-services/` is linked from the Mobile Menu but the page is a
    draft — it's a broken link on the live site today.**
-2. **"Payment (old page backup)"** has slug `/` — it would collide with the site
-   root. Almost certainly delete.
+2. ~~**"Payment (old page backup)"** has slug `/`.~~ **Resolved:** the record is
+   gone; `home.md` is the only page record with path `/`.
 3. **2 private pages.** `/accounting-technology/` ("Accounting Software - Sage
    Intacct", 6 blocks, 3.1 KB) is substantial but private. Publish or drop?
    `/accounting-technologyold/` is presumably dead. Their icons are now in the
@@ -518,6 +563,25 @@ desktop nav interaction is now behind `@media (min-width: 1081px)`.
   back into the track, so sibling rows resolve differently.
 - Conclusion used in the nav: `grid-template-columns: 1fr auto`.
 
+**`eleventyComputed` strings are rendered as Nunjucks, then rendered again by
+the layout.** Any value interpolated there needs `| safe`, or it is escaped
+twice and `&` reaches the page as `&amp;`. This is not a data problem — the
+content carries real ampersands.
+
+**`.content` is not available in `eleventyComputed`** — it resolves during the
+data phase, before content is rendered, and throws
+`TemplateContentPrematureUseError`. Use `rawInput`, which for these records is
+the body as authored (`templateEngineOverride: false`).
+
+**`data/` is outside the input dir, so Eleventy neither watches it nor reloads
+it.** Both halves are needed: `addWatchTarget("./data/")` in the config, and
+`readFileSync` rather than `require` in the readers — `require` caches by path,
+so a watch-triggered rebuild would re-run against the old contents and the edit
+would appear to do nothing.
+
+**Nunjucks' `slice` is Jinja's** — it splits a list into N chunks. "The first
+three" is the `limit` filter in `eleventy.config.js`, not `slice(3) | first`.
+
 **The content import is not re-runnable.** `site/content/` is now the source of
 truth — there is no upstream to re-pull from and no script to re-run (§4). Edit
 the files.
@@ -550,6 +614,16 @@ before preserving it.
 | Mobile Services/Company dropdowns wouldn't open, label vanished | `:focus-within` rules outranked `.is-open`, and painted the label `--blue` on a `--blue` drawer |
 | Nav arrow tap target 24px | Now 44px, with negative margins so rows don't stretch |
 | Nav arrows misaligned / wrapping | See Grid notes in §12 |
+| 327 of 373 pages shipped `<link rel="canonical" href="">` | `base.njk` emitted the tag unconditionally from a `canonicalUrl` only four templates set; it now falls back to the page's own URL, so a new template cannot reintroduce it |
+| 362 of 373 pages shipped an empty `<meta name="description">` | The record templates never set one. Derived from the record body (`plainText` + `truncate` filters) with a title fallback; 33 published pages still have no authored `meta_description`, which is now an editorial gap rather than a blank tag |
+| Every `&` in a title rendered as `&amp;` on screen | `eleventyComputed` re-renders its strings as Nunjucks, so an un-`safe`d value was escaped once on the way in and again in `base.njk`. The homepage had a literal `&amp;` in its frontmatter as well |
+| `/partnerships/` testimonials section rendered blank | The imported block was Slick's *runtime output* — a 4466px track translated -638px inside `overflow:hidden`, 14 slides of which 8 were `slick-cloned` — with no Slick on the site. Measured 0 of 14 visible. Rebuilt as a static grid of the 6 unique testimonials |
+| Two broken links on the homepage | Six hardcoded post cards, two pointing at records the import dropped (their images came across; see `data/missing-media.md`). Both grids now read the newest three from their collection |
+| `TypeError: hero.play is not a function` on every homepage load | `.hero__video` is an `<img>` while the hero video waits on a CDN URL (§9.3); the handler assumed a `<video>` and the throw aborted everything below it in `main.js` |
+| Team directory filter unusable by keyboard | 26 facet options were `<li>`s with click handlers and no `tabindex`, the trigger a `div[role=button]`, Reset a `span[role=button]` — a keyboard user could open a dropdown and select nothing. All three are `<button>`s now, with a visible focus ring and Escape to close |
+| Duplicate element ids on `/client-accounting-services/back-office-accounting/` | The only page with both an embedded form and the CTA form; both used `cf-*` ids, so the second form's `<label for>` pointed at the first form's fields |
+| `.cf-turnstile` never rendered a widget | The Turnstile script was loaded nowhere. Now loaded from `base.njk`, gated on a configured site key |
+| `required` inert on all contact forms | The form carried `novalidate` with no JS validation to replace it |
 
 ---
 
