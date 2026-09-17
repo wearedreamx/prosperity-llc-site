@@ -23,15 +23,20 @@ layout: base.njk
 		{#- Same placeholder as the directory cards — see team-card.njk. -#}
 		<figure class="single-post-figure"><img width="550" height="500" src="{{ person.data.photo or '/assets/img/ui/team-placeholder.svg' }}" alt="" class="single-post-image" data-pagefind-meta="image[src]"></figure>
 		<div class="single-post-content">
-			<h1 class="single-personnel-name">{{ person.data.name }}{% if person.data.certifications %}<span class="single-personnel-certs">, {{ person.data.certifications }}</span>{% endif %}</h1>
+			<h1 class="single-personnel-name">{{ person.data.name }}{% if person.data.certifications %}<span class="visually-hidden">, </span><span class="single-personnel-certs">{{ person.data.certifications }}</span>{% endif %}</h1>
 			{%- if person.data.job_title %}<p class="single-personnel-title">{{ person.data.job_title }}</p>{% endif %}
 			{%- if person.data.location_name %}<p class="single-personnel-location"><a href="{{ person.data.location_url }}" class="single-personnel-location-link">{{ person.data.location_name }}</a></p>{% endif %}
 			<div class="single-personnel-content content">
-				{#- The LinkedIn badge was an icon link with no accessible name on the
-				    old site (see reports/prosperity-partners-accessibility-audit.md),
-				    repeated across ~200 pages. The alt text names the person so the
-				    link reads as a destination rather than as "LinkedIn" 200 times. -#}
-				{% if person.data.linkedin_url %}<p><a href="{{ person.data.linkedin_url }}" target="_blank" rel="noopener"><img src="/assets/img/linkedin.png" alt="{{ person.data.name }} on LinkedIn" width="24" height="24"></a></p>{% endif %}
+				{#- The live site's badge is a 216x35 "Find me on LinkedIn" wordmark;
+				    the import brought the asset across as
+				    assets/img/ui/find-me-linkedin-01.svg but this template was
+				    pointing at the 24px linkedin.png used in the footer, so ~200
+				    personnel pages showed a bare icon where the badge belongs.
+
+				    The alt text names the person: on the old site this was an
+				    icon link with alt="" repeated across every bio, which
+				    reports/prosperity-partners-accessibility-audit.md flagged. -#}
+				{% if person.data.linkedin_url %}<p><a href="{{ person.data.linkedin_url }}" target="_blank" rel="noopener"><img src="/assets/img/ui/find-me-linkedin-01.svg" alt="Find {{ person.data.name }} on LinkedIn" width="216" height="35"></a></p>{% endif %}
 				{{ person.content | safe }}
 			</div>
 		</div>

@@ -1031,13 +1031,6 @@ input, textarea { font: inherit; }
 	color: var(--black);
 }
 
-/* The certifications span now carries its own ", " separator so the accessible
-   name reads "Jeremy Dubow, CPA, MST" rather than running together as
-   "Jeremy Dubowcpa, mst". The ported rules add a left margin on top of that,
-   which renders as "Dubow , CPA" — the comma replaces the margin. */
-.team-member-certs,
-.single-personnel-certs { margin-left: 0; }
-
 /* /sitemap/ is generated from the collections rather than authored, so it has no
    ported rules of its own; .content supplies the prose styling and this only
    indents the nested level so the page hierarchy reads. */

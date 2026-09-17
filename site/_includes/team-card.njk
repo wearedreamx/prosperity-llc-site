@@ -21,10 +21,11 @@
 			<img width="550" height="500" src="{{ person.data.photo or '/assets/img/ui/team-placeholder.svg' }}" alt="" class="team-member-img">
 		</figure>
 		<div class="team-member-content">
-			{#- The certs sit in their own element but run straight into the name in
-			    the accessible name ("Jeremy Dubowcpa, mst"), so they are separated
-			    by a comma in the text, not just by margin. -#}
-			<h3 class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="team-member-certs">, {{ person.data.certifications }}</span>{% endif %}</h3>
+			{#- The certs sit in their own element, separated visually by a margin
+			    exactly as the live site does it. That runs them into the name in
+			    the accessible name ("Jeremy Dubowcpa, mst"), so the comma goes in
+			    a visually-hidden span rather than in the visible text. -#}
+			<h3 class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="visually-hidden">, </span><span class="team-member-certs">{{ person.data.certifications }}</span>{% endif %}</h3>
 			<p class="team-member-title">{{ person.data.job_title }}</p>
 			{%- if withLocation %}
 			<p class="team-member-location">{{ person.data.location_name }}</p>
