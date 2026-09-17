@@ -4,15 +4,21 @@ canonicalUrl: "https://www.prosperityllc.com/meet-the-team/"
 layout: base.njk
 permalink: "/meet-the-team/"
 ---
+{#- Banner copy mirrors site/content/pages/meet-the-team.md (banner_title,
+    banner_description_html). This template is hand-built rather than rendered
+    through page.njk, so the two have to be kept in step by hand. -#}
 <section class="page-banner">
 	<div class="page-banner-content">
-		<div class="page-banner-container container">
-			<h2 class="page-banner-title">Meet the Team</h2>
+		<div class="page-banner-content-container container">
+			<h1 class="page-banner-title">Meet The Team</h1>
+			<div class="content"><p>At Prosperity Partners, our people set us apart. We welcome you to meet our amazing, diverse and talented team.</p></div>
 		</div>
 	</div>
 	<figure class="page-banner-figure"><img src="/assets/img/uploads/pages/meet-the-team.jpg" alt="" class="page-banner-image"></figure>
 </section>
-<section class="single-post-container">
+{#- `.team` is what carries the 4em of space under the banner; naming this
+    wrapper anything else leaves the filter bar flush against it. -#}
+<section class="team">
 	<div class="container">
 		{% include "team-filters.njk" %}
 		<p class="team-empty" data-team-empty role="status" aria-live="polite" hidden></p>
