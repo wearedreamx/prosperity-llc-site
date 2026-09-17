@@ -1,24 +1,23 @@
+{#
+  Generic block renderer: walks a page's blocks[] and renders each by its
+  `layout` discriminator (README §6).
+
+  Every column layout resolves to the same container with a layout-suffixed
+  class, and site/assets/css/style.css sizes the grid — so there is one rule
+  here, not one branch per layout. This used to be a nine-arm if/elif chain in
+  which eight arms emitted exactly what the fallback emits.
+
+  Two layouts are not plain containers:
+    raw:*          emitted verbatim, no container. Used by the hand-built
+                   homepage and team sections, and by raw:cta, which renders
+                   the shared CTA component instead of the block's own HTML.
+    twoimage-20    needs an outer wrapper the others do not.
+#}
 {% macro block(b) %}
-{%- if b.layout == "one" -%}
-<div class="content-block-container container content-block-container-one">{{ b.html | injectContactForm | safe }}</div>
-{%- elif b.layout == "two" -%}
-<div class="content-block-container container content-block-container-two">{{ b.html | injectContactForm | safe }}</div>
-{%- elif b.layout == "three" -%}
-<div class="content-block-container container content-block-container-three">{{ b.html | injectContactForm | safe }}</div>
-{%- elif b.layout == "four" -%}
-<div class="content-block-container container content-block-container-four">{{ b.html | injectContactForm | safe }}</div>
-{%- elif b.layout == "five" -%}
-<div class="content-block-container container content-block-container-five">{{ b.html | injectContactForm | safe }}</div>
-{%- elif b.layout == "sidebar" -%}
-<div class="content-block-container container content-block-container-sidebar">{{ b.html | injectContactForm | safe }}</div>
-{%- elif b.layout == "tiles" -%}
-<div class="content-block-container container content-block-container-tiles">{{ b.html | injectContactForm | safe }}</div>
-{%- elif b.layout == "carousel" -%}
-<div class="content-block-container container content-block-container-carousel">{{ b.html | injectContactForm | safe }}</div>
+{%- if b.layout.startsWith("raw:") -%}
+{{ b.html | injectContactForm | safe }}
 {%- elif b.layout == "twoimage-20" -%}
 <div class="content-block-container-twoimage-top content-block-container-twoimage-20"><div class="content-block-container container content-block-container-twoimage content-block-container-with-image-left">{{ b.html | injectContactForm | safe }}</div></div>
-{%- elif b.layout.startsWith("raw:") -%}
-{{ b.html | injectContactForm | safe }}
 {%- else -%}
 <div class="content-block-container container content-block-container-{{ b.layout }}">{{ b.html | injectContactForm | safe }}</div>
 {%- endif -%}
