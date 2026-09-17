@@ -1076,3 +1076,29 @@ input, textarea { font: inherit; }
 .post-excerpt { line-height: 1.5; }
 .post-link { text-decoration: none; }
 .post-read-more { white-space: nowrap; }
+
+/* ===========================================================================
+ * Adjustments to the ported rules above, kept separate so the port stays
+ * verbatim and diffable against the previous site.
+ * ======================================================================== */
+
+/* The filter trigger, its options and Reset are <button>s now — previously a
+   div[role=button], 26 bare <li>s and a span[role=button], which left every
+   option unfocusable and the whole filter unusable by keyboard. The base reset
+   already strips button chrome; these restore the block layout and left
+   alignment that the div/li/span had by default, so the port's own sizing,
+   borders and colours above still describe what you see. */
+.team-filter-header,
+.team-filter-link,
+.team-filter-reset { display: block; width: 100%; text-align: left; }
+.team-filter-header { width: 9em; }
+.team-filter-reset { width: auto; }
+.team-filter-dropdown li { display: block; }
+/* Keyboard focus has to be visible now that these are in the tab order. */
+.team-filter-header:focus-visible,
+.team-filter-link:focus-visible,
+.team-filter-reset:focus-visible {
+	outline: 2px solid var(--blue);
+	outline-offset: -2px;
+	color: var(--black);
+}

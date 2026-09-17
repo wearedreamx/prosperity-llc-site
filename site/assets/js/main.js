@@ -221,41 +221,45 @@
 			});
 		}
 
-		filterRoot.querySelectorAll(".team-filter-dropdown").forEach(function (dropdown) {
+		// Hover opens the dropdown, as in the theme. The trigger and the options
+		// are <button>s, so click covers keyboard (Enter/Space) and touch — where
+		// there is no hover at all — without separate keydown handlers.
+		filterRoot.querySelectorAll(".team-filter").forEach(function (filter) {
+			var dropdown = filter.querySelector(".team-filter-dropdown");
+			var header = filter.querySelector(".team-filter-header");
+			if (!dropdown || !header) return;
+
+			function open(state) {
+				dropdown.classList.toggle("active", state);
+				header.setAttribute("aria-expanded", state ? "true" : "false");
+			}
+
+			filter.addEventListener("mouseover", function () { open(true); });
+			filter.addEventListener("mouseout", function () { open(false); });
+			header.addEventListener("click", function () {
+				open(!dropdown.classList.contains("active"));
+			});
+
 			dropdown.querySelectorAll(".team-filter-link").forEach(function (link) {
 				link.addEventListener("click", function () {
 					dropdown.querySelectorAll(".team-filter-link").forEach(function (sib) {
 						sib.classList.remove("active");
 					});
 					link.classList.add("active");
-					var header = dropdown.parentNode.querySelector(".team-filter-header");
-					if (header) header.textContent = link.textContent;
-					dropdown.classList.remove("active");
+					header.textContent = link.textContent;
+					open(false);
+					// Hovering out is what used to close this; a keyboard user never
+					// hovers, so move focus back to the trigger they opened it from.
+					header.focus();
 					applyFilter();
 				});
 			});
-		});
 
-		// Hover opens the dropdown, as in the theme. Click and Enter/Space are
-		// added so the filter is usable by keyboard and on touch, where there
-		// is no hover at all.
-		filterRoot.querySelectorAll(".team-filter").forEach(function (filter) {
-			var dropdown = filter.querySelector(".team-filter-dropdown");
-			var header = filter.querySelector(".team-filter-header");
-			if (!dropdown || !header) return;
-			function open(state) {
-				dropdown.classList.toggle("active", state);
-				header.setAttribute("aria-expanded", state ? "true" : "false");
-			}
-			filter.addEventListener("mouseover", function () { open(true); });
-			filter.addEventListener("mouseout", function () { open(false); });
-			header.addEventListener("click", function () {
-				open(!dropdown.classList.contains("active"));
-			});
-			header.addEventListener("keydown", function (e) {
-				if (e.key === "Enter" || e.key === " ") {
-					e.preventDefault();
-					open(!dropdown.classList.contains("active"));
+			// Escape closes the open dropdown without changing the selection.
+			filter.addEventListener("keydown", function (e) {
+				if (e.key === "Escape" && dropdown.classList.contains("active")) {
+					open(false);
+					header.focus();
 				}
 			});
 		});
@@ -281,11 +285,6 @@
 		}
 
 		var reset = filterRoot.querySelector(".team-filter-reset");
-		if (reset) {
-			reset.addEventListener("click", resetFilter);
-			reset.addEventListener("keydown", function (e) {
-				if (e.key === "Enter" || e.key === " ") { e.preventDefault(); resetFilter(); }
-			});
-		}
+		if (reset) reset.addEventListener("click", resetFilter);
 	}
 })();

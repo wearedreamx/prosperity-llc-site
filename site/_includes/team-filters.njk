@@ -1,21 +1,29 @@
 {#
   3-facet filter for the team directory. Mirrors the theme's
-  pages/team/filters.php: each .team-filter-link carries a data-term, and a card
-  is shown when its class list contains every selected term. Terms come from
-  data/team-filters.json; the matching classes are emitted on each card below.
+  pages/team/filters.php: each option carries a data-term, and a card is shown
+  when its class list contains every selected term. Terms come from
+  data/team-filters.json; the matching classes are emitted on each card by
+  team-card.njk.
+
+  The trigger, the options and Reset are real <button>s. They used to be a
+  div[role=button], 26 plain <li>s and a span[role=button] — so all 26 options
+  had no tabindex and nothing focusable in them. A keyboard user could open a
+  dropdown and then could not select anything inside it. Buttons are focusable,
+  activate on Enter and Space, and are announced as buttons, which removes the
+  role/tabindex scaffolding and the keydown handlers that went with it.
 #}
 <div class="team-filters-container" data-pagefind-ignore>
 	<ul class="team-filters">
 		{% for facet in teamFilters %}{% if facet.label != hideFacet %}
 		<li class="team-filter" data-label="{{ facet.label }}">
-			<div class="team-filter-header" role="button" tabindex="0" aria-expanded="false" aria-haspopup="true">{{ facet.label }}</div>
+			<button class="team-filter-header" type="button" aria-expanded="false">{{ facet.label }}</button>
 			<ul class="team-filter-dropdown">
-				<li class="team-filter-link active" data-term="all">All</li>
-				{% for t in facet.terms %}<li class="team-filter-link" data-term="{{ t.term }}">{{ t.label }}</li>{% endfor %}
+				<li><button class="team-filter-link active" type="button" data-term="all">All</button></li>
+				{% for t in facet.terms %}<li><button class="team-filter-link" type="button" data-term="{{ t.term }}">{{ t.label }}</button></li>{% endfor %}
 			</ul>
 		</li>
 		{% endif %}{% endfor %}
-		<li class="team-filter"><span class="team-filter-reset" role="button" tabindex="0">Reset</span></li>
+		<li class="team-filter"><button class="team-filter-reset" type="button">Reset</button></li>
 	</ul>
 	<div class="team-search">
 		{#- Filters the cards on this page by name rather than submitting to
