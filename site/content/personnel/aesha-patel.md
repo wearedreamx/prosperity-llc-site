@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Houston",
   "location_url": "/location/houston/",
-  "photo": "/assets/img/uploads/personnel/aesha-patel.jpg",
+  "photo": "/assets/img/personnel/aesha-patel.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

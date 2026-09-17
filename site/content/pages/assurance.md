@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Assurance",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/assurance.jpg",
+  "banner_image": "/assets/img/pages/assurance.jpg",
   "date_modified": "2026-06-23T15:43:02+00:00",
   "blocks": [
     {

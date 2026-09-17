@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Houston",
   "location_url": "/location/houston/",
-  "photo": "/assets/img/uploads/personnel/tanvi-bhanushali.jpg",
+  "photo": "/assets/img/personnel/tanvi-bhanushali.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

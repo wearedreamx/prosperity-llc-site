@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/island-time-tiki-boat-1.jpg"
+    "/assets/img/posts/island-time-tiki-boat-1.jpg"
   ]
 }
 ---

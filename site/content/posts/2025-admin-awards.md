@@ -7,8 +7,8 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/2025-admin-awards-2.jpg",
-    "/assets/img/uploads/posts/2025-admin-awards-3.jpg"
+    "/assets/img/posts/2025-admin-awards-2.jpg",
+    "/assets/img/posts/2025-admin-awards-3.jpg"
   ]
 }
 ---

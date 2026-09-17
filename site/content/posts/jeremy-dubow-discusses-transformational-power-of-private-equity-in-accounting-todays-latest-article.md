@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/jeremy-dubow-discusses-transformational-power-of-private-equity-in-accounting-todays-latest-article-2.jpg"
+    "/assets/img/posts/jeremy-dubow-discusses-transformational-power-of-private-equity-in-accounting-todays-latest-article-2.jpg"
   ]
 }
 ---

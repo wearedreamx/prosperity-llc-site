@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-partners-named-one-of-illinois-top-5-best-workplaces-for-2025-1.jpg"
+    "/assets/img/posts/prosperity-partners-named-one-of-illinois-top-5-best-workplaces-for-2025-1.jpg"
   ]
 }
 ---

@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "International Tax & Expatriate Services",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/tax-services-international-tax.jpg",
+  "banner_image": "/assets/img/pages/tax-services-international-tax.jpg",
   "date_modified": "2026-01-26T18:22:42+00:00",
   "blocks": [
     {

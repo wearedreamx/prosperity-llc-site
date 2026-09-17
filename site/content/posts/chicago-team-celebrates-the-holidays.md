@@ -7,13 +7,13 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/chicago-team-celebrates-the-holidays-1.jpg",
-    "/assets/img/uploads/posts/chicago-team-celebrates-the-holidays-2.jpg",
-    "/assets/img/uploads/posts/chicago-team-celebrates-the-holidays-3.jpg",
-    "/assets/img/uploads/posts/chicago-team-celebrates-the-holidays-4.jpg",
-    "/assets/img/uploads/posts/chicago-team-celebrates-the-holidays-5.jpg",
-    "/assets/img/uploads/posts/chicago-team-celebrates-the-holidays-6.jpg",
-    "/assets/img/uploads/posts/chicago-team-celebrates-the-holidays-7.jpg"
+    "/assets/img/posts/chicago-team-celebrates-the-holidays-1.jpg",
+    "/assets/img/posts/chicago-team-celebrates-the-holidays-2.jpg",
+    "/assets/img/posts/chicago-team-celebrates-the-holidays-3.jpg",
+    "/assets/img/posts/chicago-team-celebrates-the-holidays-4.jpg",
+    "/assets/img/posts/chicago-team-celebrates-the-holidays-5.jpg",
+    "/assets/img/posts/chicago-team-celebrates-the-holidays-6.jpg",
+    "/assets/img/posts/chicago-team-celebrates-the-holidays-7.jpg"
   ]
 }
 ---

@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
-  "photo": "/assets/img/uploads/personnel/jenny-lewis.jpg",
+  "photo": "/assets/img/personnel/jenny-lewis.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

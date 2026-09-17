@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/amisha-margaj.jpg",
+  "photo": "/assets/img/personnel/amisha-margaj.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

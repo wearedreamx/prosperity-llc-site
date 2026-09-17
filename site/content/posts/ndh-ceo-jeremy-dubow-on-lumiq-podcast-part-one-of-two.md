@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/ndh-ceo-jeremy-dubow-on-lumiq-podcast-part-one-of-two-2.png"
+    "/assets/img/posts/ndh-ceo-jeremy-dubow-on-lumiq-podcast-part-one-of-two-2.png"
   ]
 }
 ---

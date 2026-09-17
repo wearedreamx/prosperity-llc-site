@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "/assets/img/uploads/personnel/fred-farkouh.jpg",
+  "photo": "/assets/img/personnel/fred-farkouh.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

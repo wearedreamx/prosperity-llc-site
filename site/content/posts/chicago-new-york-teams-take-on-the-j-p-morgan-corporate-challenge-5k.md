@@ -7,13 +7,13 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-1.jpg",
-    "/assets/img/uploads/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-2.jpg",
-    "/assets/img/uploads/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-3.jpg",
-    "/assets/img/uploads/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-4.jpg",
-    "/assets/img/uploads/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-5.jpg",
-    "/assets/img/uploads/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-6.jpg",
-    "/assets/img/uploads/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-7.jpg"
+    "/assets/img/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-1.jpg",
+    "/assets/img/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-2.jpg",
+    "/assets/img/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-3.jpg",
+    "/assets/img/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-4.jpg",
+    "/assets/img/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-5.jpg",
+    "/assets/img/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-6.jpg",
+    "/assets/img/posts/chicago-new-york-teams-take-on-the-j-p-morgan-corporate-challenge-5k-7.jpg"
   ]
 }
 ---

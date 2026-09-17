@@ -7,12 +7,12 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/supporting-our-community-chicago-day-of-service-1.jpg",
-    "/assets/img/uploads/posts/supporting-our-community-chicago-day-of-service-2.jpg",
-    "/assets/img/uploads/posts/supporting-our-community-chicago-day-of-service-3.jpg",
-    "/assets/img/uploads/posts/supporting-our-community-chicago-day-of-service-4.jpg",
-    "/assets/img/uploads/posts/supporting-our-community-chicago-day-of-service-5.jpg",
-    "/assets/img/uploads/posts/supporting-our-community-chicago-day-of-service-6.jpg"
+    "/assets/img/posts/supporting-our-community-chicago-day-of-service-1.jpg",
+    "/assets/img/posts/supporting-our-community-chicago-day-of-service-2.jpg",
+    "/assets/img/posts/supporting-our-community-chicago-day-of-service-3.jpg",
+    "/assets/img/posts/supporting-our-community-chicago-day-of-service-4.jpg",
+    "/assets/img/posts/supporting-our-community-chicago-day-of-service-5.jpg",
+    "/assets/img/posts/supporting-our-community-chicago-day-of-service-6.jpg"
   ]
 }
 ---

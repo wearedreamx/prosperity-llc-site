@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Houston",
   "location_url": "/location/houston/",
-  "photo": "/assets/img/uploads/personnel/mike-jain.jpg",
+  "photo": "/assets/img/personnel/mike-jain.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

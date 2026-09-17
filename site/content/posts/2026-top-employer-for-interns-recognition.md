@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/2026-top-employer-for-interns-recognition-1.jpg"
+    "/assets/img/posts/2026-top-employer-for-interns-recognition-1.jpg"
   ]
 }
 ---

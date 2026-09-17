@@ -7,9 +7,9 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/ndh-green-team-1.jpeg",
-    "/assets/img/uploads/posts/ndh-green-team-2.jpeg",
-    "/assets/img/uploads/posts/ndh-green-team-3.jpeg"
+    "/assets/img/posts/ndh-green-team-1.jpeg",
+    "/assets/img/posts/ndh-green-team-2.jpeg",
+    "/assets/img/posts/ndh-green-team-3.jpeg"
   ]
 }
 ---

@@ -7,15 +7,15 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/threedotsandadash-1.jpg",
-    "/assets/img/uploads/posts/threedotsandadash-2.jpeg",
-    "/assets/img/uploads/posts/threedotsandadash-3.jpeg",
-    "/assets/img/uploads/posts/threedotsandadash-4.jpeg",
-    "/assets/img/uploads/posts/threedotsandadash-5.png",
-    "/assets/img/uploads/posts/threedotsandadash-6.png",
-    "/assets/img/uploads/posts/threedotsandadash-7.jpeg",
-    "/assets/img/uploads/posts/threedotsandadash-8.jpeg",
-    "/assets/img/uploads/posts/threedotsandadash-9.jpeg"
+    "/assets/img/posts/threedotsandadash-1.jpg",
+    "/assets/img/posts/threedotsandadash-2.jpeg",
+    "/assets/img/posts/threedotsandadash-3.jpeg",
+    "/assets/img/posts/threedotsandadash-4.jpeg",
+    "/assets/img/posts/threedotsandadash-5.png",
+    "/assets/img/posts/threedotsandadash-6.png",
+    "/assets/img/posts/threedotsandadash-7.jpeg",
+    "/assets/img/posts/threedotsandadash-8.jpeg",
+    "/assets/img/posts/threedotsandadash-9.jpeg"
   ]
 }
 ---

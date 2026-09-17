@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
-  "photo": "/assets/img/uploads/personnel/fern-nunes-cubelo.jpg",
+  "photo": "/assets/img/personnel/fern-nunes-cubelo.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

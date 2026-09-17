@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
-  "photo": "/assets/img/uploads/personnel/heather-macgarvey.jpg",
+  "photo": "/assets/img/personnel/heather-macgarvey.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

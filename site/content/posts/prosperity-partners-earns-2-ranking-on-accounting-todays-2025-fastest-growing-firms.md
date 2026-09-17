@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-partners-earns-2-ranking-on-accounting-todays-2025-fastest-growing-firms-1.jpg"
+    "/assets/img/posts/prosperity-partners-earns-2-ranking-on-accounting-todays-2025-fastest-growing-firms-1.jpg"
   ]
 }
 ---

@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/were-honored-1-on-accounting-todays-2025-honorable-mentions-list-2.jpg"
+    "/assets/img/posts/were-honored-1-on-accounting-todays-2025-honorable-mentions-list-2.jpg"
   ]
 }
 ---

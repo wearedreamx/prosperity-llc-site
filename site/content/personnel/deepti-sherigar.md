@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/deepti-sherigar.jpg",
+  "photo": "/assets/img/personnel/deepti-sherigar.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

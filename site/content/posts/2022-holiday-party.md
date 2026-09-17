@@ -7,16 +7,16 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/2022-holiday-party-1.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-2.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-3.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-4.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-5.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-6.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-7.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-8.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-9.jpg",
-    "/assets/img/uploads/posts/2022-holiday-party-10.jpg"
+    "/assets/img/posts/2022-holiday-party-1.jpg",
+    "/assets/img/posts/2022-holiday-party-2.jpg",
+    "/assets/img/posts/2022-holiday-party-3.jpg",
+    "/assets/img/posts/2022-holiday-party-4.jpg",
+    "/assets/img/posts/2022-holiday-party-5.jpg",
+    "/assets/img/posts/2022-holiday-party-6.jpg",
+    "/assets/img/posts/2022-holiday-party-7.jpg",
+    "/assets/img/posts/2022-holiday-party-8.jpg",
+    "/assets/img/posts/2022-holiday-party-9.jpg",
+    "/assets/img/posts/2022-holiday-party-10.jpg"
   ]
 }
 ---

@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Making An Impact Through Thought Leadership",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/special-projects-books-publications.jpg",
+  "banner_image": "/assets/img/pages/special-projects-books-publications.jpg",
   "date_modified": "2025-10-03T17:45:05+00:00",
   "blocks": [
     {

@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/team-j-or-a-1.png"
+    "/assets/img/posts/team-j-or-a-1.png"
   ]
 }
 ---

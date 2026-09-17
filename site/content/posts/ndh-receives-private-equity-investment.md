@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/ndh-receives-private-equity-investment-1.jpg"
+    "/assets/img/posts/ndh-receives-private-equity-investment-1.jpg"
   ]
 }
 ---

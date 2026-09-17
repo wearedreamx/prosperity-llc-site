@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/lisa-fernandez.jpg",
+  "photo": "/assets/img/personnel/lisa-fernandez.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

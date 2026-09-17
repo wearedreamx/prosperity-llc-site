@@ -7,10 +7,10 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/ndh-volleyball-league-1.jpg",
-    "/assets/img/uploads/posts/ndh-volleyball-league-2.jpg",
-    "/assets/img/uploads/posts/ndh-volleyball-league-3.jpg",
-    "/assets/img/uploads/posts/ndh-volleyball-league-4.jpg"
+    "/assets/img/posts/ndh-volleyball-league-1.jpg",
+    "/assets/img/posts/ndh-volleyball-league-2.jpg",
+    "/assets/img/posts/ndh-volleyball-league-3.jpg",
+    "/assets/img/posts/ndh-volleyball-league-4.jpg"
   ]
 }
 ---

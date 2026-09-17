@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/jacob-eminger.jpg",
+  "photo": "/assets/img/personnel/jacob-eminger.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

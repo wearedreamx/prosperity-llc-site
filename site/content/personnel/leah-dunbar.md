@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/leah-dunbar.jpg",
+  "photo": "/assets/img/personnel/leah-dunbar.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-partners-recognized-as-a-great-lakes-regional-leader-2.png"
+    "/assets/img/posts/prosperity-partners-recognized-as-a-great-lakes-regional-leader-2.png"
   ]
 }
 ---

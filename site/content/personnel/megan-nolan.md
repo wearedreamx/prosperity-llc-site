@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/megan-nolan.jpg",
+  "photo": "/assets/img/personnel/megan-nolan.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
-  "photo": "/assets/img/uploads/personnel/ethan-marciano.jpg",
+  "photo": "/assets/img/personnel/ethan-marciano.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/ppp-loan-forgiveness-1.png"
+    "/assets/img/posts/ppp-loan-forgiveness-1.png"
   ]
 }
 ---

@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "/assets/img/uploads/personnel/andy-yan.jpg",
+  "photo": "/assets/img/personnel/andy-yan.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

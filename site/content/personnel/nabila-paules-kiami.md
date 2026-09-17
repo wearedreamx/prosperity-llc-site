@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
-  "photo": "/assets/img/uploads/personnel/nabila-paules-kiami.jpg",
+  "photo": "/assets/img/personnel/nabila-paules-kiami.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "/assets/img/uploads/personnel/howard-rosenburg.jpg",
+  "photo": "/assets/img/personnel/howard-rosenburg.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

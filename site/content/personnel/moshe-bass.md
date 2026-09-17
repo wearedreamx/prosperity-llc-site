@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/moshe-bass.jpg",
+  "photo": "/assets/img/personnel/moshe-bass.jpg",
   "linkedin_url": "https://www.linkedin.com/in/moshe-bass-cpa-9020b56/",
   "facet_title": "partners",
   "facet_specializations": [

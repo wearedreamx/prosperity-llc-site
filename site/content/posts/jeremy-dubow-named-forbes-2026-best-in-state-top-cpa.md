@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/jeremy-dubow-named-forbes-2026-best-in-state-top-cpa-1.png"
+    "/assets/img/posts/jeremy-dubow-named-forbes-2026-best-in-state-top-cpa-1.png"
   ]
 }
 ---

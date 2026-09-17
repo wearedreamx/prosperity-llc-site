@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Houston",
   "location_url": "/location/houston/",
-  "photo": "/assets/img/uploads/personnel/rhonda-stewart.jpg",
+  "photo": "/assets/img/personnel/rhonda-stewart.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

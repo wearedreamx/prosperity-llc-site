@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/vermont-team-kicks-off-the-holiday-season-with-festive-cheer-2.png"
+    "/assets/img/posts/vermont-team-kicks-off-the-holiday-season-with-festive-cheer-2.png"
   ]
 }
 ---

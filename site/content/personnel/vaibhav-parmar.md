@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/vaibhav-parmar.jpg",
+  "photo": "/assets/img/personnel/vaibhav-parmar.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

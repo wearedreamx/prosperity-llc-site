@@ -7,9 +7,9 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/kansas-city-team-wraps-up-summer-in-style-2.jpg",
-    "/assets/img/uploads/posts/kansas-city-team-wraps-up-summer-in-style-3.jpg",
-    "/assets/img/uploads/posts/kansas-city-team-wraps-up-summer-in-style-4.jpg"
+    "/assets/img/posts/kansas-city-team-wraps-up-summer-in-style-2.jpg",
+    "/assets/img/posts/kansas-city-team-wraps-up-summer-in-style-3.jpg",
+    "/assets/img/posts/kansas-city-team-wraps-up-summer-in-style-4.jpg"
   ]
 }
 ---

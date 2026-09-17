@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/shashin-bhukhanwala.jpg",
+  "photo": "/assets/img/personnel/shashin-bhukhanwala.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

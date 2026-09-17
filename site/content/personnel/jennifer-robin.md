@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/jennifer-robin.jpg",
+  "photo": "/assets/img/personnel/jennifer-robin.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

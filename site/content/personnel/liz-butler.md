@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
-  "photo": "/assets/img/uploads/personnel/liz-butler.jpg",
+  "photo": "/assets/img/personnel/liz-butler.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

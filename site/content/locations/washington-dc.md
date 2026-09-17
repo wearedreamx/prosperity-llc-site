@@ -3,7 +3,7 @@
   "slug": "washington-dc",
   "name": "Washington DC – Tax",
   "address_html": "6000 Executive Blvd<br>\nSuite 520<br>\nRockville, MD 20852<br>\n(301) 881-4244",
-  "banner_image": "/assets/img/uploads/locations/washington-dc.jpg",
+  "banner_image": "/assets/img/locations/washington-dc.jpg",
   "date_modified": "2026-03-09T16:00:01+00:00"
 }
 ---

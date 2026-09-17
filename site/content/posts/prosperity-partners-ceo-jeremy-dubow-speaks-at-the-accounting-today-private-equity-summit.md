@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-partners-ceo-jeremy-dubow-speaks-at-the-accounting-today-private-equity-summit-1.jpg"
+    "/assets/img/posts/prosperity-partners-ceo-jeremy-dubow-speaks-at-the-accounting-today-private-equity-summit-1.jpg"
   ]
 }
 ---

@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "State and Local Tax",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/tax-services-state-and-local-taxes.jpg",
+  "banner_image": "/assets/img/pages/tax-services-state-and-local-taxes.jpg",
   "date_modified": "2024-11-26T18:19:06+00:00",
   "blocks": [
     {

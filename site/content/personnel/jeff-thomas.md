@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/jeff-thomas.jpg",
+  "photo": "/assets/img/personnel/jeff-thomas.jpg",
   "linkedin_url": "https://www.linkedin.com/in/jeffreythomascpa/",
   "facet_title": "partners",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/colleen-callahan.jpg",
+  "photo": "/assets/img/personnel/colleen-callahan.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

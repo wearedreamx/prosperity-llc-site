@@ -7,20 +7,20 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/yacht-cruise-2.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-3.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-4.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-5.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-6.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-8.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-9.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-10.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-11.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-12.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-13.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-14.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-15.jpg",
-    "/assets/img/uploads/posts/yacht-cruise-16.jpg"
+    "/assets/img/posts/yacht-cruise-2.jpg",
+    "/assets/img/posts/yacht-cruise-3.jpg",
+    "/assets/img/posts/yacht-cruise-4.jpg",
+    "/assets/img/posts/yacht-cruise-5.jpg",
+    "/assets/img/posts/yacht-cruise-6.jpg",
+    "/assets/img/posts/yacht-cruise-8.jpg",
+    "/assets/img/posts/yacht-cruise-9.jpg",
+    "/assets/img/posts/yacht-cruise-10.jpg",
+    "/assets/img/posts/yacht-cruise-11.jpg",
+    "/assets/img/posts/yacht-cruise-12.jpg",
+    "/assets/img/posts/yacht-cruise-13.jpg",
+    "/assets/img/posts/yacht-cruise-14.jpg",
+    "/assets/img/posts/yacht-cruise-15.jpg",
+    "/assets/img/posts/yacht-cruise-16.jpg"
   ]
 }
 ---

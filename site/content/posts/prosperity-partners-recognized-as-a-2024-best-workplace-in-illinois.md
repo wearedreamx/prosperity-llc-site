@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-partners-recognized-as-a-2024-best-workplace-in-illinois-1.jpg"
+    "/assets/img/posts/prosperity-partners-recognized-as-a-2024-best-workplace-in-illinois-1.jpg"
   ]
 }
 ---

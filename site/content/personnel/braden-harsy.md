@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/braden-harsy.jpg",
+  "photo": "/assets/img/personnel/braden-harsy.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

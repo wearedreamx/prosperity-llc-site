@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/kristen-schrader.jpg",
+  "photo": "/assets/img/personnel/kristen-schrader.jpg",
   "linkedin_url": "https://www.linkedin.com/in/kristen-schrader/",
   "facet_title": "directors",
   "facet_specializations": [

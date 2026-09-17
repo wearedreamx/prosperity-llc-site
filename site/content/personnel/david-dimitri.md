@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
-  "photo": "/assets/img/uploads/personnel/david-dimitri.jpg",
+  "photo": "/assets/img/personnel/david-dimitri.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

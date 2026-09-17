@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/logan-nielsen.jpg",
+  "photo": "/assets/img/personnel/logan-nielsen.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

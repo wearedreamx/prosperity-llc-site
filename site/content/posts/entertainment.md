@@ -7,8 +7,8 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/entertainment-1.jpg",
-    "/assets/img/uploads/posts/entertainment-2.jpeg"
+    "/assets/img/posts/entertainment-1.jpg",
+    "/assets/img/posts/entertainment-2.jpeg"
   ]
 }
 ---

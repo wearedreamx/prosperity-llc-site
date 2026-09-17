@@ -7,7 +7,7 @@
   "job_title": "Senior Manager",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/catherine-lauber.jpg",
+  "photo": "/assets/img/personnel/catherine-lauber.jpg",
   "linkedin_url": "",
   "facet_title": "senior-manager",
   "facet_specializations": [

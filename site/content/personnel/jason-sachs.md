@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/jason-sachs.jpg",
+  "photo": "/assets/img/personnel/jason-sachs.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

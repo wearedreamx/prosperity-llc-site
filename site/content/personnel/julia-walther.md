@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/julia-walther.jpg",
+  "photo": "/assets/img/personnel/julia-walther.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Houston",
   "location_url": "/location/houston/",
-  "photo": "/assets/img/uploads/personnel/nitin-chandra.jpg",
+  "photo": "/assets/img/personnel/nitin-chandra.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

@@ -3,7 +3,7 @@
   "slug": "burlington",
   "name": "Burlington",
   "address_html": "41 Rye Circle<br>\nPO Box 2166<br>\nSouth Burlington, VT 05407<br>\n(802) 383-0399",
-  "banner_image": "/assets/img/uploads/locations/burlington.jpg",
+  "banner_image": "/assets/img/locations/burlington.jpg",
   "date_modified": "2025-08-05T16:47:30+00:00"
 }
 ---

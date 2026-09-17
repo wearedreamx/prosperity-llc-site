@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/akshaya-kumar-moharana.jpg",
+  "photo": "/assets/img/personnel/akshaya-kumar-moharana.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

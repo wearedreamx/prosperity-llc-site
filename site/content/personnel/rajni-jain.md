@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Houston",
   "location_url": "/location/houston/",
-  "photo": "/assets/img/uploads/personnel/rajni-jain.jpg",
+  "photo": "/assets/img/personnel/rajni-jain.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

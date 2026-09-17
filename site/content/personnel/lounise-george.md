@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "/assets/img/uploads/personnel/lounise-george.jpg",
+  "photo": "/assets/img/personnel/lounise-george.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

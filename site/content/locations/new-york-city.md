@@ -3,7 +3,7 @@
   "slug": "new-york-city",
   "name": "New York City",
   "address_html": "575 Madison Avenue<br>\nFloor 14<br>\nNew York, NY 10022",
-  "banner_image": "/assets/img/uploads/locations/new-york-city.jpg",
+  "banner_image": "/assets/img/locations/new-york-city.jpg",
   "date_modified": "2026-03-11T12:42:31+00:00"
 }
 ---

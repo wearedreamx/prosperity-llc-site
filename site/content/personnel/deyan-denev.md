@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/deyan-denev.jpg",
+  "photo": "/assets/img/personnel/deyan-denev.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

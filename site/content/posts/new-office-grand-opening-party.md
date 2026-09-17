@@ -7,11 +7,11 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/new-office-grand-opening-party-1.jpeg",
-    "/assets/img/uploads/posts/new-office-grand-opening-party-2.jpg",
-    "/assets/img/uploads/posts/new-office-grand-opening-party-3.jpeg",
-    "/assets/img/uploads/posts/new-office-grand-opening-party-4.jpeg",
-    "/assets/img/uploads/posts/new-office-grand-opening-party-5.jpeg"
+    "/assets/img/posts/new-office-grand-opening-party-1.jpeg",
+    "/assets/img/posts/new-office-grand-opening-party-2.jpg",
+    "/assets/img/posts/new-office-grand-opening-party-3.jpeg",
+    "/assets/img/posts/new-office-grand-opening-party-4.jpeg",
+    "/assets/img/posts/new-office-grand-opening-party-5.jpeg"
   ]
 }
 ---

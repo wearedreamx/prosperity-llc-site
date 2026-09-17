@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
-  "photo": "/assets/img/uploads/personnel/ryan-goodfellow.jpg",
+  "photo": "/assets/img/personnel/ryan-goodfellow.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

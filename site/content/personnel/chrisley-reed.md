@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/chrisley-reed.jpg",
+  "photo": "/assets/img/personnel/chrisley-reed.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

@@ -7,9 +7,9 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/camping-trip-1.jpg",
-    "/assets/img/uploads/posts/camping-trip-2.jpg",
-    "/assets/img/uploads/posts/camping-trip-3.jpg"
+    "/assets/img/posts/camping-trip-1.jpg",
+    "/assets/img/posts/camping-trip-2.jpg",
+    "/assets/img/posts/camping-trip-3.jpg"
   ]
 }
 ---

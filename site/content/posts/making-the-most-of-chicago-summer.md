@@ -7,14 +7,14 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/making-the-most-of-chicago-summer-1.jpg",
-    "/assets/img/uploads/posts/making-the-most-of-chicago-summer-2.jpg",
-    "/assets/img/uploads/posts/making-the-most-of-chicago-summer-3.jpg",
-    "/assets/img/uploads/posts/making-the-most-of-chicago-summer-4.jpg",
-    "/assets/img/uploads/posts/making-the-most-of-chicago-summer-5.jpg",
-    "/assets/img/uploads/posts/making-the-most-of-chicago-summer-6.jpg",
-    "/assets/img/uploads/posts/making-the-most-of-chicago-summer-7.jpg",
-    "/assets/img/uploads/posts/making-the-most-of-chicago-summer-8.jpg"
+    "/assets/img/posts/making-the-most-of-chicago-summer-1.jpg",
+    "/assets/img/posts/making-the-most-of-chicago-summer-2.jpg",
+    "/assets/img/posts/making-the-most-of-chicago-summer-3.jpg",
+    "/assets/img/posts/making-the-most-of-chicago-summer-4.jpg",
+    "/assets/img/posts/making-the-most-of-chicago-summer-5.jpg",
+    "/assets/img/posts/making-the-most-of-chicago-summer-6.jpg",
+    "/assets/img/posts/making-the-most-of-chicago-summer-7.jpg",
+    "/assets/img/posts/making-the-most-of-chicago-summer-8.jpg"
   ]
 }
 ---

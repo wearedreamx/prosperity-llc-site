@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/alok-birla.jpg",
+  "photo": "/assets/img/personnel/alok-birla.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

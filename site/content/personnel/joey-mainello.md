@@ -7,7 +7,7 @@
   "job_title": "Senior Manager",
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
-  "photo": "/assets/img/uploads/personnel/joey-mainello.jpg",
+  "photo": "/assets/img/personnel/joey-mainello.jpg",
   "linkedin_url": "",
   "facet_title": "senior-manager",
   "facet_specializations": [

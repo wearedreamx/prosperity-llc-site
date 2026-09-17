@@ -7,8 +7,8 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/welcoming-our-2026-ma-summer-interns-2.jpg",
-    "/assets/img/uploads/posts/welcoming-our-2026-ma-summer-interns-3.jpeg"
+    "/assets/img/posts/welcoming-our-2026-ma-summer-interns-2.jpg",
+    "/assets/img/posts/welcoming-our-2026-ma-summer-interns-3.jpeg"
   ]
 }
 ---

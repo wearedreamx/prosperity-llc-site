@@ -7,7 +7,7 @@
   "job_title": "Senior Manager",
   "location_name": "Kansas City",
   "location_url": "/location/kansas-city/",
-  "photo": "/assets/img/uploads/personnel/susan-wilson.jpg",
+  "photo": "/assets/img/personnel/susan-wilson.jpg",
   "linkedin_url": "",
   "facet_title": "senior-manager",
   "facet_specializations": [

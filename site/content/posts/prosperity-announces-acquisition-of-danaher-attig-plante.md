@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-announces-acquisition-of-danaher-attig-plante-1.jpg"
+    "/assets/img/posts/prosperity-announces-acquisition-of-danaher-attig-plante-1.jpg"
   ]
 }
 ---

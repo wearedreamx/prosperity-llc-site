@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/zach-lillig.jpg",
+  "photo": "/assets/img/personnel/zach-lillig.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

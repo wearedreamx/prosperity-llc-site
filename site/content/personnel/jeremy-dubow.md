@@ -7,7 +7,7 @@
   "job_title": "Chief Executive Officer",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/jeremy-dubow.jpg",
+  "photo": "/assets/img/personnel/jeremy-dubow.jpg",
   "linkedin_url": "https://www.linkedin.com/in/jeremydubow/",
   "facet_title": "ceo",
   "facet_specializations": [

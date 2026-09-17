@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
-  "photo": "/assets/img/uploads/personnel/joseph-belcher.jpg",
+  "photo": "/assets/img/personnel/joseph-belcher.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [],

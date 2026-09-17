@@ -7,12 +7,12 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-2.jpeg",
-    "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-4.jpg",
-    "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-6.jpeg",
-    "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-7.jpeg",
-    "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-8.jpeg",
-    "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-10.jpg"
+    "/assets/img/posts/post-deadline-celebration-at-five-iron-golf-2.jpeg",
+    "/assets/img/posts/post-deadline-celebration-at-five-iron-golf-4.jpg",
+    "/assets/img/posts/post-deadline-celebration-at-five-iron-golf-6.jpeg",
+    "/assets/img/posts/post-deadline-celebration-at-five-iron-golf-7.jpeg",
+    "/assets/img/posts/post-deadline-celebration-at-five-iron-golf-8.jpeg",
+    "/assets/img/posts/post-deadline-celebration-at-five-iron-golf-10.jpg"
   ]
 }
 ---

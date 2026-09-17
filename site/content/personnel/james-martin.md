@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
-  "photo": "/assets/img/uploads/personnel/james-martin.jpg",
+  "photo": "/assets/img/personnel/james-martin.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

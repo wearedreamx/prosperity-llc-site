@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/travis-neese.jpg",
+  "photo": "/assets/img/personnel/travis-neese.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/priya-desai.jpg",
+  "photo": "/assets/img/personnel/priya-desai.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

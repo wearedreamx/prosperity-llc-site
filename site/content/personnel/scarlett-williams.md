@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
-  "photo": "/assets/img/uploads/personnel/scarlett-williams.jpg",
+  "photo": "/assets/img/personnel/scarlett-williams.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

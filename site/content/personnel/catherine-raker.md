@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
-  "photo": "/assets/img/uploads/personnel/catherine-raker.jpg",
+  "photo": "/assets/img/personnel/catherine-raker.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

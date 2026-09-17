@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/brewery-tour-2.jpg"
+    "/assets/img/posts/brewery-tour-2.jpg"
   ]
 }
 ---

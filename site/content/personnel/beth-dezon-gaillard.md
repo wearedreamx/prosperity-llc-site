@@ -7,7 +7,7 @@
   "job_title": "Senior Manager",
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
-  "photo": "/assets/img/uploads/personnel/beth-dezon-gaillard.jpg",
+  "photo": "/assets/img/personnel/beth-dezon-gaillard.jpg",
   "linkedin_url": "",
   "facet_title": "senior-manager",
   "facet_specializations": [

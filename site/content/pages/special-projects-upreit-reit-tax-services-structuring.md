@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "UPREIT / REIT Tax Services & Structuring",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/special-projects-upreit-reit-tax-services-structuring.jpg",
+  "banner_image": "/assets/img/pages/special-projects-upreit-reit-tax-services-structuring.jpg",
   "date_modified": "2025-10-03T17:44:35+00:00",
   "blocks": [
     {

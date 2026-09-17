@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/jeremy-dubow-ceo-of-prosperity-partners-talks-private-equity-and-growth-on-the-accounting-arc-podcast-2.jpg"
+    "/assets/img/posts/jeremy-dubow-ceo-of-prosperity-partners-talks-private-equity-and-growth-on-the-accounting-arc-podcast-2.jpg"
   ]
 }
 ---

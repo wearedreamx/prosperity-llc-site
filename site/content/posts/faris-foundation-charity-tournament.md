@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/faris-foundation-charity-tournament-2.jpg"
+    "/assets/img/posts/faris-foundation-charity-tournament-2.jpg"
   ]
 }
 ---

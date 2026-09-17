@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/ndh-completes-acquisition-of-mcgowan-guntermann-1.png"
+    "/assets/img/posts/ndh-completes-acquisition-of-mcgowan-guntermann-1.png"
   ]
 }
 ---

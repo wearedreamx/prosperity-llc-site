@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Kansas City",
   "location_url": "/location/kansas-city/",
-  "photo": "/assets/img/uploads/personnel/michelle-cantrell.jpg",
+  "photo": "/assets/img/personnel/michelle-cantrell.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

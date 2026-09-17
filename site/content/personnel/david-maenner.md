@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/david-maenner.jpg",
+  "photo": "/assets/img/personnel/david-maenner.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

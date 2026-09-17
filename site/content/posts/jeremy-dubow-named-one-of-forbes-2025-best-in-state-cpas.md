@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/jeremy-dubow-named-one-of-forbes-2025-best-in-state-cpas-1.png"
+    "/assets/img/posts/jeremy-dubow-named-one-of-forbes-2025-best-in-state-cpas-1.png"
   ]
 }
 ---

@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/sony-dubey.jpg",
+  "photo": "/assets/img/personnel/sony-dubey.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

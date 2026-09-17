@@ -7,13 +7,13 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/cafe-oliva-1.jpg",
-    "/assets/img/uploads/posts/cafe-oliva-2.jpg",
-    "/assets/img/uploads/posts/cafe-oliva-3.jpg",
-    "/assets/img/uploads/posts/cafe-oliva-4.jpg",
-    "/assets/img/uploads/posts/cafe-oliva-5.jpg",
-    "/assets/img/uploads/posts/cafe-oliva-6.jpg",
-    "/assets/img/uploads/posts/cafe-oliva-7.jpg"
+    "/assets/img/posts/cafe-oliva-1.jpg",
+    "/assets/img/posts/cafe-oliva-2.jpg",
+    "/assets/img/posts/cafe-oliva-3.jpg",
+    "/assets/img/posts/cafe-oliva-4.jpg",
+    "/assets/img/posts/cafe-oliva-5.jpg",
+    "/assets/img/posts/cafe-oliva-6.jpg",
+    "/assets/img/posts/cafe-oliva-7.jpg"
   ]
 }
 ---

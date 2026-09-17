@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/ivan-martinez.jpg",
+  "photo": "/assets/img/personnel/ivan-martinez.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [],

@@ -7,17 +7,17 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/skeeball-tournament-1.jpg",
-    "/assets/img/uploads/posts/skeeball-tournament-2.jpg",
-    "/assets/img/uploads/posts/skeeball-tournament-3.jpg",
-    "/assets/img/uploads/posts/skeeball-tournament-4.jpg",
-    "/assets/img/uploads/posts/skeeball-tournament-5.jpeg",
-    "/assets/img/uploads/posts/skeeball-tournament-6.jpeg",
-    "/assets/img/uploads/posts/skeeball-tournament-7.jpeg",
-    "/assets/img/uploads/posts/skeeball-tournament-8.jpeg",
-    "/assets/img/uploads/posts/skeeball-tournament-9.jpeg",
-    "/assets/img/uploads/posts/skeeball-tournament-10.jpeg",
-    "/assets/img/uploads/posts/skeeball-tournament-11.jpeg"
+    "/assets/img/posts/skeeball-tournament-1.jpg",
+    "/assets/img/posts/skeeball-tournament-2.jpg",
+    "/assets/img/posts/skeeball-tournament-3.jpg",
+    "/assets/img/posts/skeeball-tournament-4.jpg",
+    "/assets/img/posts/skeeball-tournament-5.jpeg",
+    "/assets/img/posts/skeeball-tournament-6.jpeg",
+    "/assets/img/posts/skeeball-tournament-7.jpeg",
+    "/assets/img/posts/skeeball-tournament-8.jpeg",
+    "/assets/img/posts/skeeball-tournament-9.jpeg",
+    "/assets/img/posts/skeeball-tournament-10.jpeg",
+    "/assets/img/posts/skeeball-tournament-11.jpeg"
   ]
 }
 ---

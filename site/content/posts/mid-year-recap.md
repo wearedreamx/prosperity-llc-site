@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/mid-year-recap-2.jpg"
+    "/assets/img/posts/mid-year-recap-2.jpg"
   ]
 }
 ---

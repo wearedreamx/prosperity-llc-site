@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/stratus-group-2.png"
+    "/assets/img/posts/stratus-group-2.png"
   ]
 }
 ---

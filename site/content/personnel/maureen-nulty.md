@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
-  "photo": "/assets/img/uploads/personnel/maureen-nulty.jpg",
+  "photo": "/assets/img/personnel/maureen-nulty.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

@@ -8,7 +8,7 @@
   "meta_description": "Access your account information securely through the Prosperity LLC client portal.",
   "banner_title": "Client Portal",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/client-portal.jpg",
+  "banner_image": "/assets/img/pages/client-portal.jpg",
   "date_modified": "2024-11-26T18:55:55+00:00",
   "blocks": [
     {

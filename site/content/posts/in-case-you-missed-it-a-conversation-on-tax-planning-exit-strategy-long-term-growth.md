@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/in-case-you-missed-it-a-conversation-on-tax-planning-exit-strategy-long-term-growth-2.jpg"
+    "/assets/img/posts/in-case-you-missed-it-a-conversation-on-tax-planning-exit-strategy-long-term-growth-2.jpg"
   ]
 }
 ---

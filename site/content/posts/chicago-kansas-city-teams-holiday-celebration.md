@@ -7,16 +7,16 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-2.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-3.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-4.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-5.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-6.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-7.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-8.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-9.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-10.jpg",
-    "/assets/img/uploads/posts/chicago-kansas-city-teams-holiday-celebration-11.jpg"
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-2.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-3.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-4.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-5.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-6.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-7.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-8.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-9.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-10.jpg",
+    "/assets/img/posts/chicago-kansas-city-teams-holiday-celebration-11.jpg"
   ]
 }
 ---

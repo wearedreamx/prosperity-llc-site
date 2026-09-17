@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
-  "photo": "/assets/img/uploads/personnel/jared-frankel.jpg",
+  "photo": "/assets/img/personnel/jared-frankel.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/lisa-pallen.jpg",
+  "photo": "/assets/img/personnel/lisa-pallen.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/crains-article-1.jpg"
+    "/assets/img/posts/crains-article-1.jpg"
   ]
 }
 ---

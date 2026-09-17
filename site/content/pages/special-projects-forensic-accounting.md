@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Forensic Accounting Services",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/special-projects-forensic-accounting.jpg",
+  "banner_image": "/assets/img/pages/special-projects-forensic-accounting.jpg",
   "date_modified": "2024-11-26T17:20:25+00:00",
   "blocks": [
     {

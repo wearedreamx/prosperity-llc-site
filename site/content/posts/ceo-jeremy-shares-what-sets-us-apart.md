@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/ceo-jeremy-shares-what-sets-us-apart-1.jpg"
+    "/assets/img/posts/ceo-jeremy-shares-what-sets-us-apart-1.jpg"
   ]
 }
 ---

@@ -7,19 +7,19 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/game-night-1.jpg",
-    "/assets/img/uploads/posts/game-night-2.jpg",
-    "/assets/img/uploads/posts/game-night-3.jpg",
-    "/assets/img/uploads/posts/game-night-4.jpg",
-    "/assets/img/uploads/posts/game-night-5.jpg",
-    "/assets/img/uploads/posts/game-night-6.jpg",
-    "/assets/img/uploads/posts/game-night-7.jpg",
-    "/assets/img/uploads/posts/game-night-8.jpg",
-    "/assets/img/uploads/posts/game-night-9.jpg",
-    "/assets/img/uploads/posts/game-night-10.jpg",
-    "/assets/img/uploads/posts/game-night-11.jpg",
-    "/assets/img/uploads/posts/game-night-12.jpg",
-    "/assets/img/uploads/posts/game-night-13.jpg"
+    "/assets/img/posts/game-night-1.jpg",
+    "/assets/img/posts/game-night-2.jpg",
+    "/assets/img/posts/game-night-3.jpg",
+    "/assets/img/posts/game-night-4.jpg",
+    "/assets/img/posts/game-night-5.jpg",
+    "/assets/img/posts/game-night-6.jpg",
+    "/assets/img/posts/game-night-7.jpg",
+    "/assets/img/posts/game-night-8.jpg",
+    "/assets/img/posts/game-night-9.jpg",
+    "/assets/img/posts/game-night-10.jpg",
+    "/assets/img/posts/game-night-11.jpg",
+    "/assets/img/posts/game-night-12.jpg",
+    "/assets/img/posts/game-night-13.jpg"
   ]
 }
 ---

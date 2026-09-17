@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/amita-jasoliya.jpg",
+  "photo": "/assets/img/personnel/amita-jasoliya.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

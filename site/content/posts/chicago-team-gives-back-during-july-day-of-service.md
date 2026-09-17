@@ -7,11 +7,11 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/chicago-team-gives-back-during-july-day-of-service-1.jpg",
-    "/assets/img/uploads/posts/chicago-team-gives-back-during-july-day-of-service-2.jpg",
-    "/assets/img/uploads/posts/chicago-team-gives-back-during-july-day-of-service-3.jpg",
-    "/assets/img/uploads/posts/chicago-team-gives-back-during-july-day-of-service-4.jpg",
-    "/assets/img/uploads/posts/chicago-team-gives-back-during-july-day-of-service-5.jpg"
+    "/assets/img/posts/chicago-team-gives-back-during-july-day-of-service-1.jpg",
+    "/assets/img/posts/chicago-team-gives-back-during-july-day-of-service-2.jpg",
+    "/assets/img/posts/chicago-team-gives-back-during-july-day-of-service-3.jpg",
+    "/assets/img/posts/chicago-team-gives-back-during-july-day-of-service-4.jpg",
+    "/assets/img/posts/chicago-team-gives-back-during-july-day-of-service-5.jpg"
   ]
 }
 ---

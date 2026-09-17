@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
-  "photo": "/assets/img/uploads/personnel/matthew-segel.jpg",
+  "photo": "/assets/img/personnel/matthew-segel.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

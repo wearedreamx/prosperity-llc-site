@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
-  "photo": "/assets/img/uploads/personnel/lauren-frisoli.jpg",
+  "photo": "/assets/img/personnel/lauren-frisoli.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Houston",
   "location_url": "/location/houston/",
-  "photo": "/assets/img/uploads/personnel/gary-parikh.jpg",
+  "photo": "/assets/img/personnel/gary-parikh.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

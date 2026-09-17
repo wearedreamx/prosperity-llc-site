@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Special Projects",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/special-projects.jpg",
+  "banner_image": "/assets/img/pages/special-projects.jpg",
   "date_modified": "2025-10-03T17:44:01+00:00",
   "blocks": [
     {
@@ -17,7 +17,7 @@
     },
     {
       "layout": "raw:services-team",
-      "html": "<section class=\"services-team\"><div class=\"container\"><h2 class=\"services-team-title\">Meet Our Special Projects Service Leaders</h2><div class=\"services-team-container\"><div class=\"content-block-sidebar-member\"><a href=\"/personnel/walter-m-mcgrail/\" class=\"content-block-sidebar-member-link\"><figure class=\"content-block-sidebar-member-figure\">\n                                <img width=\"550\" height=\"500\" class=\"content-block-sidebar-member-image\" src=\"/assets/img/people/walter-mcgrail.jpg\" alt=\"Walter M. McGrail\" />\n                            </figure><h3 class=\"content-block-sidebar-member-name\">Walter M. McGrail</h3><h3 class=\"content-block-sidebar-member-title\">Partner</h3><h4 class=\"content-block-sidebar-member-location\">Detroit</h4></a></div></div></div></section>"
+      "html": "<section class=\"services-team\"><div class=\"container\"><h2 class=\"services-team-title\">Meet Our Special Projects Service Leaders</h2><div class=\"services-team-container\"><div class=\"content-block-sidebar-member\"><a href=\"/personnel/walter-m-mcgrail/\" class=\"content-block-sidebar-member-link\"><figure class=\"content-block-sidebar-member-figure\">\n                                <img width=\"550\" height=\"500\" class=\"content-block-sidebar-member-image\" src=\"/assets/img/personnel/walter-m-mcgrail.jpg\" alt=\"Walter M. McGrail\" />\n                            </figure><h3 class=\"content-block-sidebar-member-name\">Walter M. McGrail</h3><h3 class=\"content-block-sidebar-member-title\">Partner</h3><h4 class=\"content-block-sidebar-member-location\">Detroit</h4></a></div></div></div></section>"
     },
     {
       "layout": "raw:cta",

@@ -3,7 +3,7 @@
   "slug": "iselin",
   "name": "Iselin",
   "address_html": "555 US Highway 1<br>\nIselin, NJ  08830",
-  "banner_image": "/assets/img/uploads/locations/iselin.jpg",
+  "banner_image": "/assets/img/locations/iselin.jpg",
   "date_modified": "2026-06-01T12:52:45+00:00"
 }
 ---

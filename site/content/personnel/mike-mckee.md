@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
-  "photo": "/assets/img/uploads/personnel/mike-mckee.jpg",
+  "photo": "/assets/img/personnel/mike-mckee.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

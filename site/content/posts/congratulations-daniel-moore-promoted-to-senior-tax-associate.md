@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/congratulations-daniel-moore-promoted-to-senior-tax-associate-1.png"
+    "/assets/img/posts/congratulations-daniel-moore-promoted-to-senior-tax-associate-1.png"
   ]
 }
 ---

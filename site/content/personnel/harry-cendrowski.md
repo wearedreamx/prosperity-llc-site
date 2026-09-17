@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
-  "photo": "/assets/img/uploads/personnel/harry-cendrowski.jpg",
+  "photo": "/assets/img/personnel/harry-cendrowski.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [],

@@ -7,8 +7,8 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/building-skills-and-camaraderie-at-cas-summer-bootcamp-1.jpg",
-    "/assets/img/uploads/posts/building-skills-and-camaraderie-at-cas-summer-bootcamp-2.jpg"
+    "/assets/img/posts/building-skills-and-camaraderie-at-cas-summer-bootcamp-1.jpg",
+    "/assets/img/posts/building-skills-and-camaraderie-at-cas-summer-bootcamp-2.jpg"
   ]
 }
 ---

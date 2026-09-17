@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
-  "photo": "/assets/img/uploads/personnel/jessica-attig.jpg",
+  "photo": "/assets/img/personnel/jessica-attig.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

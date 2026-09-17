@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
-  "photo": "/assets/img/uploads/personnel/cameron-hair.jpg",
+  "photo": "/assets/img/personnel/cameron-hair.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

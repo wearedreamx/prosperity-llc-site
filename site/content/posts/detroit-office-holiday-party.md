@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/detroit-office-holiday-party-2.jpg"
+    "/assets/img/posts/detroit-office-holiday-party-2.jpg"
   ]
 }
 ---

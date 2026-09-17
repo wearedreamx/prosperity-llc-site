@@ -7,12 +7,12 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/cycleboat-1.jpg",
-    "/assets/img/uploads/posts/cycleboat-2.jpg",
-    "/assets/img/uploads/posts/cycleboat-3.jpg",
-    "/assets/img/uploads/posts/cycleboat-4.jpg",
-    "/assets/img/uploads/posts/cycleboat-5.jpg",
-    "/assets/img/uploads/posts/cycleboat-6.jpg"
+    "/assets/img/posts/cycleboat-1.jpg",
+    "/assets/img/posts/cycleboat-2.jpg",
+    "/assets/img/posts/cycleboat-3.jpg",
+    "/assets/img/posts/cycleboat-4.jpg",
+    "/assets/img/posts/cycleboat-5.jpg",
+    "/assets/img/posts/cycleboat-6.jpg"
   ]
 }
 ---

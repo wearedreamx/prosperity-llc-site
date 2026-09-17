@@ -7,9 +7,9 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/softball-2-1.jpg",
-    "/assets/img/uploads/posts/softball-2-2.jpg",
-    "/assets/img/uploads/posts/softball-2-3.jpg"
+    "/assets/img/posts/softball-2-1.jpg",
+    "/assets/img/posts/softball-2-2.jpg",
+    "/assets/img/posts/softball-2-3.jpg"
   ]
 }
 ---

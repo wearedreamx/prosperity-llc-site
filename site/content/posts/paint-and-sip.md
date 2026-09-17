@@ -7,14 +7,14 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/paint-and-sip-1.jpg",
-    "/assets/img/uploads/posts/paint-and-sip-2.jpg",
-    "/assets/img/uploads/posts/paint-and-sip-3.jpg",
-    "/assets/img/uploads/posts/paint-and-sip-4.jpg",
-    "/assets/img/uploads/posts/paint-and-sip-5.jpg",
-    "/assets/img/uploads/posts/paint-and-sip-6.jpg",
-    "/assets/img/uploads/posts/paint-and-sip-7.jpg",
-    "/assets/img/uploads/posts/paint-and-sip-8.jpg"
+    "/assets/img/posts/paint-and-sip-1.jpg",
+    "/assets/img/posts/paint-and-sip-2.jpg",
+    "/assets/img/posts/paint-and-sip-3.jpg",
+    "/assets/img/posts/paint-and-sip-4.jpg",
+    "/assets/img/posts/paint-and-sip-5.jpg",
+    "/assets/img/posts/paint-and-sip-6.jpg",
+    "/assets/img/posts/paint-and-sip-7.jpg",
+    "/assets/img/posts/paint-and-sip-8.jpg"
   ]
 }
 ---

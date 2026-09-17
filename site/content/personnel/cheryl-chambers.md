@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
-  "photo": "/assets/img/uploads/personnel/cheryl-chambers.jpg",
+  "photo": "/assets/img/personnel/cheryl-chambers.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

@@ -7,11 +7,11 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/spin-1.jpeg",
-    "/assets/img/uploads/posts/spin-2.jpeg",
-    "/assets/img/uploads/posts/spin-3.jpg",
-    "/assets/img/uploads/posts/spin-4.jpg",
-    "/assets/img/uploads/posts/spin-5.jpg"
+    "/assets/img/posts/spin-1.jpeg",
+    "/assets/img/posts/spin-2.jpeg",
+    "/assets/img/posts/spin-3.jpg",
+    "/assets/img/posts/spin-4.jpg",
+    "/assets/img/posts/spin-5.jpg"
   ]
 }
 ---

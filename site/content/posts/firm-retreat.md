@@ -7,8 +7,8 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/firm-retreat-1.jpg",
-    "/assets/img/uploads/posts/firm-retreat-2.jpg"
+    "/assets/img/posts/firm-retreat-1.jpg",
+    "/assets/img/posts/firm-retreat-2.jpg"
   ]
 }
 ---

@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/daniel-moore.jpg",
+  "photo": "/assets/img/personnel/daniel-moore.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

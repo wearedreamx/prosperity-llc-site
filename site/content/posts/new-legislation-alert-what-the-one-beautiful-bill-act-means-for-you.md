@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/new-legislation-alert-what-the-one-beautiful-bill-act-means-for-you-1.png"
+    "/assets/img/posts/new-legislation-alert-what-the-one-beautiful-bill-act-means-for-you-1.png"
   ]
 }
 ---

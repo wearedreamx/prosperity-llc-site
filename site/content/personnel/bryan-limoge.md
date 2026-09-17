@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
-  "photo": "/assets/img/uploads/personnel/bryan-limoge.jpg",
+  "photo": "/assets/img/personnel/bryan-limoge.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

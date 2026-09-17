@@ -7,10 +7,10 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/fall-career-fairs-1.jpg",
-    "/assets/img/uploads/posts/fall-career-fairs-2.jpg",
-    "/assets/img/uploads/posts/fall-career-fairs-3.jpg",
-    "/assets/img/uploads/posts/fall-career-fairs-4.jpg"
+    "/assets/img/posts/fall-career-fairs-1.jpg",
+    "/assets/img/posts/fall-career-fairs-2.jpg",
+    "/assets/img/posts/fall-career-fairs-3.jpg",
+    "/assets/img/posts/fall-career-fairs-4.jpg"
   ]
 }
 ---

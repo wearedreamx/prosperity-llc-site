@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/celebrating-jeremys-recognition-as-a-2026-crains-notable-leader-1.png"
+    "/assets/img/posts/celebrating-jeremys-recognition-as-a-2026-crains-notable-leader-1.png"
   ]
 }
 ---

@@ -8,7 +8,7 @@
   "meta_description": "Get in touch with Prosperity LLC for personalized financial solutions.",
   "banner_title": "How Can We Help You?",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/contact-us.jpg",
+  "banner_image": "/assets/img/pages/contact-us.jpg",
   "date_modified": "2026-07-07T14:50:33+00:00",
   "blocks": [
     {

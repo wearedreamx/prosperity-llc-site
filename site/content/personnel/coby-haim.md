@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
-  "photo": "/assets/img/uploads/personnel/coby-haim.jpg",
+  "photo": "/assets/img/personnel/coby-haim.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

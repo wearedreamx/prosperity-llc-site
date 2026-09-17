@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/santa-barbara-team-wraps-tax-season-with-a-toast-2.jpg"
+    "/assets/img/posts/santa-barbara-team-wraps-tax-season-with-a-toast-2.jpg"
   ]
 }
 ---

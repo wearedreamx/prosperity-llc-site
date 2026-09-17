@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/justin-shelman-2.jpg",
+  "photo": "/assets/img/personnel/justin-shelman-2.jpg",
   "linkedin_url": "https://www.linkedin.com/in/justinshelmancpa/",
   "facet_title": "partners",
   "facet_specializations": [

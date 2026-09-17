@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
-  "photo": "/assets/img/uploads/personnel/matt-johnson.jpg",
+  "photo": "/assets/img/personnel/matt-johnson.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

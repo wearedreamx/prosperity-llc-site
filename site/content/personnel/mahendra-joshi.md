@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/mahendra-joshi.jpg",
+  "photo": "/assets/img/personnel/mahendra-joshi.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

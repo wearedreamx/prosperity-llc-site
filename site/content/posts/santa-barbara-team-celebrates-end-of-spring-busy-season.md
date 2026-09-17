@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/santa-barbara-team-celebrates-end-of-spring-busy-season-1.jpg"
+    "/assets/img/posts/santa-barbara-team-celebrates-end-of-spring-busy-season-1.jpg"
   ]
 }
 ---

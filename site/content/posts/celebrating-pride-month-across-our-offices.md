@@ -7,13 +7,13 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/celebrating-pride-month-across-our-offices-1.jpeg",
-    "/assets/img/uploads/posts/celebrating-pride-month-across-our-offices-2.jpg",
-    "/assets/img/uploads/posts/celebrating-pride-month-across-our-offices-3.jpg",
-    "/assets/img/uploads/posts/celebrating-pride-month-across-our-offices-4.jpg",
-    "/assets/img/uploads/posts/celebrating-pride-month-across-our-offices-5.jpg",
-    "/assets/img/uploads/posts/celebrating-pride-month-across-our-offices-6.jpg",
-    "/assets/img/uploads/posts/celebrating-pride-month-across-our-offices-7.jpg"
+    "/assets/img/posts/celebrating-pride-month-across-our-offices-1.jpeg",
+    "/assets/img/posts/celebrating-pride-month-across-our-offices-2.jpg",
+    "/assets/img/posts/celebrating-pride-month-across-our-offices-3.jpg",
+    "/assets/img/posts/celebrating-pride-month-across-our-offices-4.jpg",
+    "/assets/img/posts/celebrating-pride-month-across-our-offices-5.jpg",
+    "/assets/img/posts/celebrating-pride-month-across-our-offices-6.jpg",
+    "/assets/img/posts/celebrating-pride-month-across-our-offices-7.jpg"
   ]
 }
 ---

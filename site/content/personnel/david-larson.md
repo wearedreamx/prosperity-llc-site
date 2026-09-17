@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/david-larson.jpg",
+  "photo": "/assets/img/personnel/david-larson.jpg",
   "linkedin_url": "",
   "facet_title": "partners",
   "facet_specializations": [

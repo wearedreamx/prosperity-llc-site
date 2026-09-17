@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/vermont-team-kicks-off-summer-with-bowling-team-bonding-1.jpg"
+    "/assets/img/posts/vermont-team-kicks-off-summer-with-bowling-team-bonding-1.jpg"
   ]
 }
 ---

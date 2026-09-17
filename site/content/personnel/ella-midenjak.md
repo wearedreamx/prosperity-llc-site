@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
-  "photo": "/assets/img/uploads/personnel/ella-midenjak.jpg",
+  "photo": "/assets/img/personnel/ella-midenjak.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

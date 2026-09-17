@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/business-wire-1.jpg"
+    "/assets/img/posts/business-wire-1.jpg"
   ]
 }
 ---

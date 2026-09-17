@@ -7,9 +7,9 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/santa-barbara-office-holiday-luncheon-2.jpg",
-    "/assets/img/uploads/posts/santa-barbara-office-holiday-luncheon-3.jpg",
-    "/assets/img/uploads/posts/santa-barbara-office-holiday-luncheon-4.jpg"
+    "/assets/img/posts/santa-barbara-office-holiday-luncheon-2.jpg",
+    "/assets/img/posts/santa-barbara-office-holiday-luncheon-3.jpg",
+    "/assets/img/posts/santa-barbara-office-holiday-luncheon-4.jpg"
   ]
 }
 ---

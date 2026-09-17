@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/cubs-rooftop-1.png"
+    "/assets/img/posts/cubs-rooftop-1.png"
   ]
 }
 ---

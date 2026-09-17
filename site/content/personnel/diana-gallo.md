@@ -7,7 +7,7 @@
   "job_title": "Senior Manager",
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
-  "photo": "/assets/img/uploads/personnel/diana-gallo.jpg",
+  "photo": "/assets/img/personnel/diana-gallo.jpg",
   "linkedin_url": "",
   "facet_title": "senior-manager",
   "facet_specializations": [

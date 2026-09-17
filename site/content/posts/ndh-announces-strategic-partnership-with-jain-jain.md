@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/ndh-announces-strategic-partnership-with-jain-jain-2.png"
+    "/assets/img/posts/ndh-announces-strategic-partnership-with-jain-jain-2.png"
   ]
 }
 ---

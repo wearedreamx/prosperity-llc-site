@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/ndh-advisors-rebrands-as-prosperity-partners-1.svg"
+    "/assets/img/posts/ndh-advisors-rebrands-as-prosperity-partners-1.svg"
   ]
 }
 ---

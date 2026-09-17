@@ -7,16 +7,16 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/cpr-training-1.jpg",
-    "/assets/img/uploads/posts/cpr-training-2.jpg",
-    "/assets/img/uploads/posts/cpr-training-3.jpg",
-    "/assets/img/uploads/posts/cpr-training-4.jpg",
-    "/assets/img/uploads/posts/cpr-training-5.jpg",
-    "/assets/img/uploads/posts/cpr-training-6.jpg",
-    "/assets/img/uploads/posts/cpr-training-7.jpg",
-    "/assets/img/uploads/posts/cpr-training-8.jpg",
-    "/assets/img/uploads/posts/cpr-training-9.jpg",
-    "/assets/img/uploads/posts/cpr-training-10.jpg"
+    "/assets/img/posts/cpr-training-1.jpg",
+    "/assets/img/posts/cpr-training-2.jpg",
+    "/assets/img/posts/cpr-training-3.jpg",
+    "/assets/img/posts/cpr-training-4.jpg",
+    "/assets/img/posts/cpr-training-5.jpg",
+    "/assets/img/posts/cpr-training-6.jpg",
+    "/assets/img/posts/cpr-training-7.jpg",
+    "/assets/img/posts/cpr-training-8.jpg",
+    "/assets/img/posts/cpr-training-9.jpg",
+    "/assets/img/posts/cpr-training-10.jpg"
   ]
 }
 ---

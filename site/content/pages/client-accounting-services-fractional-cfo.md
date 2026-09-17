@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Fractional CFO",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/client-accounting-services-fractional-cfo.jpg",
+  "banner_image": "/assets/img/pages/client-accounting-services-fractional-cfo.jpg",
   "date_modified": "2025-02-04T19:19:58+00:00",
   "blocks": [
     {

@@ -8,7 +8,7 @@
   "meta_description": "",
   "banner_title": "Estate, Gift & Trust Tax",
   "banner_description_html": "",
-  "banner_image": "/assets/img/uploads/pages/tax-services-estate-gift-trust-taxes.jpg",
+  "banner_image": "/assets/img/pages/tax-services-estate-gift-trust-taxes.jpg",
   "date_modified": "2024-11-26T18:11:58+00:00",
   "blocks": [
     {

@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "/assets/img/uploads/personnel/peggy-challe.jpg",
+  "photo": "/assets/img/personnel/peggy-challe.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

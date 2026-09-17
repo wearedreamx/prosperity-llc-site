@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/celebrating-the-holiday-season-with-our-dc-team-2.jpg"
+    "/assets/img/posts/celebrating-the-holiday-season-with-our-dc-team-2.jpg"
   ]
 }
 ---

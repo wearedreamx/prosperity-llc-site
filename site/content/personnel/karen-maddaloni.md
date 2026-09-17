@@ -7,7 +7,7 @@
   "job_title": "Director",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "/assets/img/uploads/personnel/karen-maddaloni.jpg",
+  "photo": "/assets/img/personnel/karen-maddaloni.jpg",
   "linkedin_url": "",
   "facet_title": "directors",
   "facet_specializations": [

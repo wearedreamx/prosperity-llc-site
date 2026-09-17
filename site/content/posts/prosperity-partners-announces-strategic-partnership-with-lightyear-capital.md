@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-partners-announces-strategic-partnership-with-lightyear-capital-1.jpg"
+    "/assets/img/posts/prosperity-partners-announces-strategic-partnership-with-lightyear-capital-1.jpg"
   ]
 }
 ---

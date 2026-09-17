@@ -8,7 +8,7 @@
   "meta_description": "Easily make payments online through Prosperity LLC's secure payment portal.",
   "banner_title": "Online Payments",
   "banner_description_html": "<h5>Simple. Secure.</h5>",
-  "banner_image": "/assets/img/uploads/pages/payment.jpg",
+  "banner_image": "/assets/img/pages/payment.jpg",
   "date_modified": "2026-02-17T18:30:32+00:00",
   "blocks": [
     {

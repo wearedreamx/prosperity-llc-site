@@ -7,7 +7,7 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/summer-kickoff-at-our-rockville-office-2.jpg"
+    "/assets/img/posts/summer-kickoff-at-our-rockville-office-2.jpg"
   ]
 }
 ---

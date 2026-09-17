@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-partners-named-a-top-100-accounting-firm-for-2026-1.png"
+    "/assets/img/posts/prosperity-partners-named-a-top-100-accounting-firm-for-2026-1.png"
   ]
 }
 ---

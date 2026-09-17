@@ -7,18 +7,18 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/2020-holiday-party-1.jpg",
-    "/assets/img/uploads/posts/2020-holiday-party-2.jpg",
-    "/assets/img/uploads/posts/2020-holiday-party-3.png",
-    "/assets/img/uploads/posts/2020-holiday-party-4.png",
-    "/assets/img/uploads/posts/2020-holiday-party-5.png",
-    "/assets/img/uploads/posts/2020-holiday-party-6.png",
-    "/assets/img/uploads/posts/2020-holiday-party-7.png",
-    "/assets/img/uploads/posts/2020-holiday-party-8.png",
-    "/assets/img/uploads/posts/2020-holiday-party-9.png",
-    "/assets/img/uploads/posts/2020-holiday-party-10.jpg",
-    "/assets/img/uploads/posts/2020-holiday-party-11.jpg",
-    "/assets/img/uploads/posts/2020-holiday-party-12.png"
+    "/assets/img/posts/2020-holiday-party-1.jpg",
+    "/assets/img/posts/2020-holiday-party-2.jpg",
+    "/assets/img/posts/2020-holiday-party-3.png",
+    "/assets/img/posts/2020-holiday-party-4.png",
+    "/assets/img/posts/2020-holiday-party-5.png",
+    "/assets/img/posts/2020-holiday-party-6.png",
+    "/assets/img/posts/2020-holiday-party-7.png",
+    "/assets/img/posts/2020-holiday-party-8.png",
+    "/assets/img/posts/2020-holiday-party-9.png",
+    "/assets/img/posts/2020-holiday-party-10.jpg",
+    "/assets/img/posts/2020-holiday-party-11.jpg",
+    "/assets/img/posts/2020-holiday-party-12.png"
   ]
 }
 ---

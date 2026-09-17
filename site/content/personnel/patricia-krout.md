@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/patricia-krout.jpg",
+  "photo": "/assets/img/personnel/patricia-krout.jpg",
   "linkedin_url": "https://www.linkedin.com/in/patricia-krout-b43b87a/",
   "facet_title": "partners",
   "facet_specializations": [

@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
-  "photo": "/assets/img/uploads/personnel/ann-simon.jpg",
+  "photo": "/assets/img/personnel/ann-simon.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

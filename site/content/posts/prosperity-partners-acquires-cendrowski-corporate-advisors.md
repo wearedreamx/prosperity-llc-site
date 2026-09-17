@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/prosperity-partners-acquires-cendrowski-corporate-advisors-1.png"
+    "/assets/img/posts/prosperity-partners-acquires-cendrowski-corporate-advisors-1.png"
   ]
 }
 ---

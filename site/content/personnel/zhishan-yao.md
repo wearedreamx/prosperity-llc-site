@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
-  "photo": "/assets/img/uploads/personnel/zhishan-yao.jpg",
+  "photo": "/assets/img/personnel/zhishan-yao.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

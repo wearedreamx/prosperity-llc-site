@@ -7,7 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "/assets/img/uploads/posts/recognized-as-a-2025-honorable-mention-accounting-todays-best-firms-to-work-for-1.jpeg"
+    "/assets/img/posts/recognized-as-a-2025-honorable-mention-accounting-todays-best-firms-to-work-for-1.jpeg"
   ]
 }
 ---

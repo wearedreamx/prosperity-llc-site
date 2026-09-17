@@ -7,7 +7,7 @@
   "job_title": "Senior Manager",
   "location_name": "Houston",
   "location_url": "/location/houston/",
-  "photo": "/assets/img/uploads/personnel/siu-tsang.jpg",
+  "photo": "/assets/img/personnel/siu-tsang.jpg",
   "linkedin_url": "",
   "facet_title": "senior-manager",
   "facet_specializations": [

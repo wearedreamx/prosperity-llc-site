@@ -7,7 +7,7 @@
   "job_title": "Manager",
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
-  "photo": "/assets/img/uploads/personnel/kavita-kharat.jpg",
+  "photo": "/assets/img/personnel/kavita-kharat.jpg",
   "linkedin_url": "",
   "facet_title": "managers",
   "facet_specializations": [

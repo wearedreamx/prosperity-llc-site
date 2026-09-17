@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "Kansas City",
   "location_url": "/location/kansas-city/",
-  "photo": "/assets/img/uploads/personnel/annie-cook.jpg",
+  "photo": "/assets/img/personnel/annie-cook.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

@@ -7,11 +7,11 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "/assets/img/uploads/posts/ronald-mcdonald-house-charity-event-2.jpeg",
-    "/assets/img/uploads/posts/ronald-mcdonald-house-charity-event-4.jpeg",
-    "/assets/img/uploads/posts/ronald-mcdonald-house-charity-event-6.jpeg",
-    "/assets/img/uploads/posts/ronald-mcdonald-house-charity-event-7.jpeg",
-    "/assets/img/uploads/posts/ronald-mcdonald-house-charity-event-8.jpeg"
+    "/assets/img/posts/ronald-mcdonald-house-charity-event-2.jpeg",
+    "/assets/img/posts/ronald-mcdonald-house-charity-event-4.jpeg",
+    "/assets/img/posts/ronald-mcdonald-house-charity-event-6.jpeg",
+    "/assets/img/posts/ronald-mcdonald-house-charity-event-7.jpeg",
+    "/assets/img/posts/ronald-mcdonald-house-charity-event-8.jpeg"
   ]
 }
 ---

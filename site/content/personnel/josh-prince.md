@@ -7,7 +7,7 @@
   "job_title": "Partner",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/uploads/personnel/josh-prince.jpg",
+  "photo": "/assets/img/personnel/josh-prince.jpg",
   "linkedin_url": "https://www.linkedin.com/in/joshua-prince-cpa/",
   "facet_title": "partners",
   "facet_specializations": [
