@@ -1,0 +1,32 @@
+{#
+  The one post card.
+
+  It used to exist four ways: hardcoded six times in index.njk, again in
+  culture.njk, again in whats-new.njk, and a fourth time as a template string in
+  search.js's resultCard. The homepage copies carried hand-written excerpts and
+  hand-picked images, which is how two of them ended up pointing at posts that
+  do not exist (the import dropped the records but kept their images).
+
+  `withExcerpt` is the only difference between the homepage and archive copies:
+  the homepage shows a lead-in and animates the figure in, the archives show
+  only "Read More". The excerpt is derived from the post body rather than
+  written out, so it cannot drift from the record.
+#}
+{% macro postCard(post, withExcerpt = false) %}
+<article class="card">
+	<a class="card__link" href="{{ post.data.category_url }}{{ post.data.slug }}/">
+		{%- if post.data.images.length %}
+		<figure class="card__figure{% if withExcerpt %} reveal reveal--fade{% endif %}">
+			<img src="{{ post.data.images[0] }}" alt="{{ post.data.title | safe }}" loading="lazy">
+		</figure>
+		{%- endif %}
+		<div class="card__body">
+			{%- if post.data.published %}
+			<time class="card__date" datetime="{{ post.data.published | isoDate }}">{{ post.data.published | longDate }}</time>
+			{%- endif %}
+			<h3 class="card__title">{{ post.data.title | safe }}</h3>
+			<p class="card__excerpt">{% if withExcerpt %}{{ post.content | plainText | truncate(150) }} {% endif %}<span class="card__more">Read More</span></p>
+		</div>
+	</a>
+</article>
+{% endmacro %}

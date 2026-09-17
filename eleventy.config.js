@@ -43,6 +43,40 @@ module.exports = function (eleventyConfig) {
 		return new Date(isoString).toISOString().slice(0, 10);
 	});
 
+	// Flattens a record's rendered HTML body to plain prose and truncates it on a
+	// word boundary. Used for two things that were previously hand-written or
+	// simply absent: the excerpt on a post card, and the <meta name="description">
+	// on the 315 personnel/post/location pages whose templates never set one.
+	// Entities are decoded because the body is post-Markdown HTML, so an
+	// un-decoded &amp; would end up double-escaped again on output.
+	const ENTITIES = {
+		"&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"',
+		"&#39;": "'", "&apos;": "'", "&nbsp;": " ", "&hellip;": "…",
+		"&rsquo;": "\u2019", "&lsquo;": "\u2018",
+		"&rdquo;": "\u201d", "&ldquo;": "\u201c", "&mdash;": "—", "&ndash;": "–",
+	};
+	eleventyConfig.addFilter("plainText", (html) =>
+		String(html || "")
+			// Drop script/style wholesale rather than keeping their text content.
+			.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, " ")
+			.replace(/<[^>]+>/g, " ")
+			.replace(/&[a-z]+;|&#\d+;/gi, (e) => ENTITIES[e.toLowerCase()] ?? " ")
+			.replace(/\s+/g, " ")
+			.trim()
+	);
+	// Nunjucks' own `slice` is Jinja's — it splits a list into N chunks — so
+	// "the newest three" needs its own filter rather than slice(3)|first.
+	eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
+	eleventyConfig.addFilter("truncate", (text, length = 160) => {
+		const s = String(text || "").trim();
+		if (s.length <= length) return s;
+		// Cut at the last space before the limit so a word is never split; fall
+		// back to a hard cut for text with no spaces in range.
+		const cut = s.slice(0, length);
+		const at = cut.lastIndexOf(" ");
+		return (at > length * 0.5 ? cut.slice(0, at) : cut).replace(/[\s,.;:—–-]+$/, "") + "…";
+	});
+
 	// Some pages had a server-rendered form widget embedded mid-content rather
 	// than in its own raw:cta block. The import left a marker div in its place,
 	// tagged data-form-variant — "contact" for the one form with an extra
@@ -121,6 +155,15 @@ module.exports = function (eleventyConfig) {
 		});
 		return grouped;
 	});
+
+	// Page records keyed by slug. The two hand-built templates (index.njk,
+	// meet-the-team.njk) render pages whose records exist but sit outside
+	// `genericPages`, and Nunjucks has no selectattr to look one up inline.
+	// Without this they restated their record's banner copy and metadata inline
+	// and the two drifted apart.
+	eleventyConfig.addCollection("pagesBySlug", (api) =>
+		Object.fromEntries(api.getFilteredByTag("pages").map((p) => [p.data.slug, p]))
+	);
 
 	eleventyConfig.addCollection("culturePosts", (api) =>
 		api.getFilteredByTag("posts")

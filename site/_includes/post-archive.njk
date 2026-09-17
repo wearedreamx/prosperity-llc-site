@@ -1,0 +1,28 @@
+{#
+  Body shared by /culture/ and /whats-new/, which were byte-identical templates
+  apart from six values. Each archive is still its own template file because
+  Eleventy paginates one collection per file, but they now differ only in
+  frontmatter: `archiveTitle`, `archiveImage` and the paginated collection.
+#}
+{% from "post-card.njk" import postCard %}
+<section class="page-banner">
+	<div class="page-banner-content">
+		<div class="page-banner-content-container container">
+			<h1 class="page-banner-title">{{ archiveTitle }}</h1>
+		</div>
+	</div>
+	<figure class="page-banner-figure"><img src="{{ archiveImage }}" alt="" class="page-banner-image"></figure>
+</section>
+<section class="posts">
+	<div class="container">
+		<div class="posts__grid">
+			{%- for post in pagePosts %}{{ postCard(post) }}{% endfor %}
+		</div>
+		{%- if pagination.href.previous or pagination.href.next %}
+		<nav class="pagination" aria-label="{{ archiveTitle }} pagination">
+			{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">&larr; Newer</a>{% endif %}
+			{% if pagination.href.next %}<a href="{{ pagination.href.next }}">Older &rarr;</a>{% endif %}
+		</nav>
+		{%- endif %}
+	</div>
+</section>

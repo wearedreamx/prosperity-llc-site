@@ -1115,3 +1115,10 @@ input, textarea { font: inherit; }
 }
 @media (max-width: 900px) { .content-block-testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .content-block-testimonials-grid { grid-template-columns: 1fr; } }
+
+/* The certifications span now carries its own ", " separator so the accessible
+   name reads "Jeremy Dubow, CPA, MST" rather than running together as
+   "Jeremy Dubowcpa, mst". The ported rules add a left margin on top of that,
+   which renders as "Dubow , CPA" — the comma replaces the margin. */
+.team-member-certs,
+.single-personnel-certs { margin-left: 0; }

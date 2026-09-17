@@ -9,6 +9,7 @@ eleventyComputed:
 searchType: location
 layout: base.njk
 ---
+{% from "team-card.njk" import teamCard %}
 {%- if location.data.banner_image %}
 <section class="page-banner">
 	<div class="page-banner-content">
@@ -30,28 +31,13 @@ layout: base.njk
 		</div>
 		{%- set team = collections.personnelByLocation[location.data.slug] %}
 		{%- if team %}
+		{#- The Location facet is hidden here: every card in this grid is at this
+		    office already, so filtering by location would only ever empty it. -#}
 		{% set hideFacet = "Location" %}{% include "team-filters.njk" %}
 		<p class="team-empty" data-team-empty role="status" aria-live="polite" hidden></p>
 		{#- roster cards are indexed from each person's own /personnel/<slug>/ page -#}
 		<div class="team-container" data-pagefind-ignore>
-			{%- for person in team %}
-			{#- the filter matches on these term classes; `active` is what makes the
-			    card visible at all, since .team-member is opacity:0 by default -#}
-			<article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}" data-name="{{ person.data.name }}">
-				<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
-					<figure class="team-member-figure">
-						{#- 7 of the 200 records have no headshot. The live site falls back to a
-    house graphic at the same 550x500 as a real photo, so the card keeps its
-    shape instead of collapsing to an empty figure. -#}
-						<img width="550" height="500" src="{{ person.data.photo or '/assets/img/ui/team-placeholder.svg' }}" alt="" class="team-member-img">
-					</figure>
-					<div class="team-member-content">
-						<h3 class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="team-member-certs">{{ person.data.certifications }}</span>{% endif %}</h3>
-						<h5 class="team-member-title">{{ person.data.job_title }}</h5>
-					</div>
-				</a>
-			</article>
-			{%- endfor %}
+			{%- for person in team %}{{ teamCard(person) }}{% endfor %}
 		</div>
 		{%- endif %}
 	</div>

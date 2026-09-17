@@ -5,6 +5,7 @@ description: "Prosperity Partners provides accounting, tax, family office, assur
 canonicalUrl: "https://www.prosperityllc.com/"
 ogDescription: "Elevate your potential. Partner for growth."
 ---
+{% from "post-card.njk" import postCard %}
 <!-- Hero -->
 <section class="hero" aria-labelledby="hero-title">
 	{#
@@ -126,55 +127,18 @@ ogDescription: "Elevate your potential. Partner for growth."
 </section>
 
 <!-- Culture posts -->
+{#- Both grids used to be six hardcoded cards: hand-picked images, hand-written
+    excerpts and hand-typed URLs. Two of those URLs pointed at posts that do not
+    exist — the import brought their images across but dropped the records — so
+    the homepage shipped the only two broken internal links on the site. Reading
+    the newest three from each category cannot drift, and the excerpt comes from
+    the post body. The curated hero art for the retired cards is still in
+    assets/img/posts/ and is listed in data/missing-media.md. -#}
 <section class="posts" aria-labelledby="culture-title">
 	<div class="container">
 		<h2 class="section-title" id="culture-title">Culture</h2>
 		<div class="posts__grid">
-			<article class="card">
-				<a class="card__link" href="/culture/santa-barbara-summer-outing-at-dodger-stadium/">
-					<figure class="card__figure reveal reveal--fade">
-						<picture>
-							<source srcset="/assets/img/posts/santa-barbara-dodger-game.webp" type="image/webp">
-							<img src="/assets/img/posts/santa-barbara-dodger-game.jpg" alt="Santa Barbara Summer Outing at Dodger Stadium" width="800" height="600" loading="lazy">
-						</picture>
-					</figure>
-					<div class="card__body">
-						<time class="card__date" datetime="2026-08-20">August 20, 2026</time>
-						<h3 class="card__title">Santa Barbara Summer Outing at Dodger Stadium</h3>
-						<p class="card__excerpt">Our Santa Barbara team wrapped up summer with a fun day in Los Angeles, taking a bus to Dodger Stadium for the Dodgers vs. Brewers game. <span class="card__more">Read More</span></p>
-					</div>
-				</a>
-			</article>
-			<article class="card">
-				<a class="card__link" href="/culture/making-the-most-of-chicago-summer/">
-					<figure class="card__figure reveal reveal--fade">
-						<picture>
-							<source srcset="/assets/img/posts/chicago-summer-soiree.webp" type="image/webp">
-							<img src="/assets/img/posts/chicago-summer-soiree.jpg" alt="Making the Most of Chicago Summer" width="800" height="600" loading="lazy">
-						</picture>
-					</figure>
-					<div class="card__body">
-						<time class="card__date" datetime="2026-08-12">August 12, 2026</time>
-						<h3 class="card__title">Making the Most of Chicago Summer</h3>
-						<p class="card__excerpt">A few weeks ago, our Chicago team stepped away from the office for a day of sunshine, team bonding, and friendly competition at our Prosperity Summer Soiree at Castaways. <span class="card__more">Read More</span></p>
-					</div>
-				</a>
-			</article>
-			<article class="card">
-				<a class="card__link" href="/culture/chicago-team-gives-back-during-july-day-of-service/">
-					<figure class="card__figure reveal reveal--fade">
-						<picture>
-							<source srcset="/assets/img/posts/chicago-day-of-service.webp" type="image/webp">
-							<img src="/assets/img/posts/chicago-day-of-service.jpg" alt="Chicago Team Gives Back During July Day of Service" width="800" height="600" loading="lazy">
-						</picture>
-					</figure>
-					<div class="card__body">
-						<time class="card__date" datetime="2026-07-22">July 22, 2026</time>
-						<h3 class="card__title">Chicago Team Gives Back During July Day of Service</h3>
-						<p class="card__excerpt">This July, our Chicago team partnered with the Lincoln Park Conservancy for a day of service, helping spread mulch around park trees and pick up litter throughout the park. <span class="card__more">Read More</span></p>
-					</div>
-				</a>
-			</article>
+			{%- for post in collections.culturePosts | limit(3) %}{{ postCard(post, true) }}{% endfor %}
 		</div>
 	</div>
 </section>
@@ -184,51 +148,7 @@ ogDescription: "Elevate your potential. Partner for growth."
 	<div class="container">
 		<h2 class="section-title" id="whats-new-title">What's New</h2>
 		<div class="posts__grid">
-			<article class="card">
-				<a class="card__link" href="/whats-new/proud-to-be-named-a-2026-best-place-to-work-in-chicago/">
-					<figure class="card__figure reveal reveal--fade">
-						<picture>
-							<source srcset="/assets/img/posts/best-places-to-work-2026.webp" type="image/webp">
-							<img src="/assets/img/posts/best-places-to-work-2026.jpg" alt="Crain’s Chicago Business 2026 Best Places to Work" width="757" height="520" loading="lazy">
-						</picture>
-					</figure>
-					<div class="card__body">
-						<time class="card__date" datetime="2026-09-10">September 10, 2026</time>
-						<h3 class="card__title">Proud to Be Named a 2026 Best Place to Work in Chicago</h3>
-						<p class="card__excerpt">We’re thrilled to share that Prosperity has been named one of Crain’s Chicago Business 2026 Top 100 Best Places to Work in Chicago! <span class="card__more">Read More</span></p>
-					</div>
-				</a>
-			</article>
-			<article class="card">
-				<a class="card__link" href="/whats-new/celebrating-jeremys-recognition-as-a-2026-crains-notable-leader/">
-					<figure class="card__figure reveal reveal--fade">
-						<picture>
-							<source srcset="/assets/img/posts/crains-notable-leader-2026.webp" type="image/webp">
-							<img src="/assets/img/posts/crains-notable-leader-2026.jpg" alt="Crain’s 2026 Notable Leaders in Accounting, Consulting &amp; Law" width="568" height="390" loading="lazy">
-						</picture>
-					</figure>
-					<div class="card__body">
-						<time class="card__date" datetime="2026-08-17">August 17, 2026</time>
-						<h3 class="card__title">Celebrating Jeremy’s Recognition as a 2026 Crain’s Notable Leader</h3>
-						<p class="card__excerpt">We’re proud to share that our CEO, Jeremy Dubow, has been named a 2026 Notable Leader in Accounting, Consulting &amp; Law by Crain’s Chicago Business. <span class="card__more">Read More</span></p>
-					</div>
-				</a>
-			</article>
-			<article class="card">
-				<a class="card__link" href="/whats-new/prosperity-partners-announces-strategic-partnership-with-lightyear-capital/">
-					<figure class="card__figure reveal reveal--fade">
-						<picture>
-							<source srcset="/assets/img/posts/lightyear-partnership.webp" type="image/webp">
-							<img src="/assets/img/posts/lightyear-partnership.jpg" alt="Lightyear Capital and Prosperity Partners" width="568" height="390" loading="lazy">
-						</picture>
-					</figure>
-					<div class="card__body">
-						<time class="card__date" datetime="2026-07-14">July 14, 2026</time>
-						<h3 class="card__title">Prosperity Partners Announces Strategic Partnership with Lightyear Capital</h3>
-						<p class="card__excerpt">We’re excited to announce our strategic partnership with Lightyear Capital, marking an important milestone in Prosperity Partners’ continued growth. <span class="card__more">Read More</span></p>
-					</div>
-				</a>
-			</article>
+			{%- for post in collections.whatsNewPosts | limit(3) %}{{ postCard(post, true) }}{% endfor %}
 		</div>
 	</div>
 </section>
