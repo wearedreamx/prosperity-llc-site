@@ -20,7 +20,19 @@ layout: base.njk
 </section>
 <section class="single-post-container">
 	<div class="single-post-content-container container">
-		{% if post.data.images.length %}<figure class="single-post-figure"><img src="{{ post.data.images[0] }}" alt="" class="single-post-image" data-pagefind-meta="image[src]"></figure>{% endif %}
+		{#- Live runs the post's images as a Slick slideshow in this column. The
+		    rebuild has no carousel library by design, and rendering only
+		    images[0] hid 384 of the 488 images the import committed — 50 of the
+		    104 posts carry more than one. They stack instead, which shows all of
+		    them and needs no client runtime. Only the first carries the Pagefind
+		    thumbnail meta. -#}
+		{%- if post.data.images.length %}
+		<div class="single-post-figures">
+			{%- for image in post.data.images %}
+			<figure class="single-post-figure"><img src="{{ image }}" alt="" class="single-post-image" loading="{{ 'eager' if loop.first else 'lazy' }}"{% if loop.first %} data-pagefind-meta="image[src]"{% endif %}></figure>
+			{%- endfor %}
+		</div>
+		{%- endif %}
 		<div class="single-post-content">
 			{#- The date precedes the title visually, but as a heading it made every
 			    post page open at h5 and then jump up to h1. It is a <time>. -#}

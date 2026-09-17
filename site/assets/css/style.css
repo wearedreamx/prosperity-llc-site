@@ -853,9 +853,11 @@ input, textarea, select { font: inherit; }
    -------------------------------------------------------------------------- */
 .single-post-content-container { display: grid; grid-gap: 3em; grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 900px) { .single-post-content-container { grid-template-columns: 1fr; } }
-.single-post-figure { order: 2; }
+/* The figures column: one grid child holding every image, so the two-column
+   split against the prose is unchanged whether a post has 1 image or 33. */
+.single-post-figures { order: 2; display: grid; gap: 1em; align-content: start; }
 .single-post-content { order: 1; }
-@media (max-width: 900px) { .single-post-figure { order: 1; } .single-post-content { order: 2; } }
+@media (max-width: 900px) { .single-post-figures { order: 1; } .single-post-content { order: 2; } }
 .single-post-image { display: block; width: 100%; aspect-ratio: 550 / 500; object-fit: cover; border-radius: 4px; }
 
 /* --------------------------------------------------------------------------
