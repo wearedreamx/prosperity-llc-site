@@ -151,9 +151,17 @@
 	if (filterRoot) {
 		var members = Array.prototype.slice.call(document.querySelectorAll(".team-member"));
 		var timers = new WeakMap();
+		// "Search members" narrows by name, combining with the facet dropdowns
+		// rather than replacing them (a card must satisfy both).
+		var nameQuery = "";
 
 		function classTerms(el) {
 			return el.className.split(/\s+/);
+		}
+
+		function matchesName(card) {
+			if (!nameQuery) return true;
+			return (card.getAttribute("data-name") || "").toLowerCase().indexOf(nameQuery) !== -1;
 		}
 
 		function applyFilter() {
@@ -162,9 +170,11 @@
 				var term = link.getAttribute("data-term");
 				if (term && term !== "all") selected.push(term);
 			});
+			var visible = 0;
 			members.forEach(function (card) {
 				var terms = classTerms(card);
-				var shown = selected.every(function (t) { return terms.indexOf(t) !== -1; });
+				var shown = matchesName(card) && selected.every(function (t) { return terms.indexOf(t) !== -1; });
+				if (shown) visible++;
 				clearTimeout(timers.get(card));
 				if (shown) {
 					card.classList.remove("disabled");
@@ -173,6 +183,35 @@
 					card.classList.remove("active");
 					timers.set(card, setTimeout(function () { card.classList.add("disabled"); }, 500));
 				}
+			});
+			announce(visible);
+		}
+
+		// Without this an empty grid reads as a blank page, with no indication
+		// the filter is what emptied it.
+		var emptyEl = document.querySelector("[data-team-empty]");
+		function announce(visible) {
+			if (!emptyEl) return;
+			emptyEl.hidden = visible !== 0;
+			if (visible === 0) {
+				emptyEl.textContent = nameQuery
+					? "No team members match “" + nameQuery + "”."
+					: "No team members match those filters.";
+			}
+		}
+
+		var teamSearchForm = filterRoot.querySelector("[data-team-search]");
+		if (teamSearchForm) {
+			var teamSearchInput = teamSearchForm.querySelector(".team-search-input");
+			// Filter as they type, and keep submit on the same page — the form's
+			// GET action is only the no-JS fallback.
+			teamSearchForm.addEventListener("submit", function (e) {
+				e.preventDefault();
+				applyFilter();
+			});
+			teamSearchInput.addEventListener("input", function () {
+				nameQuery = teamSearchInput.value.trim().toLowerCase();
+				applyFilter();
 			});
 		}
 
@@ -224,11 +263,15 @@
 				var label = dropdown.parentNode.getAttribute("data-label");
 				if (header && label) header.textContent = label;
 			});
+			nameQuery = "";
+			var input = filterRoot.querySelector(".team-search-input");
+			if (input) input.value = "";
 			members.forEach(function (card) {
 				clearTimeout(timers.get(card));
 				card.classList.remove("disabled");
 				card.classList.add("active");
 			});
+			announce(members.length);
 		}
 
 		var reset = filterRoot.querySelector(".team-filter-reset");

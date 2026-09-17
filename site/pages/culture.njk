@@ -5,6 +5,7 @@ pagination:
   alias: pagePosts
 permalink: "{{ '/culture/' if pagination.pageNumber == 0 else '/culture/page/' + (pagination.pageNumber + 1) + '/' }}"
 title: "Culture - Prosperity Partners"
+noIndex: true
 layout: base.njk
 ---
 <section class="page-banner">

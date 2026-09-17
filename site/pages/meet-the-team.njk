@@ -15,11 +15,15 @@ permalink: "/meet-the-team/"
 <section class="single-post-container">
 	<div class="container">
 		{% include "team-filters.njk" %}
-		<div class="team-container">
+		<p class="team-empty" data-team-empty role="status" aria-live="polite" hidden></p>
+		{#- each person is indexed from their own /personnel/<slug>/ page; indexing
+		    the 198 cards here too would match every name query twice and rank a
+		    directory listing alongside the actual bio -#}
+		<div class="team-container" data-pagefind-ignore>
 			{% for person in collections.teamOrder %}
 			{#- term classes the filter matches on: title facet, location slug, service lines -#}
 			{%- set locSlug = person.data.location_url | replace("/location/", "") | replace("/", "") -%}
-			<article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% if locSlug %} {{ locSlug }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}">
+			<article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% if locSlug %} {{ locSlug }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}" data-name="{{ person.data.name }}">
 				<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
 					<figure class="team-member-figure">
 						{% if person.data.photo %}<img width="550" height="500" src="{{ person.data.photo }}" alt="" class="team-member-img">{% endif %}

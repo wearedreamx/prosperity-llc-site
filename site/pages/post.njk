@@ -6,9 +6,10 @@ pagination:
 permalink: "{{ post.data.category_url }}{{ post.data.slug }}/"
 eleventyComputed:
   title: "{{ post.data.title }} - Prosperity Partners"
+searchType: post
 layout: base.njk
 ---
-<section class="page-banner">
+<section class="page-banner" data-pagefind-ignore>
 	<div class="page-banner-content">
 		<div class="page-banner-container container">
 			<h2 class="page-banner-title"><a class="page-banner-title-link" href="{{ post.data.category_url }}">{{ post.data.category_name }}</a></h2>
@@ -17,7 +18,7 @@ layout: base.njk
 </section>
 <section class="single-post-container">
 	<div class="single-post-content-container container">
-		{% if post.data.images.length %}<figure class="single-post-figure"><img src="{{ post.data.images[0] }}" alt="" class="single-post-image"></figure>{% endif %}
+		{% if post.data.images.length %}<figure class="single-post-figure"><img src="{{ post.data.images[0] }}" alt="" class="single-post-image" data-pagefind-meta="image[src]"></figure>{% endif %}
 		<div class="single-post-content">
 			{% if post.data.published %}<h5 class="single-post-meta">{{ post.data.published | longDate }}</h5>{% endif %}
 			<h1 class="single-post-title">{{ post.data.title }}</h1>

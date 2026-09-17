@@ -4,7 +4,7 @@
   is shown when its class list contains every selected term. Terms come from
   data/team-filters.json; the matching classes are emitted on each card below.
 #}
-<div class="team-filters-container">
+<div class="team-filters-container" data-pagefind-ignore>
 	<ul class="team-filters">
 		{% for facet in teamFilters %}{% if facet.label != hideFacet %}
 		<li class="team-filter" data-label="{{ facet.label }}">
@@ -18,9 +18,17 @@
 		<li class="team-filter"><span class="team-filter-reset" role="button" tabindex="0">Reset</span></li>
 	</ul>
 	<div class="team-search">
-		<form role="search" method="get" class="searchform" action="/search/">
+		{#- Filters the cards on this page by name rather than submitting to
+		    /search/: the theme scoped this box to personnel with a hidden
+		    post_type input, but a full-text personnel search matches bio prose
+		    too, so "tax" returned 140 of 200 members. Name-matching in place is
+		    what "Search members" means next to the facet dropdowns, and it keeps
+		    the result in the directory. Still a real <form> with a GET action so
+		    a no-JS submit degrades to the site search instead of doing nothing. -#}
+		<form role="search" method="get" class="searchform" action="/search/" data-team-search>
 			<label class="screen-reader-text team-search-label" for="team-s">Search for:</label>
-			<input class="team-search-input" placeholder="Search members" type="text" name="q" id="team-s">
+			<input type="hidden" name="type" value="personnel">
+			<input class="team-search-input" placeholder="Search members" type="text" name="q" id="team-s" autocomplete="off">
 			<input class="team-search-button" type="submit" value="Search">
 		</form>
 	</div>

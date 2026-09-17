@@ -6,9 +6,10 @@ pagination:
 permalink: "/personnel/{{ person.data.slug }}/"
 eleventyComputed:
   title: "{{ person.data.name }} - Prosperity Partners"
+searchType: personnel
 layout: base.njk
 ---
-<section class="page-banner">
+<section class="page-banner" data-pagefind-ignore>
 	<div class="page-banner-content">
 		<div class="page-banner-container container">
 			<h2 class="page-banner-title"><a class="page-banner-title-link" href="/meet-the-team/">Meet the Team</a></h2>
@@ -17,7 +18,7 @@ layout: base.njk
 </section>
 <section class="single-post-container">
 	<div class="single-post-content-container container">
-		{% if person.data.photo %}<figure class="single-post-figure"><img width="550" height="500" src="{{ person.data.photo }}" alt="" class="single-post-image"></figure>{% endif %}
+		{% if person.data.photo %}<figure class="single-post-figure"><img width="550" height="500" src="{{ person.data.photo }}" alt="" class="single-post-image" data-pagefind-meta="image[src]"></figure>{% endif %}
 		<div class="single-post-content">
 			<h1 class="single-personnel-name">{{ person.data.name }}{% if person.data.certifications %}<span class="single-personnel-certs">{{ person.data.certifications }}</span>{% endif %}</h1>
 			{% if person.data.job_title %}<h3 class="single-personnel-title">{{ person.data.job_title }}</h3>{% endif %}

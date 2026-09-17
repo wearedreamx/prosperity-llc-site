@@ -6,6 +6,7 @@ pagination:
 permalink: "/location/{{ location.data.slug }}/"
 eleventyComputed:
   title: "{{ location.data.name }} - Prosperity Partners"
+searchType: location
 layout: base.njk
 ---
 {%- if location.data.banner_image %}
@@ -13,7 +14,7 @@ layout: base.njk
 	<div class="page-banner-content">
 		<div class="page-banner-container container"></div>
 	</div>
-	<figure class="page-banner-figure"><img src="{{ location.data.banner_image }}" alt="" class="page-banner-image"></figure>
+	<figure class="page-banner-figure"><img src="{{ location.data.banner_image }}" alt="" class="page-banner-image" data-pagefind-meta="image[src]"></figure>
 </section>
 {%- endif %}
 <section class="single-location-container">
@@ -30,11 +31,13 @@ layout: base.njk
 		{%- set team = collections.personnelByLocation[location.data.slug] %}
 		{%- if team %}
 		{% set hideFacet = "Location" %}{% include "team-filters.njk" %}
-		<div class="team-container">
+		<p class="team-empty" data-team-empty role="status" aria-live="polite" hidden></p>
+		{#- roster cards are indexed from each person's own /personnel/<slug>/ page -#}
+		<div class="team-container" data-pagefind-ignore>
 			{%- for person in team %}
 			{#- the filter matches on these term classes; `active` is what makes the
 			    card visible at all, since .team-member is opacity:0 by default -#}
-			<article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}">
+			<article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}" data-name="{{ person.data.name }}">
 				<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
 					<figure class="team-member-figure">
 						{% if person.data.photo %}<img width="550" height="500" src="{{ person.data.photo }}" alt="" class="team-member-img">{% endif %}

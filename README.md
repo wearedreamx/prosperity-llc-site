@@ -28,13 +28,13 @@ prosperity-llc-site/
 │   └── missing-media.md      how the media gap was closed — see §9.1
 ├── site/              ← the new static site (the deliverable), an Eleventy source dir
 │   ├── index.njk        homepage (stays at the root — relies on Eleventy's implicit path→URL convention)
-│   ├── pages/            everything else with an explicit permalink (page, personnel, location, post, culture, whats-new, meet-the-team)
+│   ├── pages/            everything else with an explicit permalink (page, personnel, location, post, culture, whats-new, meet-the-team, search)
 │   ├── content/          ← one Markdown+JSON-frontmatter file per content record — see §6a
 │   │   ├── personnel/<slug>.md     198 files — Decap-CMS-ready
 │   │   ├── posts/<slug>.md         104 files — Decap-CMS-ready
 │   │   ├── locations/<slug>.md      11 files — Decap-CMS-ready
 │   │   └── pages/<file-stem>.md     43 files — NOT Decap-ready (see §6a), developer-edited for now
-│   ├── _includes/       shared layout + components (base, header, footer, content-blocks, cta, contact-form)
+│   ├── _includes/       shared layout + components (base, header, footer, content-blocks, cta, contact-form, team-filters)
 │   ├── _data/           global.js only — everything else is now an Eleventy collection, see §6a
 │   └── assets/
 │       ├── css/ js/ icons/       stylesheet, scripts, favicons
@@ -48,9 +48,12 @@ prosperity-llc-site/
 ├── tools/
 │   ├── wpdump.py       ← streaming SQL-dump parser (see §14) — PRIMARY extraction path when www/ is present
 │   ├── recover-media.py ← re-encodes referenced uploads from www/ into site/assets/ — see data/missing-media.md
-│   └── extract.py      ← fallback extraction from a live-site crawl, for machines without www/ — see §9.1;
-│                          one-shot bulk import, not the ongoing content-editing path (that's Decap, once wired)
-├── eleventy.config.js  ← Eleventy config: passthrough copy, date filters, injectContactForm, collections
+│   ├── extract.py      ← fallback extraction from a live-site crawl, for machines without www/ — see §9.1;
+│   │                      one-shot bulk import, not the ongoing content-editing path (that's Decap, once wired)
+│   ├── open-chrome-tab.js + .applescript  ← npm start's browser opener (see §2)
+│   └── debug-eleventy.js  ← npm run debug's DEBUG= wrapper (see §2)
+├── eleventy.config.js  ← Eleventy config: passthrough copy, date filters, injectContactForm, collections,
+│                         and the eleventy.after hook that builds the Pagefind index (§15)
 ├── package.json        ← npm start (dev server), npm run build
 └── .claude/launch.json  preview server config (npm start, port 8080)
 ```
@@ -96,6 +99,31 @@ Then open `http://localhost:8080`. In Claude Code the `site` launch config does 
 same thing via the Browser pane. `npm run build` produces a static `_site/` (gitignored)
 for deploy.
 
+### npm scripts must stay shell-agnostic
+
+`npm run` executes scripts through `cmd.exe` on Windows, so anything relying on
+POSIX shell syntax fails there — and it fails at the *first* script, before
+Eleventy ever runs. Every script is therefore plain `node`, with the shell-specific
+parts moved into `tools/`:
+
+| Was (bash-only) | Now | Why the old form broke on Windows |
+|---|---|---|
+| `rm -rf _site` | `node -e "require('fs').rmSync(...)"` | no `rm` in cmd.exe |
+| `(sleep 1.5 && ./tools/open-chrome-tab.sh &) ; …` | `node tools/open-chrome-tab.js` | no `sleep`, no `&` backgrounding, no subshell, no `;` |
+| `DEBUG=Eleventy* eleventy` | `node tools/debug-eleventy.js` | `VAR=value cmd` prefix is not cmd.exe syntax |
+
+`tools/open-chrome-tab.js` re-execs itself detached so the browser opens ~1.5s
+later without holding up the dev server, and picks the opener per platform
+(`osascript` → the sibling `.applescript`, `start` on Windows, `xdg-open`
+elsewhere). Only the macOS path focuses an existing tab instead of stacking
+duplicates on each restart.
+
+`tools/debug-eleventy.js` sets `DEBUG` in the child's environment (respecting an
+existing value, so `DEBUG=Eleventy:TemplateData npm run debug` still narrows the
+output). It invokes `node_modules/@11ty/eleventy/cmd.cjs` by path deliberately:
+`@11ty/eleventy` exports neither `./cmd.cjs` nor `./package.json`, so both
+`require` forms fail with `ERR_PACKAGE_PATH_NOT_EXPORTED`.
+
 To query site content without standing up MySQL (there is no `mysql` binary on this
 machine — don't try to import the dump):
 
@@ -121,7 +149,7 @@ for t,c,v in iter_rows('y7c9a5a_db142477_ndh.sql', tables={'ynrh_posts'}):
 | Hosting | Cloudflare Pages (git integration, atomic deploys, PR previews) |
 | CMS | Decap CMS at `/admin`, GitHub OAuth via a Cloudflare Worker |
 | Forms | Cloudflare Pages Function → Turnstile verify → SMTP relay (Resend) |
-| Search | Pagefind (replaces Relevanssi) |
+| Search | Pagefind (replaces Relevanssi) — see §15 |
 | Edge | Cloudflare CDN/WAF; Pro plan ($25/mo) |
 
 ### Eleventy over Astro
@@ -436,9 +464,11 @@ native Eleventy collection.
 | `site/pages/page.njk` | Generic + services + portal pages, paginated over `collections.genericPages` |
 | `site/pages/personnel.njk`, `location.njk`, `post.njk` | One page per personnel/location/post record, paginated over `collections.personnel`/`locations`/`posts` |
 | `site/pages/culture.njk`, `whats-new.njk`, `meet-the-team.njk` | Archive/directory listing pages, over `collections.culturePosts`/`whatsNewPosts`/`personnel` |
-| `eleventy.config.js` | Passthrough copy, `longDate`/`isoDate` filters, `injectContactForm` (swaps a Gravity-Forms-widget marker for the real component), the derived collections listed in §6a |
+| `site/pages/search.njk` | Search results page — static shell; results render client-side from the Pagefind index (§15) |
+| `eleventy.config.js` | Passthrough copy, `longDate`/`isoDate` filters, `injectContactForm` (swaps a Gravity-Forms-widget marker for the real component), the derived collections listed in §6a, and the `eleventy.after` hook that builds the Pagefind index (§15) |
 | `assets/css/style.css` | Palette + homepage styles (original, verified) plus a second pass added for page-banner/content-block/personnel/location/team-grid — **not yet verified, see §9.2** |
-| `assets/js/main.js` | Drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback, contact-form "Other" field toggle |
+| `assets/js/main.js` | Drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback, contact-form "Other" field toggle, team directory 3-facet + name filter (§15) |
+| `assets/js/search.js` | Queries the Pagefind index and renders `/search/` results (§15) |
 | `assets/icons/` | Favicons/manifest/browserconfig — source tidied into one folder, passthrough-copied back to the served root so no URL changed |
 
 Media processing applied to the homepage's hand-picked images only (repeat for
@@ -451,7 +481,6 @@ everything else once real media is sourced, see §9.1):
 ### Stubs left in place
 
 - Contact form posts to `/api/contact`; Turnstile div has `data-sitekey="TURNSTILE_SITE_KEY"`
-- Search submits to `/search/?q=` — wire to Pagefind (package added to `package.json`, build step + UI not yet wired)
 - Page permalinks are `/<slug>/` at root, matching the live site's actual permalinks (confirmed via crawl). Post permalinks are `/culture/<slug>/` / `/whats-new/<slug>/` — moved off the flat root to sit under their existing category pages; still needs the 104 redirect rules from the old flat URLs (§9 Phase H, open decision §11.9)
 - accessiBe widget omitted pending a decision
 
@@ -468,10 +497,10 @@ including the plan review.
 | B | Eleventy scaffold; port `site/` chrome into Nunjucks layouts/includes | ✅ done | 50–70k | shared header/footer |
 | C | Generic content-block renderer (9 column layouts) | ✅ done, ⚠️ styling unverified, see §9.2 | 80–120k | **38 pages at once** |
 | D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | partial — services/portal render via the generic renderer; sage and the 3-facet team filter still outstanding | 120–160k | 8 pages + team directory |
-| E | 4 content-type templates + archives, pagination, RSS, 404, search page | partial — personnel/location/post templates + Culture/What's New archives done; RSS, 404, search page outstanding | 120–160k | 333 URLs |
+| E | 4 content-type templates + archives, pagination, RSS, 404, search page | partial — personnel/location/post templates, Culture/What's New archives and the search page done; RSS and 404 outstanding | 120–160k | 333 URLs |
 | F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | outstanding | 100–200k | |
 | G | Forms: 1 component + 1 Worker (see §10) | component done (2 variants, standard + contact); Worker outstanding | 50–70k | all 9 forms |
-| H | Pagefind + 65 redirects + sitemap | outstanding | 40–60k | SEO continuity |
+| H | Pagefind + 65 redirects + sitemap | Pagefind done (§15); redirects + sitemap outstanding | 40–60k | SEO continuity |
 | I | Decap CMS + OAuth Worker + Cloudflare Pages setup | content model ready for personnel/posts/locations (§6a); pages need a custom block-editing widget first; Decap config/OAuth Worker itself outstanding | 80–120k | editors + deploy |
 | | **Total** | | **700k – 1.05M** | ≈ 6–10 sessions |
 
@@ -612,6 +641,11 @@ reconstruct content from the live site if the export is merely missing locally.
 
 **No MySQL on this machine.** Don't try to import the dump — use `tools/wpdump.py`.
 
+**Keep npm scripts shell-agnostic.** No `rm -rf`, no `VAR=value cmd` prefixes, no
+`&`/`;`/subshells in `package.json` — `npm run` uses `cmd.exe` on Windows and the
+whole script fails before Eleventy starts. Put platform-specific logic in a
+`node` script under `tools/` instead. See §2.
+
 **`sips` and `cwebp` and `ffmpeg` are available; ImageMagick and PIL are not.**
 
 **Uploads contain 15–20 MB camera JPEGs.** Always re-encode; never copy originals
@@ -663,3 +697,98 @@ parser returns them raw. `footer_locations`-style repeaters are flat numbered me
 keys (`options_footer_locations_0_footer_location`) and can be read without
 unserialising. Widget blobs (`widget_text`, `widget_nav_menu`) do need a PHP
 unserialiser or careful regex.
+
+---
+
+## 15. Search — Pagefind
+
+Replaces Relevanssi. Pagefind indexes the *built* HTML rather than the source
+content, so it needs no server and no API: it ships a static index plus a WASM
+query engine, and search runs entirely in the browser.
+
+**The index is built by an `eleventy.after` hook in `eleventy.config.js`**, not
+by a separate `npm run` step. That matters: it means `/search/` works under
+`npm start` too. Wiring it as a postbuild script instead would leave search
+silently dead in dev and only testable via a full production build. Writing into
+`_site/pagefind/` doesn't cause a rebuild loop — the dev server watches the input
+directory (`site/`), not the output.
+
+### What gets indexed
+
+`base.njk` puts `data-pagefind-body` on `<main>`. Once *any* page carries that
+attribute Pagefind indexes **only** pages that do, which makes exclusion the
+easy case: `noIndex: true` in a template's frontmatter drops the attribute and
+the page falls out of the index. Used by `/search/` itself and the Culture /
+What's New archives, whose card lists would otherwise match nearly every query
+and outrank the actual record.
+
+Chrome inside `<main>` is excluded with `data-pagefind-ignore` at each source —
+the CTA, the team-filter bar, banner nav links, and the card grids on
+`/meet-the-team/` and the location pages (each person is already indexed from
+their own `/personnel/<slug>/` page; indexing the cards too would rank a
+directory listing alongside the real bio).
+
+Result: **360 pages, ~77k words** — 200 personnel + 104 posts + 45 pages + 11
+locations. That is the full public URL count from §5, which is the number to
+re-check after touching any of this.
+
+Each page also carries `data-pagefind-meta="image[src]"` on its lead image, so
+result cards get a thumbnail; the `FALLBACK_IMAGE` in `search.js` covers the 13
+pages with no image. And `data-pagefind-filter="type:<page|post|personnel|location>"`
+(from a `searchType` frontmatter value) enables scoped queries.
+
+### The team directory's "Search members" box does not use Pagefind
+
+It filters the cards already on the page, by name, via `main.js` — it does not
+submit to `/search/`. Two false starts worth recording:
+
+1. It originally submitted an unscoped query, so "tax" returned whole-site
+   results. The theme scoped this box with a hidden `post_type=personnel` input
+   (`reference/theme/pages/team/filters.php`) that the port had dropped.
+2. Adding the equivalent Pagefind `type=personnel` filter scoped it to people
+   but still matched **bio prose**, so "tax" matched 140 of 200 members. A box
+   labelled "Search members", sitting beside the Title / Service Line / Location
+   dropdowns, means *names* — so it now matches on `data-name` and combines with
+   those facets (a card must satisfy both). `Reset` clears both.
+
+It is still a real `<form>` with a GET action, so a no-JS submit degrades to the
+site-wide search rather than doing nothing.
+
+### Gotcha: the platform binary may not install
+
+`pagefind` is a Rust binary delivered through per-platform optional deps
+(`@pagefind/darwin-arm64` etc.). Two ways this breaks:
+
+**Wrong platform installed.** On this machine `npm install` pulled
+`@pagefind/windows-x64` on an arm64 Mac, and `resolveBinary.js` throws because it
+looks for `@pagefind/darwin-arm64/bin/pagefind`. The Artifactory registry
+returned 401 for the correct package and public npm is unreachable, so the fix
+was to fetch the release tarball by hand and extract the binary to that path:
+
+```bash
+# from https://github.com/pagefind/pagefind/releases (verify the sha256)
+mkdir -p node_modules/@pagefind/darwin-arm64/bin
+tar -xzf pagefind-v1.5.2-aarch64-apple-darwin.tar.gz \
+    -C node_modules/@pagefind/darwin-arm64/bin
+chmod +x node_modules/@pagefind/darwin-arm64/bin/pagefind
+```
+
+`PAGEFIND_BINARY_PATH` also overrides the lookup if you'd rather keep the binary
+outside `node_modules`. Either way this is **per-machine and does not survive
+`npm install`** — `node_modules/` isn't committed. Don't commit the tarball.
+
+**Killed by Gatekeeper.** A hand-downloaded binary carries
+`com.apple.quarantine` and dies with `Killed: 9` (SIGKILL) rather than a useful
+error. Clear it:
+
+```bash
+xattr -d com.apple.quarantine node_modules/@pagefind/darwin-arm64/bin/pagefind
+```
+
+Same symptom hit `node_modules/.bin/*`, which had lost their exec bit
+(`Permission denied` running `eleventy`); `chmod +x node_modules/.bin/*` fixed it.
+
+**None of this affects deploy.** Cloudflare Pages builds on linux-x64 against
+public npm, where `@pagefind/linux-x64` installs normally. This is a local-dev
+problem only.
+

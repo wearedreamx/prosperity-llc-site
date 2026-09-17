@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "description": "Prosperity Partners static site (Eleventy)",
   "scripts": {
-    "clean": "rm -rf _site",
+    "clean": "node -e \"require('fs').rmSync('_site', { recursive: true, force: true })\"",
     "build": "npm run clean && eleventy",
-    "start": "npm run clean && (sleep 1.5 && ./tools/open-chrome-tab.sh &) ; eleventy --serve",
-    "debug": "DEBUG=Eleventy* eleventy"
+    "start": "npm run clean && node tools/open-chrome-tab.js && eleventy --serve",
+    "debug": "node tools/debug-eleventy.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

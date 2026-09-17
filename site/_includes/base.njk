@@ -32,7 +32,19 @@
 
 	{% include "header.njk" %}
 
-	<main id="main">
+	{#- data-pagefind-body scopes the search index to page content. Once any page
+	    carries it, Pagefind indexes only pages that do — so `noIndex: true` in a
+	    template's frontmatter is enough to keep that page out (used by the
+	    archive/directory pages, whose card lists would otherwise match every
+	    query and outrank the actual record). The chrome inside it (banner nav,
+	    CTA, filters) is excluded with data-pagefind-ignore at each source.
+
+	    data-pagefind-filter records each page's content type so a search can be
+	    narrowed to one type. The team directory's "Search members" box does
+	    exactly that (?type=personnel) — the theme scoped it with a hidden
+	    post_type=personnel input, and without the filter it returns whole-site
+	    results. -#}
+	<main id="main"{% if not noIndex %} data-pagefind-body data-pagefind-filter="type:{{ searchType or 'page' }}"{% endif %}>
 		{{ content | safe }}
 	</main>
 

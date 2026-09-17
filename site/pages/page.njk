@@ -17,7 +17,7 @@ layout: base.njk
 			{% if pageItem.data.banner_description_html %}<div class="content">{{ pageItem.data.banner_description_html | safe }}</div>{% endif %}
 		</div>
 	</div>
-	{% if pageItem.data.banner_image %}<figure class="page-banner-figure"><img src="{{ pageItem.data.banner_image }}" alt="" class="page-banner-image"></figure>{% endif %}
+	{% if pageItem.data.banner_image %}<figure class="page-banner-figure"><img src="{{ pageItem.data.banner_image }}" alt="" class="page-banner-image" data-pagefind-meta="image[src]"></figure>{% endif %}
 </section>
 
 {% set blocks = pageItem.data.blocks %}

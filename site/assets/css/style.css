@@ -938,6 +938,69 @@ input, textarea { font: inherit; }
 .client-portal-field:focus { border-color: var(--grey-text); }
 .client-portal-button { width: 100%; }
 
+/* --------------------------------------------------------------------------
+   Search results (/search/)
+   The theme's own pages/search.css is a single rule — `.search-results-container
+   { padding: 3em 0 }`, ported verbatim below with the theme CSS. Everything
+   here styles markup that has no theme counterpart: results are rendered
+   client-side from the Pagefind index, so the query form, status line and
+   "load more" control are new. Cards reuse .card/.posts__grid from the post
+   archives.
+   -------------------------------------------------------------------------- */
+.search-page-form { display: flex; gap: 0.5em; max-width: 34em; }
+.search-page-input {
+	flex: 1;
+	height: 3em;
+	padding: 0 1em;
+	font-family: var(--font);
+	font-size: 1em;
+	background: var(--grey-light);
+	border: 1px solid #ccc;
+	border-radius: var(--radius);
+}
+.search-page-input:focus { background: var(--white); border-color: var(--grey-text); outline: none; }
+.search-page-submit {
+	padding: 0 1.5em;
+	font-family: var(--font);
+	font-size: 1em;
+	color: var(--white);
+	background: var(--blue);
+	border: 0;
+	border-radius: var(--radius);
+	cursor: pointer;
+	transition: background var(--ease);
+}
+.search-page-submit:hover { background: var(--sky); }
+.search-status { margin-top: 1.5em; color: var(--grey-text); line-height: 1.5; }
+/* The grid's own top margin plus .posts padding would double up under the
+   status line; results sit directly beneath it. */
+#search-results { padding: 0; }
+#search-results::after { display: none; }
+#search-results .card { margin-top: 2em; }
+#search-results:not(:empty) {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 2em;
+	align-items: start;
+}
+@media (max-width: 960px) { #search-results:not(:empty) { grid-template-columns: 1fr; } }
+/* Pagefind wraps matched terms in <mark> inside the excerpt. */
+.card__excerpt mark { background: transparent; color: var(--white); font-weight: 700; }
+.search-more {
+	padding: 0.75em 1.5em;
+	font-family: var(--font);
+	font-size: 1em;
+	color: var(--blue);
+	background: transparent;
+	border: 1px solid var(--blue);
+	border-radius: var(--radius);
+	cursor: pointer;
+	transition: color var(--ease), background var(--ease);
+}
+.search-more:hover { color: var(--white); background: var(--blue); }
+/* Empty state for the team directory's name search / facet filters. */
+.team-empty { margin-bottom: 2em; color: var(--grey-text); line-height: 1.5; }
+
 
 /* ===========================================================================
  * Authoritative theme CSS, ported verbatim from the WordPress theme
@@ -961,6 +1024,9 @@ input, textarea { font: inherit; }
 
 /* --- Location detail  [pages/single-location.css] --- */
 .single-location-container{padding:4em 0}.single-location-top{display:grid;grid-gap:2em;grid-template-columns:15em 1fr;margin-bottom:3em}@media (max-width:768px){.single-location-top{grid-template-columns:1fr}}.single-location-title{font-size:2em;font-weight:400}.single-location-address{line-height:1.5}
+
+/* --- Search results  [pages/search.css] --- */
+.search-results-container{padding:3em 0}
 
 /* --- Base .content typography  [screen.css] --- */
 /* The block renderer wraps every WYSIWYG field in .content, so these carry

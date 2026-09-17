@@ -5,6 +5,7 @@ pagination:
   alias: pagePosts
 permalink: "{{ '/whats-new/' if pagination.pageNumber == 0 else '/whats-new/page/' + (pagination.pageNumber + 1) + '/' }}"
 title: "What's New - Prosperity Partners"
+noIndex: true
 layout: base.njk
 ---
 <section class="page-banner">

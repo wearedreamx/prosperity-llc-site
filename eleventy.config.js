@@ -141,6 +141,20 @@ module.exports = function (eleventyConfig) {
 			.filter((p) => (p.data.status || "publish") === "publish")
 	);
 
+	// Pagefind builds its index by reading the *output* HTML, so it has to run
+	// after Eleventy writes _site. Doing it here rather than only as a postbuild
+	// script means /search/ also works under `npm start` — otherwise search is
+	// silently dead in dev and only testable via a full production build.
+	// Writing into _site/pagefind/ doesn't retrigger a rebuild: the dev server
+	// watches the input dir (site/), not the output.
+	eleventyConfig.on("eleventy.after", async ({ dir, runMode }) => {
+		if (runMode !== "build" && runMode !== "serve") return;
+		const { createIndex } = await import("pagefind");
+		const { index } = await createIndex();
+		await index.addDirectory({ path: dir.output });
+		await index.writeFiles({ outputPath: path.join(dir.output, "pagefind") });
+	});
+
 	return {
 		dir: {
 			input: "site",
