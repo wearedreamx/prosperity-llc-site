@@ -5,8 +5,10 @@ pagination:
   alias: pagePosts
 permalink: "{{ '/whats-new/' if pagination.pageNumber == 0 else '/whats-new/page/' + (pagination.pageNumber + 1) + '/' }}"
 title: "What's New - Prosperity Partners"
-description: "News from Prosperity Partners — acquisitions, partnerships, recognitions and firm announcements."
+description: "Check out the latest news at Prosperity! The articles on these pages show our accomplishments, our contributions to the community, and our celebrations as a team."
 archiveTitle: "What's New"
+# Recovered from the live category description; see the note in post-archive.njk.
+archiveDescription: "Check out the latest news at Prosperity! The articles on these pages show our accomplishments, our contributions to the community, and our celebrations as a team."
 archiveImage: "/assets/img/uploads/pages/whats-new.jpg"
 noIndex: true
 layout: base.njk

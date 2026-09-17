@@ -9,6 +9,11 @@
 	<div class="page-banner-content">
 		<div class="page-banner-content-container container">
 			<h1 class="page-banner-title">{{ archiveTitle }}</h1>
+			{#- The category description. It lived on the CMS category term rather
+			    than on a page, so the import never captured it and both archives
+			    shipped a bare title; recovered from the live pages and kept in
+			    each archive's frontmatter, since neither has a page record. -#}
+			{%- if archiveDescription %}<div class="content"><p>{{ archiveDescription }}</p></div>{% endif %}
 		</div>
 	</div>
 	<figure class="page-banner-figure"><img src="{{ archiveImage }}" alt="" class="page-banner-image"></figure>
@@ -16,7 +21,7 @@
 <section class="posts">
 	<div class="container">
 		<div class="posts__grid">
-			{%- for post in pagePosts %}{{ postCard(post) }}{% endfor %}
+			{%- for post in pagePosts %}{{ postCard(post, true) }}{% endfor %}
 		</div>
 		{%- if pagination.href.previous or pagination.href.next %}
 		<nav class="pagination" aria-label="{{ archiveTitle }} pagination">
