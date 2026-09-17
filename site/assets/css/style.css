@@ -1102,3 +1102,16 @@ input, textarea { font: inherit; }
 	outline-offset: -2px;
 	color: var(--black);
 }
+
+/* /partnerships/ testimonials. The imported block was Slick's rendered output
+   with no Slick to drive it: a 4466px track translated -638px inside an
+   overflow:hidden box, so all 14 slides (6 unique, 8 cloned) sat off-screen and
+   the section rendered blank. It is a static grid now; the per-card padding and
+   shadow come from .content-block-testimonials above. */
+.content-block-testimonials-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: start;
+}
+@media (max-width: 900px) { .content-block-testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .content-block-testimonials-grid { grid-template-columns: 1fr; } }
