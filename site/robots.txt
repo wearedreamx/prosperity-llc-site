@@ -1,0 +1,8 @@
+# https://www.prosperityllc.com/robots.txt
+User-agent: *
+Allow: /
+
+# /search/ generates a distinct URL per query and holds no content of its own.
+Disallow: /search/
+
+Sitemap: https://www.prosperityllc.com/sitemap.xml

@@ -21,8 +21,11 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ "site/icons/manifest.json": "manifest.json" });
 	eleventyConfig.addPassthroughCopy({ "site/icons/browserconfig.xml": "browserconfig.xml" });
 
-	// Cloudflare Pages redirect rules — must land at the deploy root (_site/_redirects).
+	// Cloudflare Pages reads both of these from the deploy root, so they are
+	// copied out of site/ rather than served from a subpath.
 	eleventyConfig.addPassthroughCopy({ "site/_redirects": "_redirects" });
+	eleventyConfig.addPassthroughCopy({ "site/_headers": "_headers" });
+	eleventyConfig.addPassthroughCopy({ "site/robots.txt": "robots.txt" });
 
 	eleventyConfig.addGlobalData("currentYear", () => new Date().getFullYear());
 
