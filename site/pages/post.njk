@@ -20,7 +20,9 @@ layout: base.njk
 	<div class="single-post-content-container container">
 		{% if post.data.images.length %}<figure class="single-post-figure"><img src="{{ post.data.images[0] }}" alt="" class="single-post-image" data-pagefind-meta="image[src]"></figure>{% endif %}
 		<div class="single-post-content">
-			{% if post.data.published %}<h5 class="single-post-meta">{{ post.data.published | longDate }}</h5>{% endif %}
+			{#- The date precedes the title visually, but as a heading it made every
+			    post page open at h5 and then jump up to h1. It is a <time>. -#}
+			{% if post.data.published %}<p class="single-post-meta"><time datetime="{{ post.data.published | isoDate }}">{{ post.data.published | longDate }}</time></p>{% endif %}
 			<h1 class="single-post-title">{{ post.data.title }}</h1>
 			<div class="content">
 				{{ post.content | safe }}
