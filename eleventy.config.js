@@ -1,3 +1,6 @@
+const fs = require("fs");
+const path = require("path");
+
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("site/assets");
 
@@ -26,6 +29,12 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({ "site/_redirects": "_redirects" });
 	eleventyConfig.addPassthroughCopy({ "site/_headers": "_headers" });
 	eleventyConfig.addPassthroughCopy({ "site/robots.txt": "robots.txt" });
+
+	// data/ sits outside the input dir (site/), so Eleventy does not watch it and
+	// edits to the footer/filter/pinning data did not trigger a rebuild in dev.
+	// The _data wrappers read it with readFileSync rather than require so the
+	// rebuild actually picks up the new contents — see site/_data/global.js.
+	eleventyConfig.addWatchTarget("./data/");
 
 	eleventyConfig.addGlobalData("currentYear", () => new Date().getFullYear());
 
@@ -91,8 +100,14 @@ module.exports = function (eleventyConfig) {
 	// the real contact-form.njk
 	// component through Nunjucks (not a plain string swap) so its
 	// {% if formVariant %} branch picks the right shape.
-	const path = require("path");
 	const nunjucks = require("nunjucks");
+
+	// Reads a file from data/ fresh on every call. require() would cache it, so
+	// under `eleventy --serve` a watch-triggered rebuild would re-run the
+	// collections against the *old* contents — the edit would appear to do
+	// nothing. See site/_data/global.js for the same reasoning.
+	const readData = (name) =>
+		JSON.parse(fs.readFileSync(path.join(__dirname, "data", name), "utf8"));
 	const formEnv = new nunjucks.Environment(
 		new nunjucks.FileSystemLoader(path.join(__dirname, "site", "_includes"))
 	);
@@ -107,7 +122,7 @@ module.exports = function (eleventyConfig) {
 				formEnv.render("contact-form.njk", {
 					formVariant,
 					idPrefix: `cf-embed-${++n}`,
-					global: require("./data/global.json"),
+					global: readData("global.json"),
 				})
 		);
 	});
@@ -123,7 +138,7 @@ module.exports = function (eleventyConfig) {
 	// than splitting the display name, which breaks on compound and multi-word
 	// surnames.
 	eleventyConfig.addCollection("teamOrder", (api) => {
-		const pinnedSlugs = require("./data/team-pinned.json").slugs;
+		const pinnedSlugs = readData("team-pinned.json").slugs;
 		const people = api.getFilteredByTag("personnel");
 		const bySlug = new Map(people.map((p) => [p.data.slug, p]));
 		const pinned = pinnedSlugs.map((s) => bySlug.get(s)).filter(Boolean);
@@ -142,7 +157,7 @@ module.exports = function (eleventyConfig) {
 	// Personnel grouped by location slug: that location's pinned members first,
 	// then everyone else at that office by last name.
 	eleventyConfig.addCollection("personnelByLocation", (api) => {
-		const pinnedByLocation = require("./data/team-pinned.json").byLocation || {};
+		const pinnedByLocation = readData("team-pinned.json").byLocation || {};
 		const slugOf = (p) => (p.data.location_url || "").replace("/location/", "").replace(/\//g, "");
 		const cmp = (a, b) =>
 			(a.data.last_name || "").localeCompare(b.data.last_name || "") ||

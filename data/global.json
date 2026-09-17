@@ -7,7 +7,10 @@
   "tagline": "Accounting, Tax, & Sage Intacct Solutions",
   "phone": "(312) 461-0514",
   "phone_tel": "+13124610514",
+  "fax": "(833) 527-9321",
   "email": "info@prosperityllc.com",
+  "linkedin_url": "https://www.linkedin.com/company/prosperity-partners-tax",
+  "non_attest_note": "*Indicates location as NDH Advisors office providing non-attest services only.",
   "footer_locations": [
     {
       "url": "/location/burlington/",
