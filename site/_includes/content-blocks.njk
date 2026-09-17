@@ -4,20 +4,26 @@
 
   Every column layout resolves to the same container with a layout-suffixed
   class, and site/assets/css/style.css sizes the grid — so there is one rule
-  here, not one branch per layout. This used to be a nine-arm if/elif chain in
-  which eight arms emitted exactly what the fallback emits.
+  here, not one branch per layout.
 
-  Two layouts are not plain containers:
-    raw:*          emitted verbatim, no container. Used by the hand-built
-                   homepage and team sections, and by raw:cta, which renders
-                   the shared CTA component instead of the block's own HTML.
-    twoimage-20    needs an outer wrapper the others do not.
+  `section_class` carries the section-level modifier classes the previous site
+  put on each block: content-block-blue, content-block-cards,
+  content-block-border-top and friends. The import dropped them, so pages that
+  should have been blue sections with white text rendered white-on-white —
+  /partnerships/ was six sections of it. The CSS for all of them was already
+  ported; only the class was missing.
+
+  twoimage-20 is the one layout whose inner container is not named after its
+  layout; its own outer classes live in section_class, like everything else.
+  raw:* is emitted verbatim, with no container and no section wrapper — used by
+  the hand-built homepage and team sections, and by raw:cta, which renders the
+  shared CTA component instead of the block's own HTML.
 #}
 {% macro block(b) %}
 {%- if b.layout.startsWith("raw:") -%}
 {{ b.html | injectContactForm | safe }}
 {%- elif b.layout == "twoimage-20" -%}
-<div class="content-block-container-twoimage-top content-block-container-twoimage-20"><div class="content-block-container container content-block-container-twoimage content-block-container-with-image-left">{{ b.html | injectContactForm | safe }}</div></div>
+<div class="content-block-container container content-block-container-twoimage content-block-container-with-image-left">{{ b.html | injectContactForm | safe }}</div>
 {%- else -%}
 <div class="content-block-container container content-block-container-{{ b.layout }}">{{ b.html | injectContactForm | safe }}</div>
 {%- endif -%}
@@ -26,9 +32,14 @@
 {% for b in blocks %}
 {%- if b.layout == "raw:cta" -%}
 {% include "cta.njk" %}
-{%- elif b.layout.startsWith("raw:") -%}
-{{ block(b) }}
+{%- elif b.layout.startsWith("raw:") or b.html.trim().startsWith("<section") -%}
+{#- Six blocks across five pages came out of the import with their whole
+    <section> already in the html while still carrying a column `layout`.
+    Wrapping those again nested a second .content-block inside the first, which
+    doubled the 3em section padding and, for the sidebar layout, squeezed the
+    inner grid into the outer grid's first column. They are emitted as-is. -#}
+{{ b.html | injectContactForm | safe }}
 {%- else -%}
-<section class="content-block">{{ block(b) }}</section>
+<section class="content-block{% if b.section_class %} {{ b.section_class }}{% endif %}">{{ block(b) }}</section>
 {%- endif -%}
 {% endfor %}
