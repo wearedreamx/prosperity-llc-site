@@ -1,4 +1,7 @@
 {
+
+  "_comment_turnstile": "Cloudflare Turnstile site key for the contact forms. The site key is public (it ships in the HTML) — the SECRET key is not, and belongs in Cloudflare Worker secrets, never here. While this holds the placeholder below, base.njk does not load the widget script: a placeholder key renders a visible error widget rather than a challenge. See README section 9 Phase G.",
+  "turnstile_site_key": "TURNSTILE_SITE_KEY",
   "site_name": "Prosperity Partners",
   "tagline": "Accounting, Tax, & Sage Intacct Solutions",
   "phone": "(312) 461-0514",

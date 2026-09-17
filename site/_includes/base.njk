@@ -51,5 +51,13 @@
 	{% include "footer.njk" %}
 
 	<script src="/assets/js/main.js" defer></script>
+	{#- Turnstile's widget script. The .cf-turnstile div in contact-form.njk is
+	    inert without it — the div alone renders nothing, which is how the forms
+	    ended up with no captcha at all. Gated on a configured key because a
+	    placeholder key makes the widget render a visible error instead of a
+	    challenge; set turnstile_site_key in data/global.json to switch it on. -#}
+	{% if global.turnstile_site_key and global.turnstile_site_key != "TURNSTILE_SITE_KEY" %}
+	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+	{% endif %}
 </body>
 </html>

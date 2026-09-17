@@ -52,12 +52,21 @@ module.exports = function (eleventyConfig) {
 	const formEnv = new nunjucks.Environment(
 		new nunjucks.FileSystemLoader(path.join(__dirname, "site", "_includes"))
 	);
-	eleventyConfig.addFilter("injectContactForm", (html) =>
-		html.replace(
+	// idPrefix keeps element ids unique when a page renders both an embedded form
+	// and the site-wide CTA form: without it both used cf-first/cf-last/... and
+	// the second form's <label for> pointed at the first form's fields.
+	eleventyConfig.addFilter("injectContactForm", (html) => {
+		let n = 0;
+		return html.replace(
 			/<div class="cta-form-placeholder"(?: data-form-variant="(\w+)")?><\/div>/g,
-			(_match, formVariant) => formEnv.render("contact-form.njk", { formVariant })
-		)
-	);
+			(_match, formVariant) =>
+				formEnv.render("contact-form.njk", {
+					formVariant,
+					idPrefix: `cf-embed-${++n}`,
+					global: require("./data/global.json"),
+				})
+		);
+	});
 
 	// Content lives one file per record under site/content/<type>/*.md —
 	// personnel/posts/locations/pages are auto-tagged via
