@@ -7,7 +7,6 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%202048%201366'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/2025-admin-awards-2.jpg",
     "/assets/img/uploads/posts/2025-admin-awards-3.jpg"
   ]

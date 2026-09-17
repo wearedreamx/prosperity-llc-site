@@ -26,7 +26,10 @@ permalink: "/meet-the-team/"
 			<article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% if locSlug %} {{ locSlug }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}" data-name="{{ person.data.name }}">
 				<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
 					<figure class="team-member-figure">
-						{% if person.data.photo %}<img width="550" height="500" src="{{ person.data.photo }}" alt="" class="team-member-img">{% endif %}
+						{#- 7 of the 200 records have no headshot. The live site falls back to a
+    house graphic at the same 550x500 as a real photo, so the card keeps its
+    shape instead of collapsing to an empty figure. -#}
+						<img width="550" height="500" src="{{ person.data.photo or '/assets/img/ui/team-placeholder.svg' }}" alt="" class="team-member-img">
 					</figure>
 					<div class="team-member-content">
 						<h3 class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="team-member-certs">{{ person.data.certifications }}</span>{% endif %}</h3>

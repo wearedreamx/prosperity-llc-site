@@ -7,7 +7,6 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20900%201200'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/santa-barbara-office-holiday-luncheon-2.jpg",
     "/assets/img/uploads/posts/santa-barbara-office-holiday-luncheon-3.jpg",
     "/assets/img/uploads/posts/santa-barbara-office-holiday-luncheon-4.jpg"

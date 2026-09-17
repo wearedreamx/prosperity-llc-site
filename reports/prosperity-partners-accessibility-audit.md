@@ -3,7 +3,7 @@
 > Audit date: 2026-08-20
 > Audited by: DreamX
 > Site URL: https://www.prosperityllc.com
-> Platform: WordPress
+> Platform: the site's previous CMS (pre-migration)
 > Pages reviewed: 365 of 365 known site pages (100%)
 
 ## Scope and Methodology
@@ -55,7 +55,7 @@ The image has `alt=""` and the enclosing link has no other text or `aria-label` 
 
 🟡 **The Client Portal login form has no labeled fields.** The username and password inputs on `/client-portal/` rely on placeholder text only (`placeholder="Enter your user ID"`, `placeholder="Enter your password"`) with no `<label>` or `aria-label`. Placeholder text disappears once a user starts typing and isn't reliably announced by screen readers — this is the one form on the site where a user is entering sensitive information, making the gap more consequential than a typical contact form field.
 
-🟡 **352 pages have at least one skipped heading level** (most commonly H2 jumping straight to H4, a pattern common in WordPress card/grid widgets). This breaks the logical heading hierarchy that screen reader users rely on to navigate a page by section, even though it's invisible to sighted users.
+🟡 **352 pages have at least one skipped heading level** (most commonly H2 jumping straight to H4, a pattern common in CMS card/grid widgets). This breaks the logical heading hierarchy that screen reader users rely on to navigate a page by section, even though it's invisible to sighted users.
 
 🟡 **4 embedded video iframes have no `title` attribute** — `/mid-year-recap/` and `/ppp-loan-forgiveness/` each embed a video (one direct MP4, one Vimeo player) with no `title`, meaning a screen reader user has no way to know what the iframe contains before deciding whether to enter it. (Tracking/analytics iframes elsewhere on the site, e.g. Google Tag Manager, are correctly excluded from this count since they're hidden and non-interactive.)
 

@@ -3,7 +3,7 @@
 > Audit date: 2026-08-20
 > Audited by: DreamX
 > Site URL: https://www.prosperityllc.com
-> Platform: WordPress
+> Platform: the site's previous CMS (pre-migration)
 > Pages reviewed: 365 of 365 known site pages (100%)
 
 ## Scope and Methodology
@@ -42,7 +42,7 @@ Each group shows unrelated posts sharing one description verbatim — likely fro
 
 ## Nice to Have
 
-🟢 **12 URL pairs exist with and without a trailing slash** (e.g. `/culture` and `/culture/`, all under `/culture` and `/whats-new` pagination) and both were independently reachable and crawled. Checked directly: both versions of `/culture` and `/culture/` correctly declare the same canonical URL (`https://www.prosperityllc.com/culture/`), so this isn't actually causing duplicate indexing — it's WordPress's normal behavior of serving both forms and canonicalizing to one. No action needed, included here only for completeness.
+🟢 **12 URL pairs exist with and without a trailing slash** (e.g. `/culture` and `/culture/`, all under `/culture` and `/whats-new` pagination) and both were independently reachable and crawled. Checked directly: both versions of `/culture` and `/culture/` correctly declare the same canonical URL (`https://www.prosperityllc.com/culture/`), so this isn't actually causing duplicate indexing — it's the old platform's normal behavior of serving both forms and canonicalizing to one. No action needed, included here only for completeness.
 
 🟢 **No pages were found with multiple `<h1>` tags** — heading structure is otherwise clean sitewide aside from the homepage gap noted above.
 

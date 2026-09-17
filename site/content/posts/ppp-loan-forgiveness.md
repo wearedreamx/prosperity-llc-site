@@ -12,4 +12,4 @@
 }
 ---
 <p><strong>Many people still have questions surrounding the PPP Loan program. In this video, Prosperity Partners partner Jeremy Dubow was interviewed by Casey Clark at Cultivate Advisors to provide expert PPP advice. </strong></p>
-<div class="rve-embed-responsive rve-embed-responsive-16by9"><iframe loading="lazy" src="about:blank" width="500" height="281" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" data-rocket-lazyload="fitvidscompatible" data-lazy-src="https://player.vimeo.com/video/414109047?h=11387e1775&amp;dnt=1&amp;app_id=122963"></iframe><noscript><iframe src="https://player.vimeo.com/video/414109047?h=11387e1775&amp;dnt=1&amp;app_id=122963" width="500" height="281" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write"></iframe></noscript></div>
+<div class="video-embed video-embed--16by9"><iframe src="https://player.vimeo.com/video/414109047?h=11387e1775&amp;dnt=1&amp;app_id=122963" width="500" height="281" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write"></iframe></div>

@@ -7,9 +7,7 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20743%201200'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/were-proud-to-be-named-as-one-of-crains-2024-best-workplaces-in-chicago-2.jpg",
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201200%20583'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/were-proud-to-be-named-as-one-of-crains-2024-best-workplaces-in-chicago-4.jpg",
     "/assets/img/uploads/posts/were-proud-to-be-named-as-one-of-crains-2024-best-workplaces-in-chicago-5.jpg",
     "/assets/img/uploads/posts/were-proud-to-be-named-as-one-of-crains-2024-best-workplaces-in-chicago-6.jpg"

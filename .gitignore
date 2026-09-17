@@ -8,9 +8,8 @@ node_modules/
 
 # Video is never versioned. These are large binaries that bloat the repo and
 # every clone permanently, and git stores each re-encode as a whole new blob.
-# Video is served from the origin site instead — reference it with an absolute
-# https:// URL to the live media (see the hero <source> in site/index.njk).
-# Poster frames are images and stay in the repo.
+# Video must be served from a CDN instead — see README §9.3, which lists the
+# three files still waiting on a base URL. Poster frames are images and stay.
 *.mp4
 *.webm
 *.mov
@@ -18,22 +17,13 @@ node_modules/
 *.avi
 *.ogv
 
-# ---------------------------------------------------------------------------
-# The WordPress export. NEVER commit this.
+# Import leftovers. NEVER commit these.
 #
-# The export has since been deleted entirely (README §4) — everything needed was
-# extracted first, and the theme's PHP and CSS live in reference/theme/. This
-# rule stays so that a restored export is never committed by accident.
-#
-# Keeping it out of git is a security requirement, not a size one. The dump
-# holds ynrh_users (account emails and password hashes), ynrh_gf_entry and
-# ynrh_wpforms_entries (3,782 historical form submissions — client names,
-# emails, phone numbers and message bodies), ynrh_gf_rest_api_keys and
-# ynrh_itsec_opaque_tokens. This repo deploys to Cloudflare Pages through a
-# GitHub integration; committing the dump would publish all of that.
-#
-# Restoring it (rarely needed): see README.md §1.
-# ---------------------------------------------------------------------------
+# The content import (README §4) read a full site export, including a database
+# dump holding account emails and password hashes, 3,782 historical form
+# submissions with client PII, and API keys. The export is gone; these rules
+# stay so that a restored copy can never be committed by accident. This repo
+# deploys to Cloudflare Pages through a GitHub integration.
 www/
 /reconstructed-site
 
@@ -44,12 +34,6 @@ www/
 !.env.example
 .dev.vars
 
-# Derived, rebuildable artifacts
-#   attachment-ids.json: _wp_attached_file lookups, rebuilt from the SQL dump
-#   by tools/recover-media.py in about 90 seconds.
-/data/attachment-ids.json
-__pycache__/
-*.py[cod]
 
 # Root-owned leftovers from an npm run under sudo. Deleting them needs sudo,
 # so they are ignored here rather than removed.

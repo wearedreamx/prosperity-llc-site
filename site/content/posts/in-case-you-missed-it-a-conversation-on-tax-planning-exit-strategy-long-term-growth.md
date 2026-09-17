@@ -7,7 +7,6 @@
   "category_name": "What's New",
   "category_url": "/whats-new/",
   "images": [
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201917%201033'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/in-case-you-missed-it-a-conversation-on-tax-planning-exit-strategy-long-term-growth-2.jpg"
   ]
 }

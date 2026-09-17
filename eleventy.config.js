@@ -40,11 +40,11 @@ module.exports = function (eleventyConfig) {
 		return new Date(isoString).toISOString().slice(0, 10);
 	});
 
-	// Some pages have a Gravity Forms widget (WordPress-only, no backend in the
-	// new site) embedded mid-content rather than in its own raw:cta block —
-	// tools/extract.py replaces it with a marker div tagged data-form-variant
-	// ("contact" for the one form with an extra referral-source field, see
-	// README §10; "standard" for the rest). Render the real contact-form.njk
+	// Some pages had a server-rendered form widget embedded mid-content rather
+	// than in its own raw:cta block. The import left a marker div in its place,
+	// tagged data-form-variant — "contact" for the one form with an extra
+	// referral-source field (see README §10), "standard" for the rest. Render
+	// the real contact-form.njk
 	// component through Nunjucks (not a plain string swap) so its
 	// {% if formVariant %} branch picks the right shape.
 	const path = require("path");
@@ -59,17 +59,16 @@ module.exports = function (eleventyConfig) {
 		)
 	);
 
-	// Content lives one file per record under site/content/<type>/*.md (see
-	// tools/extract.py) — personnel/posts/locations/pages are auto-tagged via
+	// Content lives one file per record under site/content/<type>/*.md —
+	// personnel/posts/locations/pages are auto-tagged via
 	// each folder's <type>.11tydata.js, so `collections.personnel` etc. already
 	// exist. These derived collections replicate what the old flat
 	// data/*.json + site/_data/*.js wrappers used to filter/sort in memory.
 	// /meet-the-team/ order must match the live site: a pinned leadership block
-	// first, then everyone else by last name. The theme does this with two
-	// queries (pages/team.php); the pinned ids live in an ACF repeater, mirrored
-	// into data/team-pinned.json. Sorting on last_name (carried in each record's
-	// frontmatter, straight from personnel_last_name) rather than splitting the
-	// display name, which breaks on compound and multi-word surnames.
+	// first, then everyone else by last name. The pinned ids live in
+	// data/team-pinned.json. Sorting on the record's own last_name field rather
+	// than splitting the display name, which breaks on compound and multi-word
+	// surnames.
 	eleventyConfig.addCollection("teamOrder", (api) => {
 		const pinnedSlugs = require("./data/team-pinned.json").slugs;
 		const people = api.getFilteredByTag("personnel");
@@ -87,9 +86,8 @@ module.exports = function (eleventyConfig) {
 		return [...pinned, ...rest];
 	});
 
-	// Personnel grouped by location slug, ordered the way the theme's
-	// single-location.php does it: that location's pinned members first, then
-	// everyone else at that office by last name.
+	// Personnel grouped by location slug: that location's pinned members first,
+	// then everyone else at that office by last name.
 	eleventyConfig.addCollection("personnelByLocation", (api) => {
 		const pinnedByLocation = require("./data/team-pinned.json").byLocation || {};
 		const slugOf = (p) => (p.data.location_url || "").replace("/location/", "").replace(/\//g, "");
@@ -127,13 +125,13 @@ module.exports = function (eleventyConfig) {
 			.sort((a, b) => (a.data.published < b.data.published ? 1 : -1))
 			.slice(0, 4)
 	);
-	// page-sage renders through the generic path too: the theme's pages/sage.php
-	// is page-banner + a "sage-menu" nav + content blocks, and §5 records that
-	// menu as having 0 items, so it is the generic template with an empty nav.
-	// Its two pages are private and stay unpublished until §11.3 is decided.
+	// page-sage renders through the generic path too: it is page-banner + a
+	// "sage-menu" nav + content blocks, and §5 records that menu as having 0
+	// items, so it is the generic template with an empty nav. Its two pages are
+	// private and stay unpublished until §11.3 is decided.
 	const GENERIC_PAGE_TYPES = new Set(["page", "page-services", "page-portal", "page-sage"]);
-	// Draft and private pages are extracted so the WordPress export can be
-	// retired, but they must not ship until §11's open decisions are made.
+	// Draft and private pages are kept in the repo so nothing is lost, but they
+	// must not ship until §11's open decisions are made.
 	eleventyConfig.addCollection("genericPages", (api) =>
 		api
 			.getFilteredByTag("pages")

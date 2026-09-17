@@ -13,7 +13,7 @@
   "blocks": [
     {
       "layout": "one",
-      "html": "<div class=\"content-block-content content\"><p style=\"text-align: center;\"><a href=\"/accounting-technology/sage-intacct/\"><img src=\"/wp-content/uploads/2019/03/sage-Intacct-300x56.png\" alt=\"\" width=\"300\" height=\"56\" /></a></p>\r\n<p style=\"text-align: center;\"><a class=\"blue solid button\" href=\"/accounting-technology/sage-intacct/\">Learn More</a></p>\r\n\r\n<h3 style=\"text-align: center;\">Experience &amp; Success</h3>\r\n[gallery link=\"none\" columns=\"5\" size=\"medium\" ids=\"1889,1890,1891,1892,1893\"]</div>"
+      "html": "<div class=\"content-block-content content\"><p style=\"text-align: center;\"><a href=\"/accounting-technology/sage-intacct/\"><img src=\"/assets/img/uploads/pages/accounting-technologyold-sage-intacct.png\" alt=\"\" width=\"300\" height=\"56\" /></a></p>\r\n<p style=\"text-align: center;\"><a class=\"blue solid button\" href=\"/accounting-technology/sage-intacct/\">Learn More</a></p>\r\n\r\n<h3 style=\"text-align: center;\">Experience &amp; Success</h3>\r\n[gallery link=\"none\" columns=\"5\" size=\"medium\" ids=\"1889,1890,1891,1892,1893\"]</div>"
     }
   ]
 }

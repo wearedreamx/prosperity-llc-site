@@ -7,12 +7,14 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%201080'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/mid-year-recap-2.jpg"
   ]
 }
 ---
 <p>It has been an incredible year so far with so many changes and so much growth! We are excited for all things ahead!</p>
-		<div class="rve-embed-responsive rve-embed-responsive-16by9">
-			<iframe loading="lazy" class="rve-embed-responsive-item" src="about:blank" allowfullscreen="" data-rocket-lazyload="fitvidscompatible" data-lazy-src="https://www.prosperityllc.com/wp-content/uploads/2024/06/NDH-2024-Year-End-Recap.mp4"></iframe><noscript><iframe class="rve-embed-responsive-item" src="https://www.prosperityllc.com/wp-content/uploads/2024/06/NDH-2024-Year-End-Recap.mp4" allowfullscreen></iframe></noscript>
-		</div>
+<!-- ===== TODO: VIDEO CDN URL NEEDED =====
+     The video that played here is gone. It used to stream from the old
+     site's media library, at a path that has since been retired, and video
+     is never committed to this repo (.gitignore excludes *.mp4) - so there
+     is nothing local to point at. Drop a <video> back in here with the
+     CDN base URL + year-end-recap.mp4. See README §9.3. -->

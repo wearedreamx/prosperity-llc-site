@@ -7,7 +7,6 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201920%201080'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/pinstripes-2.jpg",
     "/assets/img/uploads/posts/pinstripes-3.jpg",
     "/assets/img/uploads/posts/pinstripes-4.jpg",
@@ -21,7 +20,6 @@
     "/assets/img/uploads/posts/pinstripes-12.jpg",
     "/assets/img/uploads/posts/pinstripes-13.jpg",
     "/assets/img/uploads/posts/pinstripes-14.jpg",
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%202048%201365'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/pinstripes-16.jpg",
     "/assets/img/uploads/posts/pinstripes-17.jpg",
     "/assets/img/uploads/posts/pinstripes-18.jpg",
@@ -33,7 +31,6 @@
     "/assets/img/uploads/posts/pinstripes-24.jpg",
     "/assets/img/uploads/posts/pinstripes-25.jpg",
     "/assets/img/uploads/posts/pinstripes-26.jpg",
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%202048%201366'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/pinstripes-28.jpg",
     "/assets/img/uploads/posts/pinstripes-29.jpg",
     "/assets/img/uploads/posts/pinstripes-30.jpg",

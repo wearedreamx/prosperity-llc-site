@@ -7,15 +7,11 @@
   "category_name": "Culture",
   "category_url": "/culture/",
   "images": [
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201200%20900'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-2.jpeg",
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20583%20914'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-4.jpg",
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20900%201200'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-6.jpeg",
     "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-7.jpeg",
     "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-8.jpeg",
-    "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201200%20583'%3E%3C/svg%3E",
     "/assets/img/uploads/posts/post-deadline-celebration-at-five-iron-golf-10.jpg"
   ]
 }

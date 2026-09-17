@@ -27,11 +27,11 @@ layout: base.njk
 {#
   Greenhouse job board. The page's own content block carries only an empty
   <div id="grnhse_app"></div> (see site/content/pages/careers.md) — the loader
-  script below is what fills it, and it was dropped during extraction because
-  the theme emitted it from the footer rather than the block, gated on the
-  Careers page id (reference/theme/parts/footer/conditionals.php:61).
+  script below is what fills it. It was missing from the imported content
+  because the old site emitted it site-wide, gated on the Careers page, rather
+  than storing it with the page body.
 
-  Do NOT replace this with the <iframe> found in the crawled careers.html. That
+  Do NOT replace this with the <iframe> the old page served. That
   iframe is the loader's *output*: its src carries a signed, expiring
   `validityToken` and a one-time measured `height`, so pasting it renders today
   and silently breaks later.

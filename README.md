@@ -1,10 +1,11 @@
-# Prosperity Partners — WordPress → static site migration
+# Prosperity Partners — static site
 
-Migrating `prosperityllc.com` (WordPress, 4.5 GB export) to a static, buildable site
-with no PHP, no MySQL, and no server to patch.
+`prosperityllc.com`, rebuilt as a static Eleventy site: no CMS runtime, no
+database, no server to patch. Content was imported once from the previous
+CMS (§4) and now lives in this repo as files.
 
-**Status:** Eleventy scaffold in place — homepage, generic content-block pages, personnel/location/post templates all rendering from real content. Styling on the newly scaffolded pages is inconsistent (see §8) and media is largely broken (see §9.1) — this is scaffolding, not a finished site.
-**Last updated:** 2026-09-16
+**Status:** Eleventy scaffold in place — homepage, generic content-block pages, personnel/location/post templates all rendering from real content. Styling on the newly scaffolded pages is inconsistent (see §8); all images resolve (§9.1) and only the three videos are outstanding, pending a CDN (§9.3) — this is scaffolding, not a finished site.
+**Last updated:** 2026-09-17
 
 ---
 
@@ -14,18 +15,12 @@ with no PHP, no MySQL, and no server to patch.
 prosperity-llc-site/
 ├── README.md          ← this file
 ├── .gitignore
-├── reference/theme/   ← the original theme's PHP + CSS, kept as a design
-│                       reference after the WordPress export was deleted (§4).
-│                       Never deployed, never read at build time.
-├── data/              ← site-wide (not per-record) data + media-recovery bookkeeping
+├── data/              ← site-wide (not per-record) data + media bookkeeping
 │   ├── global.json      footer locations/disclaimer/copyright, site name/tagline — the one
 │   │                     "singleton" data file; consumed via site/_data/global.js
-│   ├── media-manifest.json   every /wp-content/uploads/ path referenced anywhere
-│   ├── media-map.json        recovered asset -> original upload it came from
-│   ├── attachment-ids.json   cached _wp_attached_file lookup (derived; rebuildable)
-│   ├── sourced-media/        4 files downloaded from the live site — not in the export
+│   ├── team-filters.json     options for the /meet-the-team/ 3-facet filter
 │   ├── team-pinned.json      leadership pinned to the top of /meet-the-team/
-│   └── missing-media.md      how the media gap was closed — see §9.1
+│   └── missing-media.md      what is still to source (video only) — see §9.3
 ├── site/              ← the new static site (the deliverable), an Eleventy source dir
 │   ├── index.njk        homepage (stays at the root — relies on Eleventy's implicit path→URL convention)
 │   ├── pages/            everything else with an explicit permalink (page, personnel, location, post, culture, whats-new, meet-the-team, search)
@@ -42,14 +37,10 @@ prosperity-llc-site/
 │       └── img/
 │           ├── uploads/<type>/<slug>[-<n>].<ext>   per-record media (§6a)
 │           ├── people/ services/ books/ awards/    referenced from page body HTML
-│           ├── payment/ diagrams/ photos/ ui/      (was /wp-content/uploads/, see data/missing-media.md)
+│           ├── payment/ diagrams/ photos/ ui/      (was flat, date-bucketed WP uploads)
 │           ├── values/ posts/                      homepage art
 │           └── logo.svg, logo-white.svg, linkedin.png
-├── tools/
-│   ├── wpdump.py       ← streaming SQL-dump parser (see §14) — PRIMARY extraction path when www/ is present
-│   ├── recover-media.py ← re-encodes referenced uploads from www/ into site/assets/ — see data/missing-media.md
-│   ├── extract.py      ← fallback extraction from a live-site crawl, for machines without www/ — see §9.1;
-│   │                      one-shot bulk import, not the ongoing content-editing path (that's Decap, once wired)
+├── tools/             ← npm-script helpers only; nothing runs at build time (see §14)
 │   ├── open-chrome-tab.js + .applescript  ← npm start's browser opener (see §2)
 │   └── debug-eleventy.js  ← npm run debug's DEBUG= wrapper (see §2)
 ├── eleventy.config.js  ← Eleventy config: passthrough copy, date filters, injectContactForm, collections,
@@ -58,35 +49,21 @@ prosperity-llc-site/
 └── .claude/launch.json  preview server config (npm start, port 8080)
 ```
 
-`www/` is the source of truth for content and a reference for design. It is never
-deployed and never modified. `tools/wpdump.py` + `www/` is the primary, authoritative
-extraction path — use it whenever `www/` is available on your machine. `tools/extract.py`
-is a fallback for machines that only have a crawl of the live site (no SQL export);
-it cannot see draft/private content or raw ACF field data, only what the live site
-renders publicly. Both are meant to run once to populate `site/content/*.md` — ongoing
-content edits after that go through Decap CMS (once wired, §9 Phase I) or by hand, not
-by re-running the extractor over already-edited files.
+Everything the site needs is in this repo. `npm start` works from a fresh clone —
+there is no external content source to obtain, restore or point at.
 
-### The WordPress export is gone
+### Provenance
 
-`www/` no longer exists. Everything the site needs was extracted from it first —
-all content, all media, the personnel facets, and the pages that were only in the
-database — and the theme's PHP and CSS were copied to `reference/theme/`. See §4
-for what was taken and when.
+The content in `site/content/` was imported once from the site's previous CMS:
+all pages, posts, personnel and location records, plus the media they reference
+(re-encoded into `site/assets/img/`). That import is finished and is not
+re-runnable — the source system and its tooling have been removed, deliberately.
+Ongoing edits go through Decap CMS (once wired, §9 Phase I) or by hand.
 
-You do not need it to build, run, or edit the site. `npm start` works from a
-fresh clone.
-
-You would only need to restore it to:
-
-- re-encode media from the untouched originals (everything referenced is already
-  re-encoded under `site/assets/`, so this is a quality question, not a broken one)
-- read a database table nothing has needed yet
-
-To restore, obtain the original 4.5 GB WordPress export from the client, the
-hosting backup, or whoever ran the migration, and unpack it at `www/`. It stays
-gitignored — the dump holds account password hashes and 3,782 form submissions
-with client PII, and this repo deploys to Cloudflare Pages via GitHub.
+One consequence is worth knowing about: page bodies are blocks of HTML produced
+by the old editor, so `site/content/pages/*.md` carries markup that is more
+verbose than anything you would hand-write. Personnel, posts and locations are
+clean.
 
 ## 2. Quick start
 
@@ -124,21 +101,6 @@ output). It invokes `node_modules/@11ty/eleventy/cmd.cjs` by path deliberately:
 `@11ty/eleventy` exports neither `./cmd.cjs` nor `./package.json`, so both
 `require` forms fail with `ERR_PACKAGE_PATH_NOT_EXPORTED`.
 
-To query site content without standing up MySQL (there is no `mysql` binary on this
-machine — don't try to import the dump):
-
-```bash
-cd www
-python3 -c "
-import sys; sys.path.insert(0,'../tools')
-from wpdump import iter_rows
-for t,c,v in iter_rows('y7c9a5a_db142477_ndh.sql', tables={'ynrh_posts'}):
-    r=dict(zip(c,v))
-    if r['post_type']=='page' and r['post_status']=='publish':
-        print(r['ID'], r['post_name'], r['post_title'])
-"
-```
-
 ---
 
 ## 3. Stack decisions
@@ -149,7 +111,7 @@ for t,c,v in iter_rows('y7c9a5a_db142477_ndh.sql', tables={'ynrh_posts'}):
 | Hosting | Cloudflare Pages (git integration, atomic deploys, PR previews) |
 | CMS | Decap CMS at `/admin`, GitHub OAuth via a Cloudflare Worker |
 | Forms | Cloudflare Pages Function → Turnstile verify → SMTP relay (Resend) |
-| Search | Pagefind (replaces Relevanssi) — see §15 |
+| Search | Pagefind — see §15 |
 | Edge | Cloudflare CDN/WAF; Pro plan ($25/mo) |
 
 ### Eleventy over Astro
@@ -160,7 +122,7 @@ component. It loses on the project's own stated constraint of "boring and proven
 Eleventy is 2018-era with no client runtime by design; Astro shipped v1→v5 in about
 three years, and Next.js was already rejected partly for framework churn. The one
 thing Astro islands would buy — the team directory filter — is ~100 lines of vanilla
-JS over server-rendered cards, which is what the existing theme already does.
+JS over server-rendered cards, which is what the previous site already did.
 
 `eleventy-img` covers the image pipeline. The lost schema validation should be
 replaced with ~30 lines of validation in the `_data` layer that throws on a bad
@@ -176,7 +138,7 @@ hand-authored with no build step. That doesn't survive the actual URL count:
 | `page` | 45 | hand-authored |
 | `post` | 104 | `/blog/`, Eleventy |
 | **`personnel`** | **200** | **none** |
-| ~~`portfolio`~~ | ~~18~~ | theme demo content, excluded — see §5 |
+| ~~`portfolio`~~ | ~~18~~ | demo content, excluded — see §5 |
 | `location` | 11 | none |
 | **Total** | **360** | |
 
@@ -187,9 +149,10 @@ error-prone"); that condition was already met at signing time.
 
 ### Other deviations from the original plan
 
-1. **Pages are not Markdown.** The plan said "strip theme HTML → clean Markdown".
-   Page content carries layout semantics (`content_block_columns`) that Markdown
-   cannot express — flatten it and every multi-column layout is lost. Pages need
+1. **Pages are not Markdown.** The plan said "strip the old HTML → clean Markdown".
+   Page content carries layout semantics (the block `layout` discriminator, §6)
+   that Markdown cannot express — flatten it and every multi-column layout is
+   lost. Pages need
    structured frontmatter with a block array. Markdown is correct for the 104 posts
    and 200 personnel bios.
 2. **Decap must cover `personnel`, not just posts.** At a 200-person firm, staff
@@ -200,175 +163,85 @@ error-prone"); that condition was already met at signing time.
 
 ---
 
-## 4. The source export
+## 4. Where the content came from
 
-**The export has been deleted: 4.40 GB → 0**, in three passes — pruned to
-1.29 GB during extraction, cut to 68 MB once the media recovery finished, then
-removed entirely once the last things only it held had been extracted.
+Content was imported once from the site's previous CMS and now lives entirely in
+`site/content/` (§6a), with its media re-encoded into `site/assets/img/`. The
+source system, its 4.4 GB export and the one-shot import scripts have all been
+deleted; a build from a clean clone produces the full site with no broken asset
+references. §11 lists what the import surfaced that still needs a decision.
 
-What was taken out before it went:
+`portfolio` (18 records) was deliberately not imported — demo content shipped
+with the old design, see §5.
 
-| Taken from the dump | Where it lives now |
-|---|---|
-| Personnel, posts, locations, pages | `site/content/*/*.md` |
-| The 13 pages only in the database (8 draft, 2 private, 3 published) | `site/content/pages/`, gated by `status` |
-| Personnel facet data (title, service line) | each personnel record's frontmatter |
-| Team ordering — pinned leadership, per-location pins | `data/team-pinned.json` |
-| Media: which original backs each asset | `data/media-map.json` |
-| Theme PHP + CSS | `reference/theme/` |
+**Site identity.** `https://www.prosperityllc.com`, "Prosperity Partners",
+tagline "Accounting, Tax, & Sage Intacct Solutions". Page URLs are `/<slug>/`.
 
-`wp-content/uploads` (1.2 GB) went first, once all referenced assets were
-recovered, re-encoded into `site/assets/`, verified and committed. The dump and
-theme followed once the table above was complete and a build with `www/` moved
-aside produced 372 pages with 0 broken asset references.
-
-`portfolio` (18 records) was deliberately not migrated — theme demo content, see
-§5. Restore the export only for the narrow reasons in §1.
-
-What was deleted (3.11 GB), and why it was safe:
-
-| Removed | Size |
-|---|---|
-| Unreferenced uploads + all WP-generated thumbnails (23,523 files) | 2.81 GB |
-| `wp-content/plugins` (26 plugins) | 242 MB |
-| `uploads/ithemes-security` (security logs) | 119 MB |
-| `wp-includes`, `wp-admin`, WP core root PHP | 98 MB |
-| Unused themes `infinite`, `twentytwentyfive` | 61 MB |
-| `wp-content/wordfence`, `maintenance`, cache configs | 19 MB |
-| `wp-config.php` | — deleted on security grounds: live DB credentials and auth salts |
-
-Thumbnails are derived files and are never used — media is always re-encoded from
-originals (see §8). Three plugins still need *functional* replacements, but their
-code is not needed to build them: Gravity Forms → §10, Relevanssi → Pagefind,
-Redirection → `_redirects`.
-
-**`tools/uploads-manifest.txt`** lists the 1,227 kept paths. It is the record of
-what survived; regenerate it with the reference scan if the export is ever
-restored in full (see below).
-
-Site identity: `https://www.prosperityllc.com`, "Prosperity Partners", tagline
-"Accounting, Tax, & Sage Intacct Solutions". Permalinks `/%postname%/`.
-DB table prefix `ynrh_`. MariaDB 11.4.3 dump from phpMyAdmin 5.2.3.
-
-Legal entities (appear in the footer disclaimer, keep verbatim): NDH Advisors LLC
-dba Prosperity Partners; NDH CPA LLP dba Prosperity Partners CPA.
+**Legal entities** (appear in the footer disclaimer, keep verbatim): NDH
+Advisors LLC dba Prosperity Partners; NDH CPA LLP dba Prosperity Partners CPA.
 
 ---
 
 ## 5. Content inventory
 
-**378 public URLs.** Total content HTML across the entire site: **542 KB.**
+**360 public URLs.** Total content HTML across the entire site: **542 KB.**
 
 | Type | Published | Body HTML | Notes |
 |---|---|---|---|
-| `page` | 45 (+9 draft, +2 private) | 104 KB in 96 ACF blocks | See §6 |
-| `post` | 104 | 62 KB (avg 612 chars) | Categories: Culture (id 1), What's New (id 85) |
+| `page` | 45 (+9 draft, +2 private) | 104 KB in 96 blocks | See §6 |
+| `post` | 104 | 62 KB (avg 612 chars) | Categories: Culture, What's New |
 | `personnel` | 200 | 362 KB (avg 1,854 chars) | 3 facet fields each |
-| ~~`portfolio`~~ | ~~18~~ | — | **Theme demo content — not migrated, see below** |
 | `location` | 11 | 5 KB | |
-| `attachment` | 1,659 | — | 1,047 jpg · 520 png · 66 pdf · 10 svg · 7 mp4 · 6 xlsx |
+| ~~`portfolio`~~ | ~~18~~ | — | **Demo content — not imported, see below** |
 
-**`portfolio` is not real content.** All 18 records share one identical 492-byte
-placeholder body, are dated May 2016 (theme install), and are titled after layout
-styles (`Full Image Style`, `Video With Vertical Info`, `Project Half Box Style`).
-They appear nowhere in the 380-page crawl and `/portfolio/` and
-`/portfolio/<slug>/` both return **404** on the live site — the post type was
-never publicly routed. They are excluded from the migration, which drops the real
-URL count from 378 to **360**.
+**`portfolio` was not real content.** All 18 records shared one identical
+492-byte placeholder body, were dated to the old design's install date, and were
+titled after layout styles (`Full Image Style`, `Video With Vertical Info`,
+`Project Half Box Style`). `/portfolio/` and `/portfolio/<slug>/` both returned
+**404** on the live site — the type was never publicly routed. Excluding them
+drops the URL count from 378 to **360**.
 
-**Page templates** — 38 of 47 pages share one generic renderer:
+**Page templates** — 38 of 47 pages share one generic renderer
+(`site/pages/page.njk`); the rest are the services, sage, team, home and portal
+variants, of which home and team have bespoke templates and the others render
+through the generic path (§9 Phase D).
 
-| Template | Pages |
-|---|---|
-| `default` (generic content blocks) | 38 |
-| `pages/services.php` | 4 |
-| `pages/sage.php` | 2 |
-| `pages/team.php` | 1 |
-| `pages/home.php` | 1 ✅ done |
-| `pages/portal.php` | 1 |
-
-**Menus:** Main (21 items, 2 levels deep), Mobile (22), Footer (8), Social (1),
-Sage (0, unused).
-
-**Taxonomies in use:** `category` (2), `post_tag` (18), `portfolio_tag` (23),
-`portfolio_category` (4), `personnel_category` (4). The rest are plugin noise.
+**Menus:** Main (21 items, 2 levels deep), Mobile (22), Footer (8), Social (1).
 
 ---
 
-## 6. Data model
+## 6. Page blocks — the `layout` discriminator
 
-### Pages — ACF flexible content
-
-Page `post_content` is empty (71 characters across all 45 pages). Everything is in
-`postmeta` as an ACF flexible-content repeater:
-
-```
-content_blocks                              = <count>
-content_blocks_<i>_block_name               admin label only — NOT a block type
-content_blocks_<i>_content_block_columns    the actual layout discriminator
-content_blocks_<i>_content_block_content1..5  raw WYSIWYG HTML
-content_blocks_<i>_content_block_id         anchor id
-content_blocks_<i>_content_block_class      extra CSS classes
-```
-
-`block_name` looks like 40 distinct block types ("Why partner boxes row 1") but it's
-a human label in the admin. **There is one block type.** The real variation is
-`content_block_columns`, 96 blocks total:
+A page's body is `blocks[]` in its frontmatter (§6a). Each block carries a
+`layout` and one or more HTML strings; `site/_includes/content-blocks.njk` maps
+`layout` to a container class, and `site/assets/css/style.css` sizes the grid.
 
 | Layout | Count | Renders as |
 |---|---|---|
-| `one` | 104 | single column of `content1` |
-| `two` | 34 | `content1` / `content2` |
-| `sidebar` | 26 | main + sidebar (`content_block_sidebar_title`) |
-| `carousel` | 10 | slick carousel, sub-repeater `content_block_carousel_*` |
-| `three` | 7 | content1–3 |
-| `tiles` | 6 | sub-repeater `content_block_tiles_<n>_content_block_tile_{type,page,category}` |
-| `five` | 6 | content1–5 |
-| `twoimage` | 5 | `content_block_image` + `content_block_image_side` |
-| `four` | 4 | content1–4 |
+| `one` | 104 | single column |
+| `two` | 34 | two equal columns |
+| `sidebar` | 26 | main + sidebar |
+| `carousel` | 10 | horizontal carousel |
+| `three` | 7 | three equal columns |
+| `tiles` | 6 | card grid linking to pages/categories |
+| `five` | 6 | five equal columns |
+| `twoimage` | 5 | image beside text, side configurable |
+| `four` | 4 | four equal columns |
 
-(Counts exceed 96 because column values repeat across block indexes.)
+(Counts exceed 96 because layout values repeat across blocks.)
 
-Carousel config lives in `content_block_carousel_{autoplay,infinite,adaptiveHeight,slides_show,slides_scroll}`.
-Team blocks use `content_block_team_members_<n>_content_block_team_member` (a post ID).
+A `raw:` prefix means the block is emitted verbatim with no container — used by
+the hand-built homepage and team page sections, and by `raw:cta`, which renders
+the shared CTA component instead of the block's own HTML.
 
-Page-level meta: `page_banner_{image,title,description}`, `remove_cta`,
-`service_page_excerpt`, `page_background_graphic`.
-
-### Personnel
-
-201 records each carry: `personnel_title`, `personnel_first_name`,
-`personnel_last_name`, `personnel_certifications`, `personnel_specializations`,
-`personnel_location` (11 distinct offices). ACF field keys needed to resolve the
-select-option labels: title = `field_6679cee8fa574`, specializations =
-`field_6695315a92f52`.
-
-The team directory filters on title / specialization / location via CSS classes on
-each card plus `data-term` attributes. See `www/wp-content/themes/ndhcpawp/pages/team/filters.php`
-and the team-filter block in `assets/js/g.min.js`.
-
-### Global options (ACF options page, `ynrh_options` rows prefixed `options_`)
-
-`site_logo_white`, `site_logo_black` (both SVG), `footer_copyright`,
-`footer_disclaimer`, `cta_content`, `cta_form` (= Gravity Form id 3),
-`page_banner_graphic`, `footer_locations` (10 office entries).
-
-### Footer widgets
-
-| Slot | Contents |
-|---|---|
-| `footer-widgets-1` | text: phone/fax/email · custom_html: **accessiBe** third-party script |
-| `footer-widgets-2` | nav menu "Site Menu" |
-| `footer-widgets-3` | recent posts (4) |
-| `footer-widgets-4` | nav menu "Follow Us" (LinkedIn only) |
+Page-level frontmatter alongside `blocks[]`: `banner_image`, `banner_title`,
+`banner_description_html`, `meta_description`, `page_type`, `status`.
 
 ---
 
 ## 6a. Content model on the new site — `site/content/`
 
-The above describes the *original WordPress* data model — kept for reference since
-it explains where each field came from. The new site does not mirror that structure
-directly; content lives as one Markdown file per record under
+Content lives as one Markdown file per record under
 `site/content/<type>/<slug>.md`, each with JSON frontmatter (`---json` delimiter,
 parsed by gray-matter — already a transitive Eleventy dependency, no new package)
 plus a body (rendered HTML, used for the record's main prose):
@@ -388,39 +261,31 @@ loading. A few derived collections (`culturePosts`, `whatsNewPosts`, `recentPost
 `eleventy.config.js`. Templates access frontmatter via `.data.<field>` and body HTML
 via `.content` (both standard Eleventy collection-item properties).
 
-`date_modified` comes from Yoast's `article:modified_time` meta tag where present,
-falling back to the JSON-LD block's `dateModified` or `datePublished` (covers 356 of
-380 crawled pages — the rest have no date signal anywhere in the crawl). Not
+`date_modified` came across with the import and is present on 356 of 380 records;
+the rest carried no date signal at the source. Not
 currently rendered anywhere, but available for a future "last updated" UI or a
 staleness-flagging script once editors are making ongoing changes through Decap.
 
 **Personnel, posts, and locations are Decap-CMS-ready as-is** — a `folder` collection
 per type, `format: json`, standard widgets (string/text/image/markdown) map cleanly
 onto their flat frontmatter. **Pages are not.** A page's `blocks[]` is an array of
-arbitrary per-layout HTML (see §6's `content_block_columns` discussion) — none of
+arbitrary per-layout HTML (§6) — none of
 Decap's standard widgets can edit that structure; only its raw object/code widget
 could, which isn't a real editorial experience. Pages stay developer-edited until a
 custom Decap widget for content-block editing exists — that's separate, larger scope
 (§9 Phase I), not something solved by moving pages into individual files.
 
-Images are remapped from WordPress's flat, date-bucketed
-`wp-content/uploads/YYYY/MM/name.ext` scheme to
-`site/assets/img/uploads/<type>/<slug>[-<n>].<ext>` — grouped by the record that owns
-them (multi-image posts get `-1`, `-2`, etc., in original order). This is where real
-media lands once sourced (§9.1); re-encoding to WebP (§8) just adds a sibling file at
-the same basename, no further remapping needed.
-
-`tools/extract.py` produces this structure from a live-site crawl (fallback path,
-§9.1); `tools/wpdump.py` + `www/` remains the primary path when available, though it
-does not yet itself write `site/content/*.md` — see §14. Either way, extraction is a
-one-shot bulk import; it is not meant to be re-run against already-edited content —
-ongoing edits go through Decap (once wired) or by hand.
+Per-record media lives at `site/assets/img/uploads/<type>/<slug>[-<n>].<ext>`,
+grouped by the record that owns it (multi-image posts get `-1`, `-2`, etc., in
+order). The old flat, date-bucketed upload scheme is gone. Re-encoding to WebP
+(§8) just adds a sibling file at the same basename, so nothing has to be
+remapped.
 
 ---
 
 ## 7. Design system
 
-Extracted from the theme's compiled CSS — these are exact values, not eyeballed.
+Taken from the previous site's compiled CSS — exact values, not eyeballed.
 
 ```css
 --blue:       #02518a   /* primary; also the mobile drawer background */
@@ -448,9 +313,7 @@ Card shadow: `0 12px 32px rgba(2,81,138,.2), 0 3px 6px rgba(2,81,138,.1)`.
 
 `site/` is now an Eleventy source directory (Nunjucks templates + `_includes` +
 `_data` + `content`), not static HTML. Content comes from `site/content/*/*.md`
-(§6a), produced by either `tools/wpdump.py` (primary, needs `www/`) or
-`tools/extract.py` (fallback, needs only a live-site crawl — see §9.1). Site-wide
-data (footer locations, disclaimer, copyright) comes from `data/global.json` via
+(§6a). Site-wide data (footer locations, disclaimer, copyright) comes from `data/global.json` via
 `site/_data/global.js` — the one "singleton" data file left; everything else is a
 native Eleventy collection.
 
@@ -458,22 +321,21 @@ native Eleventy collection.
 |---|---|
 | `site/_includes/base.njk` | Shared `<head>`, doctype, header/footer wrapper |
 | `site/_includes/header.njk`, `footer.njk` | Nav, footer columns/locations/disclaimer/copyright — all pulled from `global` data, not hardcoded (dynamic year too) |
-| `site/_includes/content-blocks.njk` | Generic ACF-layout renderer — walks a page's `blocks[]` and renders each by `layout` (`one`/`two`/`sidebar`/`tiles`/`carousel`/etc., see §6) |
+| `site/_includes/content-blocks.njk` | Generic block renderer — walks a page's `blocks[]` and renders each by `layout` (`one`/`two`/`sidebar`/`tiles`/`carousel`/etc., see §6) |
 | `site/_includes/cta.njk`, `contact-form.njk` | Shared CTA section + the contact-form component itself, parameterized by `formVariant` (`standard` 5-field vs `contact` — adds the referral-source radio, see §10) |
-| `site/index.njk` | Homepage — hero, intro, values, achievements, Culture/What's New (hand-picked, pre-optimized images under `assets/img/posts/` — see §9.1 for why this isn't data-driven), CTA |
+| `site/index.njk` | Homepage — hero, intro, values, achievements, Culture/What's New (hand-picked, pre-optimized images under `assets/img/posts/`), CTA |
 | `site/pages/page.njk` | Generic + services + portal pages, paginated over `collections.genericPages` |
 | `site/pages/personnel.njk`, `location.njk`, `post.njk` | One page per personnel/location/post record, paginated over `collections.personnel`/`locations`/`posts` |
 | `site/pages/culture.njk`, `whats-new.njk`, `meet-the-team.njk` | Archive/directory listing pages, over `collections.culturePosts`/`whatsNewPosts`/`personnel` |
 | `site/pages/search.njk` | Search results page — static shell; results render client-side from the Pagefind index (§15) |
-| `eleventy.config.js` | Passthrough copy, `longDate`/`isoDate` filters, `injectContactForm` (swaps a Gravity-Forms-widget marker for the real component), the derived collections listed in §6a, and the `eleventy.after` hook that builds the Pagefind index (§15) |
+| `eleventy.config.js` | Passthrough copy, `longDate`/`isoDate` filters, `injectContactForm` (swaps the imported form marker for the real component), the derived collections listed in §6a, and the `eleventy.after` hook that builds the Pagefind index (§15) |
 | `assets/css/style.css` | Palette + homepage styles (original, verified) plus a second pass added for page-banner/content-block/personnel/location/team-grid — **not yet verified, see §9.2** |
 | `assets/js/main.js` | Drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback, contact-form "Other" field toggle, team directory 3-facet + name filter (§15) |
 | `assets/js/search.js` | Queries the Pagefind index and renders `/search/` results (§15) |
 | `assets/icons/` | Favicons/manifest/browserconfig — source tidied into one folder, passthrough-copied back to the served root so no URL changed |
 
-Media processing applied to the homepage's hand-picked images only (repeat for
-everything else once real media is sourced, see §9.1):
-- Hero video 19 MB → **7.9 MB** (`ffmpeg`, audio track dropped — it plays muted, 1280×720, CRF 27, `+faststart`)
+Media processing applied to the homepage's hand-picked images (the same recipe
+applies to anything added later):
 - Post thumbnails resized to 800px, WebP + JPEG fallback via `<picture>`
 - Value icons 512px → 288px PNG
 - Logos copied as-is (SVG, 8 KB)
@@ -481,8 +343,8 @@ everything else once real media is sourced, see §9.1):
 ### Stubs left in place
 
 - Contact form posts to `/api/contact`; Turnstile div has `data-sitekey="TURNSTILE_SITE_KEY"`
-- Page permalinks are `/<slug>/` at root, matching the live site's actual permalinks (confirmed via crawl). Post permalinks are `/culture/<slug>/` / `/whats-new/<slug>/` — moved off the flat root to sit under their existing category pages; still needs the 104 redirect rules from the old flat URLs (§9 Phase H, open decision §11.9)
-- accessiBe widget omitted pending a decision
+- Page permalinks are `/<slug>/` at root, matching the live site's URLs. Post permalinks are `/culture/<slug>/` / `/whats-new/<slug>/` — moved off the flat root to sit under their existing category pages; still needs the 104 redirect rules from the old flat URLs (§9 Phase H, open decision §11.9)
+- accessiBe accessibility overlay omitted pending a decision (§11.4)
 
 ---
 
@@ -493,8 +355,8 @@ including the plan review.
 
 | # | Phase | Status | Tokens | Unlocks |
 |---|---|---|---|---|
-| A | Extraction pipeline: all types → data files; media reference-scan + re-encode | ✅ content extracted; ⚠️ media re-encode blocked, see §9.1 | 60–90k | all 378 URLs' content |
-| B | Eleventy scaffold; port `site/` chrome into Nunjucks layouts/includes | ✅ done | 50–70k | shared header/footer |
+| A | Content + media import: all types → data files, media re-encoded | ✅ done | 60–90k | all 360 URLs' content |
+| B | Eleventy scaffold; site chrome into Nunjucks layouts/includes | ✅ done | 50–70k | shared header/footer |
 | C | Generic content-block renderer (9 column layouts) | ✅ done, ⚠️ styling unverified, see §9.2 | 80–120k | **38 pages at once** |
 | D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | partial — services/portal render via the generic renderer; sage and the 3-facet team filter still outstanding | 120–160k | 8 pages + team directory |
 | E | 4 content-type templates + archives, pagination, RSS, 404, search page | partial — personnel/location/post templates, Culture/What's New archives and the search page done; RSS and 404 outstanding | 120–160k | 333 URLs |
@@ -508,41 +370,38 @@ Dependencies: A → B → C → {D, E} → F. G, H, I are independent and can ru
 after B.
 
 **Calendar time is not set by the token budget.** Realistically 2–4 weeks, gated by:
-human content sign-off across 378 URLs; Resend domain verification (DNS
-propagation); the missing-media recovery in §9.1; and the open decisions in §11.
+human content sign-off across 360 URLs; Resend domain verification (DNS
+propagation); the video host in §9.3; and the open decisions in §11.
 
-### 9.1 Missing media — blocks the rest of Phase A
+### 9.1 Media — complete
 
-**823 of 823** `/wp-content/uploads/...` paths referenced across the extracted
-content (personnel photos, event photos, award/press logos, a couple of PDFs,
-office banner images — full breakdown and per-page reference list in
-`data/missing-media.md` / `data/media-manifest.json`) resolve to nothing when
-`tools/extract.py`'s fallback path was used, because that path only had a
-live-site *crawl* (HTML only, no binary assets) to work from, not the actual
-`www/wp-content/uploads/` files.
+A link-check over a full `_site/` build resolves **all 2,226 asset references**,
+and the same check over `site/content/` — which also covers the draft and
+private pages that never build — finds nothing missing.
 
-**If you have `www/` on your machine**, this isn't a real gap — re-run extraction
-with `tools/wpdump.py` against the SQL dump and the real files are right there
-under `www/wp-content/uploads/`, ready for the same re-encode pipeline already
-proven on the homepage (§8). This is a per-machine availability problem, not a
-missing-forever asset problem.
+Two groups were closed by fetching them from the live origin: the carousel arrow
+in `style.css`, and the 17 icons belonging to `/valuation-services/` (draft) and
+`/accounting-technology[old]/` (private), which had been outside the import's
+reference scan.
 
-**If you don't have `www/`**, options are: (1) get it from the client/hosting
-backup/whoever ran the migration (§1), or (2) re-crawl the live site for the
-binary files at the same paths (the crawl only captured rendered HTML+text, not
-images). Either way, until the real files land, every non-homepage `<img>` tag
-sourced from `site/content/*/*.md` will 404.
+The same pass picked up something the import had dropped silently. **Seven of the
+200 personnel records have no photo** (Vikesh Bansal, Mazin El Harith, Richard
+Lemanski, Brock Lock, Steve Mizrach, Blake Rath, Jonathan Yuen) and their cards
+were rendering as empty figures. The live site falls back to a house graphic at
+the same 550x500 as a real headshot; that graphic is now
+`/assets/img/ui/team-placeholder.svg` and `meet-the-team.njk`, `location.njk` and
+`personnel.njk` fall back to it. Adding a real photo to a record replaces it with
+no other change. See `data/missing-media.md`.
 
-The homepage is unaffected — its images are hand-picked, already re-encoded,
-and committed under `site/assets/img/`, independent of this gap.
+Video is a separate gap; see §9.3.
 
 ### 9.2 Styling gaps on newly scaffolded pages — needs a full pass
 
 The CSS added for personnel/location/team-grid/content-block/services/portal
 pages (`site/assets/css/style.css`, added on top of the original
-homepage-only stylesheet) was reconstructed from inline `<style>` fragments
-captured per-page in the live-site crawl, not from a single authoritative
-stylesheet. Coverage is uneven: some pages look right, some are close but off
+homepage-only stylesheet) was reconstructed from per-page inline `<style>`
+fragments rather than from a single authoritative stylesheet. Coverage is
+uneven: some pages look right, some are close but off
 on spacing/color, and some layouts (bespoke ones especially, see Phase D above)
 haven't been checked against the live site at all. **Treat everything under
 `site/pages/page.njk`, `personnel.njk`, `location.njk`, `culture.njk`, `whats-new.njk`,
@@ -550,12 +409,35 @@ and `meet-the-team.njk` as scaffolding, not verified output** — a page-by-page
 visual QA pass (Phase F) against the live site is still required before any of
 this ships.
 
+### 9.3 Video — needs a CDN base URL
+
+**Three videos are currently not on the site at all.** Each `<video>` has been
+replaced by a `TODO: VIDEO CDN URL NEEDED` comment at the exact spot it belongs:
+
+| File | Where the placeholder is | What the page shows now |
+|---|---|---|
+| `home.mp4` | `site/index.njk` — hero | the poster frame (the video's own first frame), so the hero still looks right, it just doesn't move |
+| `year-end-recap.mp4` | `site/content/posts/mid-year-recap.md` | nothing where the player was |
+| `uploading-files-to-your-client-portal.mp4` | `site/content/pages/client-portal-uploading-files-to-your-client-portal.md` | nothing where the player was |
+
+They are boxed in by two earlier decisions that collided. Video is never
+committed here — `.gitignore` excludes `*.mp4`/`*.webm`, and the three files
+(26 MB) were removed in "Serve video from the origin site; never version video".
+That commit pointed them back at the old origin instead, at its legacy media
+paths — which are exactly what has since been retired. So there is neither a
+local file nor a URL left to point at.
+
+**To restore them:** host the three files somewhere (R2, Cloudflare Stream,
+Bunny, any static bucket) and paste the base URL into the three placeholders.
+The originals are still served from the live site, so nothing is lost — grep
+`VIDEO CDN URL NEEDED` to find every spot.
+
 ---
 
 ## 10. Forms — audited, simpler than expected
 
-9 forms, 3,782 stored entries (historical — export to CSV for the archive, they do
-not migrate).
+The old site ran 9 separate forms. Their 3,782 stored entries are historical and
+do not migrate; archive them as CSV if they are wanted.
 
 | id | Active | Fields | Title |
 |---|---|---|---|
@@ -569,7 +451,7 @@ identical 5-field shape: name, email, phone, textarea, captcha. Form 1 adds a ra
 and a text field.
 
 So this is **one form component parameterised by form id + recipient**, plus one
-Cloudflare Pages Function. Not nine integrations. Form 2 is inactive — drop it.
+Cloudflare Pages Function. Not nine integrations. Form 2 was inactive — drop it.
 
 Captcha fields become Cloudflare Turnstile. The Worker verifies the Turnstile token,
 then relays over **SMTP** (not a vendor REST API) so the provider is swappable by
@@ -579,33 +461,34 @@ changing credentials.
 
 ## 11. Open decisions — needs client input
 
-1. **9 draft pages.** Seven form a coherent unpublished Valuation Services line:
+1. **9 draft pages.** Their images are now in the repo, so this is purely an
+   editorial call. Seven form a coherent unpublished Valuation Services line:
    `/valuation-services/`, `/financial-reporting/`,
    `/income-estate-and-gift-valuations/`, `/intellectual-property-valuation/`,
    `/marital-dispute-valuations/`, `/mergers-and-acquisitions-valuations/`,
    `/shareholder-dispute-valuations/`. Ship, or drop?
    ⚠️ **`/valuation-services/` is linked from the Mobile Menu but the page is a
    draft — it's a broken link on the live site today.**
-2. **Page 6449 "Payment (old page backup)"** has slug `/` — it would collide with
-   the site root. Almost certainly delete.
+2. **"Payment (old page backup)"** has slug `/` — it would collide with the site
+   root. Almost certainly delete.
 3. **2 private pages.** `/accounting-technology/` ("Accounting Software - Sage
-   Intacct", 6 blocks, 3.1 KB, uses `sage.php`) is substantial but private.
-   Publish or drop? `/accounting-technologyold/` is presumably dead.
-4. **accessiBe** — third-party accessibility overlay in footer widget 1. Keep the
-   vendor, or drop it?
+   Intacct", 6 blocks, 3.1 KB) is substantial but private. Publish or drop?
+   `/accounting-technologyold/` is presumably dead. Their icons are now in the
+   repo, so either can ship as-is.
+4. **accessiBe** — third-party accessibility overlay the old footer loaded. Keep
+   the vendor, or drop it?
 5. **Greenhouse careers embed** (`boards.greenhouse.io/embed/job_board/js?for=ndhcpa`)
    on the Careers page — note it still uses the old `ndhcpa` board slug.
-6. **Redirect conflicts.** `/client-portal/` is both a published page (id 5400) and
-   a redirect source. There are also multi-hop chains
+6. **Redirect conflicts.** `/client-portal/` is both a published page and a
+   redirect source. There are also multi-hop chains
    (`/client-portal-login/` → `/client-portal/` → `/client-portal-login/client-portal/`
    → `/client-portal-login/uploading-files-to-your-client-portal/`). Cloudflare
    `_redirects` resolves one hop — these must be **flattened to their final
    destination**, and the page-vs-redirect conflict resolved.
-7. **Front page slug.** The homepage is `/homepage-main/` in WordPress. It must
-   serve at `/`, and `/homepage-main/` should 301 → `/`. The Footer menu currently
-   links "Home" → `/homepage-main/`.
-8. **Stale footer data.** An old text widget references a **Philadelphia** office
-   that no longer appears in `footer_locations`. Confirm it's closed.
+7. **Front page slug.** The old homepage also answered at `/homepage-main/`, and
+   the Footer menu's "Home" link still points there. It should 301 → `/`.
+8. **Stale footer data.** The old footer referenced a **Philadelphia** office that
+   no longer appears in the locations list. Confirm it's closed.
 9. ~~**Post URL structure.**~~ **Decided:** posts moved from flat `/<slug>/` to
    `/culture/<slug>/` and `/whats-new/<slug>/` — organizes 104 posts under their
    existing category landing pages (`/culture/`, `/whats-new/` already exist, no
@@ -635,30 +518,25 @@ desktop nav interaction is now behind `@media (min-width: 1081px)`.
   back into the track, so sibling rows resolve differently.
 - Conclusion used in the nav: `grid-template-columns: 1fr auto`.
 
-**`www/` is gitignored and won't exist in a fresh clone.** Before starting any
-content or media work, confirm it's present — see "Restoring `www/`" in §1. Don't
-reconstruct content from the live site if the export is merely missing locally.
-
-**No MySQL on this machine.** Don't try to import the dump — use `tools/wpdump.py`.
+**The content import is not re-runnable.** `site/content/` is now the source of
+truth — there is no upstream to re-pull from and no script to re-run (§4). Edit
+the files.
 
 **Keep npm scripts shell-agnostic.** No `rm -rf`, no `VAR=value cmd` prefixes, no
 `&`/`;`/subshells in `package.json` — `npm run` uses `cmd.exe` on Windows and the
 whole script fails before Eleventy starts. Put platform-specific logic in a
 `node` script under `tools/` instead. See §2.
 
-**`sips` and `cwebp` and `ffmpeg` are available; ImageMagick and PIL are not.**
+**`sips`, `cwebp` and `ffmpeg` are available; ImageMagick and PIL are not.**
 
-**Uploads contain 15–20 MB camera JPEGs.** Always re-encode; never copy originals
-into `site/`.
+**Always re-encode images before committing them.** Never drop a camera original
+into `site/assets/` — the source library was full of 15–20 MB JPEGs.
 
-**When reference-scanning uploads, two things produce false "referenced" hits** —
-both cost ~600 MB–2 GB of needlessly kept files if you miss them:
-- A post's `guid` column holds an attachment's *own* URL. Scanning it marks every
-  attachment as referenced by itself.
-- Serialised PHP is full of string-length prefixes (`s:150:"…"`). A loose
-  "any 2–6 digit number is an attachment ID" scan collides with them constantly.
-  Extract IDs only from bare-integer meta values and from `s:N:"digits"` inside
-  serialised arrays.
+**Imported page HTML is verbose and occasionally carries dead markup.** It came
+out of the old editor. Two classes of artefact have already been removed
+site-wide — lazy-load placeholders that left images blank, and editor-only
+classes — so if you meet something similar, check whether it does anything
+before preserving it.
 
 ---
 
@@ -675,35 +553,25 @@ both cost ~600 MB–2 GB of needlessly kept files if you miss them:
 
 ---
 
-## 14. Tooling — `tools/wpdump.py`
+## 14. Tooling — `tools/`
 
-Streaming parser for the phpMyAdmin dump. Handles multi-row extended INSERTs and
-MySQL string escaping without loading 70 MB into memory.
+Nothing in `tools/` runs at build time; Eleventy needs none of it. Both files
+exist only because `npm run` executes scripts through `cmd.exe` on Windows, so
+the shell-specific parts had to move out of `package.json` (§2):
 
-```python
-from wpdump import iter_rows
+| File | Used by |
+|---|---|
+| `open-chrome-tab.js` + `.applescript` | `npm start` — opens/focuses a browser tab ~1.5s after the dev server starts |
+| `debug-eleventy.js` | `npm run debug` — sets `DEBUG=Eleventy*` in the child environment |
 
-# yields (table_name, [column names], [values])
-for table, cols, vals in iter_rows(path, tables={"ynrh_posts", "ynrh_postmeta"}):
-    row = dict(zip(cols, vals))
-```
-
-Pass `tables=` to skip everything else — it makes a full pass in seconds rather
-than minutes. Running it as a script prints post-type/status counts and attachment
-mime types.
-
-Note that ACF option values and widget settings are PHP-serialised strings; the
-parser returns them raw. `footer_locations`-style repeaters are flat numbered meta
-keys (`options_footer_locations_0_footer_location`) and can be read without
-unserialising. Widget blobs (`widget_text`, `widget_nav_menu`) do need a PHP
-unserialiser or careful regex.
+The one-shot content-import scripts that used to live here were deleted with the
+source system they read (§4).
 
 ---
 
 ## 15. Search — Pagefind
 
-Replaces Relevanssi. Pagefind indexes the *built* HTML rather than the source
-content, so it needs no server and no API: it ships a static index plus a WASM
+Pagefind indexes the *built* HTML rather than the source content, so it needs no server and no API: it ships a static index plus a WASM
 query engine, and search runs entirely in the browser.
 
 **The index is built by an `eleventy.after` hook in `eleventy.config.js`**, not
@@ -729,8 +597,8 @@ their own `/personnel/<slug>/` page; indexing the cards too would rank a
 directory listing alongside the real bio).
 
 Result: **360 pages, ~77k words** — 200 personnel + 104 posts + 45 pages + 11
-locations. That is the full public URL count from §5, which is the number to
-re-check after touching any of this.
+locations. That is the full public URL count from §5, and the number to re-check
+after touching any of this.
 
 Each page also carries `data-pagefind-meta="image[src]"` on its lead image, so
 result cards get a thumbnail; the `FALLBACK_IMAGE` in `search.js` covers the 13
@@ -743,8 +611,8 @@ It filters the cards already on the page, by name, via `main.js` — it does not
 submit to `/search/`. Two false starts worth recording:
 
 1. It originally submitted an unscoped query, so "tax" returned whole-site
-   results. The theme scoped this box with a hidden `post_type=personnel` input
-   (`reference/theme/pages/team/filters.php`) that the port had dropped.
+   results. The old site scoped this box with a hidden `post_type=personnel`
+   input that the port had dropped.
 2. Adding the equivalent Pagefind `type=personnel` filter scoped it to people
    but still matched **bio prose**, so "tax" matched 140 of 200 members. A box
    labelled "Search members", sitting beside the Title / Service Line / Location

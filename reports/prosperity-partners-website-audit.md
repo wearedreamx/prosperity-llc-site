@@ -3,7 +3,7 @@
 > Audit date: 2026-08-20
 > Audited by: DreamX
 > Site URL: https://www.prosperityllc.com
-> Platform: WordPress
+> Platform: the site's previous CMS (pre-migration)
 > Pages reviewed: 365 of 365 known pages (100%). The site itself contains 368 distinct URLs; 3 are pagination/archive pages (e.g. `/culture/page/7`) and a sitemap listing page that sit outside the 365-page sitemap count — these are covered in this audit but not counted toward the baseline, since they're not standalone content pages.
 
 ## Executive Summary
@@ -66,7 +66,7 @@ Prosperity Partners' site is content-rich and well-organized at the page level �
 
 🟡 **Duplicate content: Transaction Advisory Services exists at two different URLs.** `/transaction-advisory-services/` and `/tax-services/transaction-advisory-services/` render different body copy under the identical page title ("Transaction Advisory Services - Prosperity Partners") but describe the same service — both are actively linked from the site's main navigation (the second is labeled "Transaction Advisory Tax Services" in the nav). This is a genuine duplicate-content situation, not just a stray unused page, and is covered in more depth in the standalone SEO report.
 
-🟡 **Twelve URL pairs differ only by a trailing slash**, all under `/culture` and `/whats-new` pagination (e.g. `/culture/page/3` and `/culture/page/3/` both resolve and were both captured as separate pages with identical content). This is typically harmless in WordPress (both usually redirect to the same canonical page), but worth a quick check that a redirect/canonical rule is actually in place rather than serving both as independently indexable duplicates. See the standalone SEO report for the full list.
+🟡 **Twelve URL pairs differ only by a trailing slash**, all under `/culture` and `/whats-new` pagination (e.g. `/culture/page/3` and `/culture/page/3/` both resolve and were both captured as separate pages with identical content). This is typically harmless on that platform (both usually redirect to the same canonical page), but worth a quick check that a redirect/canonical rule is actually in place rather than serving both as independently indexable duplicates. See the standalone SEO report for the full list.
 
 ## Accessibility Issues
 

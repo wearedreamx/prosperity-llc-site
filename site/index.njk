@@ -7,9 +7,24 @@ ogDescription: "Elevate your potential. Partner for growth."
 ---
 <!-- Hero -->
 <section class="hero" aria-labelledby="hero-title">
-	<video class="hero__video" autoplay muted loop playsinline preload="metadata" poster="/assets/video/home-poster.jpg">
-		<source src="https://www.prosperityllc.com/wp-content/uploads/2024/07/Home.mp4" type="video/mp4">
-	</video>
+	{#
+	  ===== TODO: VIDEO CDN URL NEEDED =====
+	  The hero video is gone. It used to stream from the old site's media
+	  library, at a path that has since been retired, and video is never
+	  committed to this repo either (.gitignore excludes *.mp4) — so there is
+	  nothing local to point at. Until a CDN URL exists the poster frame stands
+	  in: it is the video's own first frame, so the hero looks right, it just
+	  doesn't move.
+
+	  To restore it, replace the <img> below with:
+	      <video class="hero__video" autoplay muted loop playsinline
+	             preload="metadata" poster="/assets/video/home-poster.jpg">
+	        <source src="{{ CDN }}/home.mp4" type="video/mp4">
+	      </video>
+	  where {{ CDN }} is the base URL. See README §9.3 — two more videos are
+	  waiting on the same URL.
+	#}
+	<img class="hero__video" src="/assets/video/home-poster.jpg" alt="" width="1366" height="768">
 	<div class="hero__content reveal reveal--fade">
 		<h1 id="hero-title">Elevate Your Potential</h1>
 		<p>Partner for Growth.</p>

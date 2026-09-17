@@ -1,5 +1,5 @@
 {
-  "_comment": "Options for the /meet-the-team/ 3-facet filter. Title and Service Line mirror the ACF select choices (field_6679cee8fa574 and field_6695315a92f52); Location mirrors the hardcoded list in the theme's pages/team/filters.php. Order matches the theme. Each term matches a class on the team-member card.",
+  "_comment": "Options for the /meet-the-team/ 3-facet filter. Order is significant and is the order the terms render in. Each term matches a class on the team-member card; see site/_includes/team-filters.njk and the .team-filter rules in site/assets/css/style.css.",
   "facets": [
     {
       "label": "Title",
