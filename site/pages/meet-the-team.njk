@@ -1,6 +1,8 @@
 ---
 title: "Meet the Team - Prosperity Partners"
 permalink: "/meet-the-team/"
+eleventyComputed:
+  description: "{{ collections.pagesBySlug['meet-the-team'].data.meta_description | safe }}"
 layout: base.njk
 ---
 {#- Banner copy, image and description come from the page's own record rather

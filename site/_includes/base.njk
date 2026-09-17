@@ -3,16 +3,26 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{#- Titles and descriptions come from imported content, which contains real
+	    ampersands. They are piped through `safe` wherever a template computes
+	    them into a string (eleventyComputed re-renders that string as Nunjucks,
+	    so an un-`safe`d value gets escaped once on the way in and again here —
+	    which is what turned every "Tax & Advisory" into "Tax &amp; Advisory" on
+	    screen). Here the value is raw, so normal autoescaping is correct. -#}
 	<title>{{ title }}</title>
 	<meta name="description" content="{{ description }}">
-	<link rel="canonical" href="{{ canonicalUrl }}">
+	{#- Every page gets a canonical. It used to be emitted unconditionally from a
+	    `canonicalUrl` that only four templates set, so 327 of 373 pages shipped
+	    href="" — invalid, and resolved inconsistently by crawlers. Falling back
+	    to the page's own URL means a new template cannot reintroduce that. -#}
+	<link rel="canonical" href="{{ canonicalUrl or (global.site_url + page.url) }}">
 
 	<meta property="og:type" content="website">
-	<meta property="og:site_name" content="Prosperity Partners">
+	<meta property="og:site_name" content="{{ global.site_name }}">
 	<meta property="og:title" content="{{ ogTitle or title }}">
 	<meta property="og:description" content="{{ ogDescription or description }}">
-	<meta property="og:url" content="{{ canonicalUrl }}">
-	<meta property="og:image" content="{{ ogImage or 'https://www.prosperityllc.com/assets/video/home-poster.jpg' }}">
+	<meta property="og:url" content="{{ canonicalUrl or (global.site_url + page.url) }}">
+	<meta property="og:image" content="{{ ogImage or (global.site_url + '/assets/video/home-poster.jpg') }}">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -5,9 +5,13 @@ pagination:
   alias: pageItem
 permalink: "{{ pageItem.data.path }}"
 eleventyComputed:
-  title: "{{ pageItem.data.title }}"
-  description: "{{ pageItem.data.meta_description }}"
-  canonicalUrl: "https://www.prosperityllc.com{{ pageItem.data.path }}"
+  title: "{{ pageItem.data.title | safe }}"
+  # eleventyComputed re-renders these strings as Nunjucks, so an un-safe value is
+  # escaped here and again in base.njk. `meta_description` is absent on 33 of the
+  # 45 published records; the page's own banner copy, then its first block, stand
+  # in so no page ships an empty description.
+  description: "{{ (pageItem.data.meta_description or (pageItem.data.banner_description_html | plainText) or (pageItem.data.blocks | blocksProse | plainText) or (pageItem.data.title + ' — Prosperity Partners')) | truncate(160) | safe }}"
+  ogImage: "{% if pageItem.data.banner_image %}{{ global.site_url }}{{ pageItem.data.banner_image }}{% endif %}"
 layout: base.njk
 ---
 <section class="page-banner">

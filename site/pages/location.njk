@@ -5,7 +5,8 @@ pagination:
   alias: location
 permalink: "/location/{{ location.data.slug }}/"
 eleventyComputed:
-  title: "{{ location.data.name }} - Prosperity Partners"
+  title: "{{ location.data.name | safe }} - Prosperity Partners"
+  description: "{{ ('Prosperity Partners in ' + location.data.name + '. ' + (location.rawInput | plainText)) | truncate(160) | safe }}"
 searchType: location
 layout: base.njk
 ---

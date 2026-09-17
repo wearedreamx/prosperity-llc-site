@@ -64,6 +64,13 @@ module.exports = function (eleventyConfig) {
 			.replace(/\s+/g, " ")
 			.trim()
 	);
+	// A page's prose lives in blocks[].html, and the first block is sometimes an
+	// empty wrapper, so a description derived from blocks[0] alone comes out
+	// blank. Concatenating them lets the fallback chain find real copy.
+	eleventyConfig.addFilter("blocksProse", (blocks) =>
+		(blocks || []).map((b) => b.html || "").join(" ")
+	);
+
 	// Nunjucks' own `slice` is Jinja's — it splits a list into N chunks — so
 	// "the newest three" needs its own filter rather than slice(3)|first.
 	eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));

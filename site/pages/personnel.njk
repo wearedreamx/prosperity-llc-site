@@ -5,7 +5,9 @@ pagination:
   alias: person
 permalink: "/personnel/{{ person.data.slug }}/"
 eleventyComputed:
-  title: "{{ person.data.name }} - Prosperity Partners"
+  title: "{{ person.data.name | safe }} - Prosperity Partners"
+  description: "{{ person.data.name | safe }}{% if person.data.job_title %}, {{ person.data.job_title | safe }}{% endif %}{% if person.data.location_name %} — {{ person.data.location_name | safe }}{% endif %}. {{ person.rawInput | plainText | truncate(110) | safe }}"
+  ogImage: "{% if person.data.photo %}{{ global.site_url }}{{ person.data.photo }}{% endif %}"
 searchType: personnel
 layout: base.njk
 ---
@@ -18,7 +20,7 @@ layout: base.njk
 </section>
 <section class="single-post-container">
 	<div class="single-post-content-container container">
-		{#- Same placeholder as the directory cards — see meet-the-team.njk. -#}
+		{#- Same placeholder as the directory cards — see team-card.njk. -#}
 		<figure class="single-post-figure"><img width="550" height="500" src="{{ person.data.photo or '/assets/img/ui/team-placeholder.svg' }}" alt="" class="single-post-image" data-pagefind-meta="image[src]"></figure>
 		<div class="single-post-content">
 			<h1 class="single-personnel-name">{{ person.data.name }}{% if person.data.certifications %}<span class="single-personnel-certs">, {{ person.data.certifications }}</span>{% endif %}</h1>

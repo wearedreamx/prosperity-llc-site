@@ -5,7 +5,9 @@ pagination:
   alias: post
 permalink: "{{ post.data.category_url }}{{ post.data.slug }}/"
 eleventyComputed:
-  title: "{{ post.data.title }} - Prosperity Partners"
+  title: "{{ post.data.title | safe }} - Prosperity Partners"
+  description: "{{ ((post.rawInput | plainText) or (post.data.title + ' — ' + post.data.category_name + ' at Prosperity Partners')) | truncate(160) | safe }}"
+  ogImage: "{% if post.data.images.length %}{{ global.site_url }}{{ post.data.images[0] }}{% endif %}"
 searchType: post
 layout: base.njk
 ---
