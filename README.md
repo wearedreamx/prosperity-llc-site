@@ -4,7 +4,15 @@
 database, no server to patch. Content was imported once from the previous
 CMS (§4) and now lives in this repo as files.
 
-**Status:** Eleventy scaffold in place — homepage, generic content-block pages, personnel/location/post templates all rendering from real content. Styling on the newly scaffolded pages is inconsistent (see §8); all images resolve (§9.1) and only the three videos are outstanding, pending a CDN (§9.3) — this is scaffolding, not a finished site.
+**Status:** All 360 URLs render from real content, and every published page and
+template archetype has been compared against the live site — layout, chrome and
+media are in parity, with the intentional differences listed in §9.2. All images
+resolve (§9.1); the three videos still need a CDN (§9.3).
+
+**Before this ships** it needs: the form Worker (§9 Phase G), the page-level
+redirects and `sitemap.xml` (Phase H), Decap and the deploy (Phase I), a copy
+read across 360 URLs, and the client decisions in §11.
+
 **Last updated:** 2026-09-17
 
 ---
@@ -192,7 +200,7 @@ Advisors LLC dba Prosperity Partners; NDH CPA LLP dba Prosperity Partners CPA.
 
 | Type | Published | Body HTML | Notes |
 |---|---|---|---|
-| `page` | 45 (+8 draft, +2 private) | 143 blocks | See §6 |
+| `page` | 45 (+8 draft, +2 private) | 138 blocks | See §6 |
 | `post` | 104 | 62 KB (avg 612 chars) | Categories: Culture, What's New |
 | `personnel` | 200 | 362 KB (avg 1,854 chars) | 3 facet fields each |
 | `location` | 11 | 5 KB | |
@@ -222,29 +230,49 @@ A page's body is `blocks[]` in its frontmatter (§6a). Each block carries a
 
 | Layout | Count | Renders as |
 |---|---|---|
-| `one` | 46 | single column |
+| `one` | 44 | single column |
 | `raw:cta` | 29 | the shared CTA component (see below) |
 | `sidebar` | 26 | main + sidebar |
 | `two` | 10 | two equal columns |
-| `twoimage-20` | 5 | image beside text, in an extra outer wrapper |
-| `four` | 4 | four equal columns |
+| `twoimage-20` | 5 | image beside text |
 | `raw:services-grid` | 4 | verbatim — the services card grid |
 | `raw:services-team` | 3 | verbatim — the "group leader" block |
 | `three` | 3 | three equal columns |
-| `five` | 2 | five equal columns |
+| `four` | 2 | four equal columns |
 | `tiles` | 2 | card grid linking to pages/categories |
+| `five` | 1 | five equal columns |
 | `raw:home-*` | 6 | verbatim — the homepage sections (see §8 note) |
 | `raw:team` | 1 | verbatim — the team directory placeholder |
 | `raw:content-container`, `raw:content-block` | 2 | verbatim |
 
-143 blocks across the 55 page records (layout values repeat across blocks).
+138 blocks across the 55 page records (layout values repeat across blocks).
 
 `site/_includes/content-blocks.njk` has three arms, not one per layout: every
 column layout resolves to the same container with a layout-suffixed class and
-the CSS sizes the grid, `twoimage-20` adds an outer wrapper, and `raw:*` is
-emitted with no container at all. **There is no `carousel` layout in the
-content** — the one carousel on the site was frozen Slick output in
+the CSS sizes the grid, `twoimage-20` names its inner container differently, and
+`raw:*` is emitted with no container at all. **There is no `carousel` layout in
+the content** — the one carousel on the site was frozen Slick output in
 `partnerships.md` and is now a static grid (§13).
+
+### `section_class` — the block's own section modifiers
+
+A block may also carry `section_class`, which lands on its `<section>` alongside
+`content-block`. The previous site used these to style whole bands of a page,
+and the CSS for all of them was ported — but the import dropped the field, so
+they rendered as plain white sections until they were recovered from the live
+pages (§13). **24 blocks across 6 pages** carry one:
+
+| Value | Blocks | Effect |
+|---|---|---|
+| `content-block-cards` | 8 | each column becomes a shadowed white card |
+| `content-block-blue` | 8 | blue band, white text |
+| `content-block-container-twoimage-top content-block-container-twoimage-20` | 5 | the image-beside-text band; also what makes consecutive ones sit 3em apart, since that rule is an adjacent-sibling selector |
+| `content-block-border-top` | 3 | hairline rule above the band |
+| `content-block-custom-2-border` | 2 | vertical divider between two columns |
+| `content-block-custom-1` | 1 | gradient tiles with a ▶ watermark |
+
+A block whose `html` is already a complete `<section>` is emitted as-is rather
+than wrapped again — six blocks came out of the import that way.
 
 A `raw:` prefix means the block is emitted verbatim with no container — used by
 the hand-built homepage and team page sections, and by `raw:cta`, which renders
@@ -252,6 +280,10 @@ the shared CTA component instead of the block's own HTML.
 
 Page-level frontmatter alongside `blocks[]`: `banner_image`, `banner_title`,
 `banner_description_html`, `meta_description`, `page_type`, `status`.
+
+Empty blocks are not a thing: five wrappers with no text, media or id were
+removed site-wide (§13), the third such class of dead import markup after the
+lazy-load placeholders and the editor-only classes (§12).
 
 ---
 
@@ -267,7 +299,7 @@ plus a body (rendered HTML, used for the record's main prose):
 | `personnel/` | 198 | `slug`, `name`, `certifications`, `job_title`, `location_name`, `location_url`, `photo`, `linkedin_url`, `facet_title`, `facet_specializations`, `date_modified` | bio HTML |
 | `posts/` | 104 | `slug`, `title`, `published`, `date_modified`, `category_name`, `category_url`, `images[]` | post HTML |
 | `locations/` | 11 | `slug`, `name`, `address_html`, `date_modified` | description HTML |
-| `pages/` | 43 | `slug`, `path`, `page_type`, `title`, `meta_description`, `banner_title`, `banner_description_html`, `banner_image`, `date_modified`, `blocks[]` | *(empty — everything lives in `blocks[]`)* |
+| `pages/` | 55 | `slug`, `path`, `page_type`, `title`, `meta_description`, `banner_title`, `banner_description_html`, `banner_image`, `date_modified`, `blocks[]` (each block: `layout`, `html`, optional `section_class` — §6) | *(empty — everything lives in `blocks[]`)* |
 
 Each folder has a `<type>.11tydata.js` directory-data file (`tags`, `permalink: false`,
 `templateEngineOverride: false`) so Eleventy auto-populates `collections.personnel`,
@@ -353,15 +385,17 @@ native Eleventy collection.
 | `site/_includes/content-blocks.njk` | Generic block renderer — walks a page's `blocks[]` and renders each by `layout` (`one`/`two`/`sidebar`/`tiles`/`carousel`/etc., see §6) |
 | `site/_includes/cta.njk`, `contact-form.njk` | Shared CTA section + the contact-form component itself, parameterized by `formVariant` (`standard` 5-field vs `contact` — adds the referral-source radio, see §10) and by `idPrefix`, so a page carrying both an embedded form and the CTA form does not emit duplicate element ids |
 | `site/_includes/post-card.njk`, `team-card.njk` | The post card (homepage + both archives) and the personnel card (team directory + location pages), each previously duplicated per call site |
+| `site/_includes/team-filters.njk` | The 3-facet filter, as real `<button>`s, plus the office jump menu that location pages carry (§13) |
 | `site/_includes/post-archive.njk` | Body shared by `/culture/` and `/whats-new/`, which were byte-identical templates apart from six values |
 | `site/index.njk` | Homepage — hero, intro, values, achievements, Culture/What's New (hand-picked, pre-optimized images under `assets/img/posts/`), CTA |
 | `site/pages/page.njk` | Generic + services + portal pages, paginated over `collections.genericPages` |
 | `site/pages/personnel.njk`, `location.njk`, `post.njk` | One page per personnel/location/post record, paginated over `collections.personnel`/`locations`/`posts` |
 | `site/pages/culture.njk`, `whats-new.njk`, `meet-the-team.njk` | Archive/directory listing pages, over `collections.culturePosts`/`whatsNewPosts`/`personnel` |
 | `site/pages/search.njk` | Search results page — static shell; results render client-side from the Pagefind index (§15) |
+| `site/pages/sitemap.njk` | The human-facing `/sitemap/`, generated from the collections: pages nested by path depth, posts under their category, then locations. The old site built this with a CMS plugin, so the import captured no content for the record and the page shipped as a bare banner while being linked from every footer |
 | `eleventy.config.js` | Passthrough copy, `longDate`/`isoDate` filters, `injectContactForm` (swaps the imported form marker for the real component), the derived collections listed in §6a, and the `eleventy.after` hook that builds the Pagefind index (§15) |
-| `assets/css/style.css` | Palette + homepage styles (original, verified) plus a second pass added for page-banner/content-block/personnel/location/team-grid — **not yet verified, see §9.2** |
-| `assets/js/main.js` | Drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback, contact-form "Other" field toggle, team directory 3-facet + name filter (§15) |
+| `assets/css/style.css` | Two regions: hand-written palette/homepage/chrome styles, then the previous site's own stylesheets ported verbatim and appended so they win. Every colour resolves through a `:root` token; no selector is declared in both regions. See §9.2 |
+| `assets/js/main.js` | Drawer nav, submenu accordions, search toggle, scroll-reveal, video autoplay fallback, contact-form "Other" field toggle, team directory 3-facet + name filter (§15), office jump menu on location pages |
 | `assets/js/search.js` | Queries the Pagefind index and renders `/search/` results (§15) |
 | `assets/icons/` | Favicons/manifest/browserconfig — source tidied into one folder, passthrough-copied back to the served root so no URL changed |
 
@@ -393,12 +427,12 @@ including the plan review.
 |---|---|---|---|---|
 | A | Content + media import: all types → data files, media re-encoded | ✅ done | 60–90k | all 360 URLs' content |
 | B | Eleventy scaffold; site chrome into Nunjucks layouts/includes | ✅ done | 50–70k | shared header/footer |
-| C | Generic content-block renderer (9 column layouts) | ✅ done, ⚠️ styling unverified, see §9.2 | 80–120k | **38 pages at once** |
-| D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | partial — services/portal render via the generic renderer; sage and the 3-facet team filter still outstanding | 120–160k | 8 pages + team directory |
-| E | 4 content-type templates + archives, pagination, RSS, 404, search page | partial — personnel/location/post templates, Culture/What's New archives and the search page done, each with canonical + derived description; RSS and 404 outstanding | 120–160k | 333 URLs |
-| F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | outstanding | 100–200k | |
+| C | Generic content-block renderer (9 column layouts) | ✅ done, and verified against live (§9.2) | 80–120k | **38 pages at once** |
+| D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | services/portal render via the generic renderer and match live; the 3-facet team filter is done (keyboard-operable, §13) and location pages have their office jump menu back; **sage is the only one left**, and it is blocked on §11.3 | 120–160k | 8 pages + team directory |
+| E | 4 content-type templates + archives, pagination, RSS, 404, search page | personnel/location/post templates, Culture/What's New archives and the search page done, each with canonical + derived description, and all four compared against live (§9.2); RSS and 404 outstanding | 120–160k | 333 URLs |
+| F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | **done for layout and chrome** — see §9.2. What is left is editorial: reading the copy, and the §11 decisions | 100–200k | |
 | G | Forms: 1 component + 1 Worker (see §10) | component done (2 variants, standard + contact); Worker outstanding | 50–70k | all 9 forms |
-| H | Pagefind + redirects + sitemap | Pagefind done (§15); the 104 post redirects and `_headers`/`robots.txt` are in place; `sitemap.xml` and the page-level redirects in §11.6/§11.7 outstanding | 40–60k | SEO continuity |
+| H | Pagefind + redirects + sitemap | Pagefind done (§15); the 104 post redirects, `_headers` and `robots.txt` are in place, and the human-facing `/sitemap/` is generated from the collections (§8); `sitemap.xml` and the page-level redirects in §11.6/§11.7 outstanding | 40–60k | SEO continuity |
 | I | Decap CMS + OAuth Worker + Cloudflare Pages setup | content model ready for personnel/posts/locations (§6a); pages need a custom block-editing widget first; Decap config/OAuth Worker itself outstanding | 80–120k | editors + deploy |
 | | **Total** | | **700k – 1.05M** | ≈ 6–10 sessions |
 
@@ -431,28 +465,59 @@ no other change. See `data/missing-media.md`.
 
 Video is a separate gap; see §9.3.
 
-### 9.2 Styling gaps on newly scaffolded pages — narrowed
+### 9.2 Visual parity with the live site — done for layout, open for copy
 
-The CSS for personnel/location/team-grid/content-block/services/portal pages was
-first reconstructed from per-page inline `<style>` fragments rather than from a
-single authoritative stylesheet, which is why coverage was uneven. The
-authoritative rules were later ported verbatim from the previous site's own
-stylesheets and appended at the end of `site/assets/css/style.css`, where they
-win over the reconstruction — see the banner comment above them.
+Every published page and every template archetype has now been compared against
+the live site, and the differences that were defects are fixed (§13).
 
-Both copies then coexisted: **180 declarations across 65 selectors** in the
-reconstruction were fully shadowed by the port and have been deleted, verified
-by resolving every selector/property pair at 21 viewport widths before and after
-(zero computed-value differences). No selector is now declared in both regions.
-Colours in the port resolve through the `:root` tokens rather than repeating raw
-hex, and three dead selectors went with it (`.team-locations`,
-`.team-locations-select`, `.content-block+style+.services-grid`).
+**How it was checked.** A static diff first, over all 43 published pages, of the
+live HTML against the built HTML: text, headings, links, images, banner images
+and the class list of every `<section>`. That is what made the screenshots worth
+taking — it surfaced a 25-character, one-heading delta on nearly every page which
+turned out to be the rebuilt CTA form, and masking that exposed everything else.
+Then a browser pass at a fixed 1280x900: computed styles and box geometry for one
+page of each template, plus screenshots side by side.
 
-**What is still outstanding is the visual comparison itself.** The layouts under
-`site/pages/page.njk`, `personnel.njk`, `location.njk`, `culture.njk`,
-`whats-new.njk` and `meet-the-team.njk` have not been checked page-by-page
-against the live site; Phase F below is still required before any of this ships.
-The bespoke pages in Phase D are the least verified.
+**Where it stands now.**
+
+- All 43 published pages emit the same `<section>` class sequence as live, apart
+  from the five pages that deliberately no longer render an empty block (§13).
+- `/assurance/`, checked property by property, is identical to live on banner
+  gradient, banner title size/weight/colour, section padding, container grid and
+  gap, and `.content` type scale — including box sizes to the pixel (1265x597
+  section, 1265x501 container). The generic path is faithful.
+- Banners: 22 of 37 are byte-identical to live; the other 15 are the same image
+  re-encoded to 1600x666 from 1920x800, at the same aspect, as §12 requires.
+  Every stock photo the live site shares across pages maps to exactly one local
+  file — the import's per-page renaming is consistent.
+- Content parity holds: no page differs from live in body text, headings or
+  links except by design.
+
+**What is deliberately different from live**, and should not be "fixed":
+
+| | Why |
+|---|---|
+| One contact form component, placeholders not labels | §10 — nine forms collapse to one |
+| Archive cards use the rebuild's `.card`, not the theme's `.post-*` | the new site's own design, shared with the homepage |
+| Archive pagination is Newer/Older, not numbered | functional and accessible; no plugin |
+| Homepage shows the newest three posts per category | live's curation was hardcoded and had drifted into two broken links (§13) |
+| Testimonials and post images are static, not carousels | no client-side carousel library by design |
+| Five pages no longer open with an empty 96px band | live still renders those; §13 |
+
+**What is genuinely left** is not layout: reading the copy on 360 URLs for sense
+and currency, and the editorial decisions in §11. Two content recoveries are also
+outstanding — the two dropped post records in `data/missing-media.md`, and the
+Sage pages behind §11.3.
+
+#### The stylesheet's two regions
+
+`site/assets/css/style.css` has a hand-written region and, appended after it, the
+previous site's own stylesheets ported verbatim under a banner comment saying
+they come last so they win. Both copies used to coexist: **180 declarations
+across 65 selectors** in the earlier region were fully shadowed and have been
+deleted, verified by resolving every selector/property pair at 21 viewport widths
+before and after (zero computed-value differences). No selector is declared in
+both regions now, and every colour resolves through a `:root` token.
 
 ### 9.3 Video — needs a CDN base URL
 
@@ -563,6 +628,25 @@ desktop nav interaction is now behind `@media (min-width: 1081px)`.
   back into the track, so sibling rows resolve differently.
 - Conclusion used in the nav: `grid-template-columns: 1fr auto`.
 
+**Comparing against the live site has three traps.** Its stylesheet is
+lazy-injected, so `getComputedStyle` can report unstyled defaults on a page that
+looks fine — trust a screenshot over a computed value there. Its scroll-reveal
+animation will not fire under programmatic scrolling, so anything below the fold
+photographs blank; scroll with real input. And its markup has `<section  class=`
+with two spaces, so a regex expecting one silently matches nothing.
+
+**A selector list cannot be split on every comma.** `:is(:link, :visited)` has
+one inside the parentheses, so a naive split produces fragments like `:visited)`
+that appear to match across unrelated rules. This is not hypothetical: it made a
+CSS dedup delete `.page-banner a` colours as "shadowed", and the equivalence
+check missed it because the same broken parser produced both sides of the
+comparison. Split on top-level commas only, and when a check and the thing it
+checks share code, the check proves less than it appears to.
+
+**A block's `<section>` modifiers live in `section_class`, not in `layout`.**
+See §6 — `layout` picks the container, `section_class` paints the band. A
+missing one is invisible in the layout and obvious in the colour.
+
 **`eleventyComputed` strings are rendered as Nunjucks, then rendered again by
 the layout.** Any value interpolated there needs `| safe`, or it is escaped
 twice and `&` reaches the page as `&amp;`. This is not a data problem — the
@@ -624,6 +708,25 @@ before preserving it.
 | Duplicate element ids on `/client-accounting-services/back-office-accounting/` | The only page with both an embedded form and the CTA form; both used `cf-*` ids, so the second form's `<label for>` pointed at the first form's fields |
 | `.cf-turnstile` never rendered a widget | The Turnstile script was loaded nowhere. Now loaded from `base.njk`, gated on a configured site key |
 | `required` inert on all contact forms | The form carried `novalidate` with no JS validation to replace it |
+
+### Found by the visual pass against live (§9.2)
+
+| Bug | Cause |
+|---|---|
+| `/partnerships/` and 5 other pages rendered whole bands white that should be blue, carded or bordered | The previous site put modifier classes on each block's `<section>`; the import kept only `layout` and `html`, and the renderer hardcoded `class="content-block"`. Every rule for them was already in the ported CSS — only the class was missing. Recovered into `section_class` on 24 blocks across 6 pages (§6) |
+| Consecutive book entries on `/special-projects/books-publications/` had no gap | Those classes were on a wrapper `<div>`, and the 3em rule is `.twoimage-20 + .twoimage-20` — an adjacent-sibling selector, which wrapper divs inside separate sections never satisfy. They sit on the `<section>` now, as on live |
+| Six blocks rendered a section inside a section | Their `html` was already a complete `<section>` while still carrying a column `layout`, so the renderer wrapped them twice — doubling the padding and, for `sidebar`, squeezing the inner grid into the outer grid's first column |
+| Banner links were invisible | A CSS dedup deleted `.page-banner a` colours as "shadowed" — see the `:is()` note in §12. Banner copy sits in a `.content` wrapper, so the links fell through to the ported `.content` rule and rendered `--blue` on the blue banner |
+| ~200 personnel pages showed a bare 24px icon where the LinkedIn badge belongs | The 216x35 "Find me on LinkedIn" asset was imported to `assets/img/ui/`, but the template pointed at the footer's `linkedin.png` |
+| Certifications read "Jeremy Dubow, CPA, MST" where live has no comma | An earlier a11y fix put the separator in the visible text; it is in a visually-hidden span now, so the rendering matches live and the accessible name still reads correctly |
+| Location pages had no office jump menu | Live carries a "Locations" select beside the member search. The port never rendered it, so its CSS looked dead and was briefly deleted. Shown only where the Location facet is hidden — the same distinction live makes |
+| A `<select>` rendered 120x33 where live has 144x40 | `select` was missing from the `font: inherit` reset, so it kept the browser's ~13px UI font and the em-based sizing shrank with it |
+| **384 of 488 post images never appeared anywhere** | The post template rendered `images[0]` only; live runs them as a slideshow. 50 of the 104 posts carry more than one, up to 33. They stack in the same column now |
+| Both archives shipped a bare banner title | The category description lived on the CMS category term rather than on a page, so the import never saw it. Recovered into each archive's frontmatter; the cards also gained the excerpt live shows |
+| `/sitemap/` was empty while linked from every footer | Built by a CMS plugin on the old site, so the record has no blocks. Generated from the collections instead — 162 links |
+| Client portal fields were near-invisible and its submit filled the column | `--grey-light` (#f1f1f1) where live uses #ccc, and `width: 100%` where live sizes to the label |
+| Every imported solid button carried an arrow live does not have | `.button--solid` (hand-written) and `.button.solid` (imported) were aliased "so the two can never drift apart" — but they are not the same style. Un-aliased; the homepage button keeps its arrow, which could not be confirmed either way because of the traps in §12 |
+| Three pages opened with a 96px band of nothing | Five empty block wrappers left by the old editor. Removed site-wide; live still renders them, so this one is an improvement rather than parity |
 
 ---
 
