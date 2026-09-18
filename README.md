@@ -9,11 +9,12 @@ template archetype has been compared against the live site — layout, chrome an
 media are in parity, with the intentional differences listed in §9.2. All images
 resolve (§9.1); the three videos still need a CDN (§9.3).
 
-**Before this ships** it needs: the form Worker (§9 Phase G), the page-level
-redirects and `sitemap.xml` (Phase H), the CMS and the deploy (Phase I), a copy
-read across 360 URLs, and the client decisions in §11.
+**Before this ships** it needs: the page-level redirects (§9 Phase H), the CMS
+and the deploy (Phase I), a copy read across 360 URLs, and the client decisions
+in §11. Forms now post to Web3Forms rather than the planned Worker (§10), and
+`sitemap.xml` ships.
 
-**Last updated:** 2026-09-17
+**Last updated:** 2026-09-18
 
 ---
 
@@ -140,7 +141,7 @@ output). It invokes `node_modules/@11ty/eleventy/cmd.cjs` by path deliberately:
 | Generator | **Eleventy, full-site** |
 | Hosting | Cloudflare Pages (git integration, atomic deploys, PR previews) |
 | CMS | Sveltia CMS at `/admin`, GitHub OAuth via a Cloudflare Worker |
-| Forms | Cloudflare Pages Function → Turnstile verify → SMTP relay (Resend) |
+| Forms | Web3Forms (hosted endpoint, public access key in the markup). Was to be a Pages Function → Turnstile verify → SMTP relay; see §10 for what changed |
 | Search | Pagefind — see §15 |
 | Edge | Cloudflare CDN/WAF; Pro plan ($25/mo) |
 
@@ -688,12 +689,11 @@ applies to anything added later):
 
 ### Stubs left in place
 
-- Contact form posts to `/api/contact`, which has no Pages Function behind it
-  yet (§9 Phase G) — submissions 404 until the Worker ships
 - Turnstile: `turnstile_site_key` in `data/global.json` still holds the
   placeholder `TURNSTILE_SITE_KEY`, and `base.njk` deliberately withholds the
   widget script while it does (a placeholder key renders a visible error widget
-  rather than a challenge). Setting a real key switches both on
+  rather than a challenge). Setting a real key switches both on. Note that
+  Web3Forms does not verify a Turnstile token for you — see §10
 - Page permalinks are `/<slug>/` at root, matching the live site's URLs. Post permalinks are `/culture/<slug>/` / `/whats-new/<slug>/` — moved off the flat root to sit under their existing category pages; still needs the 104 redirect rules from the old flat URLs (§9 Phase H, open decision §11.9)
 - accessiBe accessibility overlay omitted pending a decision (§11.4)
 
@@ -712,17 +712,17 @@ including the plan review.
 | D | 4 bespoke templates: services, sage, team (+3-facet filter), portal | services/portal render via the generic renderer and match live; the 3-facet team filter is done (keyboard-operable, §13) and location pages have their office jump menu back; **sage is the only one left**, and it is blocked on §11.3 | 120–160k | 8 pages + team directory |
 | E | 4 content-type templates + archives, pagination, RSS, 404, search page | personnel/location/post templates, Culture/What's New archives and the search page done, each with canonical + derived description, and all four compared against live (§9.2); RSS and 404 outstanding | 120–160k | 333 URLs |
 | F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | **done for layout and chrome** — see §9.2. What is left is editorial: reading the copy, and the §11 decisions | 100–200k | |
-| G | Forms: 1 component + 1 Worker (see §10) | component done (2 variants, standard + contact); Worker outstanding | 50–70k | all 9 forms |
+| G | Forms: 1 component + a submit endpoint (see §10) | component done (2 variants, standard + contact); the endpoint is Web3Forms rather than the planned Worker, so the Worker, the SMTP relay and the Resend domain verification are all off the list. What is left is spam protection and a deliverability check | 5–15k | all 9 forms |
 | H | Pagefind + redirects + sitemap | Pagefind done (§15); the 104 post redirects, `_headers` and `robots.txt` are in place, and both sitemaps now ship — the human-facing `/sitemap/` (§8) and `/sitemap.xml`, which `robots.txt` had been advertising since the redirects landed while nothing generated it. Only the page-level redirects in §11.6/§11.7 outstanding | 10–20k | SEO continuity |
 | I | Sveltia CMS + OAuth Worker + Cloudflare Pages setup | posts/personnel/locations converted and their collection definitions written (§6b); pages need a custom block-editing widget first; `config.yml`, `/admin` and the OAuth Worker all outstanding | 80–120k | editors + deploy |
-| | **Total** | | **700k – 1.05M** | ≈ 6–10 sessions |
+| | **Total** | | **625k – 955k** | ≈ 5–9 sessions |
 
 Dependencies: A → B → C → {D, E} → F. G, H, I are independent and can run anytime
 after B.
 
 **Calendar time is not set by the token budget.** Realistically 2–4 weeks, gated by:
-human content sign-off across 360 URLs; Resend domain verification (DNS
-propagation); the video host in §9.3; and the open decisions in §11.
+human content sign-off across 360 URLs; the video host in §9.3; and the open
+decisions in §11. Resend domain verification is no longer a gate — §10.
 
 ### 9.1 Media — complete
 
@@ -842,11 +842,37 @@ identical 5-field shape: name, email, phone, textarea, captcha. Form 1 adds a ra
 and a text field.
 
 So this is **one form component parameterised by form id + recipient**, plus one
-Cloudflare Pages Function. Not nine integrations. Form 2 was inactive — drop it.
+submit endpoint. Not nine integrations. Form 2 was inactive — drop it.
 
-Captcha fields become Cloudflare Turnstile. The Worker verifies the Turnstile token,
-then relays over **SMTP** (not a vendor REST API) so the provider is swappable by
-changing credentials.
+### The endpoint is Web3Forms, not the planned Worker
+
+The plan above was a Cloudflare Pages Function that verified a Turnstile token
+and relayed over SMTP. `42b8195` replaced it: every form now posts directly to
+`https://api.web3forms.com/submit` with a public `access_key` in the markup.
+
+What that buys: no Worker to write or maintain, no Resend account, no domain
+verification, no DNS wait. What it costs, and what still has to be decided:
+
+- **The access key is public and ships in the HTML on every page with a form.**
+  That is how Web3Forms is designed — it is not a leaked secret — but it does
+  mean anyone can read it and post to your endpoint. Spam protection is
+  therefore not optional.
+- **Nothing verifies the Turnstile token.** The widget can render, but a hosted
+  endpoint has no way to check the token against your secret key, so the
+  captcha is decorative unless Web3Forms' own spam controls are configured.
+  Decide whether Turnstile stays at all.
+- **`form-action` in `site/_headers` has to name the endpoint.** A cross-origin
+  submit under `form-action 'self'` is cancelled outright by the browser — no
+  console warning, nothing sent, and no local symptom, because `_headers` is
+  not applied by the dev server (§12). Both `api.web3forms.com` and
+  `www.clientaxcess.com` (the portal login on `/client-portal/`) are named now;
+  **any new off-site form has to be added there too.**
+- **Deliverability and recipient routing are now Web3Forms' concern**, not
+  something this repo controls. Worth one end-to-end test per form variant
+  before launch.
+
+If the Worker comes back, the component does not change — only the `action` and
+the hidden `access_key` in `site/_includes/contact-form.njk`.
 
 ---
 
@@ -891,6 +917,23 @@ changing credentials.
 ---
 
 ## 12. Gotchas — read before continuing
+
+**`site/_headers` is not applied by `npm start`.** Cloudflare Pages reads it at
+the edge; the dev server ignores it. So every CSP directive can pass locally and
+fail only in production, with no console warning and nothing to see. Four
+separate failures shipped this way before anyone noticed:
+
+| Directive | What it silently broke |
+|---|---|
+| `script-src` without `'wasm-unsafe-eval'` | **all site search** — Pagefind's index is WebAssembly |
+| `frame-src` without Vimeo/YouTube | the only two video embeds on the site |
+| `form-action 'self'` | the contact form *and* the `/client-portal/` login |
+| `default-src` covering media | will block the CDN video the day §9.3 lands |
+
+The rule: **a CSP cannot be verified by loading the site.** It has to be checked
+against what the build actually references — every `src`, every `href`, and
+every `<form action>`. Adding a third-party anything means editing `_headers` in
+the same commit.
 
 **Verify UI with real clicks, not scripted ones.** A scripted `element.click()`
 does not move focus; a real tap does. The mobile submenu bug in §13 passed a
@@ -990,6 +1033,26 @@ before preserving it.
 | `.cf-turnstile` never rendered a widget | The Turnstile script was loaded nowhere. Now loaded from `base.njk`, gated on a configured site key |
 | `required` inert on all contact forms | The form carried `novalidate` with no JS validation to replace it |
 
+### Found by the quality review (`reports/prosperity-partners-quality-review.md`)
+
+| Bug | Cause |
+|---|---|
+| Site search would have failed on every deployed page | `script-src` had no `'wasm-unsafe-eval'` and Pagefind's index is WebAssembly. Passed every local check — see §12 |
+| Both video embeds blank in production | `frame-src` named only Greenhouse and Turnstile |
+| Both contact forms blocked in production | `form-action 'self'` cancels a cross-origin submit outright; the `/client-portal/` login had been blocked since `_headers` was added |
+| `robots.txt` pointed at a `sitemap.xml` that did not exist | The robots line landed with the redirects; nothing generated the file. Now built from a `sitemapUrls` collection — and it is the only consumer of the `date_modified` every record carries |
+| `/sitemap/` matched almost every search and outranked real pages | It lists every title on the site and was missing the `noIndex` the archives already had |
+| Two personnel records held a redaction token instead of a LinkedIn URL | Written into `31de9c0` — the commit that created the field — so no clean copy exists in history. Blanked; they need re-supplying |
+| `zombie.md` shipped `firm-retreat.md`'s body verbatim | Inherited: the live site does the same, so it is a CMS error the import copied faithfully. The real copy has to be written |
+| Two published pages shared a slug | `pagesBySlug` is built with `Object.fromEntries`, so the earlier record was silently dropped. A nested page now qualifies its slug with its parent |
+| A mockup page was published with "(mockup for payment page)" as its live `<title>` | `online-payment.md` was `status: publish` and duplicated `/payment/`. Now a draft with a 301 |
+| Titles and sitemap links emitted a bare `&` | `\| safe` in ordinary body and attribute positions, where autoescaping is correct — two of them inside attribute values |
+| 488 post images asserted what the photo showed | `post.njk` generated `alt="Prosperity Partners team members at {title}"` for every image on every post, false on every award and press-release post |
+| 346 pages skipped a heading level | Several causes: an `<h2>` above the `<h1>` on 304 pages, footer columns at `h3` with no `h2`, card titles directly under the page `h1`. Now 0 — most fixed without moving anything on screen by relevelling headings that carry their own sizing class |
+| 12 paginated archive pages shared one title and one description | Static frontmatter on a paginated template, and no `rel=prev`/`next` |
+| The firm's name was written out in 50 places | `base.njk` emitted `<title>` raw, so the suffix was hardcoded in nine templates and baked into 41 page records — and the 14 without it shipped bare titles |
+| Two build inputs were untracked | `data/post-categories.json` and `site/_includes/office-address.njk` — a fresh clone did not build |
+
 ### Found by the visual pass against live (§9.2)
 
 | Bug | Cause |
@@ -1038,6 +1101,14 @@ by a separate `npm run` step. That matters: it means `/search/` works under
 silently dead in dev and only testable via a full production build. Writing into
 `_site/pagefind/` doesn't cause a rebuild loop — the dev server watches the input
 directory (`site/`), not the output.
+
+**That WASM engine is a CSP dependency.** Chromium refuses
+`WebAssembly.instantiate` unless `script-src` allows it, so `site/_headers`
+carries `'wasm-unsafe-eval'`. Remove it and search fails on every deployed page
+with `search.js`'s "Search is unavailable on this build." — while continuing to
+work perfectly under `npm start`, because `_headers` is not applied locally
+(§12). That message means a blocked WASM load far more often than it means a
+missing index.
 
 ### What gets indexed
 

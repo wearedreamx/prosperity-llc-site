@@ -27,8 +27,13 @@ node_modules/
 www/
 /reconstructed-site
 
-# Secrets — Turnstile keys, Resend SMTP credentials, OAuth client secrets.
-# These belong in Cloudflare Worker secrets, never in the repo.
+# Secrets — Turnstile's SECRET key, the Sveltia OAuth client secret, and any
+# credentials a future Worker needs. These belong in Cloudflare Worker secrets,
+# never in the repo.
+#
+# Two keys that look like secrets and are not, both public by design because
+# they ship in the HTML: Turnstile's SITE key (data/global.json) and the
+# Web3Forms access_key (site/_includes/contact-form.njk). See README §10.
 .env
 .env.*
 !.env.example
