@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
   "photo": "/assets/img/personnel/mike-mckee.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/mike-mckee-cpa-8180a511a",
   "facet_title": "directors",
   "facet_specializations": [
     "tax-services"

@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/david-ramirez.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/david-ramirez-ba19871a0",
   "facet_title": "associates",
   "facet_specializations": [
     "operations"

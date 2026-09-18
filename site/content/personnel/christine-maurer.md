@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/christine-maurer.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/christine-maurer-",
   "facet_title": "associates",
   "facet_specializations": [
     "accounting-services",

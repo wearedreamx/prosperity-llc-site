@@ -8,7 +8,7 @@
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
   "photo": "/assets/img/personnel/beth-dezon-gaillard.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/elizabeth-dezon-gaillard-cpa-8b3276248",
   "facet_title": "senior-manager",
   "facet_specializations": [
     "tax-services"

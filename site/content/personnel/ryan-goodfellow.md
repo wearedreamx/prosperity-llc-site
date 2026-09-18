@@ -8,7 +8,7 @@
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
   "photo": "/assets/img/personnel/ryan-goodfellow.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/ryan-goodfellow",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

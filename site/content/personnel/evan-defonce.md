@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/evan-defonce.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/evan-defonce",
   "facet_title": "associates",
   "facet_specializations": [
     "transaction-advisory"

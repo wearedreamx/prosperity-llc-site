@@ -8,7 +8,7 @@
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/personnel/melvin-dsouza.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/melvin-dsouza-b9b433202",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

@@ -8,7 +8,7 @@
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/personnel/amisha-margaj.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/amisha-margaj-3b98801a7",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

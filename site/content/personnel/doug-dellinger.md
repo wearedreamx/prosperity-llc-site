@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/doug-dellinger.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/doug-dellinger",
   "facet_title": "directors",
   "facet_specializations": [],
   "date_modified": "2024-09-20T15:56:52+00:00"

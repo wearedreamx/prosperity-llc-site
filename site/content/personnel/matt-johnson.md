@@ -8,7 +8,7 @@
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
   "photo": "/assets/img/personnel/matt-johnson.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/matt-johnson-vt-cpa",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"

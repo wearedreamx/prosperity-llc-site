@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/otto-maeglin.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/otto-maeglin-946399201",
   "facet_title": "associates",
   "facet_specializations": [
     "transaction-advisory"

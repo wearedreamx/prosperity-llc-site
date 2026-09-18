@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/kelly-mcguiness.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/kelly-mcguiness-1b307b1a2",
   "facet_title": "managers",
   "facet_specializations": [
     "accounting-services"

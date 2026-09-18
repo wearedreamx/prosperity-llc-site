@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/david-maenner.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/david-maenner-coo",
   "facet_title": "partners",
   "facet_specializations": [
     "operations"

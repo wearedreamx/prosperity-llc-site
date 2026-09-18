@@ -8,7 +8,7 @@
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/personnel/jennifer-robin.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/jennifer-robin-6b85ab2a",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

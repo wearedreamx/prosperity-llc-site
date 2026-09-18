@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/dan-mcnamee.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/dan-mcnamee",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

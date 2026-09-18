@@ -8,7 +8,7 @@
   "location_name": "Kansas City",
   "location_url": "/location/kansas-city/",
   "photo": "/assets/img/personnel/susan-wilson.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/susan-wilson-cpa-767149342",
   "facet_title": "senior-manager",
   "facet_specializations": [
     "tax-services",

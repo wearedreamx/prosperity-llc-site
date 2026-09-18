@@ -8,7 +8,7 @@
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/personnel/varad-salvi.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://in.linkedin.com/in/varad-salvi-590027165",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

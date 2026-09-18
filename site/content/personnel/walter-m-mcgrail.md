@@ -8,7 +8,7 @@
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
   "photo": "/assets/img/personnel/walter-m-mcgrail.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/waltermcgrail",
   "facet_title": "partners",
   "facet_specializations": [],
   "date_modified": "2024-12-09T16:01:49+00:00"

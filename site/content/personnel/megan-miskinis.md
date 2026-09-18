@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/megan-miskinis.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/megan-miskinis",
   "facet_title": "senior-manager",
   "facet_specializations": [
     "accounting-services",

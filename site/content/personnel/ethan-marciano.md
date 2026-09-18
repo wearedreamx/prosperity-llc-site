@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/ethan-marciano.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/ethan-marciano-678a13154",
   "facet_title": "managers",
   "facet_specializations": [
     "transaction-advisory"

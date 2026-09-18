@@ -8,7 +8,7 @@
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
   "photo": "/assets/img/personnel/fern-nunes-cubelo.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/fern-nunes-cubelo-0731328",
   "facet_title": "associates",
   "facet_specializations": [
     "accounting-services"

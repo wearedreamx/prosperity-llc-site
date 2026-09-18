@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/liz-butler.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/elizabeth-white-butler",
   "facet_title": "directors",
   "facet_specializations": [
     "operations"

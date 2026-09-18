@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/lisa-pallen.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/lisapallen",
   "facet_title": "directors",
   "facet_specializations": [
     "accounting-services"

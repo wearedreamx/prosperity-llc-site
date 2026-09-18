@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/colleen-callahan.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/colleen-callahan-cpa-1739a15",
   "facet_title": "directors",
   "facet_specializations": [
     "operations"

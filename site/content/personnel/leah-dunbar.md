@@ -8,7 +8,7 @@
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/personnel/leah-dunbar.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/leah-dunbar-2362b2b4",
   "facet_title": "managers",
   "facet_specializations": [
     "accounting-services",

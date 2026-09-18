@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/max-louis.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/maxime-louis-ab5368263",
   "facet_title": "associates",
   "facet_specializations": [
     "operations"

@@ -8,7 +8,7 @@
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/personnel/mahendra-gorule.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/mahendra-gorule-476228a8",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

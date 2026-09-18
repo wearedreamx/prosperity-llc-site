@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/andrew-blusiewicz.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/blusiewicz-andrew",
   "facet_title": "associates",
   "facet_specializations": [
     "transaction-advisory"

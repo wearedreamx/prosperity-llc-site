@@ -8,7 +8,7 @@
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
   "photo": "/assets/img/personnel/lee-ann-start.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/lee-ann-start-cpa",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

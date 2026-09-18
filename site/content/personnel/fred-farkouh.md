@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/fred-farkouh.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/fredfarkouh",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"

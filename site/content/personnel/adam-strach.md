@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/adam-strach.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/adamstrach",
   "facet_title": "directors",
   "facet_specializations": [
     "transaction-advisory"

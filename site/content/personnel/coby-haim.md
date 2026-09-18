@@ -8,7 +8,7 @@
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
   "photo": "/assets/img/personnel/coby-haim.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/coby-haim-cpa-32b6363b",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"

@@ -8,7 +8,7 @@
   "location_name": "Houston",
   "location_url": "/location/houston/",
   "photo": "/assets/img/personnel/amjad-ali.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/amjad-ali-acct",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

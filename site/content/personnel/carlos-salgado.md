@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/carlos-salgado.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/carlos-salgado-cpa-cva-16390485",
   "facet_title": "managers",
   "facet_specializations": [],
   "date_modified": "2026-01-27T20:01:49+00:00"

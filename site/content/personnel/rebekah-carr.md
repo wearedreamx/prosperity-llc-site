@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/rebekah-carr.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/rebekah-carr-440a6366",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

@@ -8,7 +8,7 @@
   "location_name": "Mumbai",
   "location_url": "/location/mumbai/",
   "photo": "/assets/img/personnel/sandeep-guha.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/sandeep-guha-02176b338",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

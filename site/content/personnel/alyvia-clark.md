@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/alyvia-clark.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/alyvia-clark-cpa-mba-4139215a",
   "facet_title": "senior-manager",
   "facet_specializations": [
     "accounting-services",

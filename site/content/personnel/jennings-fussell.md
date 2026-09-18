@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/jennings-fussell.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/jennings-fussell-471a5459",
   "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2025-12-08T20:37:06+00:00"

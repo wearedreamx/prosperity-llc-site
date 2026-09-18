@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/john-rovegno.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/john-rovegno-64a42434",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

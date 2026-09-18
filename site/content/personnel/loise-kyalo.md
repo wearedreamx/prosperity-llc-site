@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
   "photo": "/assets/img/personnel/loise-kyalo.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/loiseuvinikyalo",
   "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2025-01-21T17:45:12+00:00"

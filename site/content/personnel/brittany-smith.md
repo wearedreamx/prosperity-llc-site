@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/brittany-smith.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/brittanysmith163",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

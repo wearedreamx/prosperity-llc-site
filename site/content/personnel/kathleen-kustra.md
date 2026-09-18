@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/kathleen-kustra.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/kathleenkustra",
   "facet_title": "directors",
   "facet_specializations": [
     "tax-services"

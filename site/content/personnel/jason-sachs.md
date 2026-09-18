@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/jason-sachs.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/jason-sachs-129b0358",
   "facet_title": "directors",
   "facet_specializations": [
     "operations"

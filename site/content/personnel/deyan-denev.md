@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/deyan-denev.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/deyandenevcpa",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"

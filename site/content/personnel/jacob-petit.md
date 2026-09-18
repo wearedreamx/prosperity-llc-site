@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/jacob-petit.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/jacob-petit-14191a222",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

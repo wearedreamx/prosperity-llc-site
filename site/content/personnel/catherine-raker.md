@@ -8,7 +8,7 @@
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
   "photo": "/assets/img/personnel/catherine-raker.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/catherine-raker-a89601191",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

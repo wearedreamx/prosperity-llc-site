@@ -8,7 +8,7 @@
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
   "photo": "/assets/img/personnel/james-martin.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/james-martin-cma-cia-cfe",
   "facet_title": "directors",
   "facet_specializations": [
     "tax-services"
