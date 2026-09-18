@@ -53,7 +53,9 @@
 			<label class="team-search-label" for="team-s">Search for:</label>
 			<input type="hidden" name="type" value="personnel">
 			<input class="team-search-input" placeholder="Search members" type="text" name="q" id="team-s" autocomplete="off">
+			{%- if not hideSearchButton %}
 			<input class="team-search-button" type="submit" value="Search">
+			{%- endif %}
 		</form>
 	</div>
 </div>

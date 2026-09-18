@@ -1,0 +1,31 @@
+---
+title: "Page Not Found - Prosperity Partners"
+description: "The page you're looking for doesn't exist. Find your way back to Prosperity Partners."
+permalink: "/404.html"
+layout: base.njk
+noIndex: true
+---
+{#-
+  Cloudflare Pages serves this file for any unmatched URL (its 404.html
+  convention — https://developers.cloudflare.com/pages/configuration/serving-pages/#not-found-behavior),
+  so the permalink has to be the literal /404.html rather than a directory
+  route like every other page here.
+-#}
+<section class="page-banner">
+	<div class="page-banner-content">
+		<div class="page-banner-content-container container">
+			<h1 class="page-banner-title">Page Not Found</h1>
+			<div class="content">
+				<p>The page you’re looking for doesn’t exist or may have moved.</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="content-block">
+	<div class="content-block-container container content-block-container-one">
+		<div class="content-block-content content">
+			<p><a class="button button--solid button--blue" href="/">Back to homepage</a></p>
+			<p>Or <a href="/contact-us/">get in touch</a> if you can’t find what you need.</p>
+		</div>
+	</div>
+</section>

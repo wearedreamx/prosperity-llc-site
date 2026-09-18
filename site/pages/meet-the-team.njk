@@ -24,7 +24,7 @@ layout: base.njk
     wrapper anything else leaves the filter bar flush against it. -#}
 <section class="team">
 	<div class="container">
-		{% include "team-filters.njk" %}
+		{% set hideSearchButton = true %}{% include "team-filters.njk" %}
 		<p class="team-empty" data-team-empty role="status" aria-live="polite" hidden></p>
 		{#- each person is indexed from their own /personnel/<slug>/ page; indexing
 		    the 200 cards here too would match every name query twice and rank a
