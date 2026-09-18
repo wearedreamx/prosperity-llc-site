@@ -74,6 +74,7 @@ existed*, including `zombie.md`'s wrong body, which the live site ships too.
 | Copies of the page-banner block | 9 | **1** |
 | Duplicate page slugs | 2 | **0** |
 | Pages advertising an XML sitemap that exists | no | **yes (361 URLs)** |
+| Cross-origin form targets the CSP would block | 2 | **0** |
 
 ---
 
@@ -92,6 +93,20 @@ not applied by the dev server**, so this could never fail locally. It would have
 passed every `npm start` check and shipped. A banner now says so at the top of
 the file, and `search.js`'s catch block — which previously blamed the wrong
 cause ("the index is only present in a production build") — names this one.
+
+🔴 **The same directive would have blocked both contact forms.** `form-action`
+was `'self'` only, while the build contains two cross-origin POST targets:
+`https://www.clientaxcess.com/embeddedLogin.aspx` (the embedded portal login on
+`/client-portal/`, blocked ever since `_headers` was added) and, as of `42b8195`,
+`https://api.web3forms.com/submit` — the endpoint that now replaces the
+`/api/contact` Worker README §9 Phase G planned. A blocked `form-action` is not
+a console warning: the browser cancels the navigation and the visitor gets
+nothing. Both named now.
+
+*This one was missed on the first pass.* The CSP checker compared the policy
+against the origins the build **loads** — scripts, styles, fonts, frames — and
+never looked at where its forms **post**. Corrected, and the check now covers
+`<form action>` too.
 
 🔴 **The same directive blocked both video embeds.** `frame-src` listed only
 `*.greenhouse.io` and Turnstile, so the Vimeo player on
@@ -499,6 +514,9 @@ themselves and been wrong:
   against the set of origins the build actually loads.
 - The orphan-asset check was wrong on its first run because it read only HTML
   attributes. Two live assets were on the delete list.
+- The CSP check was wrong on its first run because it compared the policy only
+  against what the build *loads*, not where its forms *post* — so it passed a
+  `form-action` that blocks both contact forms.
 
 Both are worth repeating the same way next time.
 

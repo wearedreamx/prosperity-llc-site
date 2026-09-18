@@ -39,8 +39,18 @@
   # a post ever embeds a different host, it has to be added here or it renders
   # blank in production.
   #
+  # form-action names the two cross-origin POST targets in the build. 'self'
+  # alone blocks a cross-origin submit outright — the browser cancels the
+  # navigation and the visitor gets nothing, with no local symptom, because
+  # _headers is not applied by the dev server.
+  #   api.web3forms.com     the contact form (42b8195), replacing /api/contact
+  #   www.clientaxcess.com  the embedded portal login on /client-portal/, which
+  #                         has been blocked since this file was added
+  # Any new form pointing off-site has to be added here, or it fails silently
+  # in production only.
+  #
   # media-src is spelled out rather than left to default-src because the three
   # videos in README §9.3 are going to be served from a CDN, and 'self' will
   # block them the day that base URL lands. Add the CDN origin here at the same
   # time as the <video> tags.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://boards.greenhouse.io https://*.greenhouse.io https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://*.greenhouse.io https://challenges.cloudflare.com https://player.vimeo.com https://www.youtube.com; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://boards.greenhouse.io https://*.greenhouse.io https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://*.greenhouse.io https://challenges.cloudflare.com https://player.vimeo.com https://www.youtube.com; connect-src 'self'; form-action 'self' https://api.web3forms.com https://www.clientaxcess.com; base-uri 'self'; object-src 'none'; frame-ancestors 'self'
