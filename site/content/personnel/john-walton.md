@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/john-walton.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/john-walton-cpa-ab217295/",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

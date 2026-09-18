@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/ying-chun-yee.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/tony-yee/",
   "facet_title": "associates",
   "facet_specializations": [
     "accounting-services"

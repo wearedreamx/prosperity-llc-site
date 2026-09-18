@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/joey-cuda.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/joey-cuda-cpa/",
   "facet_title": "directors",
   "facet_specializations": [
     "transaction-advisory"

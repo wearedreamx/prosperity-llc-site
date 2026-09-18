@@ -1,14 +1,14 @@
 ---json
 {
-  "slug": "howard-rosenburg",
+  "slug": "howard-rosenberg",
   "name": "Howard Rosenberg",
-  "last_name": "Rosenburg",
+  "last_name": "Rosenberg",
   "certifications": "",
   "job_title": "Manager",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "/assets/img/personnel/howard-rosenburg.jpg",
-  "linkedin_url": "",
+  "photo": "/assets/img/personnel/howard-rosenberg.jpg",
+  "linkedin_url": "https://www.linkedin.com/in/howard-rosenberg-0124a834/",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

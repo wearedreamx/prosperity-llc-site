@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/joey-mainello.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/joey-mainello-3a4585170/",
   "facet_title": "senior-manager",
   "facet_specializations": [
     "transaction-advisory"

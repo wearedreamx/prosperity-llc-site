@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/brian-hill.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/brian-hill-cpa-331b84a1/",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

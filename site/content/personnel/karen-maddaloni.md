@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/karen-maddaloni.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/karen-maddaloni-423634b9/",
   "facet_title": "directors",
   "facet_specializations": [
     "operations"

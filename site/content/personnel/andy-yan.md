@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/andy-yan.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/andy-yan-cpa-21965919/",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"

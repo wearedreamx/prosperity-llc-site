@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/brandon-ginsberg.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/brandonginsberg-/",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"
