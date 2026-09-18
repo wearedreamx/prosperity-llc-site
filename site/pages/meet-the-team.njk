@@ -1,25 +1,18 @@
 ---
-title: "Meet the Team - Prosperity Partners"
+title: "Meet the Team"
 permalink: "/meet-the-team/"
 eleventyComputed:
   description: "{{ collections.pagesBySlug['meet-the-team'].data.meta_description | safe }}"
 layout: base.njk
 ---
+{% from "page-banner.njk" import pageBanner %}
 {#- Banner copy, image and description come from the page's own record rather
     than being restated here. This template exists because the roster grid and
     its filter are not expressible as content blocks — not because the banner is
     different, and the two drifting apart was a standing hazard. -#}
 {% set record = collections.pagesBySlug["meet-the-team"] %}
-{% from "team-card.njk" import teamCard %}
-<section class="page-banner">
-	<div class="page-banner-content">
-		<div class="page-banner-content-container container">
-			<h1 class="page-banner-title">{{ record.data.banner_title }}</h1>
-			{%- if record.data.banner_description_html %}<div class="content">{{ record.data.banner_description_html | safe }}</div>{% endif %}
-		</div>
-	</div>
-	<figure class="page-banner-figure"><img src="{{ record.data.banner_image }}" alt="" class="page-banner-image" data-pagefind-meta="image[src]"></figure>
-</section>
+{% from "team-card.njk" import teamCard with context %}
+{{ pageBanner({ title: record.data.banner_title, descriptionHtml: record.data.banner_description_html, image: record.data.banner_image, thumb: true }) }}
 {#- `.team` is what carries the 4em of space under the banner; naming this
     wrapper anything else leaves the filter bar flush against it. -#}
 <section class="team">
@@ -30,7 +23,9 @@ layout: base.njk
 		    the 200 cards here too would match every name query twice and rank a
 		    directory listing alongside the actual bio -#}
 		<div class="team-container" data-pagefind-ignore>
-			{%- for person in collections.teamOrder %}{{ teamCard(person, true, true) }}{% endfor %}
+			{#- level 2: this page is the directory, so the cards are its content
+			    and sit directly under the <h1>. -#}
+			{%- for person in collections.teamOrder %}{{ teamCard(person, true, true, 2) }}{% endfor %}
 		</div>
 	</div>
 </section>

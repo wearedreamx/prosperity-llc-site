@@ -44,7 +44,10 @@ if (typeInputEl) {
 	typeInputEl.value = type;
 	typeInputEl.disabled = !type;
 }
-if (query) document.title = `Search Results for: ${query} - Prosperity Partners`;
+// The brand comes off the server-rendered title (base.njk appends it) rather
+// than being written out again here.
+const BRAND = document.title.split(" - ").slice(1).join(" - ");
+if (query) document.title = `Search Results for: ${query}${BRAND ? ` - ${BRAND}` : ""}`;
 
 /** Escape text taken from the index before it goes into innerHTML. */
 function escapeHtml(value) {
@@ -67,10 +70,13 @@ function resultCard(result) {
 	const title = escapeHtml(result.meta?.title || result.url);
 	const image = escapeHtml(result.meta?.image || FALLBACK_IMAGE);
 	return `
-	<article class="card card--search">
+	<article class="card">
 		<a class="card__link" href="${url}">
 			<figure class="card__figure">
-				<img src="${image}" alt="${title}" loading="lazy">
+				<!-- alt="" for the same reason as post-card.njk / team-card.njk: the
+				     <h3> below is inside this same <a>, so the title is already the
+				     link's accessible name. -->
+				<img src="${image}" alt="" loading="lazy">
 			</figure>
 			<div class="card__body">
 				<h3 class="card__title">${title}</h3>
@@ -100,8 +106,11 @@ async function run() {
 		pagefind = await import(/* @vite-ignore */ "/pagefind/pagefind.js");
 		await pagefind.init();
 	} catch (err) {
-		// The index is only present in a production build (npm run build), not
-		// under `npm start` — say so rather than silently showing zero results.
+		// The index is written by eleventy.config.js's `eleventy.after` hook, so
+		// it exists under `npm start` as well as `npm run build`. What this
+		// branch really catches in production is a CSP without
+		// 'wasm-unsafe-eval' — Pagefind is WebAssembly, and _headers is not
+		// applied by the dev server, so that failure is invisible locally.
 		setStatus("Search is unavailable on this build.");
 		console.error("Pagefind failed to load:", err);
 		return;

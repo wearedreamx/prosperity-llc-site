@@ -8,13 +8,23 @@
   what makes it visible at all — .team-member is opacity:0 by default — so it is
   rendered on, and JS only ever takes it away.
 
-  7 of the 200 records have no headshot. The live site falls back to a house
-  graphic at the same 550x500 as a real photo, so the card keeps its shape
-  instead of collapsing to an empty figure; dropping a real photo into the
-  record's `photo` field replaces it with no other change.
+  2 of the 200 records have no headshot (richard-lemanski, vikesh-bansal — see
+  data/missing-media.md). The live site falls back to a house graphic at the same
+  550x500 as a real photo, so the card keeps its shape instead of collapsing to
+  an empty figure; dropping a real photo into the record's `photo` field replaces
+  it with no other change.
+
+  The site-wide rule for a card figure, applied here, in post-card.njk and in
+  search.js: alt="" whenever the <img> sits inside a link whose accessible name
+  already comes from a heading in the same link. Giving the image that same text
+  does not add information, it makes a screen reader read the name twice.
 #}
-{% macro teamCard(person, withLocation = false, withLocationTerm = false) %}
-{%- set locSlug = person.data.location_url | replace("/location/", "") | replace("/", "") -%}
+{#- `level` is the card name's heading level, for the same reason post-card.njk
+    takes one: on /meet-the-team/ the cards are the page's content and sit
+    directly under the <h1>, so they are h2; on a location page they sit under
+    that page's "team" section heading, so they are h3. -#}
+{% macro teamCard(person, withLocation = false, withLocationTerm = false, level = 3) %}
+{%- set locSlug = person.data.location -%}
 <article class="team-member active{% if person.data.facet_title %} {{ person.data.facet_title }}{% endif %}{% if withLocationTerm and locSlug %} {{ locSlug }}{% endif %}{% for s in person.data.facet_specializations %} {{ s }}{% endfor %}" data-name="{{ person.data.name }}">
 	<a href="/personnel/{{ person.data.slug }}/" class="team-member-link">
 		<figure class="team-member-figure">
@@ -25,10 +35,10 @@
 			    exactly as the live site does it. That runs them into the name in
 			    the accessible name ("Jeremy Dubowcpa, mst"), so the comma goes in
 			    a visually-hidden span rather than in the visible text. -#}
-			<h3 class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="visually-hidden">, </span><span class="team-member-certs">{{ person.data.certifications }}</span>{% endif %}</h3>
+			<h{{ level }} class="team-member-name">{{ person.data.name }}{% if person.data.certifications %}<span class="visually-hidden">, </span><span class="team-member-certs">{{ person.data.certifications }}</span>{% endif %}</h{{ level }}>
 			<p class="team-member-title">{{ person.data.job_title }}</p>
 			{%- if withLocation %}
-			<p class="team-member-location">{{ person.data.location_name }}</p>
+			<p class="team-member-location">{{ collections.locationsBySlug[locSlug].data.name }}</p>
 			{%- endif %}
 		</div>
 	</a>

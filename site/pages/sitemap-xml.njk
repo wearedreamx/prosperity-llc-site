@@ -1,0 +1,25 @@
+---
+permalink: "/sitemap.xml"
+eleventyExcludeFromCollections: true
+---
+{#- The XML sitemap robots.txt has been pointing at. No layout: this is not an
+    HTML page, so it must not pick up base.njk.
+
+    The URL list lives in the sitemapUrls collection (eleventy.config.js) rather
+    than here, so that what robots.txt advertises and what /sitemap/ shows are
+    derived from the same records instead of two hand-kept lists. That is the
+    failure the human sitemap page was already fixed for.
+
+    lastmod is omitted per-URL where the record has no date_modified — an absent
+    lastmod is valid and honest; a fabricated one is worse than none. -#}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for entry in collections.sitemapUrls %}
+	<url>
+		<loc>{{ global.site_url }}{{ entry.url }}</loc>
+		{%- if entry.lastmod %}
+		<lastmod>{{ entry.lastmod | isoDate }}</lastmod>
+		{%- endif %}
+	</url>
+{%- endfor %}
+</urlset>

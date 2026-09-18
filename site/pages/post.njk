@@ -3,21 +3,18 @@ pagination:
   data: collections.posts
   size: 1
   alias: post
-permalink: "{{ post.data.category_url }}{{ post.data.slug }}/"
+permalink: "{{ post.data.category | categoryPath }}{{ post.data.slug }}/"
 eleventyComputed:
-  title: "{{ post.data.title | safe }} - Prosperity Partners"
-  description: "{{ ((post.rawInput | plainText) or (post.data.title + ' — ' + post.data.category_name + ' at Prosperity Partners')) | truncate(160) | safe }}"
+  title: "{{ post.data.title | safe }}"
+  description: "{{ ((post.rawInput | mdText | plainText) or (post.data.title + ' — ' + (post.data.category | categoryName) + ' at Prosperity Partners')) | truncate(160) | safe }}"
   ogImage: "{% if post.data.images.length %}{{ global.site_url }}{{ post.data.images[0] }}{% endif %}"
+  ogPublished: "{{ post.data.published }}"
+ogType: article
 searchType: post
 layout: base.njk
 ---
-<section class="page-banner" data-pagefind-ignore>
-	<div class="page-banner-content">
-		<div class="page-banner-container container">
-			<h2 class="page-banner-title"><a class="page-banner-title-link" href="{{ post.data.category_url }}">{{ post.data.category_name }}</a></h2>
-		</div>
-	</div>
-</section>
+{% from "page-banner.njk" import pageBanner %}
+{{ pageBanner({ parentHref: post.data.category | categoryPath, parentLabel: post.data.category | categoryName, pagefindIgnore: true }) }}
 <section class="single-post-container">
 	<div class="single-post-content-container container">
 		{#- Live runs the post's images as a Slick slideshow in this column. The
@@ -29,7 +26,16 @@ layout: base.njk
 		{%- if post.data.images.length %}
 		<div class="single-post-figures">
 			{%- for image in post.data.images %}
-			<figure class="single-post-figure"><img src="{{ image }}" alt="Prosperity Partners team members at {{ post.data.title | safe }}{% if post.data.images.length > 1 %}, photo {{ loop.index }} of {{ loop.length }}{% endif %}" class="single-post-image" loading="{{ 'eager' if loop.first else 'lazy' }}"{% if loop.first %} data-pagefind-meta="image[src]"{% endif %}></figure>
+			{#- alt is empty on purpose, and it is the least-wrong option rather
+			    than a good one. It used to read "Prosperity Partners team members
+			    at {title}", generated for all 488 images — which is false on every
+			    award, podcast and press-release post, and unverifiable on the
+			    rest: nothing in the record says what any photo shows. WCAG treats
+			    invented filler as worse than nothing, so these are marked
+			    decorative until an editor can describe them. The real fix is an
+			    alt field beside each entry in `images` when pages/ gets its CMS
+			    collection (README §6b) — tracked in the review report. -#}
+			<figure class="single-post-figure"><img src="{{ image }}" alt="" class="single-post-image" loading="{{ 'eager' if loop.first else 'lazy' }}"{% if loop.first %} data-pagefind-meta="image[src]"{% endif %}></figure>
 			{%- endfor %}
 		</div>
 		{%- endif %}

@@ -1,46 +1,43 @@
----json
-{
-  "slug": "pinstripes",
-  "title": "Pinstripes",
-  "published": "2024-05-22T17:12:10+00:00",
-  "date_modified": "2024-08-05T20:11:34+00:00",
-  "category_name": "Culture",
-  "category_url": "/culture/",
-  "images": [
-    "/assets/img/posts/pinstripes-2.jpg",
-    "/assets/img/posts/pinstripes-3.jpg",
-    "/assets/img/posts/pinstripes-4.jpg",
-    "/assets/img/posts/pinstripes-5.jpg",
-    "/assets/img/posts/pinstripes-6.jpg",
-    "/assets/img/posts/pinstripes-7.jpg",
-    "/assets/img/posts/pinstripes-8.jpg",
-    "/assets/img/posts/pinstripes-9.jpg",
-    "/assets/img/posts/pinstripes-10.jpg",
-    "/assets/img/posts/pinstripes-11.jpg",
-    "/assets/img/posts/pinstripes-12.jpg",
-    "/assets/img/posts/pinstripes-13.jpg",
-    "/assets/img/posts/pinstripes-14.jpg",
-    "/assets/img/posts/pinstripes-16.jpg",
-    "/assets/img/posts/pinstripes-17.jpg",
-    "/assets/img/posts/pinstripes-18.jpg",
-    "/assets/img/posts/pinstripes-19.jpg",
-    "/assets/img/posts/pinstripes-20.jpg",
-    "/assets/img/posts/pinstripes-21.jpg",
-    "/assets/img/posts/pinstripes-22.jpg",
-    "/assets/img/posts/pinstripes-23.jpg",
-    "/assets/img/posts/pinstripes-24.jpg",
-    "/assets/img/posts/pinstripes-25.jpg",
-    "/assets/img/posts/pinstripes-26.jpg",
-    "/assets/img/posts/pinstripes-28.jpg",
-    "/assets/img/posts/pinstripes-29.jpg",
-    "/assets/img/posts/pinstripes-30.jpg",
-    "/assets/img/posts/pinstripes-31.jpg",
-    "/assets/img/posts/pinstripes-32.jpg",
-    "/assets/img/posts/pinstripes-33.jpg",
-    "/assets/img/posts/pinstripes-34.jpg",
-    "/assets/img/posts/pinstripes-35.jpg",
-    "/assets/img/posts/pinstripes-36.jpg"
-  ]
-}
 ---
-<p>Prosperity Partners ‘spared’ no expense to celebrate a successful tax season! As we prepare to wind down and enjoy the summer, the team headed to Pinstripes for an afternoon filled with friendly competition, laughter &amp; fun! Being able to have fun and spend time with the team is just as important to us as all the hard work we put in during our busy seasons!</p>
+title: Pinstripes
+slug: pinstripes
+category: culture
+published: "2024-05-22T17:12:10+00:00"
+date_modified: "2024-08-05T20:11:34+00:00"
+images:
+  - /assets/img/posts/pinstripes-2.jpg
+  - /assets/img/posts/pinstripes-3.jpg
+  - /assets/img/posts/pinstripes-4.jpg
+  - /assets/img/posts/pinstripes-5.jpg
+  - /assets/img/posts/pinstripes-6.jpg
+  - /assets/img/posts/pinstripes-7.jpg
+  - /assets/img/posts/pinstripes-8.jpg
+  - /assets/img/posts/pinstripes-9.jpg
+  - /assets/img/posts/pinstripes-10.jpg
+  - /assets/img/posts/pinstripes-11.jpg
+  - /assets/img/posts/pinstripes-12.jpg
+  - /assets/img/posts/pinstripes-13.jpg
+  - /assets/img/posts/pinstripes-14.jpg
+  - /assets/img/posts/pinstripes-16.jpg
+  - /assets/img/posts/pinstripes-17.jpg
+  - /assets/img/posts/pinstripes-18.jpg
+  - /assets/img/posts/pinstripes-19.jpg
+  - /assets/img/posts/pinstripes-20.jpg
+  - /assets/img/posts/pinstripes-21.jpg
+  - /assets/img/posts/pinstripes-22.jpg
+  - /assets/img/posts/pinstripes-23.jpg
+  - /assets/img/posts/pinstripes-24.jpg
+  - /assets/img/posts/pinstripes-25.jpg
+  - /assets/img/posts/pinstripes-26.jpg
+  - /assets/img/posts/pinstripes-28.jpg
+  - /assets/img/posts/pinstripes-29.jpg
+  - /assets/img/posts/pinstripes-30.jpg
+  - /assets/img/posts/pinstripes-31.jpg
+  - /assets/img/posts/pinstripes-32.jpg
+  - /assets/img/posts/pinstripes-33.jpg
+  - /assets/img/posts/pinstripes-34.jpg
+  - /assets/img/posts/pinstripes-35.jpg
+  - /assets/img/posts/pinstripes-36.jpg
+---
+
+Prosperity Partners ‘spared’ no expense to celebrate a successful tax season! As we prepare to wind down and enjoy the summer, the team headed to Pinstripes for an afternoon filled with friendly competition, laughter & fun! Being able to have fun and spend time with the team is just as important to us as all the hard work we put in during our busy seasons!

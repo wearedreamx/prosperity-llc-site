@@ -4,7 +4,7 @@
   "path": "/contact-us/thank-you/",
   "page_type": "page",
   "status": "publish",
-  "title": "Thank You for Contacting Us %%page%%",
+  "title": "Thank You for Contacting Us",
   "meta_description": "Thank you for reaching out to Prosperity LLC. Our team will get back to you shortly to address your financial needs.",
   "banner_title": "Thank You",
   "banner_description_html": "",

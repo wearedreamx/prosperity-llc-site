@@ -1,23 +1,22 @@
 ---
 permalink: "/sitemap/"
 layout: base.njk
+# Kept out of the Pagefind index for the same reason culture.njk and
+# whats-new.njk are (base.njk explains the mechanism): this page holds the title
+# of every page, post and location on the site, so it matched almost any query
+# and outranked the record the searcher actually wanted.
+noIndex: true
 eleventyComputed:
   title: "{{ collections.pagesBySlug['sitemap'].data.title | safe }}"
   description: "Every page, post and office on the Prosperity Partners site."
 ---
+{% from "page-banner.njk" import pageBanner %}
 {#- The old site built this list with a CMS plugin, so the import captured no
     content for the record — the page rendered as a banner with no links, while
     being linked from the footer of all 373 pages. It is derived from the
     collections now, mirroring the live page's three sections. -#}
 {% set record = collections.pagesBySlug["sitemap"] %}
-<section class="page-banner">
-	<div class="page-banner-content">
-		<div class="page-banner-content-container container">
-			<h1 class="page-banner-title">{{ record.data.banner_title }}</h1>
-		</div>
-	</div>
-	{%- if record.data.banner_image %}<figure class="page-banner-figure"><img src="{{ record.data.banner_image }}" alt="" class="page-banner-image"></figure>{% endif %}
-</section>
+{{ pageBanner({ title: record.data.banner_title, image: record.data.banner_image }) }}
 <section class="content-block">
 	<div class="content-block-container container content-block-container-one">
 		<div class="content-block-content content">
@@ -38,16 +37,19 @@ eleventyComputed:
 			</ul>
 
 			<h2>Posts by category</h2>
-			<h3><a href="/culture/">Culture</a></h3>
+			{#- Path and label come from data/post-categories.json via the filters,
+			    not written out here — that file exists so the archive path and the
+			    display name cannot drift from what the post links use. -#}
+			<h3><a href="{{ 'culture' | categoryPath }}">{{ 'culture' | categoryName }}</a></h3>
 			<ul class="sitemap-list">
 				{%- for post in collections.culturePosts %}
-				<li><a href="{{ post.data.category_url }}{{ post.data.slug }}/">{{ post.data.title | safe }}</a></li>
+				<li><a href="{{ post.data.category | categoryPath }}{{ post.data.slug }}/">{{ post.data.title }}</a></li>
 				{%- endfor %}
 			</ul>
-			<h3><a href="/whats-new/">What's New</a></h3>
+			<h3><a href="{{ 'whats-new' | categoryPath }}">{{ 'whats-new' | categoryName }}</a></h3>
 			<ul class="sitemap-list">
 				{%- for post in collections.whatsNewPosts %}
-				<li><a href="{{ post.data.category_url }}{{ post.data.slug }}/">{{ post.data.title | safe }}</a></li>
+				<li><a href="{{ post.data.category | categoryPath }}{{ post.data.slug }}/">{{ post.data.title }}</a></li>
 				{%- endfor %}
 			</ul>
 

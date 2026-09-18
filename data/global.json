@@ -1,6 +1,5 @@
 {
   "site_url": "https://www.prosperityllc.com",
-
   "_comment_turnstile": "Cloudflare Turnstile site key for the contact forms. The site key is public (it ships in the HTML) — the SECRET key is not, and belongs in Cloudflare Worker secrets, never here. While this holds the placeholder below, base.njk does not load the widget script: a placeholder key renders a visible error widget rather than a challenge. See README section 9 Phase G.",
   "turnstile_site_key": "TURNSTILE_SITE_KEY",
   "site_name": "Prosperity Partners",
@@ -11,88 +10,6 @@
   "email": "info@prosperityllc.com",
   "linkedin_url": "https://www.linkedin.com/company/prosperity-partners-tax",
   "non_attest_note": "*Indicates location as NDH Advisors office providing non-attest services only.",
-  "footer_locations": [
-    {
-      "url": "/location/burlington/",
-      "name": "Burlington",
-      "address_html": "41 Rye Circle<br>\nPO Box 2166<br>\nSouth Burlington, VT 05407",
-      "phone": "(802) 383-0399",
-      "tel": "+18023830399",
-      "non_attest": false
-    },
-    {
-      "url": "/location/chicago/",
-      "name": "Chicago",
-      "address_html": "225 W Washington Street <br>\nSuite 2600<br>\nChicago, IL 60606",
-      "phone": "(312) 461-0514",
-      "tel": "+13124610514",
-      "non_attest": false
-    },
-    {
-      "url": "/location/detroit/",
-      "name": "Detroit",
-      "address_html": "4111 Andover Road<br>\nWest Third Floor<br>\nBloomfield Hills, MI 48302",
-      "phone": "(866) 717-1607",
-      "tel": "+18667171607",
-      "non_attest": false
-    },
-    {
-      "url": "/location/houston/",
-      "name": "Houston",
-      "address_html": "77 Sugar Creek Center Blvd<br>\nSuite 410<br>\nSugar Land, TX 77478",
-      "phone": "(281) 242-2420",
-      "tel": "+12812422420",
-      "non_attest": true
-    },
-    {
-      "url": "/location/iselin/",
-      "name": "Iselin",
-      "address_html": "555 US Highway 1<br>\nIselin, NJ  08830",
-      "phone": "",
-      "tel": "",
-      "non_attest": false
-    },
-    {
-      "url": "/location/kansas-city/",
-      "name": "Kansas City",
-      "address_html": "11300 Tomahawk Creek Pkwy<br>\nSuite 310<br>\nLeawood, KS 66211",
-      "phone": "(913) 647-9750",
-      "tel": "+19136479750",
-      "non_attest": true
-    },
-    {
-      "url": "/location/new-york-city/",
-      "name": "New York City",
-      "address_html": "575 Madison Avenue<br>\nFloor 14<br>\nNew York, NY 10022",
-      "phone": "",
-      "tel": "",
-      "non_attest": false
-    },
-    {
-      "url": "/location/santa-barbara/",
-      "name": "Santa Barbara",
-      "address_html": "200 E. Carrillo St<br>\nSuite 300<br>\nSanta Barbara, CA  93101",
-      "phone": "(805) 962-9175",
-      "tel": "+18059629175",
-      "non_attest": false
-    },
-    {
-      "url": "/location/washington-dc/",
-      "name": "Washington DC – Tax",
-      "address_html": "6000 Executive Blvd<br>\nSuite 520<br>\nRockville, MD 20852",
-      "phone": "(301) 881-4244",
-      "tel": "+13018814244",
-      "non_attest": true
-    },
-    {
-      "url": "/location/washington-dc-transaction-advisory/",
-      "name": "Washington DC – Transaction Advisory",
-      "address_html": "1900 Gallows Road<br>\nSuite 200 <br>\nVienna, VA 22182",
-      "phone": "",
-      "tel": "",
-      "non_attest": true
-    }
-  ],
   "footer_disclaimer_html": "<p><strong>Firm Structure Disclosure</strong><br>\nProsperity Partners operates through separate legal entities.&nbsp;<strong>NDH Advisors LLC</strong>, doing business as&nbsp;<strong>Prosperity Partners</strong>, provides tax, accounting, and advisory services.&nbsp;<strong>NDH CPA LLP</strong>, doing business as&nbsp;<strong>Prosperity Partners CPA</strong>, is a licensed public accounting firm that provides attest services, including audits and reviews.</p>\n<p>Prosperity Partners is a trade name of NDH Advisors LLC. NDH Advisors LLC is a Delaware limited liability company.</p>",
   "footer_copyright_html": "<p style=\"text-align: center;\">© Prosperity Partners. All Rights Reserved. Designed by <a href=\"https://www.wearedreamx.com/\" target=\"_blank\" rel=\"noopener\">DREAM X</a> | <a href=\"/sitemap/\">Sitemap</a></p>"
 }

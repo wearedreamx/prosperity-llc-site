@@ -9,20 +9,47 @@
 	    so an un-`safe`d value gets escaped once on the way in and again here —
 	    which is what turned every "Tax & Advisory" into "Tax &amp; Advisory" on
 	    screen). Here the value is raw, so normal autoescaping is correct. -#}
-	<title>{{ title }}</title>
-	<meta name="description" content="{{ description }}">
-	{#- Every page gets a canonical. It used to be emitted unconditionally from a
-	    `canonicalUrl` that only four templates set, so 327 of 373 pages shipped
-	    href="" — invalid, and resolved inconsistently by crawlers. Falling back
-	    to the page's own URL means a new template cannot reintroduce that. -#}
-	<link rel="canonical" href="{{ canonicalUrl or (global.site_url + page.url) }}">
+	{#- The brand is appended here, once, instead of being written into every
+	    title. It used to be hardcoded as " - Prosperity Partners" in nine
+	    templates (index.njk used " | ") and baked into 41 of the 55 page
+	    records — so the 14 records without it shipped bare titles, and the
+	    firm's name lived in 50 places.
 
-	<meta property="og:type" content="website">
+	    The test is containment rather than a per-template opt-out flag: a title
+	    that already names the firm (the homepage's
+	    "Prosperity Partners | Accounting, Tax & Sage Intacct Solutions", or
+	    home.md's "Prosperity Partners LLC") is left exactly as written. -#}
+	<title>{{ title }}{% if global.site_name not in title %} - {{ global.site_name }}{% endif %}</title>
+	<meta name="description" content="{{ description }}">
+	{#- Every page's canonical is derived from its own URL — no template sets one.
+	    It used to be emitted from a `canonicalUrl` that only four templates set,
+	    so 327 of 373 pages shipped href="", which is invalid and resolved
+	    inconsistently by crawlers. Two templates went on setting it by hand to
+	    exactly what this produces, with the domain written out a second time;
+	    deriving it here means a new template cannot reintroduce either. -#}
+	<link rel="canonical" href="{{ global.site_url + page.url }}">
+	{#- The archives render visible Newer/Older links but emitted no relation in
+	    <head>, so nothing told a crawler that /culture/page/2/ is a continuation
+	    of /culture/ rather than a separate page with the same subject. -#}
+	{%- if pagination.href.previous %}
+	<link rel="prev" href="{{ global.site_url }}{{ pagination.href.previous }}">
+	{%- endif %}
+	{%- if pagination.href.next %}
+	<link rel="next" href="{{ global.site_url }}{{ pagination.href.next }}">
+	{%- endif %}
+
+	{#- article for a post, profile for a person, website for everything else.
+	    All 374 pages used to say website, including the 104 posts that carry a
+	    publication date the filters below already know how to format. -#}
+	<meta property="og:type" content="{{ ogType or 'website' }}">
 	<meta property="og:site_name" content="{{ global.site_name }}">
-	<meta property="og:title" content="{{ ogTitle or title }}">
+	<meta property="og:title" content="{{ title }}">
 	<meta property="og:description" content="{{ ogDescription or description }}">
-	<meta property="og:url" content="{{ canonicalUrl or (global.site_url + page.url) }}">
+	<meta property="og:url" content="{{ global.site_url + page.url }}">
 	<meta property="og:image" content="{{ ogImage or (global.site_url + '/assets/video/home-poster.jpg') }}">
+	{%- if ogPublished %}
+	<meta property="article:published_time" content="{{ ogPublished }}">
+	{%- endif %}
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

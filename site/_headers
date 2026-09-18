@@ -5,8 +5,15 @@
 # The site is static: no cookies, no sessions, no authenticated state. These
 # headers exist to constrain what a page is allowed to load and how much
 # referrer data leaves the site — cheap here, because the only third-party
-# origins are Google Fonts, the Greenhouse job board on /careers/, and
-# Cloudflare Turnstile once the form Worker ships (README §9 Phase G).
+# origins are Google Fonts, the Greenhouse job board on /careers/, Vimeo and
+# YouTube on the two posts that embed a video, and Cloudflare Turnstile once
+# the form Worker ships (README §9 Phase G).
+#
+# NOTHING IN THIS FILE IS EXERCISED BY `npm start`. Cloudflare Pages applies
+# _headers; the dev server does not. Every directive below can therefore pass
+# locally and fail in production, so any change here has to be checked against
+# what the build actually loads, not against a working preview. The three
+# entries that were missing were found exactly that way.
 
 /*
   X-Content-Type-Options: nosniff
@@ -16,6 +23,24 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   # script-src needs 'unsafe-inline' for the Greenhouse loader on /careers/,
   # which is an inline <script> in site/pages/page.njk. Tighten it to a hash or
-  # nonce if that ever moves into a file. frame-src covers the iframe the
-  # Greenhouse loader injects and the Turnstile challenge widget.
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://boards.greenhouse.io https://*.greenhouse.io https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://*.greenhouse.io https://challenges.cloudflare.com; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'
+  # nonce if that ever moves into a file.
+  #
+  # 'wasm-unsafe-eval' is what lets /search/ work at all: Pagefind's index is a
+  # WebAssembly module (_site/pagefind/wasm.*.pagefind), and Chromium refuses
+  # WebAssembly.instantiate unless script-src allows it. Without this, every
+  # search on the deployed site fails with search.js's "Search is unavailable
+  # on this build." — and never once fails locally, because _headers is not
+  # applied by the dev server.
+  #
+  # frame-src covers four things: the iframe the Greenhouse loader injects, the
+  # Turnstile challenge widget, the Vimeo player on
+  # /whats-new/ppp-loan-forgiveness/ and the YouTube embed on
+  # /culture/team-j-or-a/. Those last two are the only <iframe>s in content; if
+  # a post ever embeds a different host, it has to be added here or it renders
+  # blank in production.
+  #
+  # media-src is spelled out rather than left to default-src because the three
+  # videos in README §9.3 are going to be served from a CDN, and 'self' will
+  # block them the day that base URL lands. Add the CDN origin here at the same
+  # time as the <video> tags.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://boards.greenhouse.io https://*.greenhouse.io https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; frame-src https://*.greenhouse.io https://challenges.cloudflare.com https://player.vimeo.com https://www.youtube.com; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'

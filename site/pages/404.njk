@@ -1,26 +1,18 @@
 ---
-title: "Page Not Found - Prosperity Partners"
+title: "Page Not Found"
 description: "The page you're looking for doesn't exist. Find your way back to Prosperity Partners."
 permalink: "/404.html"
 layout: base.njk
 noIndex: true
 ---
+{% from "page-banner.njk" import pageBanner %}
 {#-
   Cloudflare Pages serves this file for any unmatched URL (its 404.html
   convention — https://developers.cloudflare.com/pages/configuration/serving-pages/#not-found-behavior),
   so the permalink has to be the literal /404.html rather than a directory
   route like every other page here.
 -#}
-<section class="page-banner">
-	<div class="page-banner-content">
-		<div class="page-banner-content-container container">
-			<h1 class="page-banner-title">Page Not Found</h1>
-			<div class="content">
-				<p>The page you’re looking for doesn’t exist or may have moved.</p>
-			</div>
-		</div>
-	</div>
-</section>
+{{ pageBanner({ title: "Page Not Found", description: "The page you’re looking for doesn’t exist or may have moved." }) }}
 <section class="content-block">
 	<div class="content-block-container container content-block-container-one">
 		<div class="content-block-content content">

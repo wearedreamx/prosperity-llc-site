@@ -73,6 +73,34 @@ module.exports = function (eleventyConfig) {
 			.replace(/\s+/g, " ")
 			.trim()
 	);
+	// Post and personnel bodies are Markdown (§6a), and their <meta description>
+	// is derived from the raw body rather than the rendered HTML — so the syntax
+	// has to come off first or "**EXPERTISE:**" lands in the search snippet.
+	eleventyConfig.addFilter("mdText", (markdown) =>
+		String(markdown || "")
+			.replace(/^\s{0,3}#{1,6}\s+/gm, "")
+			.replace(/^\s{0,3}(?:[-*+]|\d+[.)])\s+/gm, "")
+			.replace(/^\s{0,3}>\s?/gm, "")
+			.replace(/!?\[([^\]]*)\]\([^)]*\)/g, "$1")
+			.replace(/(\*\*|__)(.*?)\1/g, "$2")
+			.replace(/(?<![\w\\])[*_](\S(?:.*?\S)?)[*_](?!\w)/g, "$1")
+			.replace(/`([^`]*)`/g, "$1")
+			.replace(/\\([\\`*_{}\[\]()#+\-.!>])/g, "$1")
+	);
+
+	// A location's address is stored as plain lines (§6b) rather than the markup
+	// the import carried, so an editor types an address instead of typing <br>.
+	// The line break is the only formatting an address has, so it is put back
+	// here rather than left to CSS.
+	const ESCAPE = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+	eleventyConfig.addFilter("addressLines", (address) =>
+		String(address || "")
+			.split("\n")
+			.map((line) => line.trim().replace(/[&<>"']/g, (c) => ESCAPE[c]))
+			.filter(Boolean)
+			.join("<br>\n")
+	);
+
 	// A page's prose lives in blocks[].html, and the first block is sometimes an
 	// empty wrapper, so a description derived from blocks[0] alone comes out
 	// blank. Concatenating them lets the fallback chain find real copy.
@@ -115,30 +143,93 @@ module.exports = function (eleventyConfig) {
 	// nothing. See site/_data/global.js for the same reasoning.
 	const readData = (name) =>
 		JSON.parse(fs.readFileSync(path.join(__dirname, "data", name), "utf8"));
+
+	// A post record carries only `category` — the slug. Its archive path and
+	// display name come from data/post-categories.json, so the three cannot
+	// drift apart the way the old category_name/category_url pair could, and the
+	// CMS has one field to edit instead of two that must agree.
+	// Cached for the length of one build and dropped before the next: the two
+	// filters below run once per post link — ~2,100 times — and re-reading the
+	// file each time cost 14% of the build, while caching outright would make a
+	// watch-triggered rebuild use the pre-edit contents.
+	let categories = null;
+	eleventyConfig.on("eleventy.before", () => { categories = null; });
+	const category = (slug) => {
+		categories = categories || readData("post-categories.json").categories;
+		return categories.find((c) => c.slug === slug);
+	};
+	eleventyConfig.addFilter("categoryPath", (slug) => category(slug)?.path || "/");
+	eleventyConfig.addFilter("categoryName", (slug) => category(slug)?.name || "");
+
+	// Markdown is rendered for posts/ and personnel/ only (their .11tydata.js
+	// sets templateEngineOverride: "md"); pages/ and locations/ still carry HTML.
+	eleventyConfig.amendLibrary("md", (md) => {
+		// The imported bodies use <br> for a line break inside a paragraph, which
+		// Markdown spells as a bare newline — but only with breaks:true. Without
+		// it every one of those breaks silently becomes a space.
+		md.set({ breaks: true });
+		// Markdown link syntax cannot carry target/rel, and the old records set
+		// them inconsistently (4 external links had neither, 7 mailto links had
+		// both). Deriving them from the href makes it uniform and means an editor
+		// writes a plain link and still gets the right behaviour.
+		const renderLink = md.renderer.rules.link_open
+			|| ((tokens, i, options, env, self) => self.renderToken(tokens, i, options));
+		md.renderer.rules.link_open = (tokens, i, options, env, self) => {
+			if (/^https?:\/\//i.test(tokens[i].attrGet("href") || "")) {
+				tokens[i].attrSet("target", "_blank");
+				tokens[i].attrSet("rel", "noopener");
+			}
+			return renderLink(tokens, i, options, env, self);
+		};
+	});
+
 	const formEnv = new nunjucks.Environment(
 		new nunjucks.FileSystemLoader(path.join(__dirname, "site", "_includes"))
 	);
+	// NOTE: formEnv is a plain Nunjucks environment, outside Eleventy — none of
+	// the filters registered above exist in it. contact-form.njk uses none today,
+	// which is the only reason this works; the first filter added to that file
+	// will render correctly inside cta.njk (Eleventy's environment) and throw
+	// "filter not found" here. Register it on formEnv too, or keep the form
+	// filter-free.
+	//
 	// idPrefix keeps element ids unique when a page renders both an embedded form
 	// and the site-wide CTA form: without it both used cf-first/cf-last/... and
 	// the second form's <label for> pointed at the first form's fields.
+	//
+	// data-pagefind-ignore mirrors cta.njk: the form is chrome, and without it
+	// "First name", "Message" and "Send Message" were indexed as page content on
+	// every page carrying an embedded form.
+	//
+	// global is read once per build and dropped on eleventy.before, the same
+	// arrangement as the category cache above. It used to be a fresh readFileSync
+	// + JSON.parse inside this replace callback — i.e. once per placeholder.
+	let formGlobal = null;
+	eleventyConfig.on("eleventy.before", () => { formGlobal = null; });
 	eleventyConfig.addFilter("injectContactForm", (html) => {
 		let n = 0;
 		return html.replace(
 			/<div class="cta-form-placeholder"(?: data-form-variant="(\w+)")?><\/div>/g,
-			(_match, formVariant) =>
-				formEnv.render("contact-form.njk", {
+			(_match, formVariant) => {
+				formGlobal = formGlobal || readData("global.json");
+				const form = formEnv.render("contact-form.njk", {
 					formVariant,
 					idPrefix: `cf-embed-${++n}`,
-					global: readData("global.json"),
-				})
+					global: formGlobal,
+				});
+				return `<div data-pagefind-ignore>${form}</div>`;
+			}
 		);
 	});
 
 	// Content lives one file per record under site/content/<type>/*.md —
 	// personnel/posts/locations/pages are auto-tagged via
 	// each folder's <type>.11tydata.js, so `collections.personnel` etc. already
-	// exist. These derived collections replicate what the old flat
-	// data/*.json + site/_data/*.js wrappers used to filter/sort in memory.
+	// exist. These derived collections do the filtering and sorting that the
+	// templates would otherwise repeat inline. site/_data/global.js and
+	// site/_data/teamFilters.js are still live alongside them and do a different
+	// job: they are the bridge that puts data/*.json into template scope, which
+	// Eleventy will not do on its own because data/ sits outside dir.input.
 	// /meet-the-team/ order must match the live site: a pinned leadership block
 	// first, then everyone else by last name. The pinned ids live in
 	// data/team-pinned.json. Sorting on the record's own last_name field rather
@@ -165,7 +256,7 @@ module.exports = function (eleventyConfig) {
 	// then everyone else at that office by last name.
 	eleventyConfig.addCollection("personnelByLocation", (api) => {
 		const pinnedByLocation = readData("team-pinned.json").byLocation || {};
-		const slugOf = (p) => (p.data.location_url || "").replace("/location/", "").replace(/\//g, "");
+		const slugOf = (p) => p.data.location || "";
 		const cmp = (a, b) =>
 			(a.data.last_name || "").localeCompare(b.data.last_name || "") ||
 			(a.data.name || "").localeCompare(b.data.name || "");
@@ -185,23 +276,50 @@ module.exports = function (eleventyConfig) {
 		return grouped;
 	});
 
-	// Page records keyed by slug. The two hand-built templates (index.njk,
-	// meet-the-team.njk) render pages whose records exist but sit outside
-	// `genericPages`, and Nunjucks has no selectattr to look one up inline.
-	// Without this they restated their record's banner copy and metadata inline
-	// and the two drifted apart.
+	// Page records keyed by slug, for the hand-built templates whose records sit
+	// outside `genericPages` (Nunjucks has no selectattr to look one up inline).
+	// meet-the-team.njk and sitemap.njk read their banner copy and metadata
+	// through it rather than restating them.
+	//
+	// index.njk does NOT: it hardcodes the homepage, and home.md's seven blocks
+	// are rendered by nothing. That is README §11's open decision, not an
+	// oversight here — but it is why /assets/img/pages/home.jpg is an orphan.
+	//
+	// Keyed by slug, so a duplicate slug silently drops the earlier record.
+	// There were two such collisions (valuation-services,
+	// transaction-advisory-services); a nested page now qualifies its slug with
+	// its parent when the bare leaf name belongs to a top-level page.
 	eleventyConfig.addCollection("pagesBySlug", (api) =>
 		Object.fromEntries(api.getFilteredByTag("pages").map((p) => [p.data.slug, p]))
 	);
 
+	// Location records keyed by slug, so a personnel record's `location` slug can
+	// be resolved to that office's display name and page without the record
+	// restating either (team-card.njk, personnel.njk).
+	eleventyConfig.addCollection("locationsBySlug", (api) =>
+		Object.fromEntries(api.getFilteredByTag("locations").map((l) => [l.data.slug, l]))
+	);
+
+	// The offices listed in the site footer, in display-name order — which is the
+	// order the old hand-maintained data/global.json footer_locations[] was in,
+	// and not filename order (that puts "Washington DC – Transaction Advisory"
+	// ahead of "Washington DC – Tax"). `in_footer` is what keeps Mumbai out, as
+	// it was before: it is a working office with a locations record and a roster,
+	// but no postal address to print.
+	eleventyConfig.addCollection("footerLocations", (api) =>
+		api.getFilteredByTag("locations")
+			.filter((l) => l.data.in_footer)
+			.sort((a, b) => (a.data.name || "").localeCompare(b.data.name || ""))
+	);
+
 	eleventyConfig.addCollection("culturePosts", (api) =>
 		api.getFilteredByTag("posts")
-			.filter((p) => p.data.category_name === "Culture")
+			.filter((p) => p.data.category === "culture")
 			.sort((a, b) => (a.data.published < b.data.published ? 1 : -1))
 	);
 	eleventyConfig.addCollection("whatsNewPosts", (api) =>
 		api.getFilteredByTag("posts")
-			.filter((p) => p.data.category_name === "What's New")
+			.filter((p) => p.data.category === "whats-new")
 			.sort((a, b) => (a.data.published < b.data.published ? 1 : -1))
 	);
 	eleventyConfig.addCollection("recentPosts", (api) =>
@@ -238,7 +356,10 @@ module.exports = function (eleventyConfig) {
 			.getFilteredByTag("pages")
 			.filter((p) => (p.data.status || "publish") === "publish")
 			.filter((p) => GENERIC_PAGE_TYPES.has(p.data.page_type) || BESPOKE_PAGES.has(p.data.slug))
-			.filter((p) => p.data.path && p.data.path !== "/")
+			// Home is the "Home" link the template hardcodes above the loop, and
+			// a sitemap listing itself is noise on the one page nobody reaches by
+			// browsing. Both are still in /sitemap.xml, which crawlers do read.
+			.filter((p) => p.data.path && p.data.path !== "/" && p.data.slug !== "sitemap")
 			.map((p) => ({
 				url: p.data.path,
 				title: p.data.banner_title || p.data.title,
@@ -256,6 +377,44 @@ module.exports = function (eleventyConfig) {
 			else top.push(byUrl.get(p.url));
 		}
 		return top;
+	});
+
+	// The flat list behind /sitemap.xml. robots.txt has advertised that file
+	// since the redirects landed, but nothing ever generated it, so the line
+	// pointed at a 404 (README §9 Phase H listed it as outstanding).
+	//
+	// Deliberately a second collection rather than a reshape of sitemapPages:
+	// that one is nested by path depth because the human page renders it as a
+	// tree, and it drops date_modified on the way. This one is flat and carries
+	// a lastmod, which is the only thing in the build that reads date_modified —
+	// every one of the 370 records has carried that field since the import and
+	// until now nothing consumed it.
+	//
+	// What is excluded, and why: /search/ (a distinct URL per query, already
+	// Disallow'd in robots.txt), 404, and the paginated archive pages
+	// (/culture/page/2/ …), which are navigation over the posts rather than
+	// content of their own — the posts themselves are all listed individually.
+	eleventyConfig.addCollection("sitemapUrls", (api) => {
+		const entry = (url, lastmod) => ({ url, lastmod: lastmod || "" });
+		const urls = [entry("/")];
+		for (const p of api.getFilteredByTag("pages")) {
+			if ((p.data.status || "publish") !== "publish") continue;
+			if (!GENERIC_PAGE_TYPES.has(p.data.page_type) && !BESPOKE_PAGES.has(p.data.slug)) continue;
+			if (!p.data.path || p.data.path === "/") continue;
+			urls.push(entry(p.data.path, p.data.date_modified));
+		}
+		urls.push(entry("/culture/"), entry("/whats-new/"));
+		for (const post of api.getFilteredByTag("posts")) {
+			const cat = category(post.data.category);
+			if (cat) urls.push(entry(`${cat.path}${post.data.slug}/`, post.data.date_modified));
+		}
+		for (const loc of api.getFilteredByTag("locations")) {
+			urls.push(entry(`/location/${loc.data.slug}/`, loc.data.date_modified));
+		}
+		for (const person of api.getFilteredByTag("personnel")) {
+			urls.push(entry(`/personnel/${person.data.slug}/`, person.data.date_modified));
+		}
+		return urls.sort((a, b) => a.url.localeCompare(b.url));
 	});
 
 	// Pagefind builds its index by reading the *output* HTML, so it has to run

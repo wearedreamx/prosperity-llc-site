@@ -7,24 +7,33 @@
   hand-picked images, which is how two of them ended up pointing at posts that
   do not exist (the import dropped the records but kept their images).
 
-  `withExcerpt` is the only difference between the homepage and archive copies:
-  the homepage shows a lead-in and animates the figure in, the archives show
-  only "Read More". The excerpt is derived from the post body rather than
-  written out, so it cannot drift from the record.
+  `withExcerpt` adds the lead-in sentence and the fade-in on the figure. Both
+  the homepage and the archives pass true; it is off only where a caller wants
+  the bare card. The excerpt is derived from the post body rather than written
+  out, so it cannot drift from the record.
 #}
-{% macro postCard(post, withExcerpt = false) %}
+{#- `level` is the card title's heading level. It is a parameter because the two
+    callers sit at different depths: on an archive the cards are the page's own
+    top-level content, directly under the <h1>, so they are h2; on the homepage
+    they sit under a "Culture" / "What's New" section <h2>, so they are h3.
+    Hardcoding h3 made every archive page's outline skip a level. -#}
+{% macro postCard(post, withExcerpt = false, level = 3) %}
 <article class="card">
-	<a class="card__link" href="{{ post.data.category_url }}{{ post.data.slug }}/">
+	<a class="card__link" href="{{ post.data.category | categoryPath }}{{ post.data.slug }}/">
 		{%- if post.data.images.length %}
 		<figure class="card__figure{% if withExcerpt %} reveal reveal--fade{% endif %}">
-			<img src="{{ post.data.images[0] }}" alt="{{ post.data.title | safe }}" loading="lazy">
+			{#- alt="" to match team-card.njk: the <h3> six lines down is inside this
+		    same <a>, so repeating the title here had every card announce its name
+		    twice. The `| safe` that was on it also emitted unescaped content into
+		    an attribute — a title containing a quote would have broken out of it. -#}
+		<img src="{{ post.data.images[0] }}" alt="" loading="lazy">
 		</figure>
 		{%- endif %}
 		<div class="card__body">
 			{%- if post.data.published %}
 			<time class="card__date" datetime="{{ post.data.published | isoDate }}">{{ post.data.published | longDate }}</time>
 			{%- endif %}
-			<h3 class="card__title">{{ post.data.title | safe }}</h3>
+			<h{{ level }} class="card__title">{{ post.data.title }}</h{{ level }}>
 			<p class="card__excerpt">{% if withExcerpt %}{{ post.content | plainText | truncate(150) }} {% endif %}<span class="card__more">Read More</span></p>
 		</div>
 	</a>

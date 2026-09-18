@@ -14,15 +14,8 @@ eleventyComputed:
   ogImage: "{% if pageItem.data.banner_image %}{{ global.site_url }}{{ pageItem.data.banner_image }}{% endif %}"
 layout: base.njk
 ---
-<section class="page-banner">
-	<div class="page-banner-content">
-		<div class="page-banner-content-container container">
-			{% if pageItem.data.banner_title %}<h1 class="page-banner-title">{{ pageItem.data.banner_title | safe }}</h1>{% endif %}
-			{% if pageItem.data.banner_description_html %}<div class="content">{{ pageItem.data.banner_description_html | safe }}</div>{% endif %}
-		</div>
-	</div>
-	{% if pageItem.data.banner_image %}<figure class="page-banner-figure"><img src="{{ pageItem.data.banner_image }}" alt="" class="page-banner-image" data-pagefind-meta="image[src]"></figure>{% endif %}
-</section>
+{% from "page-banner.njk" import pageBanner %}
+{{ pageBanner({ title: pageItem.data.banner_title, descriptionHtml: pageItem.data.banner_description_html, image: pageItem.data.banner_image, thumb: true }) }}
 
 {% set blocks = pageItem.data.blocks %}
 {% include "content-blocks.njk" %}

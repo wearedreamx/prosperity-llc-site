@@ -5,26 +5,22 @@ pagination:
   alias: location
 permalink: "/location/{{ location.data.slug }}/"
 eleventyComputed:
-  title: "{{ location.data.name | safe }} - Prosperity Partners"
-  description: "{{ ('Prosperity Partners in ' + location.data.name + '. ' + (location.rawInput | plainText)) | truncate(160) | safe }}"
+  title: "{{ location.data.name | safe }}"
+  description: "{{ ('Prosperity Partners in ' + location.data.name + '. ' + (location.rawInput | mdText | plainText)) | truncate(160) | safe }}"
+  ogImage: "{% if location.data.banner_image %}{{ global.site_url }}{{ location.data.banner_image }}{% endif %}"
 searchType: location
 layout: base.njk
 ---
-{% from "team-card.njk" import teamCard %}
-{%- if location.data.banner_image %}
-<section class="page-banner">
-	<div class="page-banner-content">
-		<div class="page-banner-container container"></div>
-	</div>
-	<figure class="page-banner-figure"><img src="{{ location.data.banner_image }}" alt="" class="page-banner-image" data-pagefind-meta="image[src]"></figure>
-</section>
-{%- endif %}
+{% from "page-banner.njk" import pageBanner %}
+{% from "team-card.njk" import teamCard with context %}
+{% from "office-address.njk" import officeAddress %}
+{{ pageBanner({ image: location.data.banner_image, thumb: true }) }}
 <section class="single-location-container">
 	<div class="container">
 		<div class="single-location-top">
 			<div class="single-location-address">
 				<h1 class="single-location-title">{{ location.data.name }}</h1>
-				<address>{{ location.data.address_html | safe }}</address>
+				{{ officeAddress(location.data) }}
 			</div>
 			<div class="single-location-content content">
 				{{ location.content | safe }}
@@ -32,6 +28,12 @@ layout: base.njk
 		</div>
 		{%- set team = collections.personnelByLocation[location.data.slug] %}
 		{%- if team %}
+		{#- The roster is a section of the location page, not the page itself
+		    (unlike /meet-the-team/), so it gets its own heading and the cards stay
+		    h3 beneath it. Without this the page ran h1 → h3 on all 11 offices.
+		    Visually hidden because the grid reads as a roster on sight and the
+		    live layout has no heading here — see README §9.2. -#}
+		<h2 class="visually-hidden">{{ location.data.name }} team</h2>
 		{#- The Location facet is hidden here: every card in this grid is at this
 		    office already, so filtering by location would only ever empty it. -#}
 		{% set hideFacet = "Location" %}{% include "team-filters.njk" %}

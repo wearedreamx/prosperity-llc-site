@@ -12,9 +12,21 @@
   eleventy.config.js's injectContactForm passes a distinct prefix per marker.
 #}
 {% set p = idPrefix or "cf" %}
-<form class="contact-form" action="https://api.web3forms.com/submit" method="post">
-	<input type="hidden" name="access_key" value="091427a2-a2e1-46a0-96f4-732d1f62a9df"
-	<h3 class="visually-hidden">Contact us</h3>
+{#- The form is labelled with aria-label rather than a visually-hidden <h3>.
+    A hidden heading put a real entry in the document outline at a level that
+    could not be right in both places this form renders: inside cta.njk it sits
+    under that section's <h2>, but injected mid-content on /contact-us/ it
+    followed the <h1> directly and skipped a level. aria-label names the form
+    without adding a heading anywhere.
+
+    The action posts to Web3Forms (42b8195), which replaces the /api/contact
+    Worker that README §9 Phase G planned. The access_key is public by design —
+    it ships in the HTML on every page with a form — so it belongs here rather
+    than in a Worker secret. Note that Web3Forms is a cross-origin POST target,
+    so site/_headers' form-action has to name it or the browser blocks the
+    submit; see the note there. -#}
+<form class="contact-form" action="https://api.web3forms.com/submit" method="post" aria-label="Contact us">
+	<input type="hidden" name="access_key" value="091427a2-a2e1-46a0-96f4-732d1f62a9df">
 	<div class="contact-form__row">
 		<div class="field">
 			<label class="visually-hidden" for="{{ p }}-first">First name</label>

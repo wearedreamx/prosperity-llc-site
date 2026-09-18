@@ -30,7 +30,7 @@ Five other pre-optimized homepage images (`fastest-growing-firms-2026`,
 `lightyear-partnership`) belonged to records that *do* exist, and went unused
 once the card grids switched to each record's own `images[0]`. They sat in
 `site/assets/img/posts/`, which is a CMS-owned folder (README §6a), so an editor
-wiring up Decap would have been offered them as post images. All but one were
+wiring up Sveltia (README §6b) would have been offered them as post images. All but one were
 deleted when the asset structure was cleaned for the CMS; recover them from git
 history if a curated card grid ever comes back. The exception is
 `fastest-growing-firms-2026.{jpg,webp}`, still used by the homepage featured

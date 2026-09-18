@@ -1,28 +1,23 @@
 ---
-title: "Search - Prosperity Partners"
+title: "Search"
 description: "Search Prosperity Partners — people, services, offices and news."
-canonicalUrl: "https://www.prosperityllc.com/search/"
 layout: base.njk
 permalink: "/search/"
 noIndex: true
 ---
+{% from "page-banner.njk" import pageBanner %}
 {#
   Search results. Mirrors the theme's search.php: page-banner titled
   "Search Results for: <query>", then .search-results-container wrapping a
   .posts list of per-hit cards (parts/content-search.php).
 
-  Pagefind is a static index built from _site/ after Eleventy writes it (see
-  package.json "build"), queried entirely client-side — the form still submits
+  Pagefind is a static index built from _site/ after Eleventy writes it — by the
+  `eleventy.after` hook in eleventy.config.js, not a postbuild script, so it
+  works under `npm start` too. It is queried entirely client-side — the form still submits
   as a GET to /search/?q= so a no-JS request lands on a real page, and
   search.js reads ?q= and renders into the containers below.
 #}
-<section class="page-banner" data-pagefind-ignore>
-	<div class="page-banner-content">
-		<div class="page-banner-container container">
-			<h1 class="page-banner-title">Search Results for: <span id="search-query"></span></h1>
-		</div>
-	</div>
-</section>
+{{ pageBanner({ titleHtml: 'Search Results for: <span id="search-query"></span>', pagefindIgnore: true }) }}
 <section class="search-results-container">
 	<div class="container">
 		<form class="search-page-form" role="search" action="/search/" method="get">

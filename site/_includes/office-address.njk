@@ -1,0 +1,15 @@
+{#
+  One office's postal address, rendered the same way in the footer and on the
+  office's own page. Both used to render their own: the footer from
+  data/global.json's footer_locations[], the page from the record's
+  address_html, with the phone number written into both by hand. It is one
+  `locations` record now (§6b), and this is the one place that renders it.
+
+  Takes the record's data object, not the collection item: `officeAddress(location.data)`.
+
+  The whole <address> is suppressed when the record has neither a street address
+  nor a phone number. Mumbai is that case today, and every caller was rendering
+  an empty <address></address> for it — an element the spec says must contain
+  the contact information it is the address of.
+#}
+{% macro officeAddress(office) %}{% if office.address or office.tel %}<address>{{ office.address | addressLines | safe }}{% if office.tel %}{% if office.address %}<br>{% endif %}<a href="tel:{{ office.tel }}">{{ office.phone }}</a>{% endif %}</address>{% endif %}{% endmacro %}

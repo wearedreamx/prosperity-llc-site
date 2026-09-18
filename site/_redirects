@@ -110,3 +110,11 @@
 /winning-opinions/  /culture/winning-opinions/  301
 /yacht-cruise/  /culture/yacht-cruise/  301
 /zombie/  /culture/zombie/  301
+
+# Pages withdrawn from the build, redirected so their old URLs do not 404.
+#
+# /online-payment/ was `status: publish` with the title "Online Payment (mockup
+# for payment page)" — that string was the live <title> — and duplicated the
+# real /payment/ page. It is a draft now; the URL points at the page it was a
+# mockup of.
+/online-payment/  /payment/  301

@@ -4,7 +4,7 @@
   "path": "/terms-and-conditions/",
   "page_type": "page",
   "status": "publish",
-  "title": "Terms and Conditions - Prosperity Partners",
+  "title": "Terms and Conditions",
   "meta_description": "",
   "banner_title": "Terms and Conditions",
   "banner_description_html": "",

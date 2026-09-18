@@ -4,7 +4,7 @@
   "path": "/careers/",
   "page_type": "page",
   "status": "publish",
-  "title": "Careers - Prosperity Partners",
+  "title": "Careers",
   "meta_description": "",
   "banner_title": "Careers",
   "banner_description_html": "<p>Prosperity Partners is a people-first accounting firm with a strong culture, talented employees and great clients. We offer competitive salaries, equity compensation, and excellent benefits (medical, 401k with company contribution, substantial paid time off, education and more). We encourage you to apply if you are interested in working alongside other talented professionals in an entrepreneurial, process-driven environment.</p>\n<p><a class=\"white ghost button\" href=\"/contact-us/\" data-text=\"Contact Us\">Contact Us</a></p>",

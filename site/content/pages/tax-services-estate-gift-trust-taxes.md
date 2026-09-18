@@ -4,7 +4,7 @@
   "path": "/tax-services/estate-gift-trust-taxes/",
   "page_type": "page",
   "status": "publish",
-  "title": "Estate, Gift & Trust Tax - Prosperity Partners",
+  "title": "Estate, Gift & Trust Tax",
   "meta_description": "",
   "banner_title": "Estate, Gift & Trust Tax",
   "banner_description_html": "",

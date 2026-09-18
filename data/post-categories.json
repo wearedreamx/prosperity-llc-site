@@ -1,0 +1,7 @@
+{
+  "_comment": "The two post categories. A post record carries only `category` (the slug); its archive path and display name are looked up here, so the pair can never drift apart on a record. Order is the order the archives are listed in /sitemap/. Mirror this list in the CMS `category` select so an editor picks a slug that resolves.",
+  "categories": [
+    { "slug": "culture", "name": "Culture", "path": "/culture/" },
+    { "slug": "whats-new", "name": "What's New", "path": "/whats-new/" }
+  ]
+}

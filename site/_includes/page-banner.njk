@@ -1,0 +1,55 @@
+{#
+  The one page banner — the dark hero strip with a heading, an optional blurb
+  and an optional bleed image on the right.
+
+  It existed nine times: page.njk, meet-the-team.njk, sitemap.njk, 404.njk,
+  post-archive.njk, search.njk, post.njk, personnel.njk and location.njk. The
+  copies had drifted in three ways that only a side-by-side showed:
+
+    * two names for the same wrapper — `page-banner-content-container` in five
+      of them and `page-banner-container` in four. NEITHER has a CSS rule
+      (style.css styles .page-banner, .page-banner-content, .page-banner-title
+      and .page-banner-figure; `container` does the layout), so the split was
+      pure copy-paste drift with no effect either way. The majority spelling is
+      kept here.
+    * the <figure> was guarded in four and unguarded in two, so a record with no
+      banner_image rendered <img src="">.
+    * location.njk carried an entirely empty content block.
+
+  Takes one options object so callers read as named arguments:
+
+    {{ pageBanner({ title: "Careers", image: "/assets/img/pages/careers.jpg" }) }}
+
+    title          text for the <h1>
+    titleHtml      markup appended inside the <h1> (search.njk's live query span)
+    parentHref     renders a "back to <parentLabel>" link INSTEAD of an <h1>.
+    parentLabel    Post and personnel pages put their own <h1> in the body, so
+                   this must not be a heading — as an <h2> it sat above the
+                   page's own <h1> on 304 pages.
+    description    plain text, wrapped in <p>
+    descriptionHtml  pre-rendered markup, used as-is
+    image          banner image; omitted entirely when absent
+    thumb          also tag that image as the page's Pagefind thumbnail
+    pagefindIgnore keep the whole banner out of the search index
+#}
+{% macro pageBanner(o) %}
+<section class="page-banner"{% if o.pagefindIgnore %} data-pagefind-ignore{% endif %}>
+	<div class="page-banner-content">
+		<div class="page-banner-content-container container">
+			{%- if o.parentHref %}
+			<p class="page-banner-title"><a class="page-banner-title-link" href="{{ o.parentHref }}">{{ o.parentLabel }}</a></p>
+			{%- elif o.title or o.titleHtml %}
+			<h1 class="page-banner-title">{{ o.title }}{{ o.titleHtml | safe }}</h1>
+			{%- endif %}
+			{%- if o.descriptionHtml %}
+			<div class="content">{{ o.descriptionHtml | safe }}</div>
+			{%- elif o.description %}
+			<div class="content"><p>{{ o.description }}</p></div>
+			{%- endif %}
+		</div>
+	</div>
+	{%- if o.image %}
+	<figure class="page-banner-figure"><img src="{{ o.image }}" alt="" class="page-banner-image"{% if o.thumb %} data-pagefind-meta="image[src]"{% endif %}></figure>
+	{%- endif %}
+</section>
+{% endmacro %}

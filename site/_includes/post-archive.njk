@@ -1,3 +1,4 @@
+{% from "page-banner.njk" import pageBanner %}
 {#
   Body shared by /culture/ and /whats-new/, which were byte-identical templates
   apart from six values. Each archive is still its own template file because
@@ -5,23 +6,17 @@
   frontmatter: `archiveTitle`, `archiveImage` and the paginated collection.
 #}
 {% from "post-card.njk" import postCard %}
-<section class="page-banner">
-	<div class="page-banner-content">
-		<div class="page-banner-content-container container">
-			<h1 class="page-banner-title">{{ archiveTitle }}</h1>
-			{#- The category description. It lived on the CMS category term rather
-			    than on a page, so the import never captured it and both archives
-			    shipped a bare title; recovered from the live pages and kept in
-			    each archive's frontmatter, since neither has a page record. -#}
-			{%- if archiveDescription %}<div class="content"><p>{{ archiveDescription }}</p></div>{% endif %}
-		</div>
-	</div>
-	<figure class="page-banner-figure"><img src="{{ archiveImage }}" alt="" class="page-banner-image"></figure>
-</section>
+{#- archiveDescription is the category blurb; it lived on the CMS category
+    term rather than on a page, so the import never captured it and both
+    archives shipped a bare title. Recovered from the live pages and kept in
+    each archive's frontmatter, since neither has a page record. -#}
+{{ pageBanner({ title: archiveTitle, description: archiveDescription, image: archiveImage }) }}
 <section class="posts">
 	<div class="container">
 		<div class="posts__grid">
-			{%- for post in pagePosts %}{{ postCard(post, true) }}{% endfor %}
+			{#- level 2: on an archive the cards are the page's own content, sitting
+			    directly under the <h1> with no section heading between. -#}
+			{%- for post in pagePosts %}{{ postCard(post, true, 2) }}{% endfor %}
 		</div>
 		{%- if pagination.href.previous or pagination.href.next %}
 		<nav class="pagination" aria-label="{{ archiveTitle }} pagination">

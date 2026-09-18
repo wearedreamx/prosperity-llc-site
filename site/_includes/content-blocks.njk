@@ -18,11 +18,13 @@
   raw:* is emitted verbatim, with no container and no section wrapper — used by
   the hand-built homepage and team sections, and by raw:cta, which renders the
   shared CTA component instead of the block's own HTML.
+
+  block() only ever sees column layouts: the loop below dispatches raw:cta and
+  every other raw:* before calling it, so the macro carried a raw: arm that
+  could not run.
 #}
 {% macro block(b) %}
-{%- if b.layout.startsWith("raw:") -%}
-{{ b.html | injectContactForm | safe }}
-{%- elif b.layout == "twoimage-20" -%}
+{%- if b.layout == "twoimage-20" -%}
 <div class="content-block-container container content-block-container-twoimage content-block-container-with-image-left">{{ b.html | injectContactForm | safe }}</div>
 {%- else -%}
 <div class="content-block-container container content-block-container-{{ b.layout }}">{{ b.html | injectContactForm | safe }}</div>

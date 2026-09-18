@@ -4,7 +4,7 @@
   "path": "/special-projects/dispute-advisory/",
   "page_type": "page",
   "status": "publish",
-  "title": "Dispute Advisory Services - Prosperity Partners",
+  "title": "Dispute Advisory Services",
   "meta_description": "",
   "banner_title": "Dispute Advisory Services",
   "banner_description_html": "",

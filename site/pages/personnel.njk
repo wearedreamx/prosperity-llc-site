@@ -5,19 +5,24 @@ pagination:
   alias: person
 permalink: "/personnel/{{ person.data.slug }}/"
 eleventyComputed:
-  title: "{{ person.data.name | safe }} - Prosperity Partners"
-  description: "{{ person.data.name | safe }}{% if person.data.job_title %}, {{ person.data.job_title | safe }}{% endif %}{% if person.data.location_name %} — {{ person.data.location_name | safe }}{% endif %}. {{ person.rawInput | plainText | truncate(110) | safe }}"
+  title: "{{ person.data.name | safe }}"
+  # Truncated as a whole, not just the bio fragment. Trimming only the bio to
+  # 110 and then prepending name + title + office left the total unbounded: 16
+  # people in the "Washington DC – Transaction Advisory" office shipped 166–181
+  # characters. The `or` arm is the floor — anthony-fontana and ivan-martinez
+  # have empty bios, which used to produce a 36-character description ending in
+  # a stray trailing space.
+  # The trailing `| safe` is required, not decorative: eleventyComputed renders
+  # this string and base.njk renders the result again (see base.njk's note), so
+  # without it an "&" in a bio ships as "&amp;amp;".
+  description: "{% set who = person.data.name | safe %}{% if person.data.job_title %}{% set who = who + ', ' + (person.data.job_title | safe) %}{% endif %}{% if person.data.location %}{% set who = who + ' — ' + (collections.locationsBySlug[person.data.location].data.name | safe) %}{% endif %}{% set bio = person.rawInput | mdText | plainText %}{{ ((who + '. ' + bio) | truncate(160) if bio else (who + ' at Prosperity Partners.')) | safe }}"
   ogImage: "{% if person.data.photo %}{{ global.site_url }}{{ person.data.photo }}{% endif %}"
+ogType: profile
 searchType: personnel
 layout: base.njk
 ---
-<section class="page-banner" data-pagefind-ignore>
-	<div class="page-banner-content">
-		<div class="page-banner-container container">
-			<h2 class="page-banner-title"><a class="page-banner-title-link" href="/meet-the-team/">Meet the Team</a></h2>
-		</div>
-	</div>
-</section>
+{% from "page-banner.njk" import pageBanner %}
+{{ pageBanner({ parentHref: "/meet-the-team/", parentLabel: "Meet the Team", pagefindIgnore: true }) }}
 <section class="single-post-container">
 	<div class="single-post-content-container container">
 		{#- Same placeholder as the directory cards — see team-card.njk. -#}
@@ -27,7 +32,7 @@ layout: base.njk
 		<div class="single-post-content">
 			<h1 class="single-personnel-name">{{ person.data.name }}{% if person.data.certifications %}<span class="visually-hidden">, </span><span class="single-personnel-certs">{{ person.data.certifications }}</span>{% endif %}</h1>
 			{%- if person.data.job_title %}<p class="single-personnel-title">{{ person.data.job_title }}</p>{% endif %}
-			{%- if person.data.location_name %}<p class="single-personnel-location"><a href="{{ person.data.location_url }}" class="single-personnel-location-link">{{ person.data.location_name }}</a></p>{% endif %}
+			{%- if person.data.location %}{% set office = collections.locationsBySlug[person.data.location] %}<p class="single-personnel-location"><a href="/location/{{ office.data.slug }}/" class="single-personnel-location-link">{{ office.data.name }}</a></p>{% endif %}
 			<div class="single-personnel-content content">
 				{#- The live site's badge is a 216x35 "Find me on LinkedIn" wordmark;
 				    the import brought the asset across as

@@ -10,7 +10,7 @@ media are in parity, with the intentional differences listed in §9.2. All image
 resolve (§9.1); the three videos still need a CDN (§9.3).
 
 **Before this ships** it needs: the form Worker (§9 Phase G), the page-level
-redirects and `sitemap.xml` (Phase H), Decap and the deploy (Phase I), a copy
+redirects and `sitemap.xml` (Phase H), the CMS and the deploy (Phase I), a copy
 read across 360 URLs, and the client decisions in §11.
 
 **Last updated:** 2026-09-17
@@ -26,23 +26,32 @@ prosperity-llc-site/
 ├── data/              ← site-wide (not per-record) data + media bookkeeping
 │   ├── global.json      footer locations/disclaimer/copyright, site name/tagline — the one
 │   │                     "singleton" data file; consumed via site/_data/global.js
+│   ├── post-categories.json  the two post categories: slug → archive path + display
+│   │                          name, so a post record carries only `category`
 │   ├── team-filters.json     options for the /meet-the-team/ 3-facet filter
 │   ├── team-pinned.json      leadership pinned to the top of /meet-the-team/
 │   └── missing-media.md      what is still to source (video only) — see §9.3
 ├── site/              ← the new static site (the deliverable), an Eleventy source dir
 │   ├── index.njk        homepage (stays at the root — relies on Eleventy's implicit path→URL convention)
-│   ├── pages/            everything else with an explicit permalink (page, personnel, location, post, culture, whats-new, meet-the-team, search)
+│   ├── pages/            everything else with an explicit permalink (page, personnel,
+│   │                      location, post, meet-the-team, search, sitemap, sitemap-xml, 404)
+│   │   └── archives/      /culture/ and /whats-new/ + archives.11tydata.js, which holds
+│   │                       everything the two of them share (§8)
 │   ├── content/          ← one Markdown+JSON-frontmatter file per content record — see §6a
-│   │   ├── personnel/<slug>.md     200 files — Decap-CMS-ready
-│   │   ├── posts/<slug>.md         104 files — Decap-CMS-ready
-│   │   ├── locations/<slug>.md      11 files — Decap-CMS-ready
-│   │   └── pages/<file-stem>.md     55 files — NOT Decap-ready (see §6a), developer-edited for now
+│   │   ├── personnel/<slug>.md     200 files — CMS-ready (§6b)
+│   │   ├── posts/<slug>.md         104 files — CMS-ready (§6b)
+│   │   ├── locations/<slug>.md      11 files — CMS-ready (§6b)
+│   │   └── pages/<file-stem>.md     55 files — NOT CMS-ready (see §6a), developer-edited for now
 │   ├── _redirects       Cloudflare Pages redirects → copied to the deploy root
 │   ├── _headers         Cloudflare Pages response headers (CSP etc.) → deploy root
 │   ├── robots.txt       → deploy root
-│   ├── _includes/       shared layout + components (base, header, footer, content-blocks,
-│   │                     cta, contact-form, team-filters, post-card, team-card, post-archive)
-│   ├── _data/           global.js only — everything else is now an Eleventy collection, see §6a
+│   ├── _includes/       shared layout + components (base, header, footer, page-banner,
+│   │                     content-blocks, cta, contact-form, office-address, team-filters,
+│   │                     post-card, team-card, post-archive)
+│   ├── _data/           global.js + teamFilters.js — thin readFileSync bridges that put
+│   │                     data/*.json into template scope; data/ sits outside dir.input so
+│   │                     Eleventy will not load it on its own. Everything else is a
+│   │                     collection, see §6a
 │   └── assets/
 │       ├── css/ js/ icons/       stylesheet, scripts, favicons
 │       ├── video/ docs/          hero + recovered video, the one linked PDF
@@ -52,7 +61,15 @@ prosperity-llc-site/
 │           ├── services/ books/ awards/            referenced from page body HTML
 │           ├── payment/ diagrams/ photos/ ui/      (was flat, date-bucketed WP uploads)
 │           ├── values/ home/                       homepage art
-│           └── logo.svg, linkedin.png, bg-banner-swoop.svg, achievements-*
+│           └── logo.svg, bg-banner-swoop.svg, achievements-*
+├── reports/           ← point-in-time audits, kept for the record; nothing reads them
+│   │                    and nothing in the build depends on them
+│   ├── prosperity-partners-{website,seo,accessibility}-audit.md  ← of the OLD site,
+│   │                    pre-migration (2026-08-20), by DreamX — the baseline this
+│   │                    rebuild is measured against
+│   ├── static-site-code-review.md            ← of this repo at 40f4530 (2026-09-17)
+│   ├── prosperity-partners-quality-review.md ← of this repo (2026-09-18)
+│   └── comparison.html, personnel-missing-linkedin.html  ← generated working files
 ├── tools/             ← npm-script helpers only; nothing runs at build time (see §14)
 │   ├── open-chrome-tab.js + .applescript  ← npm start's browser opener (see §2)
 │   └── debug-eleventy.js  ← npm run debug's DEBUG= wrapper (see §2)
@@ -71,7 +88,7 @@ The content in `site/content/` was imported once from the site's previous CMS:
 all pages, posts, personnel and location records, plus the media they reference
 (re-encoded into `site/assets/img/`). That import is finished and is not
 re-runnable — the source system and its tooling have been removed, deliberately.
-Ongoing edits go through Decap CMS (once wired, §9 Phase I) or by hand.
+Ongoing edits go through Sveltia CMS (once wired, §9 Phase I) or by hand.
 
 One consequence is worth knowing about: page bodies are blocks of HTML produced
 by the old editor, so `site/content/pages/*.md` carries markup that is more
@@ -122,7 +139,7 @@ output). It invokes `node_modules/@11ty/eleventy/cmd.cjs` by path deliberately:
 |---|---|
 | Generator | **Eleventy, full-site** |
 | Hosting | Cloudflare Pages (git integration, atomic deploys, PR previews) |
-| CMS | Decap CMS at `/admin`, GitHub OAuth via a Cloudflare Worker |
+| CMS | Sveltia CMS at `/admin`, GitHub OAuth via a Cloudflare Worker |
 | Forms | Cloudflare Pages Function → Turnstile verify → SMTP relay (Resend) |
 | Search | Pagefind — see §15 |
 | Edge | Cloudflare CDN/WAF; Pro plan ($25/mo) |
@@ -168,7 +185,7 @@ error-prone"); that condition was already met at signing time.
    lost. Pages need
    structured frontmatter with a block array. Markdown is correct for the 104 posts
    and 200 personnel bios.
-2. **Decap must cover `personnel`, not just posts.** At a 200-person firm, staff
+2. **The CMS must cover `personnel`, not just posts.** At a 200-person firm, staff
    churn is the highest-frequency content change on the site. If editors can't add a
    person without a developer, the CMS solved the wrong problem.
 3. **9 forms, not 1.** See §10 — this turned out cheap, but the plan assumed a
@@ -291,15 +308,20 @@ lazy-load placeholders and the editor-only classes (§12).
 ## 6a. Content model on the new site — `site/content/`
 
 Content lives as one Markdown file per record under
-`site/content/<type>/<slug>.md`, each with JSON frontmatter (`---json` delimiter,
-parsed by gray-matter — already a transitive Eleventy dependency, no new package)
-plus a body (rendered HTML, used for the record's main prose):
+`site/content/<type>/<slug>.md`, each with frontmatter plus a body used for the
+record's main prose.
+
+`posts/`, `personnel/` and `locations/` carry **YAML frontmatter and a Markdown
+body** — the two shapes a CMS reads and writes by default (§6b). `pages/` still
+carries **JSON frontmatter (`---json` delimiter) and an HTML body**: it is not
+CMS-editable (its `blocks[]` needs a custom widget first) and converting it buys
+nothing until it is.
 
 | Folder | Files | Frontmatter fields | Body |
 |---|---|---|---|
-| `personnel/` | 200 | `slug`, `name`, **`last_name`**, `certifications`, `job_title`, `location_name`, `location_url`, `photo`, `linkedin_url`, `facet_title`, `facet_specializations`, `date_modified` | bio HTML |
-| `posts/` | 104 | `slug`, `title`, `published`, `date_modified`, `category_name`, `category_url`, `images[]` | post HTML |
-| `locations/` | 11 | `slug`, `name`, `address_html`, **`banner_image`**, `date_modified` | description HTML |
+| `personnel/` | 200 | `name`, `slug`, **`last_name`**, `job_title`, `certifications`, **`location`**, `photo`, `linkedin_url`, `facet_title`, `facet_specializations`, `date_modified` | bio Markdown |
+| `posts/` | 104 | `title`, `slug`, **`category`**, `published`, `date_modified`, `images[]` | post Markdown |
+| `locations/` | 11 | `name`, `slug`, **`address`**, `phone`, `tel`, `non_attest`, **`in_footer`**, **`banner_image`**, `date_modified` | description Markdown |
 | `pages/` | 55 | `slug`, `path`, `page_type`, **`status`**, `title`, `meta_description`, `banner_title`, `banner_description_html`, `banner_image`, `date_modified`, `blocks[]` (each block: `layout`, `html`, optional `section_class` — §6) | *(empty — everything lives in `blocks[]`)* |
 
 Every record of a type carries every field of that type — no optional keys, no
@@ -307,7 +329,7 @@ drift — so each list above is the complete schema for its collection. Some val
 are empty strings (127 personnel have no `certifications`, 77 no `linkedin_url`),
 which is `required: false` rather than a missing key.
 
-**Decap drops frontmatter keys its config does not declare.** Saving one record
+**The CMS drops frontmatter keys its config does not declare.** Saving one record
 through the CMS rewrites that whole file, so any field left out of `config.yml`
 is silently erased from the record that was edited. The three bolded above are
 the ones to be careful with, because nothing on the page looks broken until
@@ -319,27 +341,48 @@ later:
 | `banner_image` | that location's page banner disappears (`location.njk`) |
 | `status` | **a `draft` or `private` page can go live** — `genericPages` filters on it, and 10 of the 55 page records are not `publish` (8 draft, 2 private) |
 
+Field order in the table is the order the fields appear in the file, and the
+order the CMS must declare them in — otherwise the first save through the CMS
+reshuffles every record it touches.
+
+`address` is plain text, one line per line of the address — the `addressLines`
+filter joins them with `<br>`, so an editor never types markup into a field. The
+phone number is not one of those lines: it is `phone` (as displayed) and `tel`
+(as dialled), because the footer links it and the two differ in kind, not just
+in formatting. `in_footer` is what puts an office in the site footer.
+
+`category` and `location` are slugs, not display strings. `category` resolves
+through `data/post-categories.json` (the `categoryPath`/`categoryName` filters);
+`location` resolves through the `locationsBySlug` collection to that office's
+`locations` record. Each replaced a pair of fields the import carried —
+`category_name`/`category_url` and `location_name`/`location_url` — that an
+editor would have had to keep in agreement by hand.
+
 Each folder has a `<type>.11tydata.js` directory-data file (`tags`, `permalink: false`,
-`templateEngineOverride: false`) so Eleventy auto-populates `collections.personnel`,
+and `templateEngineOverride` — `"md"` for `posts`/`personnel`/`locations` so the
+Markdown body is rendered while Nunjucks stays out of editor copy, `false` for
+`pages`, whose prose is HTML inside `blocks[]`) so Eleventy auto-populates `collections.personnel`,
 `collections.posts`, `collections.locations`, `collections.pages` — no manual data
 loading. A few derived collections (`culturePosts`, `whatsNewPosts`, `recentPosts`,
 `genericPages` — filtered/sorted views over the base collections) are defined in
-`eleventy.config.js`. Templates access frontmatter via `.data.<field>` and body HTML
-via `.content` (both standard Eleventy collection-item properties).
+`eleventy.config.js`. Templates access frontmatter via `.data.<field>` and the
+rendered body via `.content` (both standard Eleventy collection-item properties);
+`.rawInput` is the *unrendered* body, which for posts, personnel and locations is
+now Markdown — the three `<meta name="description">` chains that read it run it
+through the `mdText` filter first so the syntax does not reach the search snippet.
 
 `date_modified` came across with the import and is present on 356 of 380 records;
 the rest carried no date signal at the source. Not
 currently rendered anywhere, but available for a future "last updated" UI or a
-staleness-flagging script once editors are making ongoing changes through Decap.
+staleness-flagging script once editors are making ongoing changes through the CMS.
 
-**Personnel, posts, and locations are Decap-CMS-ready as-is** — a `folder` collection
-per type, `format: json`, standard widgets (string/text/image/markdown) map cleanly
-onto their flat frontmatter. **Pages are not.** A page's `blocks[]` is an array of
-arbitrary per-layout HTML (§6) — none of
-Decap's standard widgets can edit that structure; only its raw object/code widget
-could, which isn't a real editorial experience. Pages stay developer-edited until a
-custom Decap widget for content-block editing exists — that's separate, larger scope
-(§9 Phase I), not something solved by moving pages into individual files.
+**Posts, personnel and locations are CMS-ready** — see §6b for the collection
+definitions. **Pages are not.** A page's
+`blocks[]` is an array of arbitrary per-layout HTML (§6) — none of the standard
+widgets can edit that structure; only a raw object/code widget could, which isn't
+a real editorial experience. Pages stay developer-edited until a custom
+content-block widget exists — that's separate, larger scope (§9 Phase I), not
+something solved by moving pages into individual files.
 
 Per-record media lives at `site/assets/img/<type>/<slug>[-<n>].<ext>` — one
 folder per content type, each file named after the record that owns it
@@ -347,7 +390,7 @@ folder per content type, each file named after the record that owns it
 upload scheme is gone. Re-encoding to WebP (§8) just adds a sibling file at the
 same basename, so nothing has to be remapped.
 
-These four folders are the CMS-writable ones, and Decap points at them
+These four folders are the CMS-writable ones, and the CMS points at them
 per collection rather than at a shared parent — `media_folder:
 site/assets/img/posts` with `public_folder: /assets/img/posts` on the posts
 collection, and the same shape for `personnel`, `locations` and `pages`:
@@ -360,14 +403,14 @@ collection, and the same shape for `personnel`, `locations` and `pages`:
 | `img/pages/` | 59 | looser — see below | `pages` records (banner + body art) |
 
 `personnel`, `posts` and `locations` are strictly `<slug>[-<n>]` with nothing
-foreign in them, which is what makes them safe to hand to Decap as-is. `pages/`
+foreign in them, which is what makes them safe to hand to the CMS as-is. `pages/`
 is the exception: 40 files follow the strict form, 17 use
 `<slug>-<descriptive-name>` (`accounting-technology-distribution.png` and the
 other body-art icons), and `culture.jpg`/`whats-new.jpg` belong to the two
 archive *templates*, which have no page record at all. That looseness is
-tolerable because the `pages` collection is not Decap-ready anyway — its
+tolerable because the `pages` collection is not CMS-ready anyway — its
 `blocks[]` needs a custom widget first (above) — but it has to be tidied before
-Decap ever points at `img/pages/`.
+the CMS ever points at `img/pages/`.
 
 **Keep the first three folders one-to-one with the records.** Every other image
 folder (`services/`, `books/`, `awards/`, `payment/`, `diagrams/`, `photos/`,
@@ -379,7 +422,7 @@ this was straightened out; `fastest-growing-firms-2026.*` is still used by the
 homepage featured card and now lives in `img/home/`.
 
 Since the boundary is a naming convention rather than a folder nesting, nothing
-enforces it at build time. Run this before wiring Decap up, and after any bulk
+enforces it at build time. Run this before wiring the CMS up, and after any bulk
 media change — it prints every file in a CMS folder that no record claims, and
 is silent when the folder is clean:
 
@@ -391,6 +434,181 @@ for t in personnel posts locations; do node -e "
   if(bad.length)console.log(t+':',bad.join(', '));
 "; done
 ```
+
+---
+
+## 6b. CMS content model — posts, personnel and locations
+
+`posts/`, `personnel/` and `locations/` were converted for **Sveltia CMS** (which
+reads a Decap-format `config.yml`, so this applies unchanged if the CMS is
+swapped again). The CMS itself is not wired up — no `config.yml`, no `/admin`
+entry point, no auth backend; that is §9 Phase I. What follows is the model those
+315 records now match, and the collection definitions that fit it.
+
+### What changed, and why each was required
+
+| Was | Is | Why |
+|---|---|---|
+| `---json` frontmatter | `---` YAML frontmatter | `---json` is a gray-matter/Eleventy spelling. A CMS writes YAML; the first save through it would have rewritten every record into a shape the delimiter no longer matched |
+| HTML body | Markdown body | The markdown widget emits Markdown. Under the old `templateEngineOverride: false` the body was passed through unrendered, so the first CMS save would have put literal `**bold**` on the page |
+| `category_name` + `category_url` | `category` (slug) | Two fields that had to agree, one derivable from the other. A `select` widget writes one value; `data/post-categories.json` maps it to the name and archive path |
+| `location_name` + `location_url` | `location` (slug) | Same shape, and a slug is what a `relation` widget to the `locations` collection stores |
+| `address_html` | `address` (plain lines) | The only markup in it was `<br>` between address lines. A `text` widget over plain lines means an editor types an address, not HTML; `addressLines` puts the breaks back |
+| `data/global.json` → `footer_locations[]` | `phone`, `tel`, `non_attest`, `in_footer` on the record | The footer kept a parallel copy of all 11 offices — its own address, plus a phone the record repeated as the last line of its address. An office is one record now; the footer reads the collection |
+
+Everything else kept its name, its value and its position. Every record still
+carries every field of its type — empty string or empty list where there is no
+value, never a missing key.
+
+### Collection definitions
+
+```yaml
+# media_folder / public_folder are set per collection, not globally: an editor's
+# media library shows everything in the folder its collection points at, so a
+# shared parent would expose developer-owned art to be attached or deleted (§6a).
+collections:
+  - name: posts
+    label: Posts
+    label_singular: Post
+    folder: site/content/posts
+    media_folder: /site/assets/img/posts
+    public_folder: /assets/img/posts
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: title
+    # The filename is generated from the slug field, which is what keeps the two
+    # in agreement — every record's filename is its slug today, and templates
+    # build URLs from the field.
+    slug: "{{fields.slug}}"
+    sortable_fields: [published, title]
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: slug, label: URL slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and hyphens only'] }
+      - name: category
+        label: Category
+        widget: select
+        options:                       # mirrors data/post-categories.json
+          - { label: Culture, value: culture }
+          - { label: What's New, value: whats-new }
+      - { name: published, label: Published, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: true }
+      - { name: date_modified, label: Last modified, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: true, required: false }
+      - { name: images, label: Images, widget: list, required: false, field: { name: image, label: Image, widget: image } }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: personnel
+    label: Team
+    label_singular: Team member
+    folder: site/content/personnel
+    media_folder: /site/assets/img/personnel
+    public_folder: /assets/img/personnel
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: name
+    slug: "{{fields.slug}}"
+    sortable_fields: [last_name, name]
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: slug, label: URL slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and hyphens only'] }
+      # Not derived from `name`: the /meet-the-team/ sort runs on this field, and
+      # splitting the display name breaks on compound and multi-word surnames.
+      - { name: last_name, label: Last name, widget: string }
+      - { name: job_title, label: Job title, widget: string }
+      - { name: certifications, label: Certifications, widget: string, required: false, hint: "e.g. CPA, MST — shown after the name" }
+      - name: location
+        label: Office
+        widget: relation
+        collection: locations
+        search_fields: [name]
+        display_fields: [name]
+        value_field: "{{slug}}"
+      - { name: photo, label: Photo, widget: image, required: false }
+      - { name: linkedin_url, label: LinkedIn URL, widget: string, required: false }
+      - name: facet_title
+        label: Title filter
+        widget: select
+        options: [ceo, partners, directors, senior-manager, managers, associates]
+      - name: facet_specializations
+        label: Service-line filters
+        widget: select
+        multiple: true
+        required: false
+        options: [tax-services, accounting-services, family-office, valuation-services, operations, transaction-advisory]
+      - { name: date_modified, label: Last modified, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: true, required: false }
+      - { name: body, label: Bio, widget: markdown }
+
+  - name: locations
+    label: Offices
+    label_singular: Office
+    folder: site/content/locations
+    media_folder: /site/assets/img/locations
+    public_folder: /assets/img/locations
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: name
+    slug: "{{fields.slug}}"
+    sortable_fields: [name]
+    fields:
+      - { name: name, label: Office name, widget: string }
+      # Also the `location` value on every personnel record and the filter term
+      # in data/team-filters.json — renaming one means renaming all three.
+      - { name: slug, label: URL slug, widget: string, pattern: ['^[a-z0-9-]+$', 'Lower-case letters, numbers and hyphens only'] }
+      - { name: address, label: Address, widget: text, required: false, hint: "One line per line of the street address; no phone number, no HTML — the line breaks are rendered for you" }
+      - { name: phone, label: Phone, widget: string, required: false, hint: "As displayed, e.g. (312) 461-0514" }
+      - { name: tel, label: Phone (dial string), widget: string, required: false, pattern: ['^(\+[0-9]+)?$', 'Country code and digits only, e.g. +13124610514'] }
+      - { name: non_attest, label: Non-attest office, widget: boolean, default: false, hint: "Adds the * in the footer that the disclaimer explains" }
+      - { name: in_footer, label: List in the site footer, widget: boolean, default: true }
+      # Undeclared, this page loses its banner entirely (location.njk).
+      - { name: banner_image, label: Banner image, widget: image }
+      - { name: date_modified, label: Last modified, widget: datetime, format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: true, required: false }
+      - { name: body, label: Description, widget: markdown, required: false }
+```
+
+**The footer reads these records.** It used to render from a parallel
+`footer_locations[]` in `data/global.json` — the same 11 offices a second time,
+with their own copy of each address. That key is gone; the `footerLocations`
+collection in `eleventy.config.js` supplies the footer, and
+`_includes/office-address.njk` is the one place an office address is rendered, by
+both the footer and the office's own page. Changing an address in the CMS now
+changes both.
+
+Two things the old array encoded that are now fields on the record:
+
+- `in_footer` — Mumbai was the only office the footer left out. It has a record
+  and a roster but no postal address, so nothing was filtered on; the array
+  simply had ten entries. An explicit flag says so rather than inferring it from
+  an empty `address`.
+- The footer's order was hand-maintained and happened to be display-name order,
+  which is not filename order (that puts "Washington DC – Transaction Advisory"
+  ahead of "Washington DC – Tax"). `footerLocations` sorts on `name`.
+
+Deleting a `locations` record orphans every personnel record pointing at it: the
+office line disappears from those bios and the cards drop out of that office's
+roster. Nothing warns about it, so re-home the team first.
+
+`facet_title` and `facet_specializations` options are the `term` values in
+`data/team-filters.json`, and `location` values are the `locations` filenames —
+all three are also the CSS classes the directory filter matches on
+(`team-card.njk`), so a value outside these lists makes a card unfilterable.
+Keep the three lists in step.
+
+### Things to know before pointing an editor at it
+
+- **A field left out of `config.yml` is erased from any record saved through the
+  CMS** — the fields above are the complete set for each type, and `last_name`,
+  `slug`, `category`, `location` and `facet_*` are all load-bearing (§6a).
+- **Field order above is file order.** Reordering the config reshuffles every
+  record the CMS touches, for no benefit.
+- **A few bodies contain raw HTML** and should be edited in the markdown
+  widget's raw mode: two video embeds (`ppp-loan-forgiveness`, `team-j-or-a`),
+  one HTML comment standing in for a lost video (`mid-year-recap`, §9.3), and
+  ~20 personnel bios where a `<strong>` sits flush against the text that follows
+  it — `**Label:**Text` is not valid Markdown emphasis, so those kept the tag.
+  No `locations` body contains any.
+- **`date_modified` is not maintained by anything.** It came across with the
+  import; nothing writes it and nothing renders it.
 
 ---
 
@@ -424,8 +642,8 @@ text uses 200.
 
 Container `max-width: 80em`, 4% side padding below 1320px.
 Nav breakpoint **1080px** (desktop bar ↔ drawer). Other breakpoints, as actually
-declared: 1600, 1320, 1280, 1152, 1024, 960, 900, 840, 768, 720, 640, 600, 560,
-500, 480. The ported rules use `(max-width:768px)` and the hand-written ones
+declared: 1600, 1320, 1280, 1152, 1024, 960, 900, 840, 768, 640, 600, 560, 500,
+480. The ported rules use `(max-width:768px)` and the hand-written ones
 `(max-width: 768px)`; the whitespace is the seam between the two, not a
 different condition.
 
@@ -495,8 +713,8 @@ including the plan review.
 | E | 4 content-type templates + archives, pagination, RSS, 404, search page | personnel/location/post templates, Culture/What's New archives and the search page done, each with canonical + derived description, and all four compared against live (§9.2); RSS and 404 outstanding | 120–160k | 333 URLs |
 | F | Visual QA pass + spot fixes (~60 URLs actually worth eyeballing) | **done for layout and chrome** — see §9.2. What is left is editorial: reading the copy, and the §11 decisions | 100–200k | |
 | G | Forms: 1 component + 1 Worker (see §10) | component done (2 variants, standard + contact); Worker outstanding | 50–70k | all 9 forms |
-| H | Pagefind + redirects + sitemap | Pagefind done (§15); the 104 post redirects, `_headers` and `robots.txt` are in place, and the human-facing `/sitemap/` is generated from the collections (§8); `sitemap.xml` and the page-level redirects in §11.6/§11.7 outstanding | 40–60k | SEO continuity |
-| I | Decap CMS + OAuth Worker + Cloudflare Pages setup | content model ready for personnel/posts/locations (§6a); pages need a custom block-editing widget first; Decap config/OAuth Worker itself outstanding | 80–120k | editors + deploy |
+| H | Pagefind + redirects + sitemap | Pagefind done (§15); the 104 post redirects, `_headers` and `robots.txt` are in place, and both sitemaps now ship — the human-facing `/sitemap/` (§8) and `/sitemap.xml`, which `robots.txt` had been advertising since the redirects landed while nothing generated it. Only the page-level redirects in §11.6/§11.7 outstanding | 10–20k | SEO continuity |
+| I | Sveltia CMS + OAuth Worker + Cloudflare Pages setup | posts/personnel/locations converted and their collection definitions written (§6b); pages need a custom block-editing widget first; `config.yml`, `/admin` and the OAuth Worker all outstanding | 80–120k | editors + deploy |
 | | **Total** | | **700k – 1.05M** | ≈ 6–10 sessions |
 
 Dependencies: A → B → C → {D, E} → F. G, H, I are independent and can run anytime

@@ -1,3 +1,4 @@
+{% from "office-address.njk" import officeAddress %}
 	<footer class="site-footer">
 		<div class="container">
 			<div class="site-footer__columns">
@@ -9,7 +10,7 @@
 					</address>
 				</div>
 				<nav class="site-footer__column" aria-labelledby="footer-site-menu">
-					<h3 class="site-footer__heading" id="footer-site-menu">Site Menu</h3>
+					<h2 class="site-footer__heading" id="footer-site-menu">Site Menu</h2>
 					<ul class="footer-menu">
 						<li><a href="/">Home</a></li>
 						<li><a href="/services/">Services</a></li>
@@ -22,15 +23,15 @@
 					</ul>
 				</nav>
 				<nav class="site-footer__column" aria-labelledby="footer-recent-posts">
-					<h3 class="site-footer__heading" id="footer-recent-posts">Recent Posts</h3>
+					<h2 class="site-footer__heading" id="footer-recent-posts">Recent Posts</h2>
 					<ul class="footer-menu">
 						{% for post in collections.recentPosts %}
-						<li><a href="{{ post.data.category_url }}{{ post.data.slug }}/">{{ post.data.title }}</a></li>
+						<li><a href="{{ post.data.category | categoryPath }}{{ post.data.slug }}/">{{ post.data.title }}</a></li>
 						{% endfor %}
 					</ul>
 				</nav>
 				<div class="site-footer__column">
-					<h3 class="site-footer__heading">Follow Us</h3>
+					<h2 class="site-footer__heading">Follow Us</h2>
 					<ul class="social">
 						<li><a class="social__link social__link--linkedin" href="{{ global.linkedin_url }}" rel="noopener" target="_blank">LinkedIn</a></li>
 					</ul>
@@ -38,22 +39,32 @@
 			</div>
 		</div>
 
-		<div class="locations">
+		{#- The office list is the footer's fourth section, so its per-office <h3>s
+		    need an <h2> above them the way the three columns above have one —
+		    without it every page's outline ran h1 → h3. The heading is
+		    visually-hidden because the grid is self-evident on screen; it exists
+		    for the outline and for the aria-labelledby below. -#}
+		<section class="locations" aria-labelledby="footer-offices">
 			<div class="container">
+				<h2 class="visually-hidden" id="footer-offices">Our offices</h2>
 				<ul class="locations__grid">
-					{% for location in global.footer_locations %}
+					{% for location in collections.footerLocations %}
 					<li class="location">
-						<h3 class="location__title"><a href="{{ location.url }}">{{ location.name }}</a>{% if location.non_attest %}*{% endif %}</h3>
-						<address>{{ location.address_html | safe }}{% if location.tel %}<br><a href="tel:{{ location.tel }}">{{ location.phone }}</a>{% endif %}</address>
+						<h3 class="location__title"><a href="/location/{{ location.data.slug }}/">{{ location.data.name }}</a>{% if location.data.non_attest %}*{% endif %}</h3>
+						{{ officeAddress(location.data) }}
 					</li>
 					{% endfor %}
 				</ul>
 			</div>
-		</div>
+		</section>
 
 		<div class="container disclaimer">
 			{{ global.footer_disclaimer_html | safe }}
-			<p>*Indicates location as NDH Advisors office providing non-attest services only.</p>
+			{#- Read from global rather than written out here: data/global.json has
+			    carried this exact sentence as non_attest_note since the import, and
+			    the hardcoded copy meant the asterisk's explanation and the asterisk
+			    itself (the non_attest flag on each location) could drift apart. -#}
+			<p>{{ global.non_attest_note }}</p>
 		</div>
 
 		<div class="copyright">

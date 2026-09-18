@@ -4,7 +4,7 @@
   "path": "/special-projects/upreit-reit-tax-services-structuring/",
   "page_type": "page",
   "status": "publish",
-  "title": "UPREIT / REIT Tax Services & Structuring - Prosperity Partners",
+  "title": "UPREIT / REIT Tax Services & Structuring",
   "meta_description": "",
   "banner_title": "UPREIT / REIT Tax Services & Structuring",
   "banner_description_html": "",

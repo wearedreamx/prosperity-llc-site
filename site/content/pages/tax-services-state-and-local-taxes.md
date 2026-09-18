@@ -4,7 +4,7 @@
   "path": "/tax-services/state-and-local-taxes/",
   "page_type": "page",
   "status": "publish",
-  "title": "State and Local Tax - Prosperity Partners",
+  "title": "State and Local Tax",
   "meta_description": "",
   "banner_title": "State and Local Tax",
   "banner_description_html": "",

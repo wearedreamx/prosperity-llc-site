@@ -4,7 +4,7 @@
   "path": "/client-portal/",
   "page_type": "page-portal",
   "status": "publish",
-  "title": "Client Portal - Prosperity Partners",
+  "title": "Client Portal",
   "meta_description": "Access your account information securely through the Prosperity LLC client portal.",
   "banner_title": "Client Portal",
   "banner_description_html": "",
