@@ -8,7 +8,7 @@
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/personnel/david-larson.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/david-larson-4185633a",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"

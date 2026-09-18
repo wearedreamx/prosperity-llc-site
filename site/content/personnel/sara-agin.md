@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/sara-agin.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/saraagin",
   "facet_title": "associates",
   "facet_specializations": [
     "accounting-services"

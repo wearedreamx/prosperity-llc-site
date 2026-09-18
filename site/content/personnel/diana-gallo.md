@@ -8,7 +8,7 @@
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
   "photo": "/assets/img/personnel/diana-gallo.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/diana-gallo-cpa-mba-63885684",
   "facet_title": "senior-manager",
   "facet_specializations": [
     "tax-services"

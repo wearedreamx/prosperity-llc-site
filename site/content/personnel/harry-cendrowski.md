@@ -8,7 +8,7 @@
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
   "photo": "/assets/img/personnel/harry-cendrowski.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/harrycendrowski",
   "facet_title": "partners",
   "facet_specializations": [],
   "date_modified": "2025-02-05T19:42:18+00:00"

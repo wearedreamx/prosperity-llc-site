@@ -7,8 +7,8 @@
   "job_title": "Manager",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "",
-  "linkedin_url": "",
+  "photo": "/assets/img/personnel/mazin-el-harith.jpg",
+  "linkedin_url": "https://www.linkedin.com/in/elharith",
   "facet_title": "managers",
   "facet_specializations": [
     "accounting-services"

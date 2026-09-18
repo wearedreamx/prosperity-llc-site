@@ -8,7 +8,7 @@
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
   "photo": "/assets/img/personnel/sarah-bassett.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/sarah-bassett-cpa-ba8b84a5",
   "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2025-07-16T15:12:28+00:00"

@@ -8,7 +8,7 @@
   "location_name": "Houston",
   "location_url": "/location/houston/",
   "photo": "/assets/img/personnel/nitin-chandra.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/nitin-chandra-8318322",
   "facet_title": "partners",
   "facet_specializations": [
     "operations"

@@ -8,7 +8,7 @@
   "location_name": "Houston",
   "location_url": "/location/houston/",
   "photo": "/assets/img/personnel/roland-diobe.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/roland-diobe-cpa-5336b4254",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

@@ -8,7 +8,7 @@
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/personnel/catherine-lauber.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/catherine-l-82322132/",
   "facet_title": "senior-manager",
   "facet_specializations": [
     "tax-services"

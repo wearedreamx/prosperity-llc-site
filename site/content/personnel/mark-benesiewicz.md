@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/mark-benesiewicz.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/mark-benesiewicz-cpa-4a500a11b",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

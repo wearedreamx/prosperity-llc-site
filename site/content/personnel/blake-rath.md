@@ -7,8 +7,8 @@
   "job_title": "Associate",
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
-  "photo": "",
-  "linkedin_url": "",
+  "photo": "/assets/img/personnel/blake-rath.jpg",
+  "linkedin_url": "https://www.linkedin.com/in/blake-rath-cpa-321a4b126",
   "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2026-05-21T19:49:48+00:00"

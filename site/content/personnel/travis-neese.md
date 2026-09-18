@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/travis-neese.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/travis-monroe-neese-m-s-bb421950",
   "facet_title": "managers",
   "facet_specializations": [
     "operations"

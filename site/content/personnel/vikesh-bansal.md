@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
   "photo": "",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/vikesh-bansal-01099527",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"

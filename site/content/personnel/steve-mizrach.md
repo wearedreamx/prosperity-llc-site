@@ -7,8 +7,8 @@
   "job_title": "Partner",
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
-  "photo": "",
-  "linkedin_url": "",
+  "photo": "/assets/img/personnel/steve-mizrach.jpg",
+  "linkedin_url": "https://www.linkedin.com/in/steven-mizrach-058a99ba",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"

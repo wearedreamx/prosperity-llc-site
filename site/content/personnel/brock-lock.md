@@ -7,8 +7,8 @@
   "job_title": "Associate",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "",
-  "linkedin_url": "",
+  "photo": "/assets/img/personnel/brock-lock.jpg",
+  "linkedin_url": "https://www.linkedin.com/in/brocklock",
   "facet_title": "associates",
   "facet_specializations": [],
   "date_modified": "2024-09-30T17:55:06+00:00"

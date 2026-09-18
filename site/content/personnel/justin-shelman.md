@@ -1,13 +1,13 @@
 ---json
 {
-  "slug": "justin-shelman-2",
+  "slug": "justin-shelman",
   "name": "Justin Shelman",
   "last_name": "Shelman",
   "certifications": "cpa",
   "job_title": "Partner",
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
-  "photo": "/assets/img/personnel/justin-shelman-2.jpg",
+  "photo": "/assets/img/personnel/justin-shelman.jpg",
   "linkedin_url": "https://www.linkedin.com/in/justinshelmancpa/",
   "facet_title": "partners",
   "facet_specializations": [
@@ -18,7 +18,6 @@
 }
 ---
 <p><a href="mailto:jshelman@prosperityllc.com" target="_blank" rel="noopener">jshelman@prosperityllc.com</a></p>
-<p><a href="https://www.linkedin.com/in/justinshelmancpa/" target="_blank" rel="noopener"><img width="216" height="35" decoding="async"  src="/assets/img/ui/find-me-linkedin-01.svg" alt=""></a></p>
 <p>Justin Shelman is a Tax Partner and leads Prosperity Partners’ <a href="/tax-services/individual-taxes/">High Net Worth</a> &amp; <a href="/tax-services/family-office-tax-services/">Family Office</a> tax group. As a firm leader and team mentor, he implements the company’s strategic goals and develops the next generation of leaders. Justin began his career in St. Louis after graduating from Kentucky Wesleyan College and currently practices in Prosperity’s Chicago headquarters. He has a Masters of Science in Taxation from DePaul University.</p>
 <p>Justin advises his clients on a range of tax planning and structuring opportunities. Focused on high earners and affluent families, Justin uses his deep knowledge of federal and state tax law to provide multi-generational income and estate planning, state residency analysis and tax preparation services for families and their sophisticated entity structures. Notably, Justin is proactive, connects with his clients and their teams and is accessible.</p>
 <p>Justin actively participates in the IL CPA Society’s State and Local Taxation committee, speaking regularly on emerging technical issues. He enjoys spending time with his wife and dog, golfing and indulging in a nice bottle of red wine with friends and family.</p>

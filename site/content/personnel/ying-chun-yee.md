@@ -7,7 +7,7 @@
   "job_title": "Associate",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "/assets/img/personnel/ying-chun-yee.jpeg",
+  "photo": "/assets/img/personnel/ying-chun-yee.jpg",
   "linkedin_url": "",
   "facet_title": "associates",
   "facet_specializations": [

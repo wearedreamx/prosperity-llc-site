@@ -8,7 +8,7 @@
   "location_name": "Iselin",
   "location_url": "/location/iselin/",
   "photo": "/assets/img/personnel/lauren-frisoli.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/lauren-frisoli-53149759",
   "facet_title": "associates",
   "facet_specializations": [
     "operations"

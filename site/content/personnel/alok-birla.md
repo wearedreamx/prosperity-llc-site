@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/alok-birla.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/alok-birla-74467013",
   "facet_title": "directors",
   "facet_specializations": [
     "operations"

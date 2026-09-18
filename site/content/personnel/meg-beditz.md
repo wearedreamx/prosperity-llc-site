@@ -8,7 +8,7 @@
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
   "photo": "/assets/img/personnel/meg-beditz.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/meg-beditz",
   "facet_title": "directors",
   "facet_specializations": [
     "operations"

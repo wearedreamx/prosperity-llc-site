@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/kasie-dlubala.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/kasie-dlubala-[REDACTED_HSHD]",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

@@ -7,8 +7,8 @@
   "job_title": "Associate",
   "location_name": "New York City",
   "location_url": "/location/new-york-city/",
-  "photo": "",
-  "linkedin_url": "",
+  "photo": "/assets/img/personnel/jonathan-yuen.jpg",
+  "linkedin_url": "https://www.linkedin.com/in/jonathan-yuen-440a5530/",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

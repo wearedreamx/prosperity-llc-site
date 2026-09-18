@@ -8,7 +8,7 @@
   "location_name": "Chicago",
   "location_url": "/location/chicago/",
   "photo": "/assets/img/personnel/adam-vanderwiel.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/adamvanderwiel",
   "facet_title": "senior-manager",
   "facet_specializations": [
     "tax-services"

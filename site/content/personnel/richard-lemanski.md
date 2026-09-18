@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Tax",
   "location_url": "/location/washington-dc/",
   "photo": "",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/richard-lemanski-747a1a71/",
   "facet_title": "associates",
   "facet_specializations": [
     "tax-services"

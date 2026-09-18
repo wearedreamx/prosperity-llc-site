@@ -29,7 +29,7 @@ layout: base.njk
 		{%- if post.data.images.length %}
 		<div class="single-post-figures">
 			{%- for image in post.data.images %}
-			<figure class="single-post-figure"><img src="{{ image }}" alt="" class="single-post-image" loading="{{ 'eager' if loop.first else 'lazy' }}"{% if loop.first %} data-pagefind-meta="image[src]"{% endif %}></figure>
+			<figure class="single-post-figure"><img src="{{ image }}" alt="Prosperity Partners team members at {{ post.data.title | safe }}{% if post.data.images.length > 1 %}, photo {{ loop.index }} of {{ loop.length }}{% endif %}" class="single-post-image" loading="{{ 'eager' if loop.first else 'lazy' }}"{% if loop.first %} data-pagefind-meta="image[src]"{% endif %}></figure>
 			{%- endfor %}
 		</div>
 		{%- endif %}

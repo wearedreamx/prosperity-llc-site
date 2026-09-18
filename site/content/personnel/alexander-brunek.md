@@ -8,7 +8,7 @@
   "location_name": "Santa Barbara",
   "location_url": "/location/santa-barbara/",
   "photo": "/assets/img/personnel/alexander-brunek.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/alexander-brunek-[REDACTED_HSHD]",
   "facet_title": "managers",
   "facet_specializations": [
     "tax-services"

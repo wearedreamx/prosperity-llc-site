@@ -8,7 +8,7 @@
   "location_name": "Washington DC – Transaction Advisory",
   "location_url": "/location/washington-dc-transaction-advisory/",
   "photo": "/assets/img/personnel/heather-macgarvey.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/heather-macgarvey-65b14931",
   "facet_title": "managers",
   "facet_specializations": [
     "operations"

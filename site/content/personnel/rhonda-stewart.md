@@ -8,7 +8,7 @@
   "location_name": "Houston",
   "location_url": "/location/houston/",
   "photo": "/assets/img/personnel/rhonda-stewart.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/rhonda-stewart-218b2283/",
   "facet_title": "associates",
   "facet_specializations": [
     "operations"

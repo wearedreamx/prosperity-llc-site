@@ -8,7 +8,7 @@
   "location_name": "Detroit",
   "location_url": "/location/detroit/",
   "photo": "/assets/img/personnel/john-alfonsi.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/johnalfonsi",
   "facet_title": "partners",
   "facet_specializations": [
     "valuation-services"

@@ -8,7 +8,7 @@
   "location_name": "Burlington",
   "location_url": "/location/burlington/",
   "photo": "/assets/img/personnel/cathy-attig.jpg",
-  "linkedin_url": "",
+  "linkedin_url": "https://www.linkedin.com/in/cathy-attig-cpa-pfs",
   "facet_title": "partners",
   "facet_specializations": [
     "tax-services"
