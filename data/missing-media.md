@@ -19,7 +19,7 @@ behind them, which is where the site's only two broken internal links came from:
 | `/whats-new/proud-to-be-named-a-2026-best-place-to-work-in-chicago/` | `assets/img/posts/best-places-to-work-2026.{jpg,webp}` |
 
 The images came across and the records did not, so this is the same silent-drop
-pattern as the seven photo-less personnel records below. Both posts are still on
+pattern as the photo-less personnel records below. Both posts are still on
 the live site; recovering them means adding two files under
 `site/content/posts/`. Nothing links to them now — the homepage grids read the
 newest three from each category instead of a hardcoded list — so this is a
@@ -27,9 +27,14 @@ content recovery task, not a broken page.
 
 Five other pre-optimized homepage images (`fastest-growing-firms-2026`,
 `chicago-summer-soiree`, `chicago-day-of-service`, `crains-notable-leader-2026`,
-`lightyear-partnership`) belong to records that *do* exist. They are now unused
-by the card grids, which use each record's own `images[0]`; the featured card at
-the top of the homepage still uses `fastest-growing-firms-2026`.
+`lightyear-partnership`) belonged to records that *do* exist, and went unused
+once the card grids switched to each record's own `images[0]`. They sat in
+`site/assets/img/posts/`, which is a CMS-owned folder (README §6a), so an editor
+wiring up Decap would have been offered them as post images. All but one were
+deleted when the asset structure was cleaned for the CMS; recover them from git
+history if a curated card grid ever comes back. The exception is
+`fastest-growing-firms-2026.{jpg,webp}`, still used by the homepage featured
+card and now at `site/assets/img/home/`.
 
 ## Video — needs a CDN base URL
 
@@ -56,15 +61,15 @@ belong to are not all built, so a link-check alone will not show them again.
 
 | Asset | Where it landed | Used by |
 |---|---|---|
-| Team placeholder portrait | `/assets/img/ui/team-placeholder.svg` | the 7 personnel records with no headshot — see below |
+| Team placeholder portrait | `/assets/img/ui/team-placeholder.svg` | the personnel records with no headshot — see below |
 | Carousel prev/next arrow | `/assets/img/ui/arrow-grey.png` | `style.css`, visible on `/partnerships/` |
-| 6 service icons | `/assets/img/uploads/pages/valuation-services-*.png` | `/valuation-services/` (draft) |
-| 10 industry icons | `/assets/img/uploads/pages/accounting-technology-*.png` | `/accounting-technology/` (private) |
-| Sage Intacct logo | `/assets/img/uploads/pages/accounting-technologyold-sage-intacct.png` | `/accounting-technologyold/` (private) |
+| 6 service icons | `/assets/img/pages/valuation-services-*.png` | `/valuation-services/` (draft) |
+| 10 industry icons | `/assets/img/pages/accounting-technology-*.png` | `/accounting-technology/` (private) |
+| Sage Intacct logo | `/assets/img/pages/accounting-technologyold-sage-intacct.png` | `/accounting-technologyold/` (private) |
 
 **The team placeholder is a real fallback, not a stopgap.** Seven of the 200
-personnel records carry no photo — Vikesh Bansal, Mazin El Harith, Richard
-Lemanski, Brock Lock, Steve Mizrach, Blake Rath, Jonathan Yuen. The live site
+personnel records carried no photo at import; five have since been given one,
+leaving two — Vikesh Bansal and Richard Lemanski. The live site
 renders a house graphic at the same 550x500 as a real headshot, and
 `meet-the-team.njk`, `location.njk` and `personnel.njk` now do the same, so those
 cards keep their shape instead of collapsing to an empty figure. Dropping a real

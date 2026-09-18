@@ -33,10 +33,10 @@ prosperity-llc-site/
 │   ├── index.njk        homepage (stays at the root — relies on Eleventy's implicit path→URL convention)
 │   ├── pages/            everything else with an explicit permalink (page, personnel, location, post, culture, whats-new, meet-the-team, search)
 │   ├── content/          ← one Markdown+JSON-frontmatter file per content record — see §6a
-│   │   ├── personnel/<slug>.md     198 files — Decap-CMS-ready
+│   │   ├── personnel/<slug>.md     200 files — Decap-CMS-ready
 │   │   ├── posts/<slug>.md         104 files — Decap-CMS-ready
 │   │   ├── locations/<slug>.md      11 files — Decap-CMS-ready
-│   │   └── pages/<file-stem>.md     43 files — NOT Decap-ready (see §6a), developer-edited for now
+│   │   └── pages/<file-stem>.md     55 files — NOT Decap-ready (see §6a), developer-edited for now
 │   ├── _redirects       Cloudflare Pages redirects → copied to the deploy root
 │   ├── _headers         Cloudflare Pages response headers (CSP etc.) → deploy root
 │   ├── robots.txt       → deploy root
@@ -47,11 +47,12 @@ prosperity-llc-site/
 │       ├── css/ js/ icons/       stylesheet, scripts, favicons
 │       ├── video/ docs/          hero + recovered video, the one linked PDF
 │       └── img/
-│           ├── uploads/<type>/<slug>[-<n>].<ext>   per-record media (§6a)
-│           ├── people/ services/ books/ awards/    referenced from page body HTML
+│           ├── personnel/ posts/ locations/ pages/  ← CMS-owned: <slug>[-<n>].<ext>, one
+│           │                                          folder per content type (§6a)
+│           ├── services/ books/ awards/            referenced from page body HTML
 │           ├── payment/ diagrams/ photos/ ui/      (was flat, date-bucketed WP uploads)
-│           ├── values/ posts/                      homepage art
-│           └── logo.svg, logo-white.svg, linkedin.png
+│           ├── values/ home/                       homepage art
+│           └── logo.svg, linkedin.png, bg-banner-swoop.svg, achievements-*
 ├── tools/             ← npm-script helpers only; nothing runs at build time (see §14)
 │   ├── open-chrome-tab.js + .applescript  ← npm start's browser opener (see §2)
 │   └── debug-eleventy.js  ← npm run debug's DEBUG= wrapper (see §2)
@@ -296,10 +297,27 @@ plus a body (rendered HTML, used for the record's main prose):
 
 | Folder | Files | Frontmatter fields | Body |
 |---|---|---|---|
-| `personnel/` | 198 | `slug`, `name`, `certifications`, `job_title`, `location_name`, `location_url`, `photo`, `linkedin_url`, `facet_title`, `facet_specializations`, `date_modified` | bio HTML |
+| `personnel/` | 200 | `slug`, `name`, **`last_name`**, `certifications`, `job_title`, `location_name`, `location_url`, `photo`, `linkedin_url`, `facet_title`, `facet_specializations`, `date_modified` | bio HTML |
 | `posts/` | 104 | `slug`, `title`, `published`, `date_modified`, `category_name`, `category_url`, `images[]` | post HTML |
-| `locations/` | 11 | `slug`, `name`, `address_html`, `date_modified` | description HTML |
-| `pages/` | 55 | `slug`, `path`, `page_type`, `title`, `meta_description`, `banner_title`, `banner_description_html`, `banner_image`, `date_modified`, `blocks[]` (each block: `layout`, `html`, optional `section_class` — §6) | *(empty — everything lives in `blocks[]`)* |
+| `locations/` | 11 | `slug`, `name`, `address_html`, **`banner_image`**, `date_modified` | description HTML |
+| `pages/` | 55 | `slug`, `path`, `page_type`, **`status`**, `title`, `meta_description`, `banner_title`, `banner_description_html`, `banner_image`, `date_modified`, `blocks[]` (each block: `layout`, `html`, optional `section_class` — §6) | *(empty — everything lives in `blocks[]`)* |
+
+Every record of a type carries every field of that type — no optional keys, no
+drift — so each list above is the complete schema for its collection. Some values
+are empty strings (127 personnel have no `certifications`, 77 no `linkedin_url`),
+which is `required: false` rather than a missing key.
+
+**Decap drops frontmatter keys its config does not declare.** Saving one record
+through the CMS rewrites that whole file, so any field left out of `config.yml`
+is silently erased from the record that was edited. The three bolded above are
+the ones to be careful with, because nothing on the page looks broken until
+later:
+
+| Field | Left undeclared → |
+|---|---|
+| `last_name` | the `/meet-the-team/` sort collapses — `eleventy.config.js` orders the directory on it, not on `name` |
+| `banner_image` | that location's page banner disappears (`location.njk`) |
+| `status` | **a `draft` or `private` page can go live** — `genericPages` filters on it, and 10 of the 55 page records are not `publish` (8 draft, 2 private) |
 
 Each folder has a `<type>.11tydata.js` directory-data file (`tags`, `permalink: false`,
 `templateEngineOverride: false`) so Eleventy auto-populates `collections.personnel`,
@@ -323,11 +341,56 @@ could, which isn't a real editorial experience. Pages stay developer-edited unti
 custom Decap widget for content-block editing exists — that's separate, larger scope
 (§9 Phase I), not something solved by moving pages into individual files.
 
-Per-record media lives at `site/assets/img/uploads/<type>/<slug>[-<n>].<ext>`,
-grouped by the record that owns it (multi-image posts get `-1`, `-2`, etc., in
-order). The old flat, date-bucketed upload scheme is gone. Re-encoding to WebP
-(§8) just adds a sibling file at the same basename, so nothing has to be
-remapped.
+Per-record media lives at `site/assets/img/<type>/<slug>[-<n>].<ext>` — one
+folder per content type, each file named after the record that owns it
+(multi-image posts get `-1`, `-2`, etc., in order). The old flat, date-bucketed
+upload scheme is gone. Re-encoding to WebP (§8) just adds a sibling file at the
+same basename, so nothing has to be remapped.
+
+These four folders are the CMS-writable ones, and Decap points at them
+per collection rather than at a shared parent — `media_folder:
+site/assets/img/posts` with `public_folder: /assets/img/posts` on the posts
+collection, and the same shape for `personnel`, `locations` and `pages`:
+
+| Folder | Files | Naming | Owned by |
+|---|---|---|---|
+| `img/personnel/` | 198 | `<slug>.<ext>`, 198/198 | one per record that has a photo (2 have none — §9.1) |
+| `img/posts/` | 488 | `<slug>[-<n>]`, 488/488 | `posts` records, `images[]` in slug order |
+| `img/locations/` | 11 | `<slug>.<ext>`, 11/11 | one per `locations` record |
+| `img/pages/` | 59 | looser — see below | `pages` records (banner + body art) |
+
+`personnel`, `posts` and `locations` are strictly `<slug>[-<n>]` with nothing
+foreign in them, which is what makes them safe to hand to Decap as-is. `pages/`
+is the exception: 40 files follow the strict form, 17 use
+`<slug>-<descriptive-name>` (`accounting-technology-distribution.png` and the
+other body-art icons), and `culture.jpg`/`whats-new.jpg` belong to the two
+archive *templates*, which have no page record at all. That looseness is
+tolerable because the `pages` collection is not Decap-ready anyway — its
+`blocks[]` needs a custom widget first (above) — but it has to be tidied before
+Decap ever points at `img/pages/`.
+
+**Keep the first three folders one-to-one with the records.** Every other image
+folder (`services/`, `books/`, `awards/`, `payment/`, `diagrams/`, `photos/`,
+`ui/`, `values/`, `home/`) is developer-owned and must stay out of them: an
+editor's media library shows everything in the folder its collection points at,
+so a stray file there is one an editor can attach to a record, overwrite or
+delete. `img/posts/` held 14 such files — the retired curated card art — until
+this was straightened out; `fastest-growing-firms-2026.*` is still used by the
+homepage featured card and now lives in `img/home/`.
+
+Since the boundary is a naming convention rather than a folder nesting, nothing
+enforces it at build time. Run this before wiring Decap up, and after any bulk
+media change — it prints every file in a CMS folder that no record claims, and
+is silent when the folder is clean:
+
+```bash
+for t in personnel posts locations; do node -e "
+  const fs=require('fs'),t='$t',p='site/assets/img/'+t,
+    s=new Set(fs.readdirSync('site/content/'+t).map(f=>f.replace(/\.md\$/,''))),
+    bad=fs.readdirSync(p).filter(f=>f!=='.DS_Store'&&!s.has(f.replace(/\.[^.]+\$/,'').replace(/-\d+\$/,'')));
+  if(bad.length)console.log(t+':',bad.join(', '));
+"; done
+```
 
 ---
 
@@ -454,10 +517,10 @@ in `style.css`, and the 17 icons belonging to `/valuation-services/` (draft) and
 `/accounting-technology[old]/` (private), which had been outside the import's
 reference scan.
 
-The same pass picked up something the import had dropped silently. **Seven of the
-200 personnel records have no photo** (Vikesh Bansal, Mazin El Harith, Richard
-Lemanski, Brock Lock, Steve Mizrach, Blake Rath, Jonathan Yuen) and their cards
-were rendering as empty figures. The live site falls back to a house graphic at
+The same pass picked up something the import had dropped silently. Seven of the
+200 personnel records had no photo and their cards were rendering as empty
+figures; five have since been given one, leaving **two without a photo** (Vikesh
+Bansal, Richard Lemanski). The live site falls back to a house graphic at
 the same 550x500 as a real headshot; that graphic is now
 `/assets/img/ui/team-placeholder.svg` and `meet-the-team.njk`, `location.njk` and
 `personnel.njk` fall back to it. Adding a real photo to a record replaces it with
