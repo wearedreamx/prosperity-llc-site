@@ -13,7 +13,7 @@ facet_specializations:
 date_modified: "2025-07-07T16:52:28+00:00"
 ---
 
-Mark Benesiewicz graduated from California State University, Fresno with a major in accounting. After spending ten years in California, he decided to move back to Illinois in 2021, his childhood state, to be closer to his family and enjoy all the wonderful seasons Illinois has to offer even when he experiences them all in the span of a week. In his spare time, you’ll find Mark on the golf course working on his swing, playing soccer, or exploring the surrounding areas with his wife, Amanda. Mark is in the process of expanding his tax knowledge and finding better ways to assist his clients by pursing a master’s in taxation degree.
+Mark Benesiewicz graduated from California State University, Fresno with a major in accounting. After spending ten years in California, he decided to move back to Illinois in 2021, his childhood state, to be closer to his family and enjoy all the wonderful seasons Illinois has to offer even when he experiences them all in the span of a week. In his spare time, you’ll find Mark on the golf course working on his swing, playing soccer, or exploring the surrounding areas with his wife, Amanda. Mark is in the process of expanding his tax knowledge and finding better ways to assist his clients by pursuing a master’s in taxation degree.
 
 **EXPERTISE:** Taxation of High Net Worth Individuals, Tax Planning
 

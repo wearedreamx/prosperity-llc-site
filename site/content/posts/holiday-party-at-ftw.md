@@ -37,4 +37,4 @@ images:
   - /assets/img/posts/holiday-party-at-ftw-31.jpg
 ---
 
-To celebrated the holiday season, the firm spend the day at FTW Entertainment. There we enjoyed arcade games, indoor miniature golf, and good food and drinks. The celebration culminated in a White Elephant gift exchange, where the competition was on for a Bears cap.
+To celebrate the holiday season, the firm spent the day at FTW Entertainment. There we enjoyed arcade games, indoor miniature golf, and good food and drinks. The celebration culminated in a White Elephant gift exchange, where the competition was on for a Bears cap.

@@ -20,6 +20,6 @@ Amita Jasoliya is a finance professional with deep expertise in revenue manageme
 - **Favorite thing about my job?** The people! Prosperity has such a welcoming and collaborative environment.
 - **Favorite vacation you’ve taken:** Mauritius. From the tropical scenery of Chamarel to the crystal-clear beaches and a boat ride to Île aux Cerf’s, it was unforgettable.
 - **If you could have dinner with one Marvel character, who would it be and why?** Hulk — he’s my son’s favorite and I’d love to join them both at the table!
-- **What is the best disk you can cook?** Almost all Indian dishes. I love experimenting in the kitchen!
+- **What is the best dish you can cook?** Almost all Indian dishes. I love experimenting in the kitchen!
    Favorite way to celebrate your birthday: Getting lots of gifts from friends and family — it never gets old.
 - **What would your last meal be?** Pizza loaded with extra cheese, of course!

@@ -10,6 +10,6 @@ images:
 ---
 
 The team competed virtually to see who has the most popular opinion in “Winning Opinions”. Hosted by Dan Jessup and Yaymaker, this Family Feud style game was a hilarious way for us to celebrate the passing of the July 15th tax deadline!
- Which superhero would make the best friend? Which is Leonardo DiCaprio’s best movie that starts with the word “The”? We split into Zoom teams and worked together to rank out answers.
+ Which superhero would make the best friend? Which is Leonardo DiCaprio’s best movie that starts with the word “The”? We split into Zoom teams and worked together to rank our answers.
 
 NDH is so grateful to our host Dan Jessup for leading us through the game and keeping us laughing out of our chairs.

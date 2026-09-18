@@ -14,7 +14,7 @@ facet_specializations:
 date_modified: "2025-07-07T16:53:48+00:00"
 ---
 
-Gary graduated with a bachelor’s degree in accounting and chartered accountancy in Inda and received his master’s degree in finance from Goldey-Beacom College in Delaware in 2011. In 2014, Gary earned his CPA license as well. Gary started his career with a local CPA firm as a senior accountant where he provided accounting and tax services to small and medium size companies. In 2021, he joined Jain & Jain before the firm became part of Prosperity Partners in 2024. In his spare time, Gary enjoys playing volleyball, tennis, swimming, and running.
+Gary graduated with a bachelor’s degree in accounting and chartered accountancy in India and received his master’s degree in finance from Goldey-Beacom College in Delaware in 2011. In 2014, Gary earned his CPA license as well. Gary started his career with a local CPA firm as a senior accountant where he provided accounting and tax services to small and medium size companies. In 2021, he joined Jain & Jain before the firm became part of Prosperity Partners in 2024. In his spare time, Gary enjoys playing volleyball, tennis, swimming, and running.
 
 **EXPERTISE:**&nbsp; Small business accounting
 

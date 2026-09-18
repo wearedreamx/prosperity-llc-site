@@ -18,5 +18,5 @@ Sree graduated from the University of Kerala with major in accounting and later 
 **EXPERTISE:** Accounting, Billing, Payroll
 
 - **Favorite thing about my job**: For me, work is a form of worship – of putting all of my energy and talent toward to serve our firm and help our clients. I find working hard to be truly fulfilling and purposeful.
-- **What is your side gig/passion project/hobby**: I have a green thumb and is an avid gardener with a knack for growing various fruits, vegetables. I enjoy spending time with her husband, children, and grandchildren and am an active participant in her local Hindu temple.
-- **Favorite workout or sport to play**: I like to do yoga and meditation. I was playing basketball at my college life. I like to watch sports in TV.
+- **What is your side gig/passion project/hobby**: I have a green thumb and am an avid gardener with a knack for growing various fruits, vegetables. I enjoy spending time with my husband, children, and grandchildren and am an active participant in my local Hindu temple.
+- **Favorite workout or sport to play**: I like to do yoga and meditation. I played basketball in college. I like to watch sports on TV.

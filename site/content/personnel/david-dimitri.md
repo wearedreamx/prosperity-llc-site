@@ -19,6 +19,6 @@ David Dimitri graduated from William & Mary College with a Major in Finance and 
 
 - **Favorite Thing About My Job:** The ability to work with different people, especially the owners/operators of small businesses. The uniqueness of each and every project never fails to stimulate learning!
 - **Desert Island Book:** Lord of the Rings
-- **Best disk I can cook:** Egg Bake
+- **Best dish I can cook:** Egg Bake
 - **Favorite board game:** Catan
 - **Favorite workout or sport to play:** Basketball

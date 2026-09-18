@@ -17,7 +17,7 @@ Maria graduated from Andres Bello Catholic University in Venezuela with a bachel
 
 **EXPERTISE** – Administration, Customer Service, Account Receivables.
 
-- **Favorite thing about my job**: Our team is awesome – regardless of or title or role, we support each other to achieve our common goals.
+- **Favorite thing about my job**: Our team is awesome – regardless of our title or role, we support each other to achieve our common goals.
 - **Favorite vacation you’ve taken**: I have visited some amazing places over the years, and choosing just one as my favorite is quite challenging. But I would choose two places that share what I love most: the beach. One of these is La Tortuga Island in my country. Experiencing nature to the fullest on its stunning white sand beaches, despite a somewhat stressful journey to get there, remains unforgettable. After a work trip, spending a few days in Bali, Indonesia, enjoying its beautiful beaches, local culture, relaxing massages, and amazing views was a dream come true
 - **What is your side gig/passion project/hobby?** My hobby is designing and crafting with silver, using jewelry-making techniques to create beautiful earrings, rings, and pendants
 - **Favorite way to celebrate your birthday:** Spending time with close friends and family, enjoying a relaxed dinner, and having fun together.
