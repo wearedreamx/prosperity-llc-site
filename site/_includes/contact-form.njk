@@ -12,7 +12,8 @@
   eleventy.config.js's injectContactForm passes a distinct prefix per marker.
 #}
 {% set p = idPrefix or "cf" %}
-<form class="contact-form" action="/api/contact" method="post">
+<form class="contact-form" action="https://api.web3forms.com/submit" method="post">
+	<input type="hidden" name="access_key" value="091427a2-a2e1-46a0-96f4-732d1f62a9df"
 	<h3 class="visually-hidden">Contact us</h3>
 	<div class="contact-form__row">
 		<div class="field">
