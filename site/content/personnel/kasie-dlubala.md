@@ -6,15 +6,7 @@ job_title: Manager
 certifications: cpa
 location: chicago
 photo: /assets/img/personnel/kasie-dlubala.jpg
-linkedin_url: ""
-# LINKEDIN URL LOST — needs to be re-supplied.
-# The value this field was committed with in 31de9c0 ("linkedin part1")
-# was not a URL: it was a tool output with the profile slug replaced by a
-# redaction token, written straight into the record. It has been that way
-# in every commit since — the field did not exist before 31de9c0, so there
-# is no clean copy in history to restore. Blanked rather than left as a
-# link that cannot resolve; team-card.njk and personnel.njk already omit
-# the badge for the 65 people who have no LinkedIn.
+linkedin_url: "https://www.linkedin.com/in/kasie-dlubala/"
 facet_title: managers
 facet_specializations:
   - tax-services

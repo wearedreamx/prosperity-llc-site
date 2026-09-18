@@ -6,7 +6,7 @@ job_title: Associate
 certifications: ""
 location: mumbai
 photo: /assets/img/personnel/mansi-goud.jpg
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/in/mansi-goud-261012285/"
 facet_title: associates
 facet_specializations:
   - tax-services

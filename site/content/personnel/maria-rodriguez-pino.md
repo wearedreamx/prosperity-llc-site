@@ -6,7 +6,7 @@ job_title: Associate
 certifications: ""
 location: houston
 photo: /assets/img/personnel/maria-rodriguez-pino.jpg
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/in/maria-f-rodriguez-pino-7b481a7"
 facet_title: associates
 facet_specializations:
   - operations
