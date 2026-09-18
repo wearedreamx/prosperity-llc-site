@@ -25,7 +25,7 @@
 <p><strong>EXPERTISE:</strong> Mergers &amp; Acquisitions, Ultra-high Net Worth Tax Planning, Equity Compensation, Partnership Taxation, Estate Planning, State &amp; Local Taxation</p>
 <ul>
 <li><strong>Favorite thing about my job</strong>: The people. I love watching our diverse, talented team ascend through the profession and turn a job into a life-long career.</li>
-<li><strong>Favorite work outing you’ve been on</strong>: Ping pong at Spin. I’d play daily if I had the opportunity and the time. Runner-up, and only because I lost, is the one-mile race with Alyvia on my 40th birthday. The <a href="/team-j-or-a/">video</a> documenting my crushing defeat is preserved for posterity.</li>
+<li><strong>Favorite work outing you’ve been on</strong>: Ping pong at Spin. I’d play daily if I had the opportunity and the time. Runner-up, and only because I lost, is the one-mile race with Alyvia on my 40th birthday. The <a href="/culture/team-j-or-a/">video</a> documenting my crushing defeat is preserved for posterity.</li>
 <li><strong>Desert island book</strong>: “Once a Runner.” True story – at 25 years old, I took a sabbatical from working at Arthur Andersen to climb Mt. Aconcagua, the tallest mountain in the Western hemisphere, and brought for the three-week trek “Once a Runner,” three juggling balls and an iPod.</li>
 <li><strong>Favorite vacation you’ve taken</strong>: I love all active vacations. Relaxation for me is hours on a bike or hiking in nature.</li>
 <li><strong>What is your current hobby?</strong> Pickleball. I’m really into it and enjoy seeing the benefit of all my youth tennis lessons.</li>
